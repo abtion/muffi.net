@@ -31,3 +31,6 @@ The service layer is where operations across multiple objects is done (business 
 ### CQRS further reading
 - https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs
 - https://www.c-sharpcorner.com/article/using-the-cqrs-pattern-in-c-sharp/
+
+### Dependency Injection further reading
+- https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-5.0
