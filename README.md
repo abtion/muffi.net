@@ -27,10 +27,14 @@ The service layer is where operations across multiple objects is done (business 
 ### Microsoft Azure SQL Database
 - https://docs.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview
 
+### MediatR (Mediator implementation by Jimmy Bogard)
+- https://github.com/jbogard/MediatR
+
 ## Design Patterns Used 
 ### CQRS further reading
 - https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs
 - https://www.c-sharpcorner.com/article/using-the-cqrs-pattern-in-c-sharp/
+- https://github.com/jbogard/MediatR/wiki
 
 ### Dependency Injection further reading
 - https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-5.0
