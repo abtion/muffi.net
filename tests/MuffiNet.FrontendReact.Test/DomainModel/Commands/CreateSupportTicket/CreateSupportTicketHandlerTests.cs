@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 using MuffiNet.FrontendReact.Data;
 using MuffiNet.FrontendReact.DomainModel;
 using MuffiNet.FrontendReact.DomainModel.Commands.CreateSupportTicket;
-using MuffiNet.FrontendReact.Test.Mocks;
+using MuffiNet.Test.Shared.Mocks;
 using Xunit;
 
 namespace MuffiNet.FrontendReact.Test.DomainModel.Commands.CreateSupportTicket
 {
     public class CreateSupportTicketHandlerTests : DomainModelTest<CreateSupportTicketHandler>
     {
-        private TechnicianHubMock technicianHub;
+        private ExampleHubMock exampleHub;
 
         protected internal async override Task<CreateSupportTicketHandler> CreateSut()
         {
             var domainModelTransaction = ServiceProvider.GetService<DomainModelTransaction>();
             var currentDateTimeService = CurrentDateTimeServiceMock.MockCurrentDateTimeService();
 
-            technicianHub = new TechnicianHubMock();
+            exampleHub = new ExampleHubMock();
 
-            return await Task.FromResult(new CreateSupportTicketHandler(domainModelTransaction, currentDateTimeService, technicianHub));
+            return await Task.FromResult(new CreateSupportTicketHandler(domainModelTransaction, currentDateTimeService, exampleHub));
         }
 
         private CreateSupportTicketRequest CreateValidRequest()
@@ -98,12 +98,12 @@ namespace MuffiNet.FrontendReact.Test.DomainModel.Commands.CreateSupportTicket
 
             var response = await sut.Handle(request, cancellationToken);
 
-            Assert.Equal(1, technicianHub.SupportTicketCreatedMessageCounter);
+            Assert.Equal(1, exampleHub.EntityCreatedMessageCounter);
 
             var supportTicketEntity = ServiceProvider.GetService<ApplicationDbContext>().SupportTickets.First();
             Assert.Equal(response.SupportTicketId, supportTicketEntity.SupportTicketId);
 
-            Assert.Equal(supportTicketEntity.SupportTicketId.ToString(), technicianHub.LatestSupportTicketCreatedMessage.EntityId);
+            Assert.Equal(supportTicketEntity.SupportTicketId.ToString(), exampleHub.LatestEntityCreatedMessage.EntityId);
         }
 
         [Fact]

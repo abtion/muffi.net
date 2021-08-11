@@ -7,11 +7,10 @@ using MuffiNet.FrontendReact.DomainModel;
 using MuffiNet.FrontendReact.DomainModel.Commands.RequestOssIdFromOss;
 using MuffiNet.FrontendReact.Exceptions;
 using MuffiNet.FrontendReact.Models;
-using MuffiNet.FrontendReact.Test.Mocks;
-using MuffiNet.FrontendReact.Test.TestData;
+using MuffiNet.Test.Shared.Mocks;
+using MuffiNet.Test.Shared.TestData;
 using Xunit;
 using FluentAssertions;
-
 
 namespace MuffiNet.FrontendReact.Test.DomainModel.Commands.RequestOssIdFromOss
 {

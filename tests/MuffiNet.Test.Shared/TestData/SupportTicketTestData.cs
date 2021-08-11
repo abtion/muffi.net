@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using MuffiNet.FrontendReact.DomainModel;
 using MuffiNet.FrontendReact.Models;
 
-namespace MuffiNet.FrontendReact.Test.TestData
+namespace MuffiNet.Test.Shared.TestData
 {
     public class SupportTicketTestData
     {

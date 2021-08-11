@@ -11,8 +11,8 @@ using MuffiNet.FrontendReact.DomainModel.Queries.EstimatedWaitingTime;
 using MuffiNet.FrontendReact.DomainModel.Queries.ReadVideoGrantForCustomerToken;
 using MuffiNet.FrontendReact.Models;
 using MuffiNet.FrontendReact.Services;
-using MuffiNet.FrontendReact.Test.Mocks;
 using Xunit;
+using MuffiNet.Test.Shared.Mocks;
 
 namespace MuffiNet.FrontendReact.Test.Controllers
 {
@@ -26,10 +26,10 @@ namespace MuffiNet.FrontendReact.Test.Controllers
             var currentDateTimeMock = new Mock<ICurrentDateTimeService>();
             currentDateTimeMock.Setup(p => p.CurrentDateTime()).Returns(new DateTime(2021, 06, 17, 12, 05, 10));
 
-            var technicianHubMock = new TechnicianHubMock();
+            var exampleHubMock = new ExampleHubMock();
 
             var controller = new SignUpController();
-            var handler = new CreateSupportTicketHandler(transaction, currentDateTimeMock.Object, technicianHubMock);
+            var handler = new CreateSupportTicketHandler(transaction, currentDateTimeMock.Object, exampleHubMock);
             var request = new CreateSupportTicketRequest()
             {
                 CustomerEmail = "a@b.c",

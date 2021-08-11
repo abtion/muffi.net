@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 using MuffiNet.FrontendReact.Data;
 using MuffiNet.FrontendReact.DomainModel;
 using MuffiNet.FrontendReact.Models;
-using MuffiNet.FrontendReact.Test.TestData;
+using MuffiNet.Test.Shared.TestData;
 
 namespace MuffiNet.FrontendReact.Test.DomainModel
 {

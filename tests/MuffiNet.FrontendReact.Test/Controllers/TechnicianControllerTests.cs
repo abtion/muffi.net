@@ -13,8 +13,8 @@ using MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicket;
 using MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicketById;
 using MuffiNet.FrontendReact.Models;
 using MuffiNet.FrontendReact.Services;
-using MuffiNet.FrontendReact.Test.Mocks;
-using MuffiNet.FrontendReact.Test.TestData;
+using MuffiNet.Test.Shared.Mocks;
+using MuffiNet.Test.Shared.TestData;
 using Xunit;
 
 namespace MuffiNet.FrontendReact.Test.Controllers
@@ -54,9 +54,9 @@ namespace MuffiNet.FrontendReact.Test.Controllers
             // Arrange
             var transaction = ServiceProvider.GetService<DomainModelTransaction>();
 
-            var technicianHubMock = new TechnicianHubMock();
+            var exampleHubMock = new ExampleHubMock();
 
-            var createSupportTicketHandler = new CreateSupportTicketHandler(transaction, MockCurrentDateTimeService(), technicianHubMock);
+            var createSupportTicketHandler = new CreateSupportTicketHandler(transaction, MockCurrentDateTimeService(), exampleHubMock);
             var createSupportTicketRequest = new CreateSupportTicketRequest()
             {
                 CustomerEmail = "a@b.c",
@@ -108,11 +108,11 @@ namespace MuffiNet.FrontendReact.Test.Controllers
             // Arrange
             var transaction = ServiceProvider.GetService<DomainModelTransaction>();
 
-            var technicianHubMock = new TechnicianHubMock();
+            var exampleHubMock = new ExampleHubMock();
             var exampleServiceMock = new ExampleServiceMock();
             var currentUserServiceMock = new CurrentUserServiceMock();
 
-            var createSupportTicketHandler = new CreateSupportTicketHandler(transaction, MockCurrentDateTimeService(), technicianHubMock);
+            var createSupportTicketHandler = new CreateSupportTicketHandler(transaction, MockCurrentDateTimeService(), exampleHubMock);
             var createSupportTicketRequest = new CreateSupportTicketRequest()
             {
                 CustomerEmail = "a@b.c",

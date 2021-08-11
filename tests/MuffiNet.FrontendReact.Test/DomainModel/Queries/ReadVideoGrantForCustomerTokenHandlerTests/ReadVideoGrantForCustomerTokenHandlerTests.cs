@@ -7,7 +7,7 @@ using MuffiNet.FrontendReact.DomainModel;
 using MuffiNet.FrontendReact.DomainModel.Queries.ReadVideoGrantForCustomerToken;
 using MuffiNet.FrontendReact.Exceptions;
 using MuffiNet.FrontendReact.Models;
-using MuffiNet.FrontendReact.Test.TestData;
+using MuffiNet.Test.Shared.TestData;
 using Xunit;
 
 namespace MuffiNet.FrontendReact.Test.DomainModel.Queries.ReadSupportTicketById

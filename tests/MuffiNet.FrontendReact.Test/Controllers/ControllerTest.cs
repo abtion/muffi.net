@@ -2,7 +2,7 @@
 using System;
 using MuffiNet.FrontendReact.Data;
 using MuffiNet.FrontendReact.Test.DomainModel;
-using MuffiNet.FrontendReact.Test.TestData;
+using MuffiNet.Test.Shared.TestData;
 
 namespace MuffiNet.FrontendReact.Test.Controllers
 {

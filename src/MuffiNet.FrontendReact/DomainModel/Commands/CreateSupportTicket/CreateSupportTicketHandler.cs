@@ -14,11 +14,11 @@ namespace MuffiNet.FrontendReact.DomainModel.Commands.CreateSupportTicket
         private readonly ICurrentDateTimeService currentDateTimeService;
         private readonly ExampleHub exampleHub;
 
-        public CreateSupportTicketHandler(DomainModelTransaction domainModelTransaction, ICurrentDateTimeService currentDateTimeService, ExampleHub technicianHub)
+        public CreateSupportTicketHandler(DomainModelTransaction domainModelTransaction, ICurrentDateTimeService currentDateTimeService, ExampleHub exampleHub)
         {
             this.domainModelTransaction = domainModelTransaction ?? throw new ArgumentNullException(nameof(domainModelTransaction));
             this.currentDateTimeService = currentDateTimeService ?? throw new ArgumentNullException(nameof(currentDateTimeService));
-            this.exampleHub = technicianHub ?? throw new ArgumentNullException(nameof(technicianHub));
+            this.exampleHub = exampleHub ?? throw new ArgumentNullException(nameof(exampleHub));
         }
 
         public async Task<CreateSupportTicketResponse> Handle(CreateSupportTicketRequest request, CancellationToken cancellationToken)
