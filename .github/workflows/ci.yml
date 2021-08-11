@@ -91,7 +91,7 @@ jobs:
       - yarn-lint
       - yarn-test
       - dotnet-test
-    if: success() && github.ref == 'refs/heads/main'
+    if: success() && github.ref == 'refs/heads/main' && 'to-enable-azure-deploy' == 'remove-this-after-configuring-github-secrets-and-below-settings'
 
     steps:
       - name: Checkout repository
