@@ -12,21 +12,6 @@
 4. [Production](#production)
    1. [Deployments](#deployments)
 5. [Third party services](#third-party-services)
-   - [Twilio](#twilio)
-   - [Azure](#azure)
-
-Care1-VCI is a tool that lets technicians have video calls with customers.
-The customers wait in a queue, until they are engaged by a technician.
-
-- Asana: https://app.asana.com/0/1200407690083597/board
-- Harvest: Care1 -> VCI
-- Client: Care1
-- Contacts:
-  - Product Owner & CEO: Kenneth Holm, kenneth.holm@care1.dk
-  - Lead technician: Michael Winther, miha@care1.dk
-  - IT Lead: Torben Demant, td@care1.dk
-
-[Twilio](https://www.twilio.com/) is used for implementing the video calls.
 
 # Requirements
 
@@ -36,7 +21,6 @@ You must have the following installed and available on your machine:
 - **Dotnet framework 5.0**
 - **Docker / LocalDB**
 - **Node JS >12.x**
-- **Twilio account**
 - **Yarn 1.x**
 
 # Developing
@@ -150,7 +134,7 @@ Use this script:
 
 As is it will create user with the following credentials:
 
-- care1@abtion.com
+- user@abtion.com
 - Test1234!
 
 You can change @UserName and @Email to make a user with another email address.
@@ -161,14 +145,54 @@ TBD
 
 # Third party services
 
-## Twilio
+# muffi.net
 
-- **Description:** Twilio is a cloud service that facilitates video/audio/text/etc. conferencing for applications,
-- **Auth:** 1password: care1 > twilio.com/login
-- **Documentation:** [https://www.twilio.com/docs/video](https://www.twilio.com/docs/video)
+Template to kick start .NET applications at Abtion A/S
 
-## Azure
+The template is built with the Microsoft Azure stack in mind - it can be hosted at other cloud providers. The template uses either a Microsoft Azure SQL Database (Relational DB) or Microsoft Azure Cosmos DB (Document DB).
 
-- **Description:** Azure is Microsoft's cloud hosting service where we host the application.
-- **Auth:** 1password: care1 > portal.azure.com
-- **Documentation:** [https://portal.azure.com](https://portal.azure.com)
+The template can be developed and debugged on all platforms supported by Microsoft .NET (Windows, Linux, and macOS).
+
+## Projects
+
+### Abtion.Muffi.DomainModel
+
+The domain model is where single object manipulation is done - Create, Read, Update, Delete (CRUD).
+
+For seperation of queries (fast) and commands (slower) the pattern Command and Query Responsibility Segregation (CQRS) is used.
+
+### Abtion.Muffi.Services
+
+The service layer is where operations across multiple objects is done (business logic).
+
+## Test projects
+
+## Nuget Packages Used
+
+### Microsoft Entity Framework Core
+
+- https://docs.microsoft.com/en-us/ef/core/
+
+### Microsoft Azure Cosmos DB
+
+- https://docs.microsoft.com/en-us/azure/cosmos-db/introduction
+
+### Microsoft Azure SQL Database
+
+- https://docs.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview
+
+### MediatR (Mediator implementation by Jimmy Bogard)
+
+- https://github.com/jbogard/MediatR
+
+## Design Patterns Used
+
+### CQRS further reading
+
+- https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs
+- https://www.c-sharpcorner.com/article/using-the-cqrs-pattern-in-c-sharp/
+- https://github.com/jbogard/MediatR/wiki
+
+### Dependency Injection further reading
+
+- https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-5.0
