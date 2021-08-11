@@ -3,16 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31423.177
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppReact", "src\WebAppReact\WebAppReact.csproj", "{B43AE794-A202-4276-8D69-A2A969FEE523}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.FrontendReact", "src\MuffiNet.FrontendReact\MuffiNet.FrontendReact.csproj", "{B43AE794-A202-4276-8D69-A2A969FEE523}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppReact.Tests", "tests\WebAppReact.Test\WebAppReact.Tests.csproj", "{15066F15-59C8-4708-AA56-061EE9294780}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.FrontendReact.Tests", "tests\MuffiNet.FrontendReact.Test\MuffiNet.FrontendReact.Tests.csproj", "{15066F15-59C8-4708-AA56-061EE9294780}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solutions Items", "Solutions Items", "{B7E6E4AA-435A-490D-83E7-3BDD83089EAB}"
 	ProjectSection(SolutionItems) = preProject
 		care1-vci.pfx = care1-vci.pfx
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppReact.Selenium.Tests", "tests\WebAppReact.Selenium.Tests\WebAppReact.Selenium.Tests.csproj", "{0F23A7E8-0BDF-4543-A06F-EBD92ED439FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuffiNet.FrontendReact.Selenium.Tests", "tests\MuffiNet.FrontendReact.Selenium.Tests\MuffiNet.FrontendReact.Selenium.Tests.csproj", "{0F23A7E8-0BDF-4543-A06F-EBD92ED439FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

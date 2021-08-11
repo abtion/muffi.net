@@ -454,4 +454,4 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 
 ## Local appsettings
-src/WebAppReact/appsettings*Local.json
+src/MuffiNet.FrontendReact/appsettings*Local.json

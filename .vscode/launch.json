@@ -10,9 +10,9 @@
       "request": "launch",
       "preLaunchTask": "build",
       // If you have changed target frameworks, make sure to update the program path.
-      "program": "${workspaceFolder}/src/WebAppReact/bin/Debug/net5.0/WebAppReact.dll",
+      "program": "${workspaceFolder}/src/MuffiNet.FrontendReact/bin/Debug/net5.0/MuffiNet.FrontendReact.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/src/WebAppReact",
+      "cwd": "${workspaceFolder}/src/MuffiNet.FrontendReact",
       "stopAtEntry": false,
       // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
       "serverReadyAction": {

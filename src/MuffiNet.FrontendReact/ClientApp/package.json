@@ -1,0 +1,72 @@
+{
+  "name": "MuffiNet.FrontendReact",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@microsoft/signalr": "^5.0.7",
+    "@tailwindcss/aspect-ratio": "^0.2.1",
+    "autoprefixer": "^9",
+    "axios": "^0.21.1",
+    "babel-eslint": "^10.1.0",
+    "bootstrap-icons": "^1.5.0",
+    "classnames": "^2.3.1",
+    "history": "^5.0.0",
+    "linkifyjs": "^3.0.0-beta.3",
+    "luxon": "^1.27.0",
+    "oidc-client": "^1.11.5",
+    "postcss-loader": "^4",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-hot-loader": "^4.13.0",
+    "react-router-dom": "^5.2.0",
+    "sass": "^1.35.1",
+    "sass-loader": "^10.1.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "twilio-video": "^2.14.0"
+  },
+  "devDependencies": {
+    "@neutrinojs/jest": "^9.5.0",
+    "@neutrinojs/react": "^9.5.0",
+    "@svgr/webpack": "^5.5.0",
+    "@testing-library/jest-dom": "^5.13.0",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^13.1.9",
+    "eslint": "^7.11.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-plugin-flowtype": "^4.7.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "file-loader": "^6.2.0",
+    "jest": "^26.6.3",
+    "neutrino": "^9.5.0",
+    "prettier": "^2.3.1",
+    "typescript": "^3.9.9",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "scripts": {
+    "start": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --mode development",
+    "build": "webpack --mode production",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint ./src/ & prettier . --check",
+    "format": "prettier --write ."
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

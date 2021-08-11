@@ -29,11 +29,11 @@ You must have the following installed and available on your machine:
 
 ### 1. Configuration
 
-If you need to override configuration for the project, you can create a `src/WebAppReact/appsettings.Local.json`-file.
+If you need to override configuration for the project, you can create a `src/MuffiNet.FrontendReact/appsettings.Local.json`-file.
 
 If such a file exists, any values in that file will override the corresponding project settings.
 
-It is also possible to override select environments with `src/WebAppReact/appsettings.[Environment].Local.json`. E.g. `src/WebAppReact/appsettings.Development.Local.json`.
+It is also possible to override select environments with `src/MuffiNet.FrontendReact/appsettings.[Environment].Local.json`. E.g. `src/MuffiNet.FrontendReact/appsettings.Development.Local.json`.
 
 #### Database connection
 
@@ -44,7 +44,7 @@ Start the DB with `docker-compose up`, then no further setup is required.
 
 If you prefer LocalDB, you can create local configurations for the `Development` and `Test` environments (see [configuration](#1-configuration))
 
-Add the following to `src/WebAppReact/appsettings.Development.Local.json`
+Add the following to `src/MuffiNet.FrontendReact/appsettings.Development.Local.json`
 
 ```json
 {
@@ -55,7 +55,7 @@ Add the following to `src/WebAppReact/appsettings.Development.Local.json`
 }
 ```
 
-And to `src/WebAppReact/appsettings.Test.Local.json`:
+And to `src/MuffiNet.FrontendReact/appsettings.Test.Local.json`:
 
 ```json
 {
@@ -91,7 +91,7 @@ dotnet tool install --global dotnet-ef
 Then run the migrations:
 
 ```sh
-dotnet ef database update --project src/WebAppReact
+dotnet ef database update --project src/MuffiNet.FrontendReact
 ```
 
 You might get an error because the dotnet tools directory is not in your path.
@@ -121,7 +121,7 @@ yarn test
 
 ## Day-to-day
 
-- Run the server: `dotnet run --project src/WebAppReact`
+- Run the server: `dotnet run --project src/MuffiNet.FrontendReact`
 - Run backend tests: `dotnet test`
 - Run frontend tests: `yarn test`
 
