@@ -103,12 +103,7 @@ namespace MuffiNet.FrontendReact.Test.DomainModel.Commands.CreateSupportTicket
             var supportTicketEntity = ServiceProvider.GetService<ApplicationDbContext>().SupportTickets.First();
             Assert.Equal(response.SupportTicketId, supportTicketEntity.SupportTicketId);
 
-            Assert.Equal(supportTicketEntity.Brand, technicianHub.LatestSupportTicketCreatedMessage.SupportTicket.Brand);
-            Assert.Equal(supportTicketEntity.CreatedAt, technicianHub.LatestSupportTicketCreatedMessage.SupportTicket.CreatedAt);
-            Assert.Equal(supportTicketEntity.CustomerEmail, technicianHub.LatestSupportTicketCreatedMessage.SupportTicket.CustomerEmail);
-            Assert.Equal(supportTicketEntity.CustomerName, technicianHub.LatestSupportTicketCreatedMessage.SupportTicket.CustomerName);
-            Assert.Equal(supportTicketEntity.CustomerPhone, technicianHub.LatestSupportTicketCreatedMessage.SupportTicket.CustomerPhone);
-            Assert.Equal(supportTicketEntity.SupportTicketId, technicianHub.LatestSupportTicketCreatedMessage.SupportTicket.SupportTicketId);
+            Assert.Equal(supportTicketEntity.SupportTicketId.ToString(), technicianHub.LatestSupportTicketCreatedMessage.EntityId);
         }
 
         [Fact]

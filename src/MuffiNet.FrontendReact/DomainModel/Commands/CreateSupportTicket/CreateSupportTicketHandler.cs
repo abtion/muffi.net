@@ -12,13 +12,13 @@ namespace MuffiNet.FrontendReact.DomainModel.Commands.CreateSupportTicket
     {
         private readonly DomainModelTransaction domainModelTransaction;
         private readonly ICurrentDateTimeService currentDateTimeService;
-        private readonly TechnicianHub technicianHub;
+        private readonly ExampleHub exampleHub;
 
-        public CreateSupportTicketHandler(DomainModelTransaction domainModelTransaction, ICurrentDateTimeService currentDateTimeService, TechnicianHub technicianHub)
+        public CreateSupportTicketHandler(DomainModelTransaction domainModelTransaction, ICurrentDateTimeService currentDateTimeService, ExampleHub technicianHub)
         {
             this.domainModelTransaction = domainModelTransaction ?? throw new ArgumentNullException(nameof(domainModelTransaction));
             this.currentDateTimeService = currentDateTimeService ?? throw new ArgumentNullException(nameof(currentDateTimeService));
-            this.technicianHub = technicianHub ?? throw new ArgumentNullException(nameof(technicianHub));
+            this.exampleHub = technicianHub ?? throw new ArgumentNullException(nameof(technicianHub));
         }
 
         public async Task<CreateSupportTicketResponse> Handle(CreateSupportTicketRequest request, CancellationToken cancellationToken)
@@ -47,18 +47,8 @@ namespace MuffiNet.FrontendReact.DomainModel.Commands.CreateSupportTicket
             await domainModelTransaction.AddAsync<SupportTicket>(supportTicket);
             await domainModelTransaction.SaveChangesAsync();
 
-            await technicianHub.SupportTicketCreated(new SupportTicketCreatedMessage(
-                new Queries.ReadSupportTicket.ReadSupportTicketResponse.SupportTicketRecord(
-                    supportTicket.CustomerName,
-                    supportTicket.CustomerEmail,
-                    supportTicket.CustomerPhone,
-                    supportTicket.SupportTicketId,
-                    supportTicket.CreatedAt,
-                    supportTicket.Brand,
-                    null,
-                    null,
-                    "",
-                    "")
+            await exampleHub.SomeEntityCreated(new SomeEntityCreatedMessage(
+                    supportTicket.SupportTicketId.ToString()
                 )
             );
 

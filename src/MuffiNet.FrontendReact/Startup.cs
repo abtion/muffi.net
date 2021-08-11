@@ -126,8 +126,7 @@ namespace MuffiNet.FrontendReact
                 endpoints.MapRazorPages();
 
                 // Setup SignalR Hubs
-                endpoints.MapHub<TechnicianHub>("/hubs/technician");
-                endpoints.MapHub<CustomerHub>("/hubs/customer");
+                endpoints.MapHub<ExampleHub>("/hubs/example");
             });
 
             app.UseSpa(spa =>

@@ -30,8 +30,7 @@ namespace MuffiNet.FrontendReact.DomainModel
             services.AddScoped<EstimatedWaitingTimeHandler>();
 
             // SignalR
-            services.AddTransient<CustomerHub>();
-            services.AddTransient<TechnicianHub>();
+            services.AddTransient<ExampleHub>();
 
             // Services
             services.AddScoped<ICurrentUserService, CurrentUserService>();

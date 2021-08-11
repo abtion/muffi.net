@@ -18,9 +18,7 @@ namespace MuffiNet.FrontendReact.Test.DomainModel.Commands.RequestOssIdFromOss
     public class RequestOssIdFromOssTests : DomainModelTest<RequestOssIdFromOssHandler>
     {
         private string supportTicketId = "EAA147BF-2D9A-4F41-BADE-17085AB464DF";
-
-        private CustomerHubMock customerHub;
-        private Care1ServiceMock care1Service;
+        private ExampleServiceMock exampleService;
 
         protected internal async override Task<RequestOssIdFromOssHandler> CreateSut()
         {
@@ -30,11 +28,10 @@ namespace MuffiNet.FrontendReact.Test.DomainModel.Commands.RequestOssIdFromOss
 
             await TestData.CreateSupportTicketWithInitalFields(supportTicketId, DateTime.Now);
 
-            customerHub = new CustomerHubMock();
-            care1Service = new Care1ServiceMock();
+            exampleService = new ExampleServiceMock();
             var currentUserServiceMock = new CurrentUserServiceMock();
 
-            return new RequestOssIdFromOssHandler(transaction, customerHub, care1Service, currentUserServiceMock);
+            return new RequestOssIdFromOssHandler(transaction, exampleService, currentUserServiceMock);
         }
 
         private RequestOssIdFromOssRequest CreateValidRequest()

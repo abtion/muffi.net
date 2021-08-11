@@ -14,15 +14,13 @@ namespace MuffiNet.FrontendReact.DomainModel.Commands.RequestOssIdFromOss
     public class RequestOssIdFromOssHandler : IRequestHandler<RequestOssIdFromOssRequest, RequestOssIdFromOssResponse>
     {
         private readonly DomainModelTransaction transaction;
-        private readonly CustomerHub customerHub;
-        private readonly IExampleService care1Service;
+        private readonly IExampleService exampleService;
         private readonly ICurrentUserService currentUserService;
 
-        public RequestOssIdFromOssHandler(DomainModelTransaction transaction, CustomerHub customerHub, IExampleService care1Service, ICurrentUserService currentUserService)
+        public RequestOssIdFromOssHandler(DomainModelTransaction transaction, IExampleService exampleService, ICurrentUserService currentUserService)
         {
             this.transaction = transaction ?? throw new ArgumentNullException(nameof(transaction));
-            this.customerHub = customerHub ?? throw new ArgumentNullException(nameof(customerHub));
-            this.care1Service = care1Service ?? throw new ArgumentNullException(nameof(care1Service));
+            this.exampleService = exampleService ?? throw new ArgumentNullException(nameof(exampleService));
             this.currentUserService = currentUserService ?? throw new ArgumentNullException(nameof(currentUserService));
         }
 
@@ -43,14 +41,11 @@ namespace MuffiNet.FrontendReact.DomainModel.Commands.RequestOssIdFromOss
             // Get OssId From OSS
             var technicianInitials = (await currentUserService.CurrentUser()).Email.Split('@').FirstOrDefault();
 
-            var ossId = await care1Service.PerformService(request.SupportTicketId, supportTicket.CustomerName, technicianInitials);
+            var ossId = await exampleService.PerformService(request.SupportTicketId, supportTicket.CustomerName, technicianInitials);
 
             // Save in Database
             supportTicket.OssId = ossId;
             await transaction.SaveChangesAsync();
-
-            // Notify customer
-            await customerHub.TechnicianHasCreatedOssCase(new TechnicianHasCreatedOssCaseMessage(request.SupportTicketId, supportTicket.OssId));
 
             return new RequestOssIdFromOssResponse() { OssId = ossId };
         }

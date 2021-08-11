@@ -28,7 +28,6 @@ namespace MuffiNet.FrontendReact.Test.Controllers
 
             return currentDateTimeMock.Object;
         }
-        private CustomerHubMock customerHub = new CustomerHubMock();
 
         [Fact]
         public async Task Given_RequestIsValid_When_ReadSupportTicketsIsCalled_Then_ReturnTypeIsCorrect()
@@ -110,7 +109,7 @@ namespace MuffiNet.FrontendReact.Test.Controllers
             var transaction = ServiceProvider.GetService<DomainModelTransaction>();
 
             var technicianHubMock = new TechnicianHubMock();
-            var care1ServiceMock = new Care1ServiceMock();
+            var exampleServiceMock = new ExampleServiceMock();
             var currentUserServiceMock = new CurrentUserServiceMock();
 
             var createSupportTicketHandler = new CreateSupportTicketHandler(transaction, MockCurrentDateTimeService(), technicianHubMock);
@@ -125,7 +124,7 @@ namespace MuffiNet.FrontendReact.Test.Controllers
             var createSupportTicketResponse = await createSupportTicketHandler.Handle(createSupportTicketRequest, new CancellationToken());
 
             var controller = new AuthorizedController();
-            var handler = new RequestOssIdFromOssHandler(transaction, customerHub, care1ServiceMock, currentUserServiceMock);
+            var handler = new RequestOssIdFromOssHandler(transaction, exampleServiceMock, currentUserServiceMock);
             var supportTicketId = createSupportTicketResponse.SupportTicketId.ToString();
 
             var cancellationToken = new CancellationToken();
