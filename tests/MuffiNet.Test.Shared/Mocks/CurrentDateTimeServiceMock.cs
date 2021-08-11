@@ -2,7 +2,7 @@
 using System;
 using MuffiNet.FrontendReact.Services;
 
-namespace MuffiNet.FrontendReact.Test.Mocks
+namespace MuffiNet.Test.Shared.Mocks
 {
     public static class CurrentDateTimeServiceMock
     {

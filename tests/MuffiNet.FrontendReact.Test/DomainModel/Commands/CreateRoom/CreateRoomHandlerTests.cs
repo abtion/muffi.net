@@ -10,8 +10,8 @@ using MuffiNet.FrontendReact.DomainModel.Commands.CreateRoom;
 using MuffiNet.FrontendReact.Exceptions;
 using MuffiNet.FrontendReact.Models;
 using MuffiNet.FrontendReact.Services;
-using MuffiNet.FrontendReact.Test.Mocks;
-using MuffiNet.FrontendReact.Test.TestData;
+using MuffiNet.Test.Shared.Mocks;
+using MuffiNet.Test.Shared.TestData;
 using Xunit;
 
 namespace MuffiNet.FrontendReact.Test.DomainModel.Commands.CreateRoom

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using MuffiNet.FrontendReact.Hubs;
-namespace MuffiNet.FrontendReact.Test.Mocks
+
+namespace MuffiNet.Test.Shared.Mocks
 {
     public class TechnicianHubMock : TechnicianHub
     {

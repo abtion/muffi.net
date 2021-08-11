@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MuffiNet.FrontendReact.Models;
 
-namespace MuffiNet.FrontendReact.Test.TestData
+namespace MuffiNet.Test.Shared.TestData
 {
     public static class ApplicationUserTestData
     {

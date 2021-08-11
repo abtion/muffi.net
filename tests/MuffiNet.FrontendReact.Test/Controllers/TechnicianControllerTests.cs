@@ -15,8 +15,8 @@ using MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicket;
 using MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicketById;
 using MuffiNet.FrontendReact.Models;
 using MuffiNet.FrontendReact.Services;
-using MuffiNet.FrontendReact.Test.Mocks;
-using MuffiNet.FrontendReact.Test.TestData;
+using MuffiNet.Test.Shared.Mocks;
+using MuffiNet.Test.Shared.TestData;
 using Xunit;
 
 namespace MuffiNet.FrontendReact.Test.Controllers

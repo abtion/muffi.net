@@ -9,7 +9,7 @@ using MuffiNet.FrontendReact.DomainModel.Commands.CompleteRoom;
 using MuffiNet.FrontendReact.Exceptions;
 using MuffiNet.FrontendReact.Models;
 using MuffiNet.FrontendReact.Services;
-using MuffiNet.FrontendReact.Test.Mocks;
+using MuffiNet.Test.Shared.Mocks;
 using Xunit;
 
 namespace MuffiNet.FrontendReact.Test.DomainModel.Commands.CompleteRoom

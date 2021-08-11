@@ -11,8 +11,8 @@ using MuffiNet.FrontendReact.DomainModel.Queries.EstimatedWaitingTime;
 using MuffiNet.FrontendReact.DomainModel.Queries.ReadVideoGrantForCustomerToken;
 using MuffiNet.FrontendReact.Models;
 using MuffiNet.FrontendReact.Services;
-using MuffiNet.FrontendReact.Test.Mocks;
 using Xunit;
+using MuffiNet.Test.Shared.Mocks;
 
 namespace MuffiNet.FrontendReact.Test.Controllers
 {

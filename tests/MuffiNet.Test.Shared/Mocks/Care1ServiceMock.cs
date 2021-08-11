@@ -3,7 +3,7 @@ using System;
 using System.Threading.Tasks;
 using MuffiNet.FrontendReact.Services;
 
-namespace MuffiNet.FrontendReact.Test.Mocks
+namespace MuffiNet.Test.Shared.Mocks
 {
     public class Care1ServiceMock : ICare1Service
     {
