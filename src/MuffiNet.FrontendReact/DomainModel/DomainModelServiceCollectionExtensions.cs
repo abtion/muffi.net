@@ -36,7 +36,7 @@ namespace MuffiNet.FrontendReact.DomainModel
             // Services
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddTransient<ICurrentDateTimeService, CurrentDateTimeService>();
-            services.AddTransient<ICare1Service, Care1Service>();
+            services.AddTransient<IExampleService, ExampleService>();
 
             return new DomainModelBuilder(services);
         }

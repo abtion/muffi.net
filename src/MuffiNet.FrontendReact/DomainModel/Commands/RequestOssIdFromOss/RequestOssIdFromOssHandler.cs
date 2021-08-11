@@ -15,10 +15,10 @@ namespace MuffiNet.FrontendReact.DomainModel.Commands.RequestOssIdFromOss
     {
         private readonly DomainModelTransaction transaction;
         private readonly CustomerHub customerHub;
-        private readonly ICare1Service care1Service;
+        private readonly IExampleService care1Service;
         private readonly ICurrentUserService currentUserService;
 
-        public RequestOssIdFromOssHandler(DomainModelTransaction transaction, CustomerHub customerHub, ICare1Service care1Service, ICurrentUserService currentUserService)
+        public RequestOssIdFromOssHandler(DomainModelTransaction transaction, CustomerHub customerHub, IExampleService care1Service, ICurrentUserService currentUserService)
         {
             this.transaction = transaction ?? throw new ArgumentNullException(nameof(transaction));
             this.customerHub = customerHub ?? throw new ArgumentNullException(nameof(customerHub));
@@ -43,7 +43,7 @@ namespace MuffiNet.FrontendReact.DomainModel.Commands.RequestOssIdFromOss
             // Get OssId From OSS
             var technicianInitials = (await currentUserService.CurrentUser()).Email.Split('@').FirstOrDefault();
 
-            var ossId = await care1Service.CreateLinkToOss(request.SupportTicketId, supportTicket.CustomerName, technicianInitials);
+            var ossId = await care1Service.PerformService(request.SupportTicketId, supportTicket.CustomerName, technicianInitials);
 
             // Save in Database
             supportTicket.OssId = ossId;
