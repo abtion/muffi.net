@@ -1,0 +1,88 @@
+/* Provide sufficient contrast against white background */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Roboto";
+  font-weight: 100;
+  src: url("fonts/Roboto-Thin.ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-weight: 300;
+  src: url("fonts/Roboto-Light.ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-weight: 400;
+  src: url("fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-weight: 500;
+  src: url("fonts/Roboto-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-weight: 700;
+  src: url("fonts/Roboto-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-weight: 900;
+  src: url("fonts/Roboto-Black.ttf");
+}
+
+:root {
+  --spacing: 2em;
+  --color-brand-primary: #f9f9f9;
+  --color-brand-primary-dark: #232323;
+  --color-brand-gray: #454f5e;
+  --color-brand-blue: #4054b2;
+  --color-brand-green: #4caf51;
+  --color-brand-dark-green: #7c9972;
+  --color-brand-red: #af574c;
+}
+
+@media (max-device-width: 600px),
+  (max-device-height: 600px) and (orientation: landscape) {
+  :root {
+    --spacing: 1em !important;
+  }
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Roboto";
+
+  @apply text-brand-primary-dark font-light;
+}
+
+h1,
+h2,
+h3 {
+  @apply font-bold;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+a {
+  @apply text-indigo-600;
+}

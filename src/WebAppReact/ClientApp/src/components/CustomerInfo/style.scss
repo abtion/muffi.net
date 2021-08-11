@@ -1,0 +1,25 @@
+.CustomerInfo {
+  width: 100%;
+
+  tr {
+    color: #232323;
+    border-top: 0.5px solid #acacac;
+  }
+
+  tr:last-child {
+    border-bottom: 0.5px solid #acacac;
+  }
+
+  tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+
+  td,
+  th {
+    padding: 4px 8px;
+  }
+}

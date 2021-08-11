@@ -1,0 +1,18 @@
+.Table {
+  @apply w-full;
+
+  td,
+  th {
+    @apply border-0 text-left px-2;
+  }
+
+  th {
+    @apply border-b-2;
+  }
+
+  tbody {
+    tr {
+      @apply odd:bg-gray-100;
+    }
+  }
+}

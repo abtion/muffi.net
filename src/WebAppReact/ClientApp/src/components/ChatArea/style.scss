@@ -1,0 +1,13 @@
+.ChatArea {
+  @apply bg-brand-primary;
+
+  border-left: 0.6px solid #acacac;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  right: 0;
+  position: absolute;
+  top: 0;
+}

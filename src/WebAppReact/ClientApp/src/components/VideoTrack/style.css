@@ -1,0 +1,30 @@
+.VideoTrack {
+  background-color: #000;
+  position: relative;
+  overflow: hidden;
+
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
+}
+
+.VideoTrack--disabled > video {
+  display: none;
+}
+
+.VideoTrack__video {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.VideoTrack__video--mirror {
+  -webkit-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+
+.VideoTrack__video--contain {
+  object-fit: contain;
+}
