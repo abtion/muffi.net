@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using MuffiNet.FrontendReact.DomainModel.Commands.CompleteRoom;
-using MuffiNet.FrontendReact.DomainModel.Commands.CreateRoom;
 using MuffiNet.FrontendReact.DomainModel.Commands.CreateSupportTicket;
 using MuffiNet.FrontendReact.DomainModel.Commands.DeleteSupportTicket;
 using MuffiNet.FrontendReact.DomainModel.Commands.RequestOssIdFromOss;
@@ -23,8 +21,6 @@ namespace MuffiNet.FrontendReact.DomainModel
             // Command Handlers
             services.AddScoped<CreateSupportTicketHandler>();
             services.AddScoped<DeleteSupportTicketHandler>();
-            services.AddScoped<CreateRoomHandler>();
-            services.AddScoped<CompleteRoomHandler>();
             services.AddScoped<RequestOssIdFromOssHandler>();
 
             // Query Handlers
@@ -39,10 +35,8 @@ namespace MuffiNet.FrontendReact.DomainModel
 
             // Services
             services.AddScoped<ICurrentUserService, CurrentUserService>();
-            services.AddScoped<ITwilioService, TwilioService>();
             services.AddTransient<ICurrentDateTimeService, CurrentDateTimeService>();
             services.AddTransient<ICare1Service, Care1Service>();
-            //services.AddScoped<UserManager<ApplicationUser>>();
 
             return new DomainModelBuilder(services);
         }

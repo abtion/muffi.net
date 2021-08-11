@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.DomainModel.Commands.CompleteRoom;
-using MuffiNet.FrontendReact.DomainModel.Commands.CreateRoom;
 using MuffiNet.FrontendReact.DomainModel.Commands.DeleteSupportTicket;
 using MuffiNet.FrontendReact.DomainModel.Commands.RequestOssIdFromOss;
 using MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicket;
@@ -30,11 +28,6 @@ namespace MuffiNet.FrontendReact.Controllers
             return await handler.Handle(request, cancellationToken);
         }
 
-        [HttpPost("createroom")]
-        public async Task<ActionResult<CreateRoomResponse>> CreateRoomToken([FromServices] CreateRoomHandler createRoomService, CreateRoomRequest createRoomRequest, CancellationToken cancellationToken)
-        {
-            return await createRoomService.Handle(createRoomRequest, cancellationToken);
-        }
 
         [HttpGet("supportticket")]
         public async Task<ActionResult<ReadSupportTicketByIdResponse>> ReadSupportTicketById([FromServices] ReadSupportTicketByIdHandler handler, string supportTicketId, CancellationToken cancellationToken)
@@ -49,11 +42,6 @@ namespace MuffiNet.FrontendReact.Controllers
             return await handler.Handle(request, cancellationToken);
         }
 
-        [HttpPost("completeroom")]
-        public async Task<ActionResult<CompleteRoomResponse>> CompleteRoom([FromServices] CompleteRoomHandler completeRoomHandler, CompleteRoomRequest completeRoomRequest, CancellationToken cancellationToken)
-        {
-            return await completeRoomHandler.Handle(completeRoomRequest, cancellationToken);
-        }
 
         [HttpGet("requestossidfromoss")]
         public async Task<ActionResult<RequestOssIdFromOssResponse>> RequestOssIdFromOss([FromServices] RequestOssIdFromOssHandler handler, string supportTicketId, CancellationToken cancellationToken)

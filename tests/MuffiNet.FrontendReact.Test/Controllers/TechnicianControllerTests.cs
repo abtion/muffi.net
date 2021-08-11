@@ -6,8 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using MuffiNet.FrontendReact.Controllers;
 using MuffiNet.FrontendReact.DomainModel;
-using MuffiNet.FrontendReact.DomainModel.Commands.CompleteRoom;
-using MuffiNet.FrontendReact.DomainModel.Commands.CreateRoom;
 using MuffiNet.FrontendReact.DomainModel.Commands.CreateSupportTicket;
 using MuffiNet.FrontendReact.DomainModel.Commands.DeleteSupportTicket;
 using MuffiNet.FrontendReact.DomainModel.Commands.RequestOssIdFromOss;
@@ -87,55 +85,6 @@ namespace MuffiNet.FrontendReact.Test.Controllers
         }
 
         [Fact]
-        public async Task Given_RequestIsValid_When_CreateRoomTokenCalled_Then_ReturnTypeIsCorrect()
-        {
-            // Arrange
-            var transaction = ServiceProvider.GetService<DomainModelTransaction>();
-
-            var technicianHubMock = new TechnicianHubMock();
-
-            var createSupportTicketHandler = new CreateSupportTicketHandler(transaction, MockCurrentDateTimeService(), technicianHubMock);
-            var createSupportTicketRequest = new CreateSupportTicketRequest()
-            {
-                CustomerEmail = "a@b.c",
-                CustomerName = "Donald Duck",
-                CustomerPhone = "31331313",
-                Brand = "apple",
-            };
-
-            var createSupportTicketResponse = await createSupportTicketHandler.Handle(createSupportTicketRequest, new CancellationToken());
-
-            var controller = new AuthorizedController();
-
-            var roomName = "TheGreenRoom";
-            var roomSid = "sid";
-
-            var mock = new Mock<ITwilioService>();
-            mock.Setup(p => p.CreateRoom(roomName)).ReturnsAsync(roomSid);
-            mock.Setup(p => p.CreateVideoGrant("technician", roomName)).Returns(Guid.NewGuid().ToString());
-            mock.Setup(p => p.CreateVideoGrant("customer", roomName)).Returns(Guid.NewGuid().ToString());
-
-            ITwilioService mockedVideoService = mock.Object;
-            var customerHubMock = new CustomerHubMock();
-            var currentUserServiceMock = new CurrentUserServiceMock();
-            var userManager = ServiceProvider.GetService<UserManager<ApplicationUser>>();
-
-            var handler = new CreateRoomHandler(mockedVideoService, transaction, customerHubMock, technicianHubMock, CurrentDateTimeServiceMock.MockCurrentDateTimeService(), currentUserServiceMock, userManager);
-            var request = new CreateRoomRequest()
-            {
-                SupportTicketId = createSupportTicketResponse.SupportTicketId.ToString(),
-            };
-
-            var cancellationToken = new CancellationToken();
-
-            // Act
-            var response = await controller.CreateRoomToken(handler, request, cancellationToken);
-
-            // Assert
-            Assert.IsType<CreateRoomResponse>(response.Value);
-        }
-
-        [Fact]
         public async Task Given_RequestIsValid_When_ReadSupportTicketByIdIsCalled_Then_ReturnTypeIsCorrect()
         {
             // Arrange
@@ -152,36 +101,6 @@ namespace MuffiNet.FrontendReact.Test.Controllers
 
             // Assert
             Assert.IsType<ReadSupportTicketByIdResponse>(response.Value);
-        }
-
-        [Fact]
-        public async Task Given_RequestIsValid_When_CompleteRoomIsCalled_Then_ReturnTypeIsCorrect()
-        {
-            // Arrange
-            var transaction = ServiceProvider.GetService<DomainModelTransaction>();
-            var supportTicketTestData = new SupportTicketTestData(transaction);
-            var testSupportTicket = await supportTicketTestData.CreateDemoSupportTicketsWhereCallHasStarted();
-
-            var technicianHubMock = new TechnicianHubMock();
-            var customerHubMock = new CustomerHubMock();
-
-            var mock = new Mock<ITwilioService>();
-            mock.Setup(p => p.CompleteRoom(testSupportTicket.TwilioRoomName));
-
-            ITwilioService mockedTwilioService = mock.Object;
-
-            var controller = new AuthorizedController();
-            var handler = new CompleteRoomHandler(transaction, CurrentDateTimeServiceMock.MockCurrentDateTimeService(), customerHubMock, technicianHubMock, mockedTwilioService);
-
-            var request = new CompleteRoomRequest() { SupportTicketId = testSupportTicket.SupportTicketId.ToString() };
-
-            var cancellationToken = new CancellationToken();
-
-            // Act
-            var response = await controller.CompleteRoom(handler, request, cancellationToken);
-
-            // Assert
-            Assert.IsType<CompleteRoomResponse>(response.Value);
         }
 
         [Fact]
