@@ -12,9 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solutions Items", "Solution
 		care1-vci.pfx = care1-vci.pfx
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.FrontendReact.Selenium.Tests", "tests\MuffiNet.FrontendReact.Selenium.Tests\MuffiNet.FrontendReact.Selenium.Tests.csproj", "{0F23A7E8-0BDF-4543-A06F-EBD92ED439FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.Selenium.Tests", "tests\MuffiNet.Selenium.Tests\MuffiNet.Selenium.Tests.csproj", "{0F23A7E8-0BDF-4543-A06F-EBD92ED439FE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuffiNet.Backend", "src\MuffiNet.Backend\MuffiNet.Backend.csproj", "{FA86EB79-9508-40FF-AF85-9FF9FB30F8B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuffiNet.Backend.Tests", "tests\MuffiNet.Backend.Tests\MuffiNet.Backend.Tests.csproj", "{8E153A9A-42A8-4CC0-A320-4F6334068A8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{FA86EB79-9508-40FF-AF85-9FF9FB30F8B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA86EB79-9508-40FF-AF85-9FF9FB30F8B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA86EB79-9508-40FF-AF85-9FF9FB30F8B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E153A9A-42A8-4CC0-A320-4F6334068A8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E153A9A-42A8-4CC0-A320-4F6334068A8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E153A9A-42A8-4CC0-A320-4F6334068A8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E153A9A-42A8-4CC0-A320-4F6334068A8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
