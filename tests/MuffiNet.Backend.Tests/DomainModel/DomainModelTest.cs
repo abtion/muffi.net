@@ -6,14 +6,15 @@ using MuffiNet.FrontendReact.Data;
 using MuffiNet.FrontendReact.DomainModel;
 using MuffiNet.FrontendReact.Models;
 using MuffiNet.Test.Shared.TestData;
+using MuffiNet.Test.Shared;
 
-namespace MuffiNet.FrontendReact.Test.DomainModel
+namespace MuffiNet.Backend.Tests.DomainModel
 {
     public abstract class DomainModelTest<T>
     {
         public DomainModelTest()
         {
-            var servicesBuilder = new DomainModelBuilder();
+            var servicesBuilder = new DomainModelBuilderForTest();
             var serviceCollection = new ServiceCollection();
 
             servicesBuilder.ConfigureServices(serviceCollection, null, this.GetType().Name);

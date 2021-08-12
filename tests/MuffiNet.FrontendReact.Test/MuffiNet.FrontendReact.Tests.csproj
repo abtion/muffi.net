@@ -22,6 +22,7 @@
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\MuffiNet.Backend\MuffiNet.Backend.csproj" />
     <ProjectReference Include="..\..\src\MuffiNet.FrontendReact\MuffiNet.FrontendReact.csproj" />
     <ProjectReference Include="..\MuffiNet.Test.Shared\MuffiNet.Test.Shared.csproj" />
   </ItemGroup>

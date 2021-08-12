@@ -9,9 +9,9 @@ using MuffiNet.FrontendReact.DomainModel;
 using MuffiNet.FrontendReact.Models;
 using MuffiNet.Test.Shared.TestData;
 
-namespace MuffiNet.FrontendReact.Test.DomainModel
+namespace MuffiNet.Test.Shared
 {
-    public class DomainModelBuilder
+    public class DomainModelBuilderForTest
     {
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration, string databaseName)
         {

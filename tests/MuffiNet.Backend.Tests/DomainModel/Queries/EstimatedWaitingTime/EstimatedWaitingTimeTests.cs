@@ -5,7 +5,7 @@ using MuffiNet.FrontendReact.DomainModel.Queries.EstimatedWaitingTime;
 using MuffiNet.FrontendReact.Exceptions;
 using Xunit;
 
-namespace MuffiNet.FrontendReact.Test.DomainModel.Queries.EstimatedWaitingTime
+namespace MuffiNet.Backend.Tests.DomainModel.Queries.EstimatedWaitingTime
 {
     public class EstimatedWaitingTimeTests : DomainModelTest<EstimatedWaitingTimeHandler>
     {

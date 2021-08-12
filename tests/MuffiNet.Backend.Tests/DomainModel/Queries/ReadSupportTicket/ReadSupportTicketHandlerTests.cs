@@ -8,7 +8,7 @@ using MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicket;
 using MuffiNet.FrontendReact.Models;
 using Xunit;
 
-namespace MuffiNet.FrontendReact.Test.DomainModel.Queries.ReadSupportTicket
+namespace MuffiNet.Backend.Tests.DomainModel.Queries.ReadSupportTicket
 {
     public class ReadSupportTicketHandlerTests : DomainModelTest<ReadSupportTicketHandler>
     {

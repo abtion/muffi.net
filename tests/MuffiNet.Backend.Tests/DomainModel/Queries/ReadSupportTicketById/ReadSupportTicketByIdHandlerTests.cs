@@ -6,7 +6,7 @@ using MuffiNet.FrontendReact.DomainModel;
 using MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicketById;
 using Xunit;
 
-namespace MuffiNet.FrontendReact.Test.DomainModel.Queries.ReadSupportTicketById
+namespace MuffiNet.Backend.Tests.DomainModel.Queries.ReadSupportTicketById
 {
     public class ReadSupportTicketByIdHandlerTests : DomainModelTest<ReadSupportTicketByIdHandler>
     {

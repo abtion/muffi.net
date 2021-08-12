@@ -9,7 +9,7 @@ using MuffiNet.FrontendReact.DomainModel.Commands.CreateSupportTicket;
 using MuffiNet.Test.Shared.Mocks;
 using Xunit;
 
-namespace MuffiNet.FrontendReact.Test.DomainModel.Commands.CreateSupportTicket
+namespace MuffiNet.Backend.Tests.DomainModel.Commands.CreateSupportTicket
 {
     public class CreateSupportTicketHandlerTests : DomainModelTest<CreateSupportTicketHandler>
     {

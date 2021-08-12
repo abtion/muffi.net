@@ -12,7 +12,7 @@ using MuffiNet.Test.Shared.TestData;
 using Xunit;
 using FluentAssertions;
 
-namespace MuffiNet.FrontendReact.Test.DomainModel.Commands.RequestOssIdFromOss
+namespace MuffiNet.Backend.Tests.DomainModel.Commands.RequestOssIdFromOss
 {
     public class RequestOssIdFromOssTests : DomainModelTest<RequestOssIdFromOssHandler>
     {

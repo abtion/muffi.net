@@ -10,7 +10,7 @@ using MuffiNet.FrontendReact.Models;
 using MuffiNet.Test.Shared.TestData;
 using Xunit;
 
-namespace MuffiNet.FrontendReact.Test.DomainModel.Queries.ReadSupportTicketById
+namespace MuffiNet.Backend.Tests.DomainModel.Queries.ReadSupportTicketById
 {
     public class ReadVideoGrantForCustomerTokenHandlerTests : DomainModelTest<ReadVideoGrantForCustomerTokenHandler>
     {

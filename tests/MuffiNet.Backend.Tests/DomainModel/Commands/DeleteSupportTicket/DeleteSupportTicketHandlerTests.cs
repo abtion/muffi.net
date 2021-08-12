@@ -8,7 +8,7 @@ using MuffiNet.FrontendReact.DomainModel.Commands.DeleteSupportTicket;
 using MuffiNet.FrontendReact.Models;
 using Xunit;
 
-namespace MuffiNet.FrontendReact.Test.DomainModel.Commands.DeleteSupportTicket
+namespace MuffiNet.Backend.Tests.DomainModel.Commands.DeleteSupportTicket
 {
     public class DeleteSupportTicketHandlerTests : DomainModelTest<DeleteSupportTicketHandler>
     {

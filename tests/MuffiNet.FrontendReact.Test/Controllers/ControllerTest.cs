@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using MuffiNet.FrontendReact.Data;
-using MuffiNet.FrontendReact.Test.DomainModel;
 using MuffiNet.Test.Shared.TestData;
+using MuffiNet.Test.Shared;
 
 namespace MuffiNet.FrontendReact.Test.Controllers
 {
@@ -10,7 +10,7 @@ namespace MuffiNet.FrontendReact.Test.Controllers
     {
         public ControllerTest()
         {
-            var servicesBuilder = new DomainModelBuilder();
+            var servicesBuilder = new DomainModelBuilderForTest();
             var serviceCollection = new ServiceCollection();
 
             servicesBuilder.ConfigureServices(serviceCollection, null, this.GetType().Name);
