@@ -156,10 +156,10 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
             webDriver.ExecuteScript("window.localStorage.clear()");
             webDriver.Navigate().GoToUrl("about:blank");
 
-            // Truncate support tickets
-            SqlCommand command = new SqlCommand("TRUNCATE TABLE [dbo].[SupportTickets]", DbConnection());
-            command.Connection.Open();
-            command.ExecuteNonQuery();
+            // Truncate data in database
+            //SqlCommand command = new SqlCommand("TRUNCATE TABLE [dbo].[SupportTickets]", DbConnection());
+            //command.Connection.Open();
+            //command.ExecuteNonQuery();
         }
 
         public SqlConnection DbConnection()

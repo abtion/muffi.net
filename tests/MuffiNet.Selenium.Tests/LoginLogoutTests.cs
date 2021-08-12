@@ -8,9 +8,9 @@ using FluentAssertions;
 namespace MuffiNet.FrontendReact.Selenium.Tests
 {
     [Collection("Selenium")]
-    public class TechnicianLoginLogoutTests : SeleniumTestBase
+    public class LoginLogoutTests : SeleniumTestBase
     {
-        public TechnicianLoginLogoutTests(IntegrationFixture integrationFixture) : base(integrationFixture)
+        public LoginLogoutTests(IntegrationFixture integrationFixture) : base(integrationFixture)
         {
             // skip
         }
