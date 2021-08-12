@@ -25,19 +25,16 @@ namespace MuffiNet.Backend.Tests.DomainModel
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
-            TestData = ServiceProvider.GetService<SupportTicketTestData>();
             Transaction = ServiceProvider.GetService<DomainModelTransaction>();
             UserManager = ServiceProvider.GetService<UserManager<ApplicationUser>>();
 
             // create a test user
-            UserManager.CreateAsync(ApplicationUserTestData.CreateApplicationUser());
+            //UserManager.CreateAsync(ApplicationUserTestData.CreateApplicationUser());
         }
 
         protected internal IServiceProvider ServiceProvider { get; private set; }
 
         protected internal abstract Task<T> CreateSut();
-
-        protected internal SupportTicketTestData TestData { get; private set; }
 
         protected internal DomainModelTransaction Transaction { get; private set; }
 

@@ -17,7 +17,7 @@ namespace MuffiNet.FrontendReact.Test.Controllers
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
 
-            TestData = ServiceProvider.GetService<SupportTicketTestData>();
+            TestData = ServiceProvider.GetService<ExampleTestData>();
 
             var context = ServiceProvider.GetService<ApplicationDbContext>();
             context.Database.EnsureDeleted();
@@ -26,6 +26,6 @@ namespace MuffiNet.FrontendReact.Test.Controllers
 
         protected internal IServiceProvider ServiceProvider { get; set; }
 
-        protected internal SupportTicketTestData TestData { get; private set; }
+        protected internal ExampleTestData TestData { get; private set; }
     }
 }

@@ -27,7 +27,7 @@ namespace MuffiNet.Test.Shared
 
             services.AddDomainModel();
 
-            services.AddScoped<SupportTicketTestData>();
+            services.AddScoped<ExampleTestData>();
         }
     }
 }

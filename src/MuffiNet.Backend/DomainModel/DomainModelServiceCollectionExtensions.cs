@@ -1,11 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using MuffiNet.Backend.DomainModel.Commands.CreateSupportTicket;
-using MuffiNet.Backend.DomainModel.Commands.DeleteSupportTicket;
-using MuffiNet.Backend.DomainModel.Commands.RequestOssIdFromOss;
-using MuffiNet.Backend.DomainModel.Queries.EstimatedWaitingTime;
-using MuffiNet.Backend.DomainModel.Queries.ReadSupportTicket;
-using MuffiNet.Backend.DomainModel.Queries.ReadSupportTicketById;
-using MuffiNet.Backend.DomainModel.Queries.ReadVideoGrantForCustomerToken;
+using MuffiNet.Backend.DomainModel.Commands.ExampleCommand;
+using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
+
 using MuffiNet.Backend.Services;
 
 namespace MuffiNet.Backend.DomainModel
@@ -18,15 +14,10 @@ namespace MuffiNet.Backend.DomainModel
             services.AddScoped<DomainModelTransaction>();
 
             // Command Handlers
-            services.AddScoped<CreateSupportTicketHandler>();
-            services.AddScoped<DeleteSupportTicketHandler>();
-            services.AddScoped<RequestOssIdFromOssHandler>();
+            services.AddScoped<ExampleCommandHandler>();
 
             // Query Handlers
-            services.AddScoped<ReadSupportTicketHandler>();
-            services.AddScoped<ReadSupportTicketByIdHandler>();
-            services.AddScoped<ReadVideoGrantForCustomerTokenHandler>();
-            services.AddScoped<EstimatedWaitingTimeHandler>();
+            services.AddScoped<ExampleQueryHandler>();
 
             // Services
             services.AddScoped<ICurrentUserService, CurrentUserService>();

@@ -29,13 +29,6 @@ namespace MuffiNet.FrontendReact
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<TwilioSettings>(settings =>
-            {
-                settings.AccountSid = Configuration["TwilioAccountDetails:TWILIO_ACCOUNT_SID"];
-                settings.ApiSecret = Configuration["TwilioAccountDetails:TWILIO_API_SECRET"];
-                settings.ApiKey = Configuration["TwilioAccountDetails:TWILIO_API_KEY"];
-            });
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
