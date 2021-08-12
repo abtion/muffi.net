@@ -45,14 +45,12 @@ namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
             var freshUser = await _userManager.FindByIdAsync(user.Id);
-            var fullName = freshUser.FullName;
 
             Username = userName;
 
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
-                FullName = fullName
             };
         }
 
@@ -89,21 +87,6 @@ namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage
                 if (!setPhoneResult.Succeeded)
                 {
                     StatusMessage = "Unexpected error when trying to set phone number.";
-                    return RedirectToPage();
-                }
-            }
-
-            var freshUser = await _userManager.FindByIdAsync(user.Id);
-            if (Input.FullName != freshUser.FullName)
-            {
-                freshUser.FullName = Input.FullName;
-                try
-                {
-                    await _userManager.UpdateAsync(freshUser);
-                }
-                catch (System.Exception)
-                {
-                    StatusMessage = "Unexpected error when trying to set full name.";
                     return RedirectToPage();
                 }
             }

@@ -56,7 +56,7 @@ namespace MuffiNet.Backend.DomainModel.Queries.ReadSupportTicket
             var user = users.Where(user => user.Id == supportTicket.TechnicianUserId).SingleOrDefault();
 
             if (user != null)
-                return string.IsNullOrEmpty(user.FullName) ? "N/A" : user.FullName;
+                return "Hallo world";
 
             return string.Empty;
         }

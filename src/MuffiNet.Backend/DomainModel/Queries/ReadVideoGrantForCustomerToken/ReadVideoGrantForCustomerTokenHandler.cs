@@ -39,7 +39,7 @@ namespace MuffiNet.Backend.DomainModel.Queries.ReadVideoGrantForCustomerToken
             {
                 var technician = await userManager.FindByIdAsync(supportTicket.TechnicianUserId);
                 if (technician != null)
-                    technicianName = technician.FullName;
+                    technicianName = "Hello world";
             }
 
             return new ReadVideoGrantForCustomerTokenResponse()
