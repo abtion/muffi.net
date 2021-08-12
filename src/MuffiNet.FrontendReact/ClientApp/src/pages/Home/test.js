@@ -7,6 +7,7 @@ import { Router } from "react-router"
 import Home from "./"
 import ThemeContext from "~/contexts/ThemeContext"
 import { defaultTheme } from "~/themes"
+import axios from "axios"
 
 function render() {
   const history = createMemoryHistory()
@@ -21,6 +22,28 @@ function render() {
 
   return { ...context, history }
 }
+
+afterEach(() => axios._reset())
+
+describe(Home, () => {
+  describe("when submitting the form", () => {
+    it("posts an exampleEntity", () => {
+      axios.post.mockResolvedValue({ data: { Id: "1234" } })
+      const { getByLabelText, getByText } = render()
+      userEvent.type(getByLabelText("Name"), "Name")
+      userEvent.type(getByLabelText("Description"), "Description")
+      userEvent.type(getByLabelText("E-mail"), "Em@a.il")
+      userEvent.type(getByLabelText("Phone"), "12345678")
+      userEvent.click(getByText("Submit"))
+      expect(axios.post).toHaveBeenCalledWith("/api/signup", {
+        Name: "Name",
+        Description: "Description",
+        Email: "Em@a.il",
+        Phone: "12345678",
+      })
+    })
+  })
+})
 
 test("should render 'Altid lige ved hånden'", () => {
   const { getByText } = render()

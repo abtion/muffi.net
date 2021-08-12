@@ -30,7 +30,7 @@ export default function NavMenu() {
               <div>
                 <Link
                   className="flex items-center py-4 px-2 text-gray-700 hover:text-gray-900"
-                  to="/technician"
+                  to="/authhome"
                 >
                   <span className="font-bold">Care1 VCI</span>
                 </Link>
@@ -48,7 +48,7 @@ export default function NavMenu() {
 
             <ul className={collapseClass}>
               <NavItem>
-                <NavLink to="/technician">Overview</NavLink>
+                <NavLink to="/authhome">Overview</NavLink>
               </NavItem>
 
               <LoginMenu />
