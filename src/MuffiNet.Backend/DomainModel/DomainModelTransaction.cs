@@ -3,9 +3,15 @@ using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq;
 using System.Threading.Tasks;
 using MuffiNet.Backend.Data;
+using MuffiNet.Backend.Models;
+using System.Collections.Generic;
+using System;
 
 namespace MuffiNet.Backend.DomainModel
 {
+    /// <summary>
+    /// This class is used to wrap the DBContext from EntityFramework - always use this class when accessing the database
+    /// </summary>
     public class DomainModelTransaction
     {
         public DomainModelTransaction(ApplicationDbContext applicationDbContext)
@@ -15,11 +21,46 @@ namespace MuffiNet.Backend.DomainModel
 
         private ApplicationDbContext DbContext { get; set; }
 
+        // Remove this section -->
+        private static List<ExampleEntity> exampleEntities;
+        public IQueryable<ExampleEntity> ExampleEntities()
+        {
+            if (exampleEntities is null)
+                exampleEntities = new List<ExampleEntity>();
+
+            return exampleEntities.AsQueryable();
+        }
+
+        public void ResetExampleEntities()
+        {
+            exampleEntities = null;
+        }
+
+        public void AddExampleEntity(ExampleEntity entity)
+        {
+            if (exampleEntities is null)
+                exampleEntities = new List<ExampleEntity>();
+
+            exampleEntities.Add(entity);
+        }
+        // <-- Remove this section
+
+        /// <summary>
+        /// This generic method should be used by commands when accessing entities.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public IQueryable<T> Entities<T>() where T : class
         {
             return DbContext.Set<T>();
         }
 
+        /// <summary>
+        /// This generic method should be used by queries when accessing entities (diables Entity Tracking in EntityFramwork 
+        /// for improved reading performance)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public IQueryable<T> EntitiesNoTracking<T>() where T : class
         {
             return DbContext.Set<T>().AsNoTracking<T>();

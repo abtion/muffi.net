@@ -8,176 +8,117 @@ using MuffiNet.Backend.DomainModel;
 using MuffiNet.Test.Shared.Mocks;
 using Xunit;
 using MuffiNet.Backend.DomainModel.Commands.ExampleCommand;
+using FluentAssertions;
 
 namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleCommand
 {
     public class ExampleCommandTests : DomainModelTest<ExampleCommandHandler>
     {
         private ExampleHubMock exampleHub;
+        private DomainModelTransaction domainModelTransaction;
 
-        protected internal override Task<ExampleCommandHandler> CreateSut()
+        protected internal override async Task<ExampleCommandHandler> CreateSut()
         {
-            throw new NotImplementedException();
+            domainModelTransaction = ServiceProvider.GetService<DomainModelTransaction>();
+            
+            // uses static member as database - that needs to be flushed with every test
+            domainModelTransaction.ResetExampleEntities();
+
+            exampleHub = new ExampleHubMock();
+
+            return await Task.FromResult(new ExampleCommandHandler(domainModelTransaction, exampleHub));
         }
 
-        //protected internal async override Task<ExampleCommandHandler> CreateSut()
-        //{
-        //    var domainModelTransaction = ServiceProvider.GetService<DomainModelTransaction>();
-        //    var currentDateTimeService = CurrentDateTimeServiceMock.MockCurrentDateTimeService();
+        private ExampleCommandRequest CreateValidRequest()
+        {
+            var request = new ExampleCommandRequest()
+            {
+                Name = "Muffi",
+                Description = "Head of People"
+            };
 
-        //    exampleHub = new ExampleHubMock();
+            return request;
+        }
 
-        //    return await Task.FromResult(new ExampleCommandHandler(domainModelTransaction, currentDateTimeService, exampleHub));
-        //}
+        #region "Guard Tests"
+        [Fact]
+        public void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
+        {
+            Action a = () => { new ExampleCommandHandler(null, exampleHub); };
 
-        //private ExampleCommandRequest CreateValidRequest()
-        //{
-        //    var request = new ExampleCommandRequest()
-        //    {
-        //        CustomerName = "Ruth",
-        //        CustomerEmail = "Ruth@msn.dk",
-        //        CustomerPhone = "12345678",
-        //        Brand = "Apple"
-        //    };
+            a.Should().Throw<ArgumentNullException>();
+        }
 
-        //    return request;
-        //}
+        [Fact]
+        public void Given_ExampleHubIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
+        {
+            Action a = () => { new ExampleCommandHandler(domainModelTransaction, null); };
 
-        //[Fact]
-        //public async void Given_RequestIsValid_When_CreateSuportTicketHandlerIsCalled_Then_ASupportTicketIsCreated()
-        //{
-        //    var request = CreateValidRequest();
-        //    var cancellationToken = new CancellationToken();
-        //    var sut = await CreateSut();
+            a.Should().Throw<ArgumentNullException>();
+        }
+        #endregion "Guard Tests"
 
-        //    var result = await sut.Handle(request, cancellationToken);
+        #region "Happy Path Tests"
+        [Fact]
+        public async void Given_RequestIsValid_When_HandlerIsCalled_Then_TheEntityIsReturned()
+        {
+            var request = CreateValidRequest();
+            var cancellationToken = new CancellationToken();
+            var sut = await CreateSut();
 
-        //    Assert.Equal(1, ServiceProvider.GetService<ApplicationDbContext>().SupportTickets.Count());
+            var result = await sut.Handle(request, cancellationToken);
 
-        //    var supportTicket = ServiceProvider.GetService<ApplicationDbContext>().SupportTickets.First();
+            result.ExampleEntity.Should().NotBeNull();
+        }
 
-        //    Assert.Equal(1, supportTicket.Id);
-        //    Assert.Equal(request.CustomerName, supportTicket.CustomerName);
-        //    Assert.Equal(request.CustomerEmail, supportTicket.CustomerEmail);
-        //    Assert.Equal(request.CustomerPhone, supportTicket.CustomerPhone);
-        //    Assert.Equal(CurrentDateTimeServiceMock.MockedDateTime(), supportTicket.CreatedAt);
-        //    Assert.Equal(request.Brand, supportTicket.Brand);
-        //    Assert.NotEqual(Guid.Empty, result.SupportTicketId);
-        //}
+        [Fact]
+        public async void Given_RequestIsValid_When_HandlerIsCalled_Then_TheEntityIsStored()
+        {
+            var request = CreateValidRequest();
+            var cancellationToken = new CancellationToken();
+            var sut = await CreateSut();
 
-        //[Fact]
-        //public async void Given_RequestIsValid_When_CreateSuportTicketHandlerIsCalled_Then_ASupportTicketIdIsGenerated()
-        //{
-        //    var request = CreateValidRequest();
-        //    var cancellationToken = new CancellationToken();
-        //    var sut = await CreateSut();
+            var result = await sut.Handle(request, cancellationToken);
 
-        //    var result = await sut.Handle(request, cancellationToken);
+            domainModelTransaction.ExampleEntities().WithId(result.ExampleEntity.Id).Should().HaveCount(1);
+        }
 
-        //    Assert.NotEqual(Guid.Empty, ServiceProvider.GetService<ApplicationDbContext>().SupportTickets.First().SupportTicketId);
-        //    Assert.NotEqual(Guid.Empty, result.SupportTicketId);
-        //}
+        [Fact]
+        public async void Given_RequestIsValid_When_HandlerIsCalled_Then_NameMatches()
+        {
+            var request = CreateValidRequest();
+            var cancellationToken = new CancellationToken();
+            var sut = await CreateSut();
 
-        //[Fact]
-        //public async void Given_RequestIsValid_When_CreateSuportTicketHandlerIsCalledTwice_Then_TheIdIncrements()
-        //{
-        //    var request = CreateValidRequest();
-        //    var cancellationToken = new CancellationToken();
-        //    var sut = await CreateSut();
+            var result = await sut.Handle(request, cancellationToken);
 
-        //    await sut.Handle(request, cancellationToken);
-        //    await sut.Handle(request, cancellationToken);
+            result.ExampleEntity.Name.Should().Be(request.Name);
+        }
 
-        //    Assert.Equal(2, ServiceProvider.GetService<ApplicationDbContext>().SupportTickets.Count());
+        [Fact]
+        public async void Given_RequestIsValid_When_HandlerIsCalled_Then_DescriptionMatches()
+        {
+            var request = CreateValidRequest();
+            var cancellationToken = new CancellationToken();
+            var sut = await CreateSut();
 
-        //    Assert.Equal(1, ServiceProvider.GetService<ApplicationDbContext>().SupportTickets.First().Id);
-        //    Assert.Equal(2, ServiceProvider.GetService<ApplicationDbContext>().SupportTickets.Last().Id);
-        //}
+            var result = await sut.Handle(request, cancellationToken);
 
-        //[Fact]
-        //public async void Given_RequestIsValid_When_CreateSuportTicketHandlerIsCalled_Then_AMessageIsSentToTheTechnician()
-        //{
-        //    var request = CreateValidRequest();
-        //    var cancellationToken = new CancellationToken();
-        //    var sut = await CreateSut();
+            result.ExampleEntity.Description.Should().Be(request.Description);
+        }
 
-        //    var response = await sut.Handle(request, cancellationToken);
+        [Fact]
+        public async void Given_RequestIsValid_When_HandlerIsCalled_Then_IdHasAPositiveValue()
+        {
+            var request = CreateValidRequest();
+            var cancellationToken = new CancellationToken();
+            var sut = await CreateSut();
 
-        //    Assert.Equal(1, exampleHub.EntityCreatedMessageCounter);
+            var result = await sut.Handle(request, cancellationToken);
 
-        //    var supportTicketEntity = ServiceProvider.GetService<ApplicationDbContext>().SupportTickets.First();
-        //    Assert.Equal(response.SupportTicketId, supportTicketEntity.SupportTicketId);
+            result.ExampleEntity.Id.Should().BeGreaterThan(0);
+        }
+        #endregion "Happy Path Tests"
 
-        //    Assert.Equal(supportTicketEntity.SupportTicketId.ToString(), exampleHub.LatestEntityCreatedMessage.EntityId);
-        //}
-
-        //[Fact]
-        //public async void Given_RequestIsNull_When_CreateSuportTicketHandlerIsCalled_Then_AnArgumentNullExceptionIsThrown()
-        //{
-        //    var cancellationToken = new CancellationToken();
-        //    var sut = await CreateSut();
-
-        //    await Assert.ThrowsAsync<ArgumentNullException>(() => sut.Handle(null, cancellationToken));
-        //}
-
-        //[Theory]
-        //[InlineData("")]
-        //[InlineData(" ")]
-        //[InlineData(null)]
-        //public async void Given_CustomerNameIsNotValid_When_CreateSuportTicketHandlerIsCalled_Then_AnArgumentNullExceptionIsThrown(string value)
-        //{
-        //    var sut = await CreateSut();
-        //    var cancellationToken = new CancellationToken();
-
-        //    var request = CreateValidRequest();
-        //    request.CustomerName = value;
-
-        //    await Assert.ThrowsAsync<ArgumentNullException>(() => sut.Handle(request, cancellationToken));
-        //}
-
-        //[Theory]
-        //[InlineData("")]
-        //[InlineData(" ")]
-        //[InlineData(null)]
-        //public async void Given_CustomerEmailIsNotValid_When_CreateSuportTicketHandlerIsCalled_Then_AnArgumentNullExceptionIsThrown(string value)
-        //{
-        //    var sut = await CreateSut();
-        //    var cancellationToken = new CancellationToken();
-
-        //    var request = CreateValidRequest();
-        //    request.CustomerEmail = value;
-
-        //    await Assert.ThrowsAsync<ArgumentNullException>(() => sut.Handle(request, cancellationToken));
-        //}
-
-        //[Theory]
-        //[InlineData("")]
-        //[InlineData(" ")]
-        //[InlineData(null)]
-        //public async void Given_CustomerPhoneIsNotValid_When_CreateSuportTicketHandlerIsCalled_Then_AnArgumentNullExceptionIsThrown(string value)
-        //{
-        //    var sut = await CreateSut();
-        //    var cancellationToken = new CancellationToken();
-
-        //    var request = CreateValidRequest();
-        //    request.CustomerPhone = value;
-
-        //    await Assert.ThrowsAsync<ArgumentNullException>(() => sut.Handle(request, cancellationToken));
-        //}
-
-        //[Theory]
-        //[InlineData("")]
-        //[InlineData(" ")]
-        //[InlineData(null)]
-        //public async void Given_CustomerBrandIsNotValid_When_CreateSuportTicketHandlerIsCalled_Then_AnArgumentNullExceptionIsThrown(string value)
-        //{
-        //    var sut = await CreateSut();
-        //    var cancellationToken = new CancellationToken();
-
-        //    var request = CreateValidRequest();
-        //    request.Brand = value;
-
-        //    await Assert.ThrowsAsync<ArgumentNullException>(() => sut.Handle(request, cancellationToken));
-        //}
     }
 }
