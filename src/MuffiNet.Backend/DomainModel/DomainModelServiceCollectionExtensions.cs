@@ -6,7 +6,6 @@ using MuffiNet.FrontendReact.DomainModel.Queries.EstimatedWaitingTime;
 using MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicket;
 using MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicketById;
 using MuffiNet.FrontendReact.DomainModel.Queries.ReadVideoGrantForCustomerToken;
-using MuffiNet.FrontendReact.Hubs;
 using MuffiNet.FrontendReact.Services;
 
 namespace MuffiNet.FrontendReact.DomainModel
@@ -28,9 +27,6 @@ namespace MuffiNet.FrontendReact.DomainModel
             services.AddScoped<ReadSupportTicketByIdHandler>();
             services.AddScoped<ReadVideoGrantForCustomerTokenHandler>();
             services.AddScoped<EstimatedWaitingTimeHandler>();
-
-            // SignalR
-            services.AddTransient<ExampleHub>();
 
             // Services
             services.AddScoped<ICurrentUserService, CurrentUserService>();

@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using MuffiNet.Backend.HubContracts;
 using MuffiNet.FrontendReact.Data;
 using MuffiNet.FrontendReact.DomainModel;
 using MuffiNet.FrontendReact.Hubs;
@@ -65,6 +66,9 @@ namespace MuffiNet.FrontendReact
             services.AddRazorPages();
 
             services.AddDomainModel();
+
+            // Add SignalR Hubs here
+            services.AddTransient<IExampleHubContract, ExampleHub>();
 
             // SignalR setup + enable CORS for SignalR
             services.AddSignalR();
