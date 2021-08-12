@@ -15,20 +15,14 @@ namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleCommand
     {
         private ExampleHubMock exampleHub;
 
-        protected internal override Task<ExampleCommandHandler> CreateSut()
+        protected internal override async Task<ExampleCommandHandler> CreateSut()
         {
-            throw new NotImplementedException();
+            var domainModelTransaction = ServiceProvider.GetService<DomainModelTransaction>();
+
+            exampleHub = new ExampleHubMock();
+
+            return await Task.FromResult(new ExampleCommandHandler());
         }
-
-        //protected internal async override Task<ExampleCommandHandler> CreateSut()
-        //{
-        //    var domainModelTransaction = ServiceProvider.GetService<DomainModelTransaction>();
-        //    var currentDateTimeService = CurrentDateTimeServiceMock.MockCurrentDateTimeService();
-
-        //    exampleHub = new ExampleHubMock();
-
-        //    return await Task.FromResult(new ExampleCommandHandler(domainModelTransaction, currentDateTimeService, exampleHub));
-        //}
 
         //private ExampleCommandRequest CreateValidRequest()
         //{

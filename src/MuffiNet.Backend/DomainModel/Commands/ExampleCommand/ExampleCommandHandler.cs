@@ -10,6 +10,8 @@ namespace MuffiNet.Backend.DomainModel.Commands.ExampleCommand
 {
     public class ExampleCommandHandler : IRequestHandler<ExampleCommandRequest, ExampleCommandResponse>
     {
+
+
         //private readonly DomainModelTransaction domainModelTransaction;
         //private readonly ICurrentDateTimeService currentDateTimeService;
         //private readonly IExampleHubContract exampleHub;
