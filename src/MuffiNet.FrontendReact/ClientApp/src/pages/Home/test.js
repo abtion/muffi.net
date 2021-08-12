@@ -8,6 +8,10 @@ import Home from "./"
 import ThemeContext from "~/contexts/ThemeContext"
 import { defaultTheme } from "~/themes"
 import axios from "axios"
+import useHub from "~/hooks/useHub"
+
+jest.mock("axios")
+jest.mock("~/hooks/useHub")
 
 function render() {
   const history = createMemoryHistory()
@@ -23,9 +27,18 @@ function render() {
   return { ...context, history }
 }
 
-afterEach(() => axios._reset())
+afterEach(() => {
+  axios._reset()
+  useHub._reset()
+})
 
 describe(Home, () => {
+
+  it("renders header 'Title'", () => {
+    const { getByText } = render()
+    expect(getByText("Title")).toBeInTheDocument()
+  })
+
   describe("when submitting the form", () => {
     it("posts an exampleEntity", () => {
       axios.post.mockResolvedValue({ data: { Id: "1234" } })
@@ -35,7 +48,7 @@ describe(Home, () => {
       userEvent.type(getByLabelText("E-mail"), "Em@a.il")
       userEvent.type(getByLabelText("Phone"), "12345678")
       userEvent.click(getByText("Submit"))
-      expect(axios.post).toHaveBeenCalledWith("/api/signup", {
+      expect(axios.post).toHaveBeenCalledWith("/api/example", {
         Name: "Name",
         Description: "Description",
         Email: "Em@a.il",
@@ -43,41 +56,4 @@ describe(Home, () => {
       })
     })
   })
-})
-
-test("should render 'Altid lige ved hånden'", () => {
-  const { getByText } = render()
-
-  const heading = getByText("Altid lige ved hånden")
-  expect(heading).toBeInTheDocument()
-})
-
-test("should render introduction text", () => {
-  const { getByText } = render()
-
-  const el1 = getByText(
-    "Få rådgivning af nogle af Danmarks dygtigste, autoriserede teknikere inden for IT- og mobiltelefoni. Vores uddannede teknikere sidder klar til at hjælpe dig, og du er blot få klik fra at få den rådgivning, du behøver!"
-  )
-  expect(el1).toBeInTheDocument()
-
-  const el2 = getByText(
-    "Vi anbefaler så vidt muligt ikke at benytte den enhed, det drejer sig om. Hav venligst dit serienummer eller IMEI nummer klar, hvis du alligevel benytter enheden."
-  )
-  expect(el2).toBeInTheDocument()
-})
-
-test("should render a continue button", () => {
-  const { getByText } = render()
-
-  const buttonEl = getByText("Start Live Service")
-  expect(buttonEl).toBeInTheDocument()
-})
-
-test("Button click should lead to SignUp page", () => {
-  const { getByText, history } = render()
-
-  const buttonEl = getByText("Start Live Service")
-  userEvent.click(buttonEl)
-
-  expect(history.location.pathname).toBe("/care1/sign-up")
 })

@@ -21,9 +21,8 @@ export default function Home() {
   }, [])
   useHub("/hubs/example", onHubConnected)
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    createExampleEntity()
+  const handleSubmit = (formData) => {
+    createExampleEntity(formData)
   }
 
   const createExampleEntity = (formData) => {

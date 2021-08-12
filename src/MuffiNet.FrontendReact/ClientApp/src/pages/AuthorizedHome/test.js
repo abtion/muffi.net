@@ -1,6 +1,7 @@
 import React from "react"
 import { act, render as tlRender } from "@testing-library/react"
 import axios from "axios"
+import { render as tlRender } from "@testing-library/react"
 
 import AuthorizedHome from "./"
 import useHub from "~/hooks/useHub"

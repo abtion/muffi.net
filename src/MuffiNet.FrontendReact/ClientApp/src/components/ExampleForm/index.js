@@ -15,7 +15,7 @@ export default function ExampleForm({ onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    onSubmit()
+    onSubmit(formData)
   }
 
   const handleInput = ({ currentTarget: { type, name, value, checked } }) => {
