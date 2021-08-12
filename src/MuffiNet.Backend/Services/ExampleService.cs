@@ -8,7 +8,7 @@ using System.Text;
 using Microsoft.AspNetCore.Http;
 using System.Net;
 
-namespace MuffiNet.FrontendReact.Services
+namespace MuffiNet.Backend.Services
 {
     public class ExampleService : IExampleService
     {

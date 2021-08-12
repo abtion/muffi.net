@@ -2,9 +2,9 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.DomainModel.Commands.CreateSupportTicket;
-using MuffiNet.FrontendReact.DomainModel.Queries.EstimatedWaitingTime;
-using MuffiNet.FrontendReact.DomainModel.Queries.ReadVideoGrantForCustomerToken;
+using MuffiNet.Backend.DomainModel.Commands.CreateSupportTicket;
+using MuffiNet.Backend.DomainModel.Queries.EstimatedWaitingTime;
+using MuffiNet.Backend.DomainModel.Queries.ReadVideoGrantForCustomerToken;
 
 namespace MuffiNet.FrontendReact.Controllers
 {

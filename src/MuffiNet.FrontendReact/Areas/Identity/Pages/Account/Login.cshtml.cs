@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.Models;
 
 namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account
 {

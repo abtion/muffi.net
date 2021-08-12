@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MuffiNet.FrontendReact.Services
+namespace MuffiNet.Backend.Services
 {
     public interface ICurrentDateTimeService
     {

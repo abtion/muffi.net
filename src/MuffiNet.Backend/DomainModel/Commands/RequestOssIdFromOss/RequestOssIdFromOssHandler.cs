@@ -2,13 +2,13 @@ using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.Models;
-using MuffiNet.FrontendReact.Services;
+using MuffiNet.Backend.Models;
+using MuffiNet.Backend.Services;
 using Microsoft.EntityFrameworkCore;
-using MuffiNet.FrontendReact.Exceptions;
+using MuffiNet.Backend.Exceptions;
 using System.Linq;
 
-namespace MuffiNet.FrontendReact.DomainModel.Commands.RequestOssIdFromOss
+namespace MuffiNet.Backend.DomainModel.Commands.RequestOssIdFromOss
 {
     public class RequestOssIdFromOssHandler : IRequestHandler<RequestOssIdFromOssRequest, RequestOssIdFromOssResponse>
     {

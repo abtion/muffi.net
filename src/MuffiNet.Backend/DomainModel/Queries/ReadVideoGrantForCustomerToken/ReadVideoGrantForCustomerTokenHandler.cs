@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.Exceptions;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.Exceptions;
+using MuffiNet.Backend.Models;
 
-namespace MuffiNet.FrontendReact.DomainModel.Queries.ReadVideoGrantForCustomerToken
+namespace MuffiNet.Backend.DomainModel.Queries.ReadVideoGrantForCustomerToken
 {
     public class ReadVideoGrantForCustomerTokenHandler : IRequestHandler<ReadVideoGrantForCustomerTokenRequest, ReadVideoGrantForCustomerTokenResponse>
     {

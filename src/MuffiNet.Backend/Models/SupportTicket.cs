@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace MuffiNet.FrontendReact.Models
+namespace MuffiNet.Backend.Models
 {
     [Index(nameof(CallEndedAt), nameof(CreatedAt), Name = "IX_SupportTicket_CallEndedAt_CreatedAt")]
     [Index(nameof(CreatedAt), nameof(CallStartedAt), nameof(CallEndedAt), Name = "IX_SupportTicket_CreatedAt_CallStartedAt_CallEndedAt")]

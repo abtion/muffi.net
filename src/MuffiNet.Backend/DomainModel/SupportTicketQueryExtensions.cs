@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.Models;
 
-namespace MuffiNet.FrontendReact.DomainModel
+namespace MuffiNet.Backend.DomainModel
 {
     public static class SupportTicketQueryExtensions
     {

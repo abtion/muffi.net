@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.Models;
 
-namespace MuffiNet.FrontendReact.Services
+namespace MuffiNet.Backend.Services
 {
     public interface ICurrentUserService
     {

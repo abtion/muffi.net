@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using System;
 
-namespace MuffiNet.FrontendReact.DomainModel.Queries.ReadVideoGrantForCustomerToken
+namespace MuffiNet.Backend.DomainModel.Queries.ReadVideoGrantForCustomerToken
 {
     public class ReadVideoGrantForCustomerTokenRequest : IRequest<ReadVideoGrantForCustomerTokenResponse>
     {

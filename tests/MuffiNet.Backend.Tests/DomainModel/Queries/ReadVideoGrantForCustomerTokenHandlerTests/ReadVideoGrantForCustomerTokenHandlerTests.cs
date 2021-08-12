@@ -3,10 +3,10 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.DomainModel;
-using MuffiNet.FrontendReact.DomainModel.Queries.ReadVideoGrantForCustomerToken;
-using MuffiNet.FrontendReact.Exceptions;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.DomainModel;
+using MuffiNet.Backend.DomainModel.Queries.ReadVideoGrantForCustomerToken;
+using MuffiNet.Backend.Exceptions;
+using MuffiNet.Backend.Models;
 using MuffiNet.Test.Shared.TestData;
 using Xunit;
 

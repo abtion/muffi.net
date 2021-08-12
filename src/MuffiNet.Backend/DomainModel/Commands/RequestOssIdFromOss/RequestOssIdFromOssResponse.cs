@@ -1,4 +1,4 @@
-namespace MuffiNet.FrontendReact.DomainModel.Commands.RequestOssIdFromOss
+namespace MuffiNet.Backend.DomainModel.Commands.RequestOssIdFromOss
 {
     public class RequestOssIdFromOssResponse
     {

@@ -1,4 +1,4 @@
-namespace MuffiNet.FrontendReact.Models
+namespace MuffiNet.Backend.Models
 {
     public class TwilioSettings
     {

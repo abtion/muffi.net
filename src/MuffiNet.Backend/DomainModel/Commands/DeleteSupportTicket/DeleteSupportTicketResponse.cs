@@ -1,4 +1,4 @@
-namespace MuffiNet.FrontendReact.DomainModel.Commands.DeleteSupportTicket
+namespace MuffiNet.Backend.DomainModel.Commands.DeleteSupportTicket
 {
     public class DeleteSupportTicketResponse
     {

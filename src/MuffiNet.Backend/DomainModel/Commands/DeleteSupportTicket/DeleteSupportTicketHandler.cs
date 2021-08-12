@@ -3,9 +3,9 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.Models;
 
-namespace MuffiNet.FrontendReact.DomainModel.Commands.DeleteSupportTicket
+namespace MuffiNet.Backend.DomainModel.Commands.DeleteSupportTicket
 {
     public class DeleteSupportTicketHandler : IRequestHandler<DeleteSupportTicketRequest, DeleteSupportTicketResponse>
     {

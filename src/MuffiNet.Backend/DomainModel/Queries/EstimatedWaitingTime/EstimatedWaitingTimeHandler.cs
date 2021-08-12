@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.Exceptions;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.Exceptions;
+using MuffiNet.Backend.Models;
 
-namespace MuffiNet.FrontendReact.DomainModel.Queries.EstimatedWaitingTime
+namespace MuffiNet.Backend.DomainModel.Queries.EstimatedWaitingTime
 {
     public class EstimatedWaitingTimeHandler : IRequestHandler<EstimatedWaitingTimeRequest, EstimatedWaitingTimeResponse>
     {

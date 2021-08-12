@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.DomainModel;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.DomainModel;
+using MuffiNet.Backend.Models;
 
 namespace MuffiNet.Test.Shared.TestData
 {

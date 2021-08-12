@@ -10,10 +10,11 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using MuffiNet.Backend.HubContracts;
-using MuffiNet.FrontendReact.Data;
-using MuffiNet.FrontendReact.DomainModel;
+using MuffiNet.Backend.Data;
+using MuffiNet.Backend.DomainModel;
 using MuffiNet.FrontendReact.Hubs;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.Models;
+
 namespace MuffiNet.FrontendReact
 {
     public class Startup

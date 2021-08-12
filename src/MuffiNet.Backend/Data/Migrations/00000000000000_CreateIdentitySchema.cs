@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace MuffiNet.FrontendReact.Data.Migrations
+namespace MuffiNet.Backend.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

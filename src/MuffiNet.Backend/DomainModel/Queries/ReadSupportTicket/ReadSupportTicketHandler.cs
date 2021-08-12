@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.Models;
-using static MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicket.ReadSupportTicketResponse;
+using MuffiNet.Backend.Models;
+using static MuffiNet.Backend.DomainModel.Queries.ReadSupportTicket.ReadSupportTicketResponse;
 
-namespace MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicket
+namespace MuffiNet.Backend.DomainModel.Queries.ReadSupportTicket
 {
     public class ReadSupportTicketHandler : IRequestHandler<ReadSupportTicketRequest, ReadSupportTicketResponse>
     {

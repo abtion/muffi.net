@@ -4,10 +4,10 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.Models;
-using static MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicketById.ReadSupportTicketByIdResponse;
+using MuffiNet.Backend.Models;
+using static MuffiNet.Backend.DomainModel.Queries.ReadSupportTicketById.ReadSupportTicketByIdResponse;
 
-namespace MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicketById
+namespace MuffiNet.Backend.DomainModel.Queries.ReadSupportTicketById
 {
     public class ReadSupportTicketByIdHandler : IRequestHandler<ReadSupportTicketByIdRequest, ReadSupportTicketByIdResponse>
     {

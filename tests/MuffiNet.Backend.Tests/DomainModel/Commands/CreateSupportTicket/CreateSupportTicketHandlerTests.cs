@@ -3,9 +3,9 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.Data;
-using MuffiNet.FrontendReact.DomainModel;
-using MuffiNet.FrontendReact.DomainModel.Commands.CreateSupportTicket;
+using MuffiNet.Backend.Data;
+using MuffiNet.Backend.DomainModel;
+using MuffiNet.Backend.DomainModel.Commands.CreateSupportTicket;
 using MuffiNet.Test.Shared.Mocks;
 using Xunit;
 

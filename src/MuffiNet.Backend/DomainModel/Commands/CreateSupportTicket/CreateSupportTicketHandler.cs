@@ -2,11 +2,11 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.Models;
-using MuffiNet.FrontendReact.Services;
+using MuffiNet.Backend.Models;
+using MuffiNet.Backend.Services;
 using MuffiNet.Backend.HubContracts;
 
-namespace MuffiNet.FrontendReact.DomainModel.Commands.CreateSupportTicket
+namespace MuffiNet.Backend.DomainModel.Commands.CreateSupportTicket
 {
     public class CreateSupportTicketHandler : IRequestHandler<CreateSupportTicketRequest, CreateSupportTicketResponse>
     {

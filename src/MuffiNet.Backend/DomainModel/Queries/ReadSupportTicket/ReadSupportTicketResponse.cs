@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicket
+namespace MuffiNet.Backend.DomainModel.Queries.ReadSupportTicket
 {
     public class ReadSupportTicketResponse
     {

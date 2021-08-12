@@ -1,4 +1,4 @@
-﻿namespace MuffiNet.FrontendReact.DomainModel.Queries.ReadVideoGrantForCustomerToken
+﻿namespace MuffiNet.Backend.DomainModel.Queries.ReadVideoGrantForCustomerToken
 {
     public class ReadVideoGrantForCustomerTokenResponse
     {

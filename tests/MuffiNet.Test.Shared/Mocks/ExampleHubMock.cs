@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using MuffiNet.Backend.HubContracts;
 using MuffiNet.FrontendReact.Hubs;
+
 namespace MuffiNet.Test.Shared.Mocks
 {
     public class ExampleHubMock : ExampleHub

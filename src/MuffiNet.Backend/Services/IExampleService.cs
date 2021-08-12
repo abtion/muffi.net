@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace MuffiNet.FrontendReact.Services
+namespace MuffiNet.Backend.Services
 {
     public interface IExampleService
     {

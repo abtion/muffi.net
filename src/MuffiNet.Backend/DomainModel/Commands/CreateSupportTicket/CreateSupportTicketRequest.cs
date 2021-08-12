@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace MuffiNet.FrontendReact.DomainModel.Commands.CreateSupportTicket
+namespace MuffiNet.Backend.DomainModel.Commands.CreateSupportTicket
 {
     public class CreateSupportTicketRequest : IRequest<CreateSupportTicketResponse>
     {

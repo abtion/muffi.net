@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MuffiNet.FrontendReact.Exceptions
+namespace MuffiNet.Backend.Exceptions
 {
     public class SupportTicketIdInvalidException : Exception
     {

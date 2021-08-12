@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using System;
 
-namespace MuffiNet.FrontendReact.DomainModel.Queries.EstimatedWaitingTime
+namespace MuffiNet.Backend.DomainModel.Queries.EstimatedWaitingTime
 {
     public class EstimatedWaitingTimeRequest : IRequest<EstimatedWaitingTimeResponse>
     {

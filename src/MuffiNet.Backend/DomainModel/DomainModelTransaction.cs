@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.Data;
+using MuffiNet.Backend.Data;
 
-namespace MuffiNet.FrontendReact.DomainModel
+namespace MuffiNet.Backend.DomainModel
 {
     public class DomainModelTransaction
     {

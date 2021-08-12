@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System;
-using MuffiNet.FrontendReact.Data;
+using MuffiNet.Backend.Data;
 
-namespace MuffiNet.FrontendReact.Data.Migrations
+namespace MuffiNet.Backend.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]

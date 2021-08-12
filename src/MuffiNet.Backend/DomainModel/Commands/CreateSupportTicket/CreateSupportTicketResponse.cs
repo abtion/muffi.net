@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MuffiNet.FrontendReact.DomainModel.Commands.CreateSupportTicket
+namespace MuffiNet.Backend.DomainModel.Commands.CreateSupportTicket
 {
     public class CreateSupportTicketResponse
     {

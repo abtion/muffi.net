@@ -5,12 +5,12 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MuffiNet.FrontendReact.Controllers;
-using MuffiNet.FrontendReact.DomainModel;
-using MuffiNet.FrontendReact.DomainModel.Commands.CreateSupportTicket;
-using MuffiNet.FrontendReact.DomainModel.Queries.EstimatedWaitingTime;
-using MuffiNet.FrontendReact.DomainModel.Queries.ReadVideoGrantForCustomerToken;
-using MuffiNet.FrontendReact.Models;
-using MuffiNet.FrontendReact.Services;
+using MuffiNet.Backend.DomainModel;
+using MuffiNet.Backend.DomainModel.Commands.CreateSupportTicket;
+using MuffiNet.Backend.DomainModel.Queries.EstimatedWaitingTime;
+using MuffiNet.Backend.DomainModel.Queries.ReadVideoGrantForCustomerToken;
+using MuffiNet.Backend.Models;
+using MuffiNet.Backend.Services;
 using Xunit;
 using MuffiNet.Test.Shared.Mocks;
 

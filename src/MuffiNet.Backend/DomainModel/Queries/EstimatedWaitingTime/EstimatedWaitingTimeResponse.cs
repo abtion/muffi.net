@@ -1,4 +1,4 @@
-﻿namespace MuffiNet.FrontendReact.DomainModel.Queries.EstimatedWaitingTime
+﻿namespace MuffiNet.Backend.DomainModel.Queries.EstimatedWaitingTime
 {
     public class EstimatedWaitingTimeResponse
     {

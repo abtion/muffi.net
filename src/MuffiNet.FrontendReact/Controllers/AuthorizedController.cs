@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.DomainModel.Commands.DeleteSupportTicket;
-using MuffiNet.FrontendReact.DomainModel.Commands.RequestOssIdFromOss;
-using MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicket;
-using MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicketById;
-using MuffiNet.FrontendReact.Exceptions;
+using MuffiNet.Backend.DomainModel.Commands.DeleteSupportTicket;
+using MuffiNet.Backend.DomainModel.Commands.RequestOssIdFromOss;
+using MuffiNet.Backend.DomainModel.Queries.ReadSupportTicket;
+using MuffiNet.Backend.DomainModel.Queries.ReadSupportTicketById;
+using MuffiNet.Backend.Exceptions;
 
 namespace MuffiNet.FrontendReact.Controllers
 {

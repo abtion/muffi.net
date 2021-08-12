@@ -1,14 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using MuffiNet.FrontendReact.DomainModel.Commands.CreateSupportTicket;
-using MuffiNet.FrontendReact.DomainModel.Commands.DeleteSupportTicket;
-using MuffiNet.FrontendReact.DomainModel.Commands.RequestOssIdFromOss;
-using MuffiNet.FrontendReact.DomainModel.Queries.EstimatedWaitingTime;
-using MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicket;
-using MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicketById;
-using MuffiNet.FrontendReact.DomainModel.Queries.ReadVideoGrantForCustomerToken;
-using MuffiNet.FrontendReact.Services;
+using MuffiNet.Backend.DomainModel.Commands.CreateSupportTicket;
+using MuffiNet.Backend.DomainModel.Commands.DeleteSupportTicket;
+using MuffiNet.Backend.DomainModel.Commands.RequestOssIdFromOss;
+using MuffiNet.Backend.DomainModel.Queries.EstimatedWaitingTime;
+using MuffiNet.Backend.DomainModel.Queries.ReadSupportTicket;
+using MuffiNet.Backend.DomainModel.Queries.ReadSupportTicketById;
+using MuffiNet.Backend.DomainModel.Queries.ReadVideoGrantForCustomerToken;
+using MuffiNet.Backend.Services;
 
-namespace MuffiNet.FrontendReact.DomainModel
+namespace MuffiNet.Backend.DomainModel
 {
     public static class DomainModelServiceCollectionExtensions
     {

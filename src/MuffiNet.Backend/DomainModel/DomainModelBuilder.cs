@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace MuffiNet.FrontendReact.DomainModel
+namespace MuffiNet.Backend.DomainModel
 {
     public interface IDomainModelBuilder
     {

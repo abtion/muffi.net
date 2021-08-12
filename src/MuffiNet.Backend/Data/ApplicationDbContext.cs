@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.Models;
 
-namespace MuffiNet.FrontendReact.Data
+namespace MuffiNet.Backend.Data
 {
     public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {

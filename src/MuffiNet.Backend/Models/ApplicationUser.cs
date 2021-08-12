@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace MuffiNet.FrontendReact.Models
+namespace MuffiNet.Backend.Models
 {
     public class ApplicationUser : IdentityUser
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicketById
+namespace MuffiNet.Backend.DomainModel.Queries.ReadSupportTicketById
 {
     public class ReadSupportTicketByIdResponse
     {
