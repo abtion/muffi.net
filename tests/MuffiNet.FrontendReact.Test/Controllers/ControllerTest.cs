@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using MuffiNet.FrontendReact.Data;
+using MuffiNet.Backend.Data;
 using MuffiNet.Test.Shared.TestData;
 using MuffiNet.Test.Shared;
 

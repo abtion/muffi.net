@@ -1,16 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
+using MuffiNet.Backend.HubContracts;
 using System.Threading.Tasks;
 
 namespace MuffiNet.FrontendReact.Hubs
 {
-    public interface IExampleHubContract
-    {
-        Task SomeEntityUpdated(SomeEntityUpdatedMessage message);
-        Task SomeEntityCreated(SomeEntityCreatedMessage message);
-        Task SomeEntityDeleted(SomeEntityDeletedMessage message);
-    }
-
     [Authorize]
     public class ExampleHub : Hub, IExampleHubContract
     {
@@ -35,35 +29,5 @@ namespace MuffiNet.FrontendReact.Hubs
         {
             await context.Clients.All.SendAsync(nameof(SomeEntityDeleted), message);
         }
-    }
-
-    public class SomeEntityCreatedMessage
-    {
-        public SomeEntityCreatedMessage(string entityId)
-        {
-            EntityId = entityId;
-        }
-
-        public string EntityId { get; private set; }
-    }
-
-    public class SomeEntityUpdatedMessage
-    {
-        public SomeEntityUpdatedMessage(string entityId)
-        {
-            EntityId = entityId;
-        }
-
-        public string EntityId { get; private set; }
-    }
-
-    public class SomeEntityDeletedMessage
-    {
-        public SomeEntityDeletedMessage(string entityId)
-        {
-            EntityId = entityId;
-        }
-
-        public string EntityId { get; private set; }
     }
 }

@@ -9,10 +9,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using MuffiNet.FrontendReact.Data;
-using MuffiNet.FrontendReact.DomainModel;
+using MuffiNet.Backend.HubContracts;
+using MuffiNet.Backend.Data;
+using MuffiNet.Backend.DomainModel;
 using MuffiNet.FrontendReact.Hubs;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.Models;
+
 namespace MuffiNet.FrontendReact
 {
     public class Startup
@@ -65,6 +67,9 @@ namespace MuffiNet.FrontendReact
             services.AddRazorPages();
 
             services.AddDomainModel();
+
+            // Add SignalR Hubs here
+            services.AddTransient<IExampleHubContract, ExampleHub>();
 
             // SignalR setup + enable CORS for SignalR
             services.AddSignalR();

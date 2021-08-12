@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using MuffiNet.FrontendReact.Data;
-using MuffiNet.FrontendReact.DomainModel;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.Data;
+using MuffiNet.Backend.DomainModel;
+using MuffiNet.Backend.Models;
 using MuffiNet.Test.Shared.TestData;
 
 namespace MuffiNet.Test.Shared

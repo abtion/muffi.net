@@ -3,9 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.DomainModel;
-using MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicket;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.DomainModel;
+using MuffiNet.Backend.DomainModel.Queries.ReadSupportTicket;
+using MuffiNet.Backend.Models;
 using Xunit;
 
 namespace MuffiNet.Backend.Tests.DomainModel.Queries.ReadSupportTicket

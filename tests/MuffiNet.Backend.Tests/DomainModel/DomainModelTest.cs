@@ -2,9 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.Data;
-using MuffiNet.FrontendReact.DomainModel;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.Data;
+using MuffiNet.Backend.DomainModel;
+using MuffiNet.Backend.Models;
 using MuffiNet.Test.Shared.TestData;
 using MuffiNet.Test.Shared;
 

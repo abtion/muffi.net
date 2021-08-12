@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.Models;
 
 namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account
 {

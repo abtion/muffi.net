@@ -1,7 +1,7 @@
 using Moq;
 using System;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.Services;
+using MuffiNet.Backend.Services;
 
 namespace MuffiNet.Test.Shared.Mocks
 {

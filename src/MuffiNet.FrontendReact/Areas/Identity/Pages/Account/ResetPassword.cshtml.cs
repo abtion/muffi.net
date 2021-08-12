@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.Models;
 
 namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account
 {

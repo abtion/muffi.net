@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.DomainModel.Queries.EstimatedWaitingTime;
-using MuffiNet.FrontendReact.Exceptions;
+using MuffiNet.Backend.DomainModel.Queries.EstimatedWaitingTime;
+using MuffiNet.Backend.Exceptions;
 using Xunit;
 
 namespace MuffiNet.Backend.Tests.DomainModel.Queries.EstimatedWaitingTime

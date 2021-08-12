@@ -2,8 +2,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.DomainModel;
-using MuffiNet.FrontendReact.DomainModel.Queries.ReadSupportTicketById;
+using MuffiNet.Backend.DomainModel;
+using MuffiNet.Backend.DomainModel.Queries.ReadSupportTicketById;
 using Xunit;
 
 namespace MuffiNet.Backend.Tests.DomainModel.Queries.ReadSupportTicketById

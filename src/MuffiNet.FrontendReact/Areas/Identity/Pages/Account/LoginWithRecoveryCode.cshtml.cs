@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.Models;
 
 namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account
 {

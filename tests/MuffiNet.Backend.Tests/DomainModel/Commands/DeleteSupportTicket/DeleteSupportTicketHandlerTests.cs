@@ -3,9 +3,9 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.FrontendReact.DomainModel;
-using MuffiNet.FrontendReact.DomainModel.Commands.DeleteSupportTicket;
-using MuffiNet.FrontendReact.Models;
+using MuffiNet.Backend.DomainModel;
+using MuffiNet.Backend.DomainModel.Commands.DeleteSupportTicket;
+using MuffiNet.Backend.Models;
 using Xunit;
 
 namespace MuffiNet.Backend.Tests.DomainModel.Commands.DeleteSupportTicket
