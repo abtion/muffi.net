@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MuffiNet.Backend.Data;
 using MuffiNet.Backend.Models;
 using System.Collections.Generic;
+using System;
 
 namespace MuffiNet.Backend.DomainModel
 {
@@ -20,19 +21,29 @@ namespace MuffiNet.Backend.DomainModel
 
         private ApplicationDbContext DbContext { get; set; }
 
+        // Remove this section -->
         private static List<ExampleEntity> exampleEntities;
-
-        // Remove this method and use Entities for commands and EntitiesNoTracking for queries
-        private IQueryable<ExampleEntity> ExampleEntities()
+        public IQueryable<ExampleEntity> ExampleEntities()
         {
-            lock (exampleEntities)
-            {
-                if (exampleEntities is null)
-                    exampleEntities = new List<ExampleEntity>();
+            if (exampleEntities is null)
+                exampleEntities = new List<ExampleEntity>();
 
-                return exampleEntities.AsQueryable();
-            }
+            return exampleEntities.AsQueryable();
         }
+
+        public void ResetExampleEntities()
+        {
+            exampleEntities = null;
+        }
+
+        public void AddExampleEntity(ExampleEntity entity)
+        {
+            if (exampleEntities is null)
+                exampleEntities = new List<ExampleEntity>();
+
+            exampleEntities.Add(entity);
+        }
+        // <-- Remove this section
 
         /// <summary>
         /// This generic method should be used by commands when accessing entities.
