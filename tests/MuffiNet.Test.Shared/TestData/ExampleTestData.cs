@@ -14,18 +14,19 @@ namespace MuffiNet.Test.Shared.TestData
             this.domainModelTransaction = domainModelTransaction ?? throw new ArgumentNullException(nameof(domainModelTransaction));
         }
 
-        public async Task<ExampleEntity> CreateExampleTestData()
+        public async Task AddExampleEntitiesToDatabase(int numberOfEntitiesToAdd)
         {
-            //    var exampleEntity = new ExampleEntity()
-            //    {
-
-            //    };
-
-            //    await domainModelTransaction.AddAsync<ExampleEntity>(ExampleEntity);
-            //    await domainModelTransaction.SaveChangesAsync();
-
-            //    return exampleEntity;
-            throw new NotImplementedException();
+            for (int i = 0; i < numberOfEntitiesToAdd; i++)
+            {
+                domainModelTransaction.AddExampleEntity(new ExampleEntity()
+                {
+                    Id = i + 1,
+                    Name = $"Name {i}",
+                    Description = $"Description {i}"
+                });
+            }
+            
+            await domainModelTransaction.SaveChangesAsync();
         }
     }
 }

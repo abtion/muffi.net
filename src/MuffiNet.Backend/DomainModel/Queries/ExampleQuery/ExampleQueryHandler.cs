@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MuffiNet.Backend.Exceptions;
@@ -10,38 +11,24 @@ namespace MuffiNet.Backend.DomainModel.Queries.ExampleQuery
 {
     public class ExampleQueryHandler : IRequestHandler<ExampleQueryRequest, ExampleQueryResponse>
     {
-        //private DomainModelTransaction domainModelTransaction;
+        private DomainModelTransaction domainModelTransaction;
 
-        //public const int CallDurationInMinutes = 8;
-
-        //public ExampleQueryHandler(DomainModelTransaction domainModelTransaction)
-        //{
-        //    this.domainModelTransaction = domainModelTransaction ?? throw new ArgumentNullException(nameof(domainModelTransaction));
-        //}
-
-        //public async Task<ExampleQueryResponse> Handle(ExampleQueryRequest request, CancellationToken cancellationToken)
-        //{
-        //    var supportTicket = await domainModelTransaction.EntitiesNoTracking<SupportTicket>().WithSupportTicketId(request.SupportTicketId).SingleOrDefaultAsync();
-
-        //    if (supportTicket is null)
-        //        throw new SupportTicketNotFoundException(request.SupportTicketId);
-
-        //    var q = domainModelTransaction.EntitiesNoTracking<SupportTicket>()
-        //        .AddedToQueueBeforeThis(supportTicket.CreatedAt)
-        //        .NotStarted();
-
-        //    int numberOfSupportTicketsInQueueBeforeThisOne = await q.CountAsync();
-
-        //    return new ExampleQueryResponse()
-        //    {
-        //        EstimatedCallDurationInMinutes = CallDurationInMinutes,
-        //        NumberOfUnansweredCalls = numberOfSupportTicketsInQueueBeforeThisOne,
-        //        EstimatedWaitingTimeInMinutes = CallDurationInMinutes * numberOfSupportTicketsInQueueBeforeThisOne,
-        //    };
-        //}
-        public Task<ExampleQueryResponse> Handle(ExampleQueryRequest request, CancellationToken cancellationToken)
+        public ExampleQueryHandler(DomainModelTransaction domainModelTransaction)
         {
-            throw new NotImplementedException();
+            this.domainModelTransaction = domainModelTransaction ?? throw new ArgumentNullException(nameof(domainModelTransaction));
+        }
+        
+        public async Task<ExampleQueryResponse> Handle(ExampleQueryRequest request, CancellationToken cancellationToken)
+        {
+            var query = domainModelTransaction.ExampleEntities().WithId(request.Id);
+
+            if (!query.Any())
+                throw new ExampleEntityNotFoundException(request.Id);
+
+            return new ExampleQueryResponse() 
+            { 
+                ExampleEntity = query.SingleOrDefault()
+            };
         }
     }
 }
