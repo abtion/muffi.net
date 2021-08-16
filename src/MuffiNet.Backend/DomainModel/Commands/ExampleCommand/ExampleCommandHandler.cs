@@ -31,6 +31,8 @@ namespace MuffiNet.Backend.DomainModel.Commands.ExampleCommand
 
             entity.Name = request.Name;
             entity.Description = request.Description;
+            entity.Email = request.Email;
+            entity.Phone = request.Phone;
 
             domainModelTransaction.AddExampleEntity(entity);
 
