@@ -58,7 +58,7 @@ export default function Home() {
     <Layout>
       <h1 className="text-2xl mb-3">Title</h1>
 
-      <ExampleTable entities={Object.values(exampleEntityTable)} />
+      <ExampleTable entities={exampleEntityTable.entities} />
 
       <ExampleForm onSubmit={handleSubmit} />
     </Layout>
