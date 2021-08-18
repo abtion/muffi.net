@@ -17,7 +17,7 @@ using MuffiNet.Backend.DomainModel.Commands.ExampleCommand;
 
 namespace MuffiNet.FrontendReact.Test.Controllers
 {
-    public class ExampleControllerTests : ControllerTest
+    public class AuthorizedExampleControllerTests : ControllerTest
     {
 
         [Fact]
@@ -30,7 +30,7 @@ namespace MuffiNet.FrontendReact.Test.Controllers
             var testData = new ExampleTestData(transaction);
             await testData.AddExampleEntitiesToDatabase(5);
 
-            var controller = new ExampleController();
+            var controller = new AuthorizedExampleController();
             var handler = new ExampleQueryHandler(transaction);
 
             int exampleEntityId = 3;
@@ -51,7 +51,7 @@ namespace MuffiNet.FrontendReact.Test.Controllers
 
             var exampleHubMock = new ExampleHubMock();
 
-            var controller = new ExampleController();
+            var controller = new AuthorizedExampleController();
             var handler = new ExampleCommandHandler(transaction, exampleHubMock);
 
             var request = new ExampleCommandRequest()

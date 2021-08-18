@@ -11,7 +11,7 @@ namespace MuffiNet.Backend.DomainModel.Queries.ExampleQuery
 {
     public class ExampleQueryHandler : IRequestHandler<ExampleQueryRequest, ExampleQueryResponse>
     {
-        private DomainModelTransaction domainModelTransaction;
+        private readonly DomainModelTransaction domainModelTransaction;
 
         public ExampleQueryHandler(DomainModelTransaction domainModelTransaction)
         {
@@ -25,10 +25,10 @@ namespace MuffiNet.Backend.DomainModel.Queries.ExampleQuery
             if (!query.Any())
                 throw new ExampleEntityNotFoundException(request.Id);
 
-            return new ExampleQueryResponse() 
+            return await Task.FromResult(new ExampleQueryResponse() 
             { 
                 ExampleEntity = query.SingleOrDefault()
-            };
+            });
         }
     }
 }
