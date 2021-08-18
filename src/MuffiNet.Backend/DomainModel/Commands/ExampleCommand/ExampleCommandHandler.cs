@@ -38,6 +38,8 @@ namespace MuffiNet.Backend.DomainModel.Commands.ExampleCommand
 
             await domainModelTransaction.SaveChangesAsync();
 
+            await exampleHub.SomeEntityCreated(new SomeEntityCreatedMessage(entity));
+
             return new ExampleCommandResponse() { ExampleEntity = entity };
         }
     }

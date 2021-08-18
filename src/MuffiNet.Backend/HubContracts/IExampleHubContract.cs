@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MuffiNet.Backend.Models;
 
 namespace MuffiNet.Backend.HubContracts
 {
@@ -15,12 +16,12 @@ namespace MuffiNet.Backend.HubContracts
 
     public class SomeEntityCreatedMessage
     {
-        public SomeEntityCreatedMessage(string entityId)
+        public SomeEntityCreatedMessage(ExampleEntity entity)
         {
-            EntityId = entityId;
+            Entity = entity;
         }
 
-        public string EntityId { get; private set; }
+        public ExampleEntity Entity { get; private set; }
     }
 
     public class SomeEntityUpdatedMessage
