@@ -13,13 +13,13 @@ namespace MuffiNet.FrontendReact.Controllers
     [Authorize]
     public class AuthorizedExampleController : ControllerBase
     {
-        [HttpGet("get")]
+        [HttpGet]
         public async Task<ActionResult<ExampleQueryResponse>> ExampleQuery([FromServices] ExampleQueryHandler handler, [FromQuery] int idOfExampleEntity, CancellationToken cancellationToken)
         {
             return await handler.Handle(new ExampleQueryRequest() { Id = idOfExampleEntity }, cancellationToken);
         }
 
-        [HttpGet("put")]
+        [HttpPut]
         public async Task<ActionResult<ExampleCommandResponse>> ExampleCommand([FromServices] ExampleCommandHandler handler, ExampleCommandRequest request, CancellationToken cancellationToken)
         {
             return await handler.Handle(request, cancellationToken);

@@ -13,13 +13,13 @@ namespace MuffiNet.FrontendReact.Controllers
     [ApiController]
     public class ExampleController : ControllerBase
     {
-        [HttpGet("get")]
+        [HttpGet]
         public async Task<ActionResult<ExampleQueryResponse>> ExampleQuery([FromServices] ExampleQueryHandler handler, [FromQuery] int exampleEntityId, CancellationToken cancellationToken)
         {
             return await handler.Handle(new ExampleQueryRequest() { Id = exampleEntityId }, cancellationToken);
         }
 
-        [HttpGet("put")]
+        [HttpPut]
         public async Task<ActionResult<ExampleCommandResponse>> ExampleCommand([FromServices] ExampleCommandHandler handler, ExampleCommandRequest request, CancellationToken cancellationToken)
         {
             return await handler.Handle(request, cancellationToken);
