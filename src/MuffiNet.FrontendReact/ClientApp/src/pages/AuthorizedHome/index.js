@@ -5,7 +5,7 @@ import useMappedRecords from "~/hooks/useMappedRecords"
 import AuthorizedLayout from "~/components/TechLayout"
 import ExampleForm from "~/components/ExampleForm"
 import ExampleTable from "~/components/ExampleTable"
-
+import "./style.css"
 import useHub from "~/hooks/useHub"
 import { HttpTransportType } from "@microsoft/signalr"
 
@@ -18,30 +18,24 @@ export default function AuthorizedHome({ accessToken }) {
       named: [],
       unnamed: [],
     }
-
     Object.values(exampleEntityMap).forEach((exampleEntity) => {
       const table = exampleEntity.name ? result.named : result.unnamed
-
       table.push(exampleEntity)
     })
-
     return result
   }, [exampleEntityMap])
 
   const onHubConnected = useCallback(
     (connection) => {
       connection.on("SomeEntityCreated", (message) => {
-        console.log(message)
         upsertExampleEntity(message.entity)
       })
-
-      connection.on("SomeEntityUpdated", (message) => {
-        upsertExampleEntity(message)
-      })
-
-      connection.on("SomeEntityDeleted", (message) => {
-        deleteExampleEntity({ message })
-      })
+      // connection.on("SomeEntityUpdated", (message) => {
+      //   upsertExampleEntity(message)
+      // })
+      // connection.on("SomeEntityDeleted", (message) => {
+      //   deleteExampleEntity({ message })
+      // })
     },
     [upsertExampleEntity, deleteExampleEntity]
   )
@@ -56,28 +50,27 @@ export default function AuthorizedHome({ accessToken }) {
   useHub("/hubs/example", onHubConnected, connectionOptions)
 
   const handleSubmit = (data) => {
-    console.log(data)
     createExampleEntity(data)
   }
 
   const createExampleEntity = (formData) => {
     return axios
-      .put("/api/example", formData, {
+      .put("/api/authorizedexample", formData, {
         headers: {
           authorization: `Bearer ${accessToken}`,
         },
       })
       .then((response) => {
-        console.log("createExampleEntity ", response)
+        // console.log("createExampleEntity ", response)
       })
       .catch((error) => {
-        console.log(error)
+        // console.log(error)
       })
   }
 
   return (
     <AuthorizedLayout>
-      <div className="container mt-5">
+      <div className="AuthorizedHome container mt-5">
         <ExampleForm onSubmit={handleSubmit} />
 
         <h2 className="text-xl mb-2">Named</h2>

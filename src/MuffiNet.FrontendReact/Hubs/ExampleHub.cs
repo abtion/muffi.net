@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 namespace MuffiNet.FrontendReact.Hubs
 {
-    [Authorize]
     public class ExampleHub : Hub, IExampleHubContract
     {
         private readonly IHubContext<ExampleHub> context;
