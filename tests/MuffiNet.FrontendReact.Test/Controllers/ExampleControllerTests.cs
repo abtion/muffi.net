@@ -11,73 +11,68 @@ using MuffiNet.Backend.Services;
 using MuffiNet.Test.Shared.Mocks;
 using MuffiNet.Test.Shared.TestData;
 using Xunit;
+using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
+using FluentAssertions;
+using MuffiNet.Backend.DomainModel.Commands.ExampleCommand;
 
 namespace MuffiNet.FrontendReact.Test.Controllers
 {
     public class ExampleControllerTests : ControllerTest
     {
-        // MOCK datetime service
-        
-        // private static ICurrentDateTimeService MockCurrentDateTimeService()
-        // {
-        //     var currentDateTimeMock = new Mock<ICurrentDateTimeService>();
-        //     currentDateTimeMock.Setup(p => p.CurrentDateTime()).Returns(new DateTime(2021, 06, 17, 12, 05, 10));
-
-        //     return currentDateTimeMock.Object;
-        // }
 
         [Fact]
         public async Task Given_RequestIsValid_When_ExampleQueryIsCalled_Then_ReturnTypeIsCorrect()
         {
-            //// Arrange
-            //var transaction = ServiceProvider.GetService<DomainModelTransaction>();
-            //var userManager = ServiceProvider.GetService<UserManager<ApplicationUser>>();
+            // Arrange
+            var transaction = ServiceProvider.GetService<DomainModelTransaction>();
+            transaction.ResetExampleEntities();
+            
+            var testData = new ExampleTestData(transaction);
+            await testData.AddExampleEntitiesToDatabase(5);
 
-            //var controller = new ExampleController();
-            //var handler = new ExampleQueryHandler(transaction, userManager);
+            var controller = new ExampleController();
+            var handler = new ExampleQueryHandler(transaction);
 
-            //var cancellationToken = new CancellationToken();
+            var request = new ExampleQueryRequest() 
+            {
+                Id = 1 
+            };
 
-            //// Act
-            //var response = await controller.ReadSupportTickets(handler, cancellationToken);
+            int exampleEntityId = 3;
 
-            //// Assert
-            //Assert.IsType<ExampleQueryResponse>(response.Value);
+            // Act
+            var response = await controller.ExampleQuery(handler, exampleEntityId, new CancellationToken());
+
+            // Assert
+            response.Value.Should().BeOfType<ExampleQueryResponse>();
         }
 
         [Fact]
         public async Task Given_RequestIsValid_When_ExampleCommandIsCalled_Then_ReturnTypeIsCorrect()
         {
-            //// Arrange
-            //var transaction = ServiceProvider.GetService<DomainModelTransaction>();
+            // Arrange
+            var transaction = ServiceProvider.GetService<DomainModelTransaction>();
 
-            //var exampleHubMock = new ExampleHubMock();
+            var exampleHubMock = new ExampleHubMock();
 
-            //var createSupportTicketHandler = new ExampleCommandHandler(transaction, MockCurrentDateTimeService(), exampleHubMock);
-            //var createSupportTicketRequest = new ExampleCommandRequest()
-            //{
-            //    CustomerEmail = "a@b.c",
-            //    CustomerName = "Donald Duck",
-            //    CustomerPhone = "31331313",
-            //    Brand = "apple",
-            //};
+            var controller = new ExampleController();
+            var handler = new ExampleCommandHandler(transaction, exampleHubMock);
 
-            //var createSupportTicketResponse = await createSupportTicketHandler.Handle(createSupportTicketRequest, new CancellationToken());
+            var request = new ExampleCommandRequest()
+            {
+                Name = "Integration",
+                Description = "Test",
+                Email = "integration@test.net",
+                Phone = "+45 70 70 70 70"
+            };
 
-            //var controller = new AuthorizedController();
-            //var handler = new DeleteSupportTicketHandler(transaction);
-            //var request = new DeleteSupportTicketRequest()
-            //{
-            //    SupportTicketId = createSupportTicketResponse.SupportTicketId
-            //};
+            var cancellationToken = new CancellationToken();
 
-            //var cancellationToken = new CancellationToken();
+            // Act
+            var response = await controller.ExampleCommand(handler, request, cancellationToken);
 
-            //// Act
-            //var response = await controller.DeleteSupportTicket(handler, request, cancellationToken);
-
-            //// Assert
-            //Assert.IsType<DeleteSupportTicketResponse>(response.Value);
+            // Assert
+            response.Value.Should().BeOfType<ExampleCommandResponse>();
         }
     }
 }
