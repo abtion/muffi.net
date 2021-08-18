@@ -41,7 +41,6 @@ export default function ExampleForm({ onSubmit }) {
           type="text"
           value={formData.Name}
           onChange={handleInput}
-          required
         />
       </div>
       <div className="mb-5">

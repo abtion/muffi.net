@@ -11,7 +11,7 @@ import { HttpTransportType } from "@microsoft/signalr"
 
 export default function AuthorizedHome({ accessToken }) {
   const [exampleEntityMap, upsertExampleEntity, deleteExampleEntity] =
-    useMappedRecords((exampleEntity) => exampleEntity.Id)
+    useMappedRecords((exampleEntity) => exampleEntity.id)
 
   const exampleEntityTables = useMemo(() => {
     const result = {
@@ -20,8 +20,7 @@ export default function AuthorizedHome({ accessToken }) {
     }
 
     Object.values(exampleEntityMap).forEach((exampleEntity) => {
-      const isNamed = Boolean(exampleEntity.Name)
-      const table = isNamed ? result.named : result.unnamed
+      const table = exampleEntity.name ? result.named : result.unnamed
 
       table.push(exampleEntity)
     })
@@ -31,18 +30,16 @@ export default function AuthorizedHome({ accessToken }) {
 
   const onHubConnected = useCallback(
     (connection) => {
-      connection.on("SomeEntityCreated", ({ message }) => {
-        console.log("SomeEntityCreated", message)
+      connection.on("SomeEntityCreated", (message) => {
+        console.log(message)
+        upsertExampleEntity(message.entity)
+      })
+
+      connection.on("SomeEntityUpdated", (message) => {
         upsertExampleEntity(message)
       })
 
-      connection.on("SomeEntityUpdated", ({ message }) => {
-        console.log("SomeEntityUpdated", message)
-        upsertExampleEntity(message)
-      })
-
-      connection.on("SomeEntityDeleted", ({ message }) => {
-        console.log("SomeEntityDeleted", message)
+      connection.on("SomeEntityDeleted", (message) => {
         deleteExampleEntity({ message })
       })
     },
@@ -58,20 +55,20 @@ export default function AuthorizedHome({ accessToken }) {
   )
   useHub("/hubs/example", onHubConnected, connectionOptions)
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    createExampleEntity()
+  const handleSubmit = (data) => {
+    console.log(data)
+    createExampleEntity(data)
   }
 
   const createExampleEntity = (formData) => {
     return axios
-      .post("/api/example", formData, {
+      .put("/api/example", formData, {
         headers: {
           authorization: `Bearer ${accessToken}`,
         },
       })
       .then((response) => {
-        console.log(response)
+        console.log("createExampleEntity ", response)
       })
       .catch((error) => {
         console.log(error)
