@@ -30,9 +30,9 @@ export default function AuthorizedHome({ accessToken }) {
       connection.on("SomeEntityCreated", (message) => {
         upsertExampleEntity(message.entity)
       })
-      // connection.on("SomeEntityUpdated", (message) => {
-      //   upsertExampleEntity(message)
-      // })
+      connection.on("SomeEntityUpdated", (message) => {
+        upsertExampleEntity(message.entity)
+      })
       // connection.on("SomeEntityDeleted", (message) => {
       //   deleteExampleEntity({ message })
       // })

@@ -26,12 +26,12 @@ namespace MuffiNet.Backend.HubContracts
 
     public class SomeEntityUpdatedMessage
     {
-        public SomeEntityUpdatedMessage(string entityId)
+        public SomeEntityUpdatedMessage(ExampleEntity entity)
         {
-            EntityId = entityId;
+            Entity = entity;
         }
 
-        public string EntityId { get; private set; }
+        public ExampleEntity Entity { get; private set; }
     }
 
     public class SomeEntityDeletedMessage
