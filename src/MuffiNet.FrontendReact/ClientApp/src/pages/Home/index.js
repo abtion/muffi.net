@@ -36,7 +36,7 @@ export default function Home() {
 
   const createExampleEntity = (formData) => {
     return axios
-      .post("/api/example", formData)
+      .post("/api/example/ExampleCommand", formData)
       .then((response) => {
         console.log(response)
       })
@@ -48,9 +48,7 @@ export default function Home() {
   return (
     <Layout>
       <h1 className="text-2xl mb-3">Title</h1>
-      
       <ExampleTable entities={Object.values(exampleEntityMap)}/>
-
       <ExampleForm onSubmit={handleSubmit} />
     </Layout>
   )
