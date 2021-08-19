@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 using MuffiNet.Backend.Models;
 using MuffiNet.Backend.HubContracts;
 
-namespace MuffiNet.Backend.DomainModel.Commands.ExampleCommand
+namespace MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand
 {
-    public class ExampleCommandHandler : IRequestHandler<ExampleCommandRequest, ExampleCommandResponse>
+    public class ExampleCreateCommandHandler : IRequestHandler<ExampleCreateCommandRequest, ExampleCreateCommandResponse>
     {
         private readonly DomainModelTransaction domainModelTransaction;
         private readonly IExampleHubContract exampleHub;
 
-        public ExampleCommandHandler(DomainModelTransaction domainModelTransaction, IExampleHubContract exampleHub)
+        public ExampleCreateCommandHandler(DomainModelTransaction domainModelTransaction, IExampleHubContract exampleHub)
         {
             this.domainModelTransaction = domainModelTransaction ?? throw new ArgumentNullException(nameof(domainModelTransaction));
             this.exampleHub = exampleHub ?? throw new ArgumentNullException(nameof(exampleHub));
         }
 
-        public async Task<ExampleCommandResponse> Handle(ExampleCommandRequest request, CancellationToken cancellationToken)
+        public async Task<ExampleCreateCommandResponse> Handle(ExampleCreateCommandRequest request, CancellationToken cancellationToken)
         {
             var entity = new ExampleEntity();
 
@@ -40,7 +40,7 @@ namespace MuffiNet.Backend.DomainModel.Commands.ExampleCommand
 
             await exampleHub.SomeEntityCreated(new SomeEntityCreatedMessage(entity));
 
-            return new ExampleCommandResponse() { ExampleEntity = entity };
+            return new ExampleCreateCommandResponse() { ExampleEntity = entity };
         }
     }
 }

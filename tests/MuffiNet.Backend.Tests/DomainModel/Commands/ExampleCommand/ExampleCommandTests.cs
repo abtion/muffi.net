@@ -7,31 +7,31 @@ using MuffiNet.Backend.Data;
 using MuffiNet.Backend.DomainModel;
 using MuffiNet.Test.Shared.Mocks;
 using Xunit;
-using MuffiNet.Backend.DomainModel.Commands.ExampleCommand;
+using MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand;
 using FluentAssertions;
 
-namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleCommand
+namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleCreateCommand
 {
-    public class ExampleCommandTests : DomainModelTest<ExampleCommandHandler>
+    public class ExampleCreateCommandTests : DomainModelTest<ExampleCreateCommandHandler>
     {
         private ExampleHubMock exampleHub;
         private DomainModelTransaction domainModelTransaction;
 
-        protected internal override async Task<ExampleCommandHandler> CreateSut()
+        protected internal override async Task<ExampleCreateCommandHandler> CreateSut()
         {
             domainModelTransaction = ServiceProvider.GetService<DomainModelTransaction>();
-            
+
             // uses static member as database - that needs to be flushed with every test
             domainModelTransaction.ResetExampleEntities();
 
             exampleHub = new ExampleHubMock();
 
-            return await Task.FromResult(new ExampleCommandHandler(domainModelTransaction, exampleHub));
+            return await Task.FromResult(new ExampleCreateCommandHandler(domainModelTransaction, exampleHub));
         }
 
-        private ExampleCommandRequest CreateValidRequest()
+        private ExampleCreateCommandRequest CreateValidRequest()
         {
-            var request = new ExampleCommandRequest()
+            var request = new ExampleCreateCommandRequest()
             {
                 Name = "Muffi",
                 Description = "Head of People"
@@ -44,7 +44,7 @@ namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleCommand
         [Fact]
         public void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
         {
-            Action a = () => { new ExampleCommandHandler(null, exampleHub); };
+            Action a = () => { new ExampleCreateCommandHandler(null, exampleHub); };
 
             a.Should().Throw<ArgumentNullException>();
         }
@@ -52,7 +52,7 @@ namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleCommand
         [Fact]
         public void Given_ExampleHubIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
         {
-            Action a = () => { new ExampleCommandHandler(domainModelTransaction, null); };
+            Action a = () => { new ExampleCreateCommandHandler(domainModelTransaction, null); };
 
             a.Should().Throw<ArgumentNullException>();
         }

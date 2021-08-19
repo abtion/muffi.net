@@ -13,7 +13,7 @@ using MuffiNet.Test.Shared.TestData;
 using Xunit;
 using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
 using FluentAssertions;
-using MuffiNet.Backend.DomainModel.Commands.ExampleCommand;
+using MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand;
 
 namespace MuffiNet.FrontendReact.Test.Controllers
 {
@@ -26,7 +26,7 @@ namespace MuffiNet.FrontendReact.Test.Controllers
             // Arrange
             var transaction = ServiceProvider.GetService<DomainModelTransaction>();
             transaction.ResetExampleEntities();
-            
+
             var testData = new ExampleTestData(transaction);
             await testData.AddExampleEntitiesToDatabase(5);
 
@@ -43,7 +43,7 @@ namespace MuffiNet.FrontendReact.Test.Controllers
         }
 
         [Fact]
-        public async Task Given_RequestIsValid_When_ExampleCommandIsCalled_Then_ReturnTypeIsCorrect()
+        public async Task Given_RequestIsValid_When_ExampleCreateCommandIsCalled_Then_ReturnTypeIsCorrect()
         {
             // Arrange
             var transaction = ServiceProvider.GetService<DomainModelTransaction>();
@@ -52,9 +52,9 @@ namespace MuffiNet.FrontendReact.Test.Controllers
             var exampleHubMock = new ExampleHubMock();
 
             var controller = new AuthorizedExampleController();
-            var handler = new ExampleCommandHandler(transaction, exampleHubMock);
+            var handler = new ExampleCreateCommandHandler(transaction, exampleHubMock);
 
-            var request = new ExampleCommandRequest()
+            var request = new ExampleCreateCommandRequest()
             {
                 Name = "Integration",
                 Description = "Test",
@@ -65,10 +65,10 @@ namespace MuffiNet.FrontendReact.Test.Controllers
             var cancellationToken = new CancellationToken();
 
             // Act
-            var response = await controller.ExampleCommand(handler, request, cancellationToken);
+            var response = await controller.ExampleCreateCommand(handler, request, cancellationToken);
 
             // Assert
-            response.Value.Should().BeOfType<ExampleCommandResponse>();
+            response.Value.Should().BeOfType<ExampleCreateCommandResponse>();
         }
     }
 }

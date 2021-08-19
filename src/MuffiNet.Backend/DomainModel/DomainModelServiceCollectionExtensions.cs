@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using MuffiNet.Backend.DomainModel.Commands.ExampleCommand;
+using MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand;
 using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
 
 using MuffiNet.Backend.Services;
@@ -14,7 +14,7 @@ namespace MuffiNet.Backend.DomainModel
             services.AddScoped<DomainModelTransaction>();
 
             // Command Handlers
-            services.AddScoped<ExampleCommandHandler>();
+            services.AddScoped<ExampleCreateCommandHandler>();
 
             // Query Handlers
             services.AddScoped<ExampleQueryHandler>();

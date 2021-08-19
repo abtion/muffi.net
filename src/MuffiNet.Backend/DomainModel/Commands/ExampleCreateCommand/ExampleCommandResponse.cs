@@ -1,9 +1,9 @@
 ﻿using MuffiNet.Backend.Models;
 using System;
 
-namespace MuffiNet.Backend.DomainModel.Commands.ExampleCommand
+namespace MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand
 {
-    public class ExampleCommandResponse
+    public class ExampleCreateCommandResponse
     {
         public ExampleEntity ExampleEntity { get; set; }
     }

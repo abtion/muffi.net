@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MuffiNet.Backend.DomainModel.Commands.ExampleCommand;
+using MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand;
 using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
 using System;
 using System.Threading;
@@ -20,9 +20,11 @@ namespace MuffiNet.FrontendReact.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<ExampleCommandResponse>> ExampleCommand([FromServices] ExampleCommandHandler handler, ExampleCommandRequest request, CancellationToken cancellationToken)
+        public async Task<ActionResult<ExampleCreateCommandResponse>> ExampleCreateCommand([FromServices] ExampleCreateCommandHandler handler, ExampleCreateCommandRequest request, CancellationToken cancellationToken)
         {
             return await handler.Handle(request, cancellationToken);
         }
+
+
     }
 }

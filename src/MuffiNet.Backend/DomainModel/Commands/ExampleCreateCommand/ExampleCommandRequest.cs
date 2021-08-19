@@ -1,8 +1,8 @@
 ﻿using MediatR;
 
-namespace MuffiNet.Backend.DomainModel.Commands.ExampleCommand
+namespace MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand
 {
-    public class ExampleCommandRequest : IRequest<ExampleCommandResponse>
+    public class ExampleCreateCommandRequest : IRequest<ExampleCreateCommandResponse>
     {
         public string Name {  get; set; }
         public string Description {  get; set; }
