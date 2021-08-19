@@ -1,5 +1,5 @@
 import React from "react"
-import { act, render as tlRender } from "@testing-library/react"
+import { act, render as tlRender, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { createMemoryHistory } from "history"
 import { Router } from "react-router"
@@ -49,13 +49,13 @@ beforeEach(() => {
 })
 
 describe(Home, () => {
-  it("renders header 'Title'", () => {
-    const { getByText } = render()
-    expect(getByText("Title")).toBeInTheDocument()
+  it("renders header 'Title'", async () => {
+    const { findByText } = render()
+    expect(await findByText("Title")).toBeInTheDocument()
   })
 
   describe("when submitting the form", () => {
-    it("puts an exampleEntity", () => {
+    it("puts an exampleEntity", async () => {
       axios.put.mockResolvedValue({ data: { Id: "1234" } })
       const { getByLabelText, getByText } = render()
       userEvent.type(getByLabelText("Name"), "Name")
@@ -63,12 +63,14 @@ describe(Home, () => {
       userEvent.type(getByLabelText("E-mail"), "Em@a.il")
       userEvent.type(getByLabelText("Phone"), "12345678")
       userEvent.click(getByText("Submit"))
-      expect(axios.put).toHaveBeenCalledWith("/api/example", {
-        Name: "Name",
-        Description: "Description",
-        Email: "Em@a.il",
-        Phone: "12345678",
-      })
+      await waitFor(() =>
+        expect(axios.put).toHaveBeenCalledWith("/api/example", {
+          Name: "Name",
+          Description: "Description",
+          Email: "Em@a.il",
+          Phone: "12345678",
+        })
+      )
     })
   })
 
@@ -76,12 +78,13 @@ describe(Home, () => {
     it("gets all current entities", async () => {
       const { findByText } = render()
 
+      await waitFor(() =>
+        expect(axios.get).toHaveBeenCalledWith("/api/example/all")
+      )
       expect(await findByText(entity.name)).toBeInTheDocument()
       expect(await findByText(entity.description)).toBeInTheDocument()
       expect(await findByText(entity.email)).toBeInTheDocument()
       expect(await findByText(entity.phone)).toBeInTheDocument()
-
-      expect(axios.get).toHaveBeenCalledWith("/api/example/all")
     })
   })
 

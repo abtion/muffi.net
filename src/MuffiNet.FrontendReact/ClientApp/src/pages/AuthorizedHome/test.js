@@ -1,5 +1,5 @@
 import React from "react"
-import { act, render as tlRender } from "@testing-library/react"
+import { act, render as tlRender, waitFor } from "@testing-library/react"
 import axios from "axios"
 import { createMemoryHistory } from "history"
 import userEvent from "@testing-library/user-event"
@@ -59,7 +59,7 @@ describe(AuthorizedHome, () => {
   })
 
   describe("when submitting the form", () => {
-    it("posts an exampleEntity", () => {
+    it("posts an exampleEntity", async () => {
       axios.put.mockResolvedValue({ data: { Id: "1234" } })
       const { getByLabelText, getByText } = render()
       userEvent.type(getByLabelText("Name"), "Name")
@@ -67,15 +67,17 @@ describe(AuthorizedHome, () => {
       userEvent.type(getByLabelText("E-mail"), "Em@a.il")
       userEvent.type(getByLabelText("Phone"), "12345678")
       userEvent.click(getByText("Submit"))
-      expect(axios.put).toHaveBeenCalledWith(
-        "/api/authorizedexample",
-        {
-          Name: "Name",
-          Description: "Description",
-          Email: "Em@a.il",
-          Phone: "12345678",
-        },
-        { headers: { authorization: "Bearer undefined" } }
+      await waitFor(() =>
+        expect(axios.put).toHaveBeenCalledWith(
+          "/api/authorizedexample",
+          {
+            Name: "Name",
+            Description: "Description",
+            Email: "Em@a.il",
+            Phone: "12345678",
+          },
+          { headers: { authorization: "Bearer undefined" } }
+        )
       )
     })
   })
@@ -84,14 +86,16 @@ describe(AuthorizedHome, () => {
     it("gets all current entities", async () => {
       const { findByText } = render()
 
+      await waitFor(() =>
+        expect(axios.get).toHaveBeenCalledWith("/api/authorizedexample/all", {
+          headers: { authorization: "Bearer undefined" },
+        })
+      )
+
       expect(await findByText(entity.name)).toBeInTheDocument()
       expect(await findByText(entity.description)).toBeInTheDocument()
       expect(await findByText(entity.email)).toBeInTheDocument()
       expect(await findByText(entity.phone)).toBeInTheDocument()
-
-      expect(axios.get).toHaveBeenCalledWith("/api/authorizedexample/all", {
-        headers: { authorization: "Bearer undefined" },
-      })
     })
   })
 
