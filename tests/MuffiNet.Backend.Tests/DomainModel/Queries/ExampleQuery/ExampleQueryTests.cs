@@ -9,6 +9,7 @@ using Xunit;
 
 namespace MuffiNet.Backend.Tests.DomainModel.Queries.ExampleQuery
 {
+    [Collection("ExampleQueryCollection")]
     public class ExampleQueryTests : DomainModelTest<ExampleQueryHandler>
     {
         private ExampleTestData exampleTestData;
