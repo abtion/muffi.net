@@ -17,6 +17,7 @@ using MuffiNet.Backend.DomainModel.Commands.ExampleCommand;
 
 namespace MuffiNet.FrontendReact.Test.Controllers
 {
+    [Collection("Controller")]
     public class AuthorizedExampleControllerTests : ControllerTest
     {
 

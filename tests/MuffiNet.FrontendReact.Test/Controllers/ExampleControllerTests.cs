@@ -17,6 +17,7 @@ using MuffiNet.Backend.DomainModel.Commands.ExampleCommand;
 
 namespace MuffiNet.FrontendReact.Test.Controllers
 {
+    [Collection("Controller")]
     public class ExampleControllerTests : ControllerTest
     {
 
@@ -26,7 +27,7 @@ namespace MuffiNet.FrontendReact.Test.Controllers
             // Arrange
             var transaction = ServiceProvider.GetService<DomainModelTransaction>();
             transaction.ResetExampleEntities();
-            
+
             var testData = new ExampleTestData(transaction);
             await testData.AddExampleEntitiesToDatabase(5);
 
