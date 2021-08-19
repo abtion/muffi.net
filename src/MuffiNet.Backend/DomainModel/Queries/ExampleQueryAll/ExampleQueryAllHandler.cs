@@ -2,6 +2,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll
 {
@@ -16,7 +17,9 @@ namespace MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll
 
         public async Task<ExampleQueryAllResponse> Handle(ExampleQueryAllRequest request, CancellationToken cancellationToken)
         {
-            return new ExampleQueryAllResponse();
+            var query = domainModelTransaction.ExampleEntities().All();
+
+            return await Task.FromResult(new ExampleQueryAllResponse() { ExampleEntities = query.ToList() });
         }
     }
 }

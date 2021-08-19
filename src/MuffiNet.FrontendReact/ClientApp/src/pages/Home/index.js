@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react"
+import React, { useCallback, useMemo, useEffect } from "react"
 import axios from "axios"
 import useMappedRecords from "~/hooks/useMappedRecords"
 import Layout from "~/components/Layout"
@@ -21,6 +21,18 @@ export default function Home() {
 
     return result
   }, [exampleEntityMap])
+
+  useEffect(() => {
+    axios
+      .get("/api/example/all")
+      .then((response) => {
+        const { exampleEntities } = response.data
+        upsertExampleEntity(exampleEntities)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [upsertExampleEntity])
 
   const onHubConnected = useCallback(
     (connection) => {
@@ -64,12 +76,12 @@ export default function Home() {
     <Layout>
       <h1 className="text-2xl mb-3">Title</h1>
 
+      <ExampleForm onSubmit={createExampleEntity} />
+
       <ExampleTable
         entities={exampleEntityTable.entities}
         onRemove={removeExampleEntity}
       />
-
-      <ExampleForm onSubmit={createExampleEntity} />
     </Layout>
   )
 }

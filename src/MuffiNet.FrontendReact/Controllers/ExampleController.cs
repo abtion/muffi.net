@@ -19,7 +19,7 @@ namespace MuffiNet.FrontendReact.Controllers
             return await handler.Handle(new ExampleQueryRequest() { Id = exampleEntityId }, cancellationToken);
         }
 
-        [HttpGet]
+        [HttpGet("all")]
         public async Task<ActionResult<ExampleQueryAllResponse>> ExampleQueryAll([FromServices] ExampleQueryAllHandler handler, CancellationToken cancellationToken)
         {
             return await handler.Handle(new ExampleQueryAllRequest(), cancellationToken);

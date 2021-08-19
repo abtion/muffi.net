@@ -9,5 +9,10 @@ namespace MuffiNet.Backend.DomainModel
         {
             return entities.Where(p => p.Id == exampleEntityId);
         }
+
+        public static IQueryable<ExampleEntity> All(this IQueryable<ExampleEntity> entities)
+        {
+            return entities;
+        }
     }
 }

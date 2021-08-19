@@ -9,6 +9,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 using MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand;
+using MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand;
+using MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll;
 
 namespace MuffiNet.FrontendReact.Test.Controllers
 {
@@ -39,6 +41,26 @@ namespace MuffiNet.FrontendReact.Test.Controllers
         }
 
         [Fact]
+        public async Task Given_RequestIsValid_When_ExampleQueryAllIsCalled_Then_ReturnTypeIsCorrect()
+        {
+            // Arrange
+            var transaction = ServiceProvider.GetService<DomainModelTransaction>();
+            transaction.ResetExampleEntities();
+
+            var testData = new ExampleTestData(transaction);
+            await testData.AddExampleEntitiesToDatabase(5);
+
+            var controller = new ExampleController();
+            var handler = new ExampleQueryAllHandler(transaction);
+
+            // Act
+            var response = await controller.ExampleQueryAll(handler, new CancellationToken());
+
+            // Assert
+            response.Value.Should().BeOfType<ExampleQueryAllResponse>();
+        }
+
+        [Fact]
         public async Task Given_RequestIsValid_When_ExampleCreateCommandIsCalled_Then_ReturnTypeIsCorrect()
         {
             // Arrange
@@ -65,6 +87,31 @@ namespace MuffiNet.FrontendReact.Test.Controllers
 
             // Assert
             response.Value.Should().BeOfType<ExampleCreateCommandResponse>();
+        }
+
+        [Fact]
+        public async Task Given_RequestIsValid_When_ExampleDeleteCommandIsCalled_Then_ReturnTypeIsCorrect()
+        {
+            // Arrange
+            var transaction = ServiceProvider.GetService<DomainModelTransaction>();
+            transaction.ResetExampleEntities();
+
+            var testData = new ExampleTestData(transaction);
+            await testData.AddExampleEntitiesToDatabase(5);
+
+            var controller = new AuthorizedExampleController();
+            var handler = new ExampleDeleteCommandHandler(transaction, new ExampleHubMock());
+
+            var request = new ExampleDeleteCommandRequest()
+            {
+                Id = 3
+            };
+
+            // Act
+            var response = await controller.ExampleDeleteCommand(handler, request, new CancellationToken());
+
+            // Assert
+            response.Value.Should().BeOfType<ExampleDeleteCommandResponse>();
         }
     }
 }

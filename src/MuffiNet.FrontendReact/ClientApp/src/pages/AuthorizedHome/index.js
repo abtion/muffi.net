@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from "react"
+import React, { useMemo, useCallback, useEffect } from "react"
 import axios from "axios"
 
 import useMappedRecords from "~/hooks/useMappedRecords"
@@ -24,6 +24,22 @@ export default function AuthorizedHome({ accessToken }) {
     })
     return result
   }, [exampleEntityMap])
+
+  useEffect(() => {
+    axios
+      .get("/api/authorizedexample/all", {
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((response) => {
+        const { exampleEntities } = response.data
+        upsertExampleEntity(exampleEntities)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [accessToken, upsertExampleEntity])
 
   const onHubConnected = useCallback(
     (connection) => {

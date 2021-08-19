@@ -24,10 +24,28 @@ function render() {
 
   return { ...context, history }
 }
+const entity = {
+  id: "1",
+  name: "SomeRandomName",
+  description: "someRandomDescription",
+  email: "an@email.dk",
+  phone: "12345678",
+}
+
+const updatedEntity = {
+  ...entity,
+  name: "updated name",
+}
 
 afterEach(() => {
   axios._reset()
   useHub._reset()
+})
+
+beforeEach(() => {
+  axios.get.mockResolvedValue({
+    data: { exampleEntities: [entity] },
+  })
 })
 
 describe(Home, () => {
@@ -53,19 +71,21 @@ describe(Home, () => {
       })
     })
   })
-  describe("hub connection", () => {
-    const entity = {
-      id: "1",
-      name: "SomeRandomName",
-      description: "someRandomDescription",
-      email: "an@email.dk",
-      phone: "12345678",
-    }
-    const updatedEntity = {
-      ...entity,
-      name: "updated name",
-    }
 
+  describe("when entering page", () => {
+    it("gets all current entities", async () => {
+      const { findByText } = render()
+
+      expect(await findByText(entity.name)).toBeInTheDocument()
+      expect(await findByText(entity.description)).toBeInTheDocument()
+      expect(await findByText(entity.email)).toBeInTheDocument()
+      expect(await findByText(entity.phone)).toBeInTheDocument()
+
+      expect(axios.get).toHaveBeenCalledWith("/api/example/all")
+    })
+  })
+
+  describe("hub connection", () => {
     it("adds new records", async () => {
       const { findByText } = render()
 
