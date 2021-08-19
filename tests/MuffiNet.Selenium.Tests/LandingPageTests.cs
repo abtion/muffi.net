@@ -21,15 +21,7 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
 
             wait().Until(webDriver => webDriver.FindElement(By.TagName("h1")));
 
-            webDriver.Url.Should().Be($"{siteUrl}care1");
-            webDriver.Title.Should().Be("VCI");
-
-            var leadEl = webDriver.FindElement(By.TagName("h1"));
-            leadEl.Text.Should().StartWith("Altid lige ved hånden");
-
-            var continueInput = webDriver.FindElement(By.TagName("button"));
-            continueInput.Displayed.Should().Be(true);
-            continueInput.Text.Should().Be("Start Live Service");
+            webDriver.Url.Should().Be($"{siteUrl}");
         }
     }
 }
