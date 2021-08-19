@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
 using MuffiNet.Backend.Data;
-using MuffiNet.Test.Shared.TestData;
 using MuffiNet.Test.Shared;
+using MuffiNet.Test.Shared.TestData;
+using System;
 
 namespace MuffiNet.FrontendReact.Test.Controllers
 {

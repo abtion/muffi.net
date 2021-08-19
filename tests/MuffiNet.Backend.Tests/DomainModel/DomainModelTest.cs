@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Threading.Tasks;
 using MuffiNet.Backend.Data;
 using MuffiNet.Backend.DomainModel;
 using MuffiNet.Backend.Models;
-using MuffiNet.Test.Shared.TestData;
 using MuffiNet.Test.Shared;
+using System;
+using System.Threading.Tasks;
 
 namespace MuffiNet.Backend.Tests.DomainModel
 {

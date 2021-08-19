@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using System;
 
 namespace MuffiNet.Backend.DomainModel.Queries.ExampleQuery
 {

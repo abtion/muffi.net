@@ -1,12 +1,4 @@
-using System;
 using System.Threading.Tasks;
-using System.Net.Http;
-using Microsoft.Extensions.Configuration;
-using System.Text.Json;
-using System.Net.Http.Headers;
-using System.Text;
-using Microsoft.AspNetCore.Http;
-using System.Net;
 
 namespace MuffiNet.Backend.Services
 {

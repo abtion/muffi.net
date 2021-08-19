@@ -1,12 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using FluentAssertions;
 using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
 using MuffiNet.Backend.Exceptions;
 using MuffiNet.Test.Shared.TestData;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
-using FluentAssertions;
 
 namespace MuffiNet.Backend.Tests.DomainModel.Queries.ExampleQuery
 {

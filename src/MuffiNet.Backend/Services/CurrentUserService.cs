@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using MuffiNet.Backend.Models;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using MuffiNet.Backend.Models;
 
 namespace MuffiNet.Backend.Services
 {

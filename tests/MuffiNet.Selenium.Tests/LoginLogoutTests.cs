@@ -1,9 +1,7 @@
+using FluentAssertions;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System;
 using System.Linq;
 using Xunit;
-using FluentAssertions;
 
 namespace MuffiNet.FrontendReact.Selenium.Tests
 {
@@ -18,7 +16,7 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
         [Fact]
         public void Given_UserExists_When_LoggingIn_Then_UserIsLoggedInAndRedirected()
         {
-            webDriver.Navigate().GoToUrl($"{siteUrl}technician");
+            webDriver.Navigate().GoToUrl($"{siteUrl}authhome");
 
             wait().Until(webDriver => webDriver.FindElement(By.TagName("main")));
 
@@ -35,15 +33,15 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
             var submitButton = webDriver.FindElement(By.TagName("form")).FindElement(By.TagName("button"));
             submitButton.Click();
 
-            wait().Until(webDriver => webDriver.FindElement(By.TagName("h1")));
+            wait().Until(webDriver => webDriver.FindElement(By.TagName("nav")));
 
-            webDriver.Url.Should().StartWith($"{siteUrl}technician");
+            webDriver.Url.Should().StartWith($"{siteUrl}");
         }
 
         [Fact]
         public void Given_UserDoesNotExist_When_LoggingIn_Then_UserIsNotLoggedIn()
         {
-            webDriver.Navigate().GoToUrl($"{siteUrl}technician");
+            webDriver.Navigate().GoToUrl($"{siteUrl}authhome");
 
             wait().Until(webDriver => webDriver.FindElement(By.TagName("main")));
 
@@ -60,7 +58,7 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
             var submitButton = webDriver.FindElement(By.TagName("form")).FindElement(By.TagName("button"));
             submitButton.Click();
 
-            wait().Until(webDriver => webDriver.FindElement(By.TagName("h1")));
+            wait().Until(webDriver => webDriver.FindElement(By.Id("forgot-password")));
 
             webDriver.Url.Should().StartWith($"{siteUrl}Identity/Account/Login?");
         }
@@ -69,7 +67,7 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
         public void Given_UserExistsAndIsLoggedIn_When_LoggingOut_Then_UserIsLoggedOutAndRedirected()
         {
             // log in
-            webDriver.Navigate().GoToUrl($"{siteUrl}technician");
+            webDriver.Navigate().GoToUrl($"{siteUrl}authhome");
 
             wait().Until(webDriver => webDriver.FindElement(By.TagName("main")));
 
@@ -86,7 +84,8 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
             var submitButton = webDriver.FindElement(By.TagName("form")).FindElement(By.TagName("button"));
             submitButton.Click();
 
-            wait().Until(webDriver => webDriver.FindElement(By.TagName("h1")));
+            // tag = a + text = logout
+            wait().Until(webDriver => webDriver.FindElements(By.TagName("a")).Where(p => p.Text == "Logout").Single());
 
             // find logout button
             var logoutButton = webDriver.FindElement(By.TagName("header")).FindElements(By.TagName("a")).Where(p => p.Text == "Logout").Single();
@@ -95,7 +94,7 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
             logoutButton.Click();
 
             // check
-            wait().Until(webDriver => webDriver.FindElement(By.TagName("h1")));
+            wait().Until(webDriver => webDriver.FindElement(By.Id("forgot-password")));
 
             webDriver.Url.Should().StartWith($"{siteUrl}Identity/Account/Login?");
         }

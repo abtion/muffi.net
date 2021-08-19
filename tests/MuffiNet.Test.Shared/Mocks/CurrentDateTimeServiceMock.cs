@@ -1,6 +1,6 @@
 ﻿using Moq;
-using System;
 using MuffiNet.Backend.Services;
+using System;
 
 namespace MuffiNet.Test.Shared.Mocks
 {

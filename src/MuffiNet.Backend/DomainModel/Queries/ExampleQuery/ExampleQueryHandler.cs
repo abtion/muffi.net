@@ -1,11 +1,9 @@
 ﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
+using MuffiNet.Backend.Exceptions;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.Backend.Exceptions;
-using MuffiNet.Backend.Models;
 
 namespace MuffiNet.Backend.DomainModel.Queries.ExampleQuery
 {
@@ -17,7 +15,7 @@ namespace MuffiNet.Backend.DomainModel.Queries.ExampleQuery
         {
             this.domainModelTransaction = domainModelTransaction ?? throw new ArgumentNullException(nameof(domainModelTransaction));
         }
-        
+
         public async Task<ExampleQueryResponse> Handle(ExampleQueryRequest request, CancellationToken cancellationToken)
         {
             var query = domainModelTransaction.ExampleEntities().WithId(request.Id);
@@ -25,8 +23,8 @@ namespace MuffiNet.Backend.DomainModel.Queries.ExampleQuery
             if (!query.Any())
                 throw new ExampleEntityNotFoundException(request.Id);
 
-            return await Task.FromResult(new ExampleQueryResponse() 
-            { 
+            return await Task.FromResult(new ExampleQueryResponse()
+            {
                 ExampleEntity = query.SingleOrDefault()
             });
         }

@@ -1,14 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentAssertions;
+using Microsoft.Extensions.DependencyInjection;
+using MuffiNet.Backend.DomainModel;
+using MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand;
+using MuffiNet.Test.Shared.Mocks;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.Backend.Data;
-using MuffiNet.Backend.DomainModel;
-using MuffiNet.Test.Shared.Mocks;
 using Xunit;
-using MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand;
-using FluentAssertions;
 
 namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleCreateCommand
 {

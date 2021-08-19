@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using MuffiNet.Backend.Models;
+﻿using MuffiNet.Backend.Models;
+using System.Collections.Generic;
 
 namespace MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll
 {

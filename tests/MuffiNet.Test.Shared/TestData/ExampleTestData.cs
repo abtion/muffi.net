@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using MuffiNet.Backend.DomainModel;
+﻿using MuffiNet.Backend.DomainModel;
 using MuffiNet.Backend.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace MuffiNet.Test.Shared.TestData
 {
@@ -25,7 +25,7 @@ namespace MuffiNet.Test.Shared.TestData
                     Description = $"Description {i}"
                 });
             }
-            
+
             await domainModelTransaction.SaveChangesAsync();
         }
     }

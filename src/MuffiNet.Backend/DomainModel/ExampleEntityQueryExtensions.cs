@@ -1,6 +1,5 @@
-﻿using System;
+﻿using MuffiNet.Backend.Models;
 using System.Linq;
-using MuffiNet.Backend.Models;
 
 namespace MuffiNet.Backend.DomainModel
 {

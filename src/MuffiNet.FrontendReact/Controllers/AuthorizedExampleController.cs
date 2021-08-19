@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand;
 using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
