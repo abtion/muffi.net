@@ -1,25 +1,24 @@
-# Care1 VCI
+# MuffiNet
 
-1. [Care1 VCI](#care1-vci)
-2. [Requirements](#requirements)
-3. [Developing](#developing)
+1. [Requirements](#requirements)
+2. [Developing](#developing)
    - [First time setup](#first-time-setup)
      - [1. Configuration](#1-configuration)
        - [Database connection](#database-connection)
      - [2. Dependencies and database setup](#2-dependencies-and-database-setup)
      - [3. Ensure that linting and tests pass](#3-ensure-that-linting-and-tests-pass)
    - [Day-to-day](#day-to-day)
-4. [Production](#production)
+3. [Production](#production)
    1. [Deployments](#deployments)
-5. [Third party services](#third-party-services)
+4. [Third party services](#third-party-services)
+5. [Backend projects](#backend-projects)
 
 # Requirements
 
 You must have the following installed and available on your machine:
 
-- **Dotnet**
-- **Dotnet framework 5.0**
-- **Docker / LocalDB**
+- **Microsoft .NET 5**
+- **Microsoft SQL Server Compact running locally on in Docker**
 - **Node JS >12.x**
 - **Yarn 1.x**
 
@@ -145,7 +144,7 @@ TBD
 
 # Third party services
 
-# muffi.net
+# Backend projects
 
 Template to kick start .NET applications at Abtion A/S
 
