@@ -1,14 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentAssertions;
+using Microsoft.Extensions.DependencyInjection;
+using MuffiNet.Backend.DomainModel;
+using MuffiNet.Backend.DomainModel.Commands.ExampleCommand;
+using MuffiNet.Test.Shared.Mocks;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.Backend.Data;
-using MuffiNet.Backend.DomainModel;
-using MuffiNet.Test.Shared.Mocks;
 using Xunit;
-using MuffiNet.Backend.DomainModel.Commands.ExampleCommand;
-using FluentAssertions;
 
 namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleCommand
 {
@@ -20,7 +18,7 @@ namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleCommand
         protected internal override async Task<ExampleCommandHandler> CreateSut()
         {
             domainModelTransaction = ServiceProvider.GetService<DomainModelTransaction>();
-            
+
             // uses static member as database - that needs to be flushed with every test
             domainModelTransaction.ResetExampleEntities();
 

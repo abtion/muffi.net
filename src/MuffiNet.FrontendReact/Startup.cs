@@ -9,11 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using MuffiNet.Backend.HubContracts;
 using MuffiNet.Backend.Data;
 using MuffiNet.Backend.DomainModel;
-using MuffiNet.FrontendReact.Hubs;
+using MuffiNet.Backend.HubContracts;
 using MuffiNet.Backend.Models;
+using MuffiNet.FrontendReact.Hubs;
 
 namespace MuffiNet.FrontendReact
 {

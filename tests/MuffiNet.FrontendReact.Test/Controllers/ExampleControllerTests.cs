@@ -1,19 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using Moq;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using MuffiNet.FrontendReact.Controllers;
 using MuffiNet.Backend.DomainModel;
-using MuffiNet.Backend.Models;
-using MuffiNet.Backend.Services;
+using MuffiNet.Backend.DomainModel.Commands.ExampleCommand;
+using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
+using MuffiNet.FrontendReact.Controllers;
 using MuffiNet.Test.Shared.Mocks;
 using MuffiNet.Test.Shared.TestData;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
-using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
-using FluentAssertions;
-using MuffiNet.Backend.DomainModel.Commands.ExampleCommand;
 
 namespace MuffiNet.FrontendReact.Test.Controllers
 {

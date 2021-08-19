@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.SignalR;
 using MuffiNet.Backend.HubContracts;
 using System.Threading.Tasks;
 

@@ -1,15 +1,10 @@
-﻿using OpenQA.Selenium;
+﻿using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium.Chrome;
 using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.IO;
+using Xunit;
 namespace MuffiNet.FrontendReact.Selenium.Tests
 {
     /// <remarks>

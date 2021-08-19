@@ -1,10 +1,10 @@
 ﻿using MediatR;
+using MuffiNet.Backend.HubContracts;
+using MuffiNet.Backend.Models;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MuffiNet.Backend.Models;
-using MuffiNet.Backend.HubContracts;
 
 namespace MuffiNet.Backend.DomainModel.Commands.ExampleCommand
 {

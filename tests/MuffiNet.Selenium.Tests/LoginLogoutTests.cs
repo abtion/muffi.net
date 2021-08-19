@@ -1,9 +1,7 @@
+using FluentAssertions;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System;
 using System.Linq;
 using Xunit;
-using FluentAssertions;
 
 namespace MuffiNet.FrontendReact.Selenium.Tests
 {

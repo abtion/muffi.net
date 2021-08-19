@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using MuffiNet.Backend.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Threading.Tasks;
-using MuffiNet.Backend.Models;
 
 namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account
 {

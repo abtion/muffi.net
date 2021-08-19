@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MuffiNet.Backend.DomainModel.Commands.ExampleCommand;
 using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
 using MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
