@@ -60,7 +60,7 @@ namespace MuffiNet.Backend.Tests.DomainModel.Queries.ExampleQuery
 
             Func<Task> act = async () => await sut.Handle(CreateValidRequest(), new CancellationToken());
 
-            act.Should().Throw<ExampleEntityNotFoundException>();
+            await act.Should().ThrowAsync<ExampleEntityNotFoundException>();
         }
     }
 }
