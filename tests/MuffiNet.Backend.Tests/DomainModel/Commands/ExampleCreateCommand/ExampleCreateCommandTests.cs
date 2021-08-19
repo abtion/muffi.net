@@ -10,6 +10,7 @@ using Xunit;
 
 namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleCreateCommand
 {
+    [Collection("ExampleCommandCollection")]
     public class ExampleCreateCommandTests : DomainModelTest<ExampleCreateCommandHandler>
     {
         private ExampleHubMock exampleHub;
