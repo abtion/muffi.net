@@ -42,6 +42,11 @@ namespace MuffiNet.Backend.DomainModel
 
             exampleEntities.Add(entity);
         }
+
+        public void RemoveExampleEntity(int entityId)
+        {
+            exampleEntities.Remove(exampleEntities.Where(e => e.Id == entityId).First());
+        }
         // <-- Remove this section
 
         /// <summary>

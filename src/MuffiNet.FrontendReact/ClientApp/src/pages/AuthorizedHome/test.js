@@ -2,6 +2,7 @@ import React from "react"
 import { act, render as tlRender } from "@testing-library/react"
 import axios from "axios"
 import { createMemoryHistory } from "history"
+import userEvent from "@testing-library/user-event"
 
 import AuthorizedHome from "./"
 import useHub from "~/hooks/useHub"
@@ -34,6 +35,28 @@ describe(AuthorizedHome, () => {
     expect(await findAllByRole("table")).toHaveLength(2)
   })
 
+  describe("when submitting the form", () => {
+    it("posts an exampleEntity", () => {
+      axios.put.mockResolvedValue({ data: { Id: "1234" } })
+      const { getByLabelText, getByText } = render()
+      userEvent.type(getByLabelText("Name"), "Name")
+      userEvent.type(getByLabelText("Description"), "Description")
+      userEvent.type(getByLabelText("E-mail"), "Em@a.il")
+      userEvent.type(getByLabelText("Phone"), "12345678")
+      userEvent.click(getByText("Submit"))
+      expect(axios.put).toHaveBeenCalledWith(
+        "/api/authorizedexample",
+        {
+          Name: "Name",
+          Description: "Description",
+          Email: "Em@a.il",
+          Phone: "12345678",
+        },
+        { headers: { authorization: "Bearer undefined" } }
+      )
+    })
+  })
+
   describe("hub connection", () => {
     const entity = {
       id: "1",
@@ -41,6 +64,10 @@ describe(AuthorizedHome, () => {
       description: "someRandomDescription",
       email: "an@email.dk",
       phone: "12345678",
+    }
+    const updatedEntity = {
+      ...entity,
+      name: "updated name",
     }
 
     it("adds new records", async () => {
@@ -65,10 +92,6 @@ describe(AuthorizedHome, () => {
           entity,
         })
       })
-      const updatedEntity = {
-        ...entity,
-        name: "updated name",
-      }
 
       act(() => {
         useHub.connectionMock._trigger("SomeEntityUpdated", {
@@ -80,32 +103,25 @@ describe(AuthorizedHome, () => {
       expect(await findByText(updatedEntity.name)).toBeInTheDocument()
     })
 
-    // it("adds & then deletes records", async () => {
-    //   const { findByText } = render()
+    it("adds & then deletes records", async () => {
+      const { findByText } = render()
 
-    //   const namedEntity = {
-    //     id: 1,
-    //     name: "test name",
-    //     description: "test description 1",
-    //     email: "test1@user.com",
-    //     phone: "12345678",
-    //   }
+      act(() => {
+        useHub.connectionMock._trigger("SomeEntityCreated", {
+          entity,
+        })
+      })
 
-    //   act(() => {
-    //     useHub.connectionMock._trigger("SomeEntityCreated", {
-    //       namedEntity,
-    //     })
-    //   })
+      const nameElement = await findByText(entity.name)
+      expect(nameElement).toBeInTheDocument()
 
-    //   expect(await findByText(namedEntity.name)).toBeInTheDocument()
+      act(() => {
+        useHub.connectionMock._trigger("SomeEntityDeleted", {
+          entityId: entity.id,
+        })
+      })
 
-    //   act(() => {
-    //     useHub.connectionMock._trigger("SomeEntityDeleted", {
-    //       supportTicketId: namedEntity.id,
-    //     })
-    //   })
-
-    //   expect(await findByText(namedEntity.name)).not.toBeInTheDocument()
-    // })
+      expect(nameElement).not.toBeInTheDocument()
+    })
   })
 })

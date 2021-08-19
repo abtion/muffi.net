@@ -33,13 +33,12 @@ export default function AuthorizedHome({ accessToken }) {
       connection.on("SomeEntityUpdated", (message) => {
         upsertExampleEntity(message.entity)
       })
-      // connection.on("SomeEntityDeleted", (message) => {
-      //   deleteExampleEntity({ message })
-      // })
+      connection.on("SomeEntityDeleted", (message) => {
+        deleteExampleEntity({ id: message.entityId })
+      })
     },
     [upsertExampleEntity, deleteExampleEntity]
   )
-
   const connectionOptions = useMemo(
     () => ({
       accessTokenFactory: () => accessToken,
@@ -49,10 +48,6 @@ export default function AuthorizedHome({ accessToken }) {
   )
   useHub("/hubs/example", onHubConnected, connectionOptions)
 
-  const handleSubmit = (data) => {
-    createExampleEntity(data)
-  }
-
   const createExampleEntity = (formData) => {
     return axios
       .put("/api/authorizedexample", formData, {
@@ -61,7 +56,26 @@ export default function AuthorizedHome({ accessToken }) {
         },
       })
       .then((response) => {
-        // console.log("createExampleEntity ", response)
+        // console.log(response)
+      })
+      .catch((error) => {
+        // console.log(error)
+      })
+  }
+
+  const removeExampleEntity = (id) => {
+    return axios
+      .post(
+        "/api/authorizedexample",
+        { id: id },
+        {
+          headers: {
+            authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
+      .then((response) => {
+        // console.log(response)
       })
       .catch((error) => {
         // console.log(error)
@@ -71,13 +85,19 @@ export default function AuthorizedHome({ accessToken }) {
   return (
     <AuthorizedLayout>
       <div className="AuthorizedHome container mt-5">
-        <ExampleForm onSubmit={handleSubmit} />
+        <ExampleForm onSubmit={createExampleEntity} />
 
         <h2 className="text-xl mb-2">Named</h2>
-        <ExampleTable entities={exampleEntityTables.named} />
+        <ExampleTable
+          entities={exampleEntityTables.named}
+          onRemove={removeExampleEntity}
+        />
 
         <h2 className="text-xl mb-2 mt-8">Unnamed</h2>
-        <ExampleTable entities={exampleEntityTables.unnamed} />
+        <ExampleTable
+          entities={exampleEntityTables.unnamed}
+          onRemove={removeExampleEntity}
+        />
       </div>
     </AuthorizedLayout>
   )

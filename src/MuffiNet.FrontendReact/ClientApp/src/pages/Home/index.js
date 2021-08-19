@@ -27,21 +27,16 @@ export default function Home() {
       connection.on("SomeEntityCreated", (message) => {
         upsertExampleEntity(message.entity)
       })
-      // connection.on("SomeEntityUpdated", (message) => {
-      //   upsertExampleEntity(message)
-      // })
-      // connection.on("SomeEntityDeleted", (message) => {
-      //   deleteExampleEntity({ message })
-      // })
+      connection.on("SomeEntityUpdated", (message) => {
+        upsertExampleEntity(message.entity)
+      })
+      connection.on("SomeEntityDeleted", (message) => {
+        deleteExampleEntity({ id: message.entityId })
+      })
     },
     [upsertExampleEntity, deleteExampleEntity]
   )
-
   useHub("/hubs/example", onHubConnected)
-
-  const handleSubmit = (formData) => {
-    createExampleEntity(formData)
-  }
 
   const createExampleEntity = (formData) => {
     return axios
@@ -54,13 +49,27 @@ export default function Home() {
       })
   }
 
+  const removeExampleEntity = (id) => {
+    return axios
+      .post("/api/example", { id: id })
+      .then((response) => {
+        // console.log(response)
+      })
+      .catch((error) => {
+        // console.log(error)
+      })
+  }
+
   return (
     <Layout>
       <h1 className="text-2xl mb-3">Title</h1>
 
-      <ExampleTable entities={exampleEntityTable.entities} />
+      <ExampleTable
+        entities={exampleEntityTable.entities}
+        onRemove={removeExampleEntity}
+      />
 
-      <ExampleForm onSubmit={handleSubmit} />
+      <ExampleForm onSubmit={createExampleEntity} />
     </Layout>
   )
 }

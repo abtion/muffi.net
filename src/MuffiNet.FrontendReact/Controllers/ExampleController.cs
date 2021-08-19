@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand;
+using MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand;
 using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
 using MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll;
 using System.Threading;
@@ -26,6 +27,12 @@ namespace MuffiNet.FrontendReact.Controllers
 
         [HttpPut]
         public async Task<ActionResult<ExampleCreateCommandResponse>> ExampleCreateCommand([FromServices] ExampleCreateCommandHandler handler, ExampleCreateCommandRequest request, CancellationToken cancellationToken)
+        {
+            return await handler.Handle(request, cancellationToken);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ExampleDeleteCommandResponse>> ExampleDeleteCommand([FromServices] ExampleDeleteCommandHandler handler, ExampleDeleteCommandRequest request, CancellationToken cancellationToken)
         {
             return await handler.Handle(request, cancellationToken);
         }

@@ -32,11 +32,11 @@ namespace MuffiNet.Backend.HubContracts
 
     public class SomeEntityDeletedMessage
     {
-        public SomeEntityDeletedMessage(string entityId)
+        public SomeEntityDeletedMessage(int entityId)
         {
             EntityId = entityId;
         }
 
-        public string EntityId { get; private set; }
+        public int EntityId { get; private set; }
     }
 }

@@ -1,7 +1,13 @@
 import React from "react"
 import Table from "~/components/Table"
+import Button from "~/components/Button"
 
-export default function ExampleTable({ entities }) {
+export default function ExampleTable({ entities, onRemove }) {
+  const handleClick = (e, id) => {
+    e.preventDefault()
+    onRemove(id)
+  }
+
   return (
     <Table>
       <thead>
@@ -11,6 +17,7 @@ export default function ExampleTable({ entities }) {
           <th>Description</th>
           <th>Email</th>
           <th>Phone</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +28,15 @@ export default function ExampleTable({ entities }) {
             <td>{entity.description}</td>
             <td>{entity.email}</td>
             <td>{entity.phone}</td>
+            <td>
+              <Button
+                size="sm"
+                color="primary"
+                onClick={(e) => handleClick(e, entity.id)}
+              >
+                Remove
+              </Button>
+            </td>
           </tr>
         ))}
       </tbody>
