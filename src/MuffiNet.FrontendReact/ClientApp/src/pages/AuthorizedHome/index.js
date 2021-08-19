@@ -2,7 +2,7 @@ import React, { useMemo, useCallback, useEffect } from "react"
 import axios from "axios"
 
 import useMappedRecords from "~/hooks/useMappedRecords"
-import AuthorizedLayout from "~/components/TechLayout"
+import AuthorizedLayout from "~/components/AuthorizedLayout"
 import ExampleForm from "~/components/ExampleForm"
 import ExampleTable from "~/components/ExampleTable"
 import "./style.css"
