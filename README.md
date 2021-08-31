@@ -240,8 +240,10 @@ Contains end-to-end tests running in a headless browser (Selenium).
       - Connect the GitHub organisation, project and branch to the deployment slot (production)
       - Save changes and download the publish profile (Manage Publish Profiles)
       - Save the publish profile in GitHub Action Secrets "AzurePublishProfile" with the content of the downloaded profile.publishsettings
-   - Remove " && 'to-enable-azure-deploy' == 'remove-this-after-configuring-github-secrets-and-below-settings'"
-   - Replace "MuffiNet" with [ProjectName] in database migration step "dotnet ef database update --project src/MuffiNet.FrontendReact"
-   - Change the publish-profile line to publish-profile: ${{ secrets.AzurePublishProfile }}
+   - In CI pipeline-file
+      - Remove " && 'to-enable-azure-deploy' == 'remove-this-after-configuring-github-secrets-and-below-settings'"
+      - Replace "MuffiNet" with [ProjectName] in database migration step "dotnet ef database update --project src/MuffiNet.FrontendReact"
+      - Change the publish-profile line to publish-profile: ${{ secrets.AzurePublishProfile }}
+      - Change the name of the Azure App Service in app-name
 
    
