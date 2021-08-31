@@ -12,6 +12,7 @@
    1. [Deployments](#deployments)
 4. [Third party services](#third-party-services)
 5. [Backend projects](#backend-projects)
+6. [How to use the template](#how-to-use-the-template)
 
 # Requirements
 
@@ -154,17 +155,28 @@ The template can be developed and debugged on all platforms supported by Microso
 
 ## Projects
 
-### Abtion.Muffi.DomainModel
+### Muffi.Backend
 
-The domain model is where single object manipulation is done - Create, Read, Update, Delete (CRUD).
-
+Contains handlers (services) and the domain model (ORM etc)
 For seperation of queries (fast) and commands (slower) the pattern Command and Query Responsibility Segregation (CQRS) is used.
 
-### Abtion.Muffi.Services
+### Muffi.FrontendReact
 
-The service layer is where operations across multiple objects is done (business logic).
+Contains API controllers and the frontend applications in the folder "ClientApp". The frontend uses Jest for tests and the tests are located along side the React components.
 
 ## Test projects
+
+### Muffi.Backend.Tests
+
+Contains backend unit tests of handlers.
+
+### Muffi.Frontend.Tests
+
+Contains backend unit tests of controllers and SignalR hubs.
+
+### Muffi.Selenium.Tests
+
+Contains end-to-end tests running in a headless browser (Selenium).
 
 ## Nuget Packages Used
 
@@ -195,3 +207,43 @@ The service layer is where operations across multiple objects is done (business 
 ### Dependency Injection further reading
 
 - https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-5.0
+
+# How to use the template
+- Create a new project with Muffi.Net as template
+   - Set permissions for the Abtion user to Read
+   - Set permissions for the project specific user to Admin
+- Rename Solution from "MuffiNet" to [ProjectName]
+- Rename Projects from "MuffiNet" to [ProjectName]
+- Find and Replace from “MuffiNet” to [ProjectName]
+- Close Visual Studio/VS Code
+- Rename project and test folders from File Explorer or similar
+- Replace MuffiNet to [ProjectName] in .sln file
+- Replace MuffiNet to [ProjectName] in .yarnrc file
+- Open Visual Studio/VS Code
+- Run yarn install
+- Rebuild Solution
+- Create Azure App Service
+   - An instance of Application Insights is created automatically
+- Change the connected service "Azure Application Insights" in the "FrontendReact" project
+   - Manage Connected Services -> Restore on Application Insights
+   - Replace Application Insights ConnectionString in both Backend and FrontendReact projects
+- Create a new Azure SQL Database
+   - Configure the database to be serverless and with a sleep timer of 1 hour and the maximum of 2 Gb of storage to save costs
+   - Maybe there it is needed to setup access from certain IP-numbers in the firewall of GitHub Actions (in some cases "52.170.187.191") or select the option to open for access from IPs inside Azure
+   - Change the connection string in AppSetting.json to an appropriate database name (appSettings.Test.json should use a different database name than the other files)
+   - Save the connection string in GitHub Actions Secrets "MSSQL_CONNECTION_STRING"
+- Update the publish profile 
+- Setup pipeline to deploy application
+   - In the Azure Portal go to App Service and choose "Deployment Center"
+      - Select GitHub as source
+      - Click "Authorize" and finish wizard (maybe log into GitHub with project-specific-user-name: project@abtion.com?)
+      - Connect the GitHub organisation, project and branch to the deployment slot (production)
+      - Save changes and download the publish profile (Manage Publish Profiles)
+      - Save the publish profile in GitHub Action Secrets "AzurePublishProfile" with the content of the downloaded profile.publishsettings
+   - In CI pipeline-file
+      - Remove " && 'to-enable-azure-deploy' == 'remove-this-after-configuring-github-secrets-and-below-settings'"
+      - Replace "MuffiNet" with [ProjectName] in database migration step "dotnet ef database update --project src/MuffiNet.FrontendReact"
+      - Change the publish-profile line to publish-profile: ${{ secrets.AzurePublishProfile }}
+      - Change the name of the Azure App Service in app-name
+
+   
