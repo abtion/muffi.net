@@ -230,7 +230,7 @@ Contains end-to-end tests running in a headless browser (Selenium).
 - Create a new Azure SQL Database
    - Configure the database to be serverless and with a sleep timer of 1 hour and the maximum of 2 Gb of storage to save costs
    - Maybe there it is needed to setup access from certain IP-numbers in the firewall of GitHub Actions
-   - Change the connection string in AppSetting.json to an appropriate database name
+   - Change the connection string in AppSetting.json to an appropriate database name (appSettings.Test.json should use a different database name than the other files)
    - Save the connection string in GitHub Actions Secrets "MSSQL_CONNECTION_STRING"
 - Update the publish profile 
 - Setup pipeline to deploy application
