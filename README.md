@@ -229,7 +229,7 @@ Contains end-to-end tests running in a headless browser (Selenium).
    - Replace Application Insights ConnectionString in both Backend and FrontendReact projects
 - Create a new Azure SQL Database
    - Configure the database to be serverless and with a sleep timer of 1 hour and the maximum of 2 Gb of storage to save costs
-   - Maybe there it is needed to setup access from certain IP-numbers in the firewall of GitHub Actions
+   - Maybe there it is needed to setup access from certain IP-numbers in the firewall of GitHub Actions (in some cases "52.170.187.191")
    - Change the connection string in AppSetting.json to an appropriate database name (appSettings.Test.json should use a different database name than the other files)
    - Save the connection string in GitHub Actions Secrets "MSSQL_CONNECTION_STRING"
 - Update the publish profile 
