@@ -229,10 +229,19 @@ Contains end-to-end tests running in a headless browser (Selenium).
    - Replace Application Insights ConnectionString in both Backend and FrontendReact projects
 - Create a new Azure SQL Database
    - Configure the database to be serverless and with a sleep timer of 1 hour and the maximum of 2 Gb of storage to save costs
+   - Maybe there it is needed to setup access from certain IP-numbers in the firewall of GitHub Actions
    - Change the connection string in AppSetting.json to an appropriate database name
-   - Save the connection string in GitHub Secrets "MSSQL_CONNECTION_STRING"
+   - Save the connection string in GitHub Actions Secrets "MSSQL_CONNECTION_STRING"
 - Update the publish profile 
 - Setup pipeline to deploy application
+   - In the Azure Portal go to App Service and choose "Deployment Center"
+      - Select GitHub as source
+      - Click "Authorize" and finish wizard (maybe log into GitHub with project-specific-user-name: project@abtion.com?)
+      - Connect the GitHub organisation, project and branch to the deployment slot (production)
+      - Save changes and download the publish profile (Manage Publish Profiles)
+      - Save the publish profile in GitHub Action Secrets "AzurePublishProfile" with the content of the downloaded profile.publishsettings
    - Remove " && 'to-enable-azure-deploy' == 'remove-this-after-configuring-github-secrets-and-below-settings'"
    - Replace "MuffiNet" with [ProjectName] in database migration step "dotnet ef database update --project src/MuffiNet.FrontendReact"
-   - Change
+   - Change the publish-profile line to publish-profile: ${{ secrets.AzurePublishProfile }}
+
+   
