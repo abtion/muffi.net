@@ -222,7 +222,17 @@ Contains end-to-end tests running in a headless browser (Selenium).
 - Open Visual Studio/VS Code
 - Run yarn install
 - Rebuild Solution
-- Create application Insights for App Service (staging/production if needed)
-- Replace Application Insights ConnectionString in both Backend and FrontendReact projects
 - Create Azure App Service
+   - An instance of Application Insights is created automatically
+- Change the connected service "Azure Application Insights" in the "FrontendReact" project
+   - Manage Connected Services -> Restore on Application Insights
+   - Replace Application Insights ConnectionString in both Backend and FrontendReact projects
+- Create a new Azure SQL Database
+   - Configure the database to be serverless and with a sleep timer of 1 hour and the maximum of 2 Gb of storage to save costs
+   - Change the connection string in AppSetting.json to an appropriate database name
+   - Save the connection string in GitHub Secrets "MSSQL_CONNECTION_STRING"
+- Update the publish profile 
 - Setup pipeline to deploy application
+   - Remove " && 'to-enable-azure-deploy' == 'remove-this-after-configuring-github-secrets-and-below-settings'"
+   - Replace "MuffiNet" with [ProjectName] in database migration step "dotnet ef database update --project src/MuffiNet.FrontendReact"
+   - Change
