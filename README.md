@@ -12,6 +12,7 @@
    1. [Deployments](#deployments)
 4. [Third party services](#third-party-services)
 5. [Backend projects](#backend-projects)
+6. [How to use the template](#how-to-use-the-template)
 
 # Requirements
 
@@ -154,17 +155,28 @@ The template can be developed and debugged on all platforms supported by Microso
 
 ## Projects
 
-### Abtion.Muffi.DomainModel
+### Muffi.Backend
 
-The domain model is where single object manipulation is done - Create, Read, Update, Delete (CRUD).
-
+Contains handlers (services) and the domain model (ORM etc)
 For seperation of queries (fast) and commands (slower) the pattern Command and Query Responsibility Segregation (CQRS) is used.
 
-### Abtion.Muffi.Services
+### Muffi.FrontendReact
 
-The service layer is where operations across multiple objects is done (business logic).
+Contains API controllers and the frontend applications in the folder "ClientApp". The frontend uses Jest for tests and the tests are located along side the React components.
 
 ## Test projects
+
+### Muffi.Backend.Tests
+
+Contains backend unit tests of handlers.
+
+### Muffi.Frontend.Tests
+
+Contains backend unit tests of controllers and SignalR hubs.
+
+### Muffi.Selenium.Tests
+
+Contains end-to-end tests running in a headless browser (Selenium).
 
 ## Nuget Packages Used
 
@@ -195,3 +207,22 @@ The service layer is where operations across multiple objects is done (business 
 ### Dependency Injection further reading
 
 - https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-5.0
+
+# How to use the template
+- Create a new project with Muffi.Net as template
+   - Set permissions for the Abtion user to Read
+   - Set permissions for the project specific user to Admin
+- Rename Solution from "MuffiNet" to [ProjectName]
+- Rename Projects from "MuffiNet" to [ProjectName]
+- Find and Replace from “MuffiNet” to [ProjectName]
+- Close Visual Studio/VS Code
+- Rename project and test folders from File Explorer or similar
+- Replace MuffiNet to [ProjectName] in .sln file
+- Replace MuffiNet to [ProjectName] in .yarnrc file
+- Open Visual Studio/VS Code
+- Run yarn install
+- Rebuild Solution
+- Create application Insights for App Service (staging/production if needed)
+- Replace Application Insights ConnectionString in both Backend and FrontendReact projects
+- Create Azure App Service
+- Setup pipeline to deploy application
