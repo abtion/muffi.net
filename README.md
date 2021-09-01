@@ -243,6 +243,7 @@ Contains end-to-end tests running in a headless browser (Selenium).
    - In CI pipeline-file
       - Remove " && 'to-enable-azure-deploy' == 'remove-this-after-configuring-github-secrets-and-below-settings'"
       - Replace "MuffiNet" with [ProjectName] in database migration step "dotnet ef database update --project src/MuffiNet.FrontendReact"
+      - Replace "MuffiNet" with [ProjectName] twice in publish step "run: dotnet publish src/MuffiNet.FrontendReact/MuffiNet.FrontendReact.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp"
       - Change the publish-profile line to publish-profile: ${{ secrets.AzurePublishProfile }}
       - Change the name of the Azure App Service in app-name
 
