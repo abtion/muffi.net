@@ -120,7 +120,7 @@ jobs:
       - name: Run Azure webapp deploy action using publish profile credentials
         uses: azure/webapps-deploy@v2
         with:
-          app-name: Care1-VCI
+          app-name: MuffiNet
           slot-name: Production
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_07659968073044D7901E7F31B8068B6A }}
           package: ${{env.DOTNET_ROOT}}/myapp

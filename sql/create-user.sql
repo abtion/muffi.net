@@ -1,8 +1,8 @@
 DECLARE @UserName NVARCHAR(200)
-SET @UserName = 'care1@abtion.com'
+SET @UserName = 'user@abtion.com'
 
 DECLARE @Email NVARCHAR(200)
-SET @Email = 'care1@abtion.com'
+SET @Email = 'user@abtion.com'
 
 INSERT INTO [dbo].[AspNetUsers]
     ([Id], [UserName],[NormalizedUserName],[Email],[NormalizedEmail],[EmailConfirmed],[PasswordHash],[SecurityStamp],[ConcurrencyStamp],[PhoneNumber],[PhoneNumberConfirmed],[TwoFactorEnabled],[LockoutEnd],[LockoutEnabled],[AccessFailedCount])

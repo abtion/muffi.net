@@ -49,7 +49,7 @@ Add the following to `src/MuffiNet.FrontendReact/appsettings.Development.Local.j
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=VCI;Trusted_Connection=True;MultipleActiveResultSets=true"
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=MUFFINET;Trusted_Connection=True;MultipleActiveResultSets=true"
   },
   ...
 }
@@ -60,7 +60,7 @@ And to `src/MuffiNet.FrontendReact/appsettings.Test.Local.json`:
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=CARE1-VCI-TEST;Trusted_Connection=True;MultipleActiveResultSets=true"
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=MUFFINET-TEST;Trusted_Connection=True;MultipleActiveResultSets=true"
   },
   ...
 }
@@ -209,9 +209,10 @@ Contains end-to-end tests running in a headless browser (Selenium).
 - https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-5.0
 
 # How to use the template
+
 - Create a new project with Muffi.Net as template
-   - Set permissions for the Abtion user to Read
-   - Set permissions for the project specific user to Admin
+  - Set permissions for the Abtion user to Read
+  - Set permissions for the project specific user to Admin
 - Rename Solution from "MuffiNet" to [ProjectName]
 - Rename Projects from "MuffiNet" to [ProjectName]
 - Find and Replace from “MuffiNet” to [ProjectName]
@@ -223,28 +224,26 @@ Contains end-to-end tests running in a headless browser (Selenium).
 - Run yarn install
 - Rebuild Solution
 - Create Azure App Service
-   - An instance of Application Insights is created automatically
+  - An instance of Application Insights is created automatically
 - Change the connected service "Azure Application Insights" in the "FrontendReact" project
-   - Manage Connected Services -> Restore on Application Insights
-   - Replace Application Insights ConnectionString in both Backend and FrontendReact projects
+  - Manage Connected Services -> Restore on Application Insights
+  - Replace Application Insights ConnectionString in both Backend and FrontendReact projects
 - Create a new Azure SQL Database
-   - Configure the database to be serverless and with a sleep timer of 1 hour and the maximum of 2 Gb of storage to save costs
-   - Maybe there it is needed to setup access from certain IP-numbers in the firewall of GitHub Actions (in some cases "52.170.187.191") or select the option to open for access from IPs inside Azure
-   - Change the connection string in AppSetting.json to an appropriate database name (appSettings.Test.json should use a different database name than the other files)
-   - Save the connection string in GitHub Actions Secrets "MSSQL_CONNECTION_STRING"
-- Update the publish profile 
+  - Configure the database to be serverless and with a sleep timer of 1 hour and the maximum of 2 Gb of storage to save costs
+  - Maybe there it is needed to setup access from certain IP-numbers in the firewall of GitHub Actions (in some cases "52.170.187.191") or select the option to open for access from IPs inside Azure
+  - Change the connection string in AppSetting.json to an appropriate database name (appSettings.Test.json should use a different database name than the other files)
+  - Save the connection string in GitHub Actions Secrets "MSSQL_CONNECTION_STRING"
+- Update the publish profile
 - Setup pipeline to deploy application
-   - In the Azure Portal go to App Service and choose "Deployment Center"
-      - Select GitHub as source
-      - Click "Authorize" and finish wizard (maybe log into GitHub with project-specific-user-name: project@abtion.com?)
-      - Connect the GitHub organisation, project and branch to the deployment slot (production)
-      - Save changes and download the publish profile (Manage Publish Profiles)
-      - Save the publish profile in GitHub Action Secrets "AzurePublishProfile" with the content of the downloaded profile.publishsettings
-   - In CI pipeline-file
-      - Remove " && 'to-enable-azure-deploy' == 'remove-this-after-configuring-github-secrets-and-below-settings'"
-      - Replace "MuffiNet" with [ProjectName] in database migration step "dotnet ef database update --project src/MuffiNet.FrontendReact"
-      - Replace "MuffiNet" with [ProjectName] twice in publish step "run: dotnet publish src/MuffiNet.FrontendReact/MuffiNet.FrontendReact.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp"
-      - Change the publish-profile line to publish-profile: ${{ secrets.AzurePublishProfile }}
-      - Change the name of the Azure App Service in app-name
-
-   
+  - In the Azure Portal go to App Service and choose "Deployment Center"
+    - Select GitHub as source
+    - Click "Authorize" and finish wizard (maybe log into GitHub with project-specific-user-name: project@abtion.com?)
+    - Connect the GitHub organisation, project and branch to the deployment slot (production)
+    - Save changes and download the publish profile (Manage Publish Profiles)
+    - Save the publish profile in GitHub Action Secrets "AzurePublishProfile" with the content of the downloaded profile.publishsettings
+  - In CI pipeline-file
+    - Remove " && 'to-enable-azure-deploy' == 'remove-this-after-configuring-github-secrets-and-below-settings'"
+    - Replace "MuffiNet" with [ProjectName] in database migration step "dotnet ef database update --project src/MuffiNet.FrontendReact"
+    - Replace "MuffiNet" with [ProjectName] twice in publish step "run: dotnet publish src/MuffiNet.FrontendReact/MuffiNet.FrontendReact.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp"
+    - Change the publish-profile line to publish-profile: ${{ secrets.AzurePublishProfile }}
+    - Change the name of the Azure App Service in app-name
