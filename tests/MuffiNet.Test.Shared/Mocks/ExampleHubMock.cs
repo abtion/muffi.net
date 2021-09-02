@@ -4,12 +4,8 @@ using System.Threading.Tasks;
 
 namespace MuffiNet.Test.Shared.Mocks
 {
-    public class ExampleHubMock : ExampleHub
+    public class ExampleHubMock : IExampleHubContract
     {
-        public ExampleHubMock() : base(null)
-        {
-            // skip
-        }
 
         public int EntityDeletedMessageCounter;
         public SomeEntityDeletedMessage? LatestEntityDeletedMessage;
@@ -20,20 +16,20 @@ namespace MuffiNet.Test.Shared.Mocks
         public int EntityUpdatedMessageCounter;
         public SomeEntityUpdatedMessage? LatestEntityUpdatedMessage;
 
-        public override Task SomeEntityCreated(SomeEntityCreatedMessage message)
+        public Task SomeEntityCreated(SomeEntityCreatedMessage message)
         {
             EntityCreatedMessageCounter++;
             LatestEntityCreatedMessage = message;
             return Task.CompletedTask;
         }
 
-        public override Task SomeEntityDeleted(SomeEntityDeletedMessage message)
+        public Task SomeEntityDeleted(SomeEntityDeletedMessage message)
         {
             EntityDeletedMessageCounter++;
             LatestEntityDeletedMessage = message;
             return Task.CompletedTask;
         }
-        public override Task SomeEntityUpdated(SomeEntityUpdatedMessage message)
+        public Task SomeEntityUpdated(SomeEntityUpdatedMessage message)
         {
             EntityUpdatedMessageCounter++;
             LatestEntityUpdatedMessage = message;
