@@ -24,7 +24,7 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
 
             var emailInput = webDriver.FindElement(By.Id("Input_Email"));
             emailInput.Clear();
-            emailInput.SendKeys("care1@abtion.com");
+            emailInput.SendKeys("MuffiNet@abtion.com");
 
             var passwordInput = webDriver.FindElement(By.Id("Input_Password"));
             passwordInput.Clear();
@@ -75,7 +75,7 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
 
             var emailInput = webDriver.FindElement(By.Id("Input_Email"));
             emailInput.Clear();
-            emailInput.SendKeys("care1@abtion.com");
+            emailInput.SendKeys("user@abtion.com");
 
             var passwordInput = webDriver.FindElement(By.Id("Input_Password"));
             passwordInput.Clear();

@@ -8,7 +8,7 @@
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
     <UserSecretsId>8c2386d9-e0e3-4fe9-a579-74fa10f8cc7f</UserSecretsId>
-    <ApplicationInsightsResourceId>/subscriptions/c01cedb7-85c0-4611-809b-a158333729ee/resourceGroups/Care1-VCI/providers/microsoft.insights/components/Care1-VCI</ApplicationInsightsResourceId>
+    <ApplicationInsightsResourceId>/subscriptions/c01cedb7-85c0-4611-809b-a158333729ee/resourceGroups/MUFFINET/providers/microsoft.insights/components/MUFFINET</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>

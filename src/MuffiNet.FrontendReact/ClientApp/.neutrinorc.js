@@ -21,7 +21,7 @@ module.exports = {
 
     react({
       html: {
-        title: "VCI",
+        title: "MuffiNet",
         template: require.resolve("./public/index.ejs"),
       },
       style: {

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.FrontendReact.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solutions Items", "Solutions Items", "{B7E6E4AA-435A-490D-83E7-3BDD83089EAB}"
 	ProjectSection(SolutionItems) = preProject
-		care1-vci.pfx = care1-vci.pfx
+		muffinet.pfx = muffinet.pfx
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.Selenium.Tests", "tests\MuffiNet.Selenium.Tests\MuffiNet.Selenium.Tests.csproj", "{0F23A7E8-0BDF-4543-A06F-EBD92ED439FE}"

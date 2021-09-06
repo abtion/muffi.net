@@ -32,7 +32,7 @@ export default function NavMenu() {
                   className="flex items-center py-4 px-2 text-gray-700 hover:text-gray-900"
                   to="/authhome"
                 >
-                  <span className="font-bold">Care1 VCI</span>
+                  <span className="font-bold">MuffiNet</span>
                 </Link>
               </div>
             </div>
