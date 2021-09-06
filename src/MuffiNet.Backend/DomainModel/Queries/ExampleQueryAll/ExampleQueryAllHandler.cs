@@ -3,6 +3,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
+using static MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll.ExampleQueryAllResponse;
 
 namespace MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll
 {
@@ -17,7 +18,14 @@ namespace MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll
 
         public async Task<ExampleQueryAllResponse> Handle(ExampleQueryAllRequest request, CancellationToken cancellationToken)
         {
-            var query = domainModelTransaction.ExampleEntities().All();
+            var query = from exampleEntity in domainModelTransaction.ExampleEntities().All()
+                        select new ExampleEntityRecord(
+                            exampleEntity.Id,
+                            exampleEntity.Name,
+                            exampleEntity.Description,
+                            exampleEntity.Email,
+                            exampleEntity.Phone
+                        );
 
             return await Task.FromResult(new ExampleQueryAllResponse() { ExampleEntities = query.ToList() });
         }

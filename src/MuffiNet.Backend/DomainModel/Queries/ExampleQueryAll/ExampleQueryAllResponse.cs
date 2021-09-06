@@ -5,6 +5,14 @@ namespace MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll
 {
     public class ExampleQueryAllResponse
     {
-        public List<ExampleEntity> ExampleEntities { get; set; }
+        public List<ExampleEntityRecord> ExampleEntities { get; set; }
+
+        public record ExampleEntityRecord(
+           int Id,
+           string Name,
+           string Description,
+           string Email,
+           string Phone
+       );
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using static MuffiNet.Backend.DomainModel.Queries.ExampleQuery.ExampleQueryResponse;
 
 namespace MuffiNet.Backend.DomainModel.Queries.ExampleQuery
 {
@@ -18,7 +19,14 @@ namespace MuffiNet.Backend.DomainModel.Queries.ExampleQuery
 
         public async Task<ExampleQueryResponse> Handle(ExampleQueryRequest request, CancellationToken cancellationToken)
         {
-            var query = domainModelTransaction.ExampleEntities().WithId(request.Id);
+            var query = from exampleEntity in domainModelTransaction.ExampleEntities().WithId(request.Id)
+                        select new ExampleEntityRecord(
+                            exampleEntity.Id,
+                            exampleEntity.Name,
+                            exampleEntity.Description,
+                            exampleEntity.Email,
+                            exampleEntity.Phone
+                        );
 
             if (!query.Any())
                 throw new ExampleEntityNotFoundException(request.Id);

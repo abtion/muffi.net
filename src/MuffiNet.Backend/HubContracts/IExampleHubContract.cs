@@ -1,5 +1,6 @@
 ﻿using MuffiNet.Backend.Models;
 using System.Threading.Tasks;
+using static MuffiNet.Backend.DomainModel.Queries.ExampleQuery.ExampleQueryResponse;
 
 namespace MuffiNet.Backend.HubContracts
 {
@@ -12,22 +13,22 @@ namespace MuffiNet.Backend.HubContracts
 
     public class SomeEntityCreatedMessage
     {
-        public SomeEntityCreatedMessage(ExampleEntity entity)
+        public SomeEntityCreatedMessage(ExampleEntityRecord entity)
         {
             Entity = entity;
         }
 
-        public ExampleEntity Entity { get; private set; }
+        public ExampleEntityRecord Entity { get; private set; }
     }
 
     public class SomeEntityUpdatedMessage
     {
-        public SomeEntityUpdatedMessage(ExampleEntity entity)
+        public SomeEntityUpdatedMessage(ExampleEntityRecord entity)
         {
             Entity = entity;
         }
 
-        public ExampleEntity Entity { get; private set; }
+        public ExampleEntityRecord Entity { get; private set; }
     }
 
     public class SomeEntityDeletedMessage

@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using static MuffiNet.Backend.DomainModel.Queries.ExampleQuery.ExampleQueryResponse;
 
 namespace MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand
 {
@@ -38,7 +39,13 @@ namespace MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand
 
             await domainModelTransaction.SaveChangesAsync();
 
-            await exampleHub.SomeEntityCreated(new SomeEntityCreatedMessage(entity));
+            await exampleHub.SomeEntityCreated(new SomeEntityCreatedMessage(new ExampleEntityRecord(
+                entity.Id,
+                entity.Name,
+                entity.Description,
+                entity.Email,
+                entity.Phone
+            )));
 
             return new ExampleCreateCommandResponse() { ExampleEntity = entity };
         }
