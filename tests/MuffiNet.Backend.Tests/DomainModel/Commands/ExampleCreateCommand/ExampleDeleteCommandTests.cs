@@ -12,7 +12,7 @@ using MuffiNet.Backend.Models;
 
 namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleDeleteCommand
 {
-    [Collection("ExampleCommandCollection")]
+    [Collection("ExampleCollection")]
     public class ExampleDeleteCommandTests : DomainModelTest<ExampleDeleteCommandHandler>
     {
         private ExampleHubMock exampleHub;

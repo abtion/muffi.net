@@ -226,7 +226,7 @@ Contains end-to-end tests running in a headless browser (Selenium).
 - Create Azure App Service
   - An instance of Application Insights is created automatically
 - Change the connected service "Azure Application Insights" in the "FrontendReact" project
-  - Manage Connected Services -> Restore on Application Insights
+  - (Visual Studio) Manage Connected Services -> Restore on Application Insights
   - Replace Application Insights ConnectionString in both Backend and FrontendReact projects
 - Create a new Azure SQL Database
   - Configure the database to be serverless and with a sleep timer of 1 hour and the maximum of 2 Gb of storage to save costs
