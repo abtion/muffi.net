@@ -68,6 +68,7 @@ namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleCreateCommand
             var result = await sut.Handle(request, cancellationToken);
 
             result.ExampleEntity.Should().NotBeNull();
+            exampleHub.EntityCreatedMessageCounter.Should().Be(1);
         }
 
         [Fact]

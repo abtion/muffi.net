@@ -75,6 +75,7 @@ namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleDeleteCommand
             await sut.Handle(request, cancellationToken);
 
             domainModelTransaction.ExampleEntities().Should().BeEmpty();
+            exampleHub.EntityDeletedMessageCounter.Should().Be(1);
         }
         #endregion "Happy Path Tests"
     }
