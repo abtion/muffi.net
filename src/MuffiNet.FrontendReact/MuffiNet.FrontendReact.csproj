@@ -8,10 +8,11 @@
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
     <UserSecretsId>8c2386d9-e0e3-4fe9-a579-74fa10f8cc7f</UserSecretsId>
-    <ApplicationInsightsResourceId>/subscriptions/c01cedb7-85c0-4611-809b-a158333729ee/resourceGroups/MUFFINET/providers/microsoft.insights/components/MUFFINET</ApplicationInsightsResourceId>
+    <ApplicationInsightsResourceId>/subscriptions/8df1f0a7-2aaf-45a5-a132-25001ce58c8b/resourceGroups/MuffiNet/providers/microsoft.insights/components/MuffiNet</ApplicationInsightsResourceId>
   </PropertyGroup>
 
-  <ItemGroup>
+	
+	<ItemGroup>
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.18.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.9" />
