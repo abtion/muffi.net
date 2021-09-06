@@ -233,6 +233,7 @@ Contains end-to-end tests running in a headless browser (Selenium).
   - Maybe there it is needed to setup access from certain IP-numbers in the firewall of GitHub Actions (in some cases "52.170.187.191") or select the option to open for access from IPs inside Azure
   - Change the connection string in AppSetting.json to an appropriate database name (appSettings.Test.json should use a different database name than the other files)
   - Save the connection string in GitHub Actions Secrets "MSSQL_CONNECTION_STRING"
+  - Update App Service Configuration with database connection string as "DefaultConnection"
 - Update the publish profile
 - Setup pipeline to deploy application
   - In the Azure Portal go to App Service and choose "Deployment Center"
