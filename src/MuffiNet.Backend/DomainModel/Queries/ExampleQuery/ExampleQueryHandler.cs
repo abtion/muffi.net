@@ -33,7 +33,7 @@ namespace MuffiNet.Backend.DomainModel.Queries.ExampleQuery
 
             return await Task.FromResult(new ExampleQueryResponse()
             {
-                ExampleEntity = query.SingleOrDefault()
+                ExampleEntity = query.Single()
             });
         }
     }

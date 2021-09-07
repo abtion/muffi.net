@@ -21,7 +21,7 @@ namespace MuffiNet.Backend.DomainModel
         private ApplicationDbContext DbContext { get; set; }
 
         // Remove this section -->
-        private static List<ExampleEntity> exampleEntities;
+        private static List<ExampleEntity>? exampleEntities;
         public IQueryable<ExampleEntity> ExampleEntities()
         {
             if (exampleEntities is null)
@@ -45,7 +45,7 @@ namespace MuffiNet.Backend.DomainModel
 
         public void RemoveExampleEntity(int entityId)
         {
-            exampleEntities.Remove(exampleEntities.Where(e => e.Id == entityId).First());
+            exampleEntities?.Remove(exampleEntities.Where(e => e.Id == entityId).First());
         }
         // <-- Remove this section
 

@@ -25,7 +25,8 @@ namespace MuffiNet.Backend.Services
 
         public async Task<IdentityUser> CurrentUser()
         {
-            var user = await userManager.FindByIdAsync(httpContext.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var userId = httpContext.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier);
+            var user = await userManager.FindByIdAsync(userId?.Value);
 
             return user;
         }
