@@ -1,15 +1,13 @@
-
+# Set names & passwords (complex passwords required)
 $webAppName="mywebapp$(Get-Random)"
 $appInsightsName="myappinsights$(Get-Random)"
 $resourceGroupName="myResourceGroup"
 $location="West Europe"
 $sqlServerName="webappwithsql$Random"
-$startIP="0.0.0.0"
-$endIP="0.0.0.0"
-$username="ServerAdmin"
-$password="<set-password-here>"
-$sqlServerPassword=New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $username,(ConvertTo-SecureString -String $password -AsPlainText -Force)
-$databaseName="MySampleDatabase"
+$sqlServerPassword="123!as2t&%¤asf-,q34tg<sdf"
+$sqlServerUsername="ServerAdmin"
+$sqlServerPasswordObj=New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $sqlServerUsername,(ConvertTo-SecureString -String $sqlServerPassword -AsPlainText -Force)
+$sqlDatabaseName="MySampleDatabase"
 
 
 # Create a resource group.
@@ -20,7 +18,6 @@ New-AzAppServicePlan -Name $webAppName -Location $location -ResourceGroupName $r
 
 # Create a web app.
 $app = New-AzWebApp -Name $webAppName -Location $location -AppServicePlan $webAppName -ResourceGroupName $resourceGroupName
-
 
 # Setup Application Insights
 $appinsights = New-AzApplicationInsights -Name $appInsightsName -ResourceGroupName $resourceGroupName -Location $location
@@ -33,15 +30,14 @@ $newAppSettings["APPLICATIONINSIGHTS_CONNECTION_STRING"] = $appinsights.Connecti
 $newAppSettings["ApplicationInsightsAgent_EXTENSION_VERSION"] = "~2"; # enable the ApplicationInsightsAgent
 Set-AzWebApp -AppSettings $newAppSettings -ResourceGroupName $app.ResourceGroup -Name $app.Name -ErrorAction Stop
 
-
 # Create a SQL Database Server
-New-AzSQLServer -ServerName $sqlServerName -Location $location -SqlAdministratorCredentials $sqlServerPassword -ResourceGroupName $resourceGroupName
+New-AzSQLServer -ServerName $sqlServerName -Location $location -SqlAdministratorCredentials $sqlServerPasswordObj -ResourceGroupName $resourceGroupName
 
 # Create Firewall Rule for SQL Database Server
 New-AzSqlServerFirewallRule -ResourceGroupName $resourceGroupName -ServerName $sqlServerName -AllowAllAzureIPs
 
-# Create SQL Database in SQL Database Server
-New-AzSQLDatabase -ServerName $sqlServerName -DatabaseName $databaseName -ResourceGroupName $resourceGroupName
+# Create serverless low-price SQL Database in SQL Database Server
+New-AzSQLDatabase -ServerName $sqlServerName -DatabaseName $sqlDatabaseName -ResourceGroupName $resourceGroupName -ComputeModel Serverless -VCore 1 -Edition GeneralPurpose -ComputeGeneration Gen5 -MaxSizeBytes 1gb
 
 # Configure app database connection string
-Set-AzWebApp -ConnectionStrings @{ DefaultConnection = @{ Type="SQLAzure"; Value ="Server=tcp:$sqlServerName.database.windows.net;Database=$databaseName;User ID=$Username@$sqlServerName;Password=$password;Trusted_Connection=False;Encrypt=True;" } } -Name $webAppName -ResourceGroupName $resourceGroupName
+Set-AzWebApp -ConnectionStrings @{ DefaultConnection = @{ Type="SQLAzure"; Value ="Server=tcp:$sqlServerName.database.windows.net;Database=$sqlDatabaseName;User ID=$sqlServerUsername@$sqlServerName;Password=$password;Trusted_Connection=False;Encrypt=True;" } } -Name $webAppName -ResourceGroupName $resourceGroupName
