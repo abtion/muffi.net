@@ -6,11 +6,11 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
 {
     public class SeleniumTestBase : IDisposable
     {
-        protected readonly IWebDriver webDriver;
+        protected IWebDriver webDriver { get; private set; }
 
         private readonly IntegrationFixture integrationFixture;
 
-        protected string siteUrl = "https://localhost:4001/";
+        protected string siteUrl { get; private set; } = "https://localhost:4001/";
 
 
         // https://jeremydmiller.com/2018/08/27/a-way-to-use-docker-for-integration-tests/

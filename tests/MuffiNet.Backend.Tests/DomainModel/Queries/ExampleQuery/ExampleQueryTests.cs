@@ -39,6 +39,19 @@ namespace MuffiNet.Backend.Tests.DomainModel.Queries.ExampleQuery
             return request;
         }
 
+        #region "Guard Tests"
+        [Fact]
+        public async Task Given_RequestIsNull_When_HandleIsCalled_Then_AnArgumentNullExceptionIsThrown()
+        {
+            var sut = await CreateSut();
+
+            Task result() => sut.Handle(null, new CancellationToken());
+
+            await Assert.ThrowsAsync<ArgumentNullException>(result);
+        }
+        #endregion "Guard Tests"
+
+        #region "Happy Path Tests"
         [Fact]
         public async Task Given_EntityWithTheGivenIdIsInTheDatabase_When_HandlerIsCalled_Then_EntityIsReturned()
         {
@@ -62,5 +75,6 @@ namespace MuffiNet.Backend.Tests.DomainModel.Queries.ExampleQuery
 
             await act.Should().ThrowAsync<ExampleEntityNotFoundException>();
         }
+        #endregion "Happy Path Tests"
     }
 }

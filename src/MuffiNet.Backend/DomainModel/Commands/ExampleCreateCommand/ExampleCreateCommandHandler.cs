@@ -5,7 +5,6 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using static MuffiNet.Backend.DomainModel.Queries.ExampleQuery.ExampleQueryResponse;
 
 namespace MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand
 {
@@ -22,6 +21,11 @@ namespace MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand
 
         public async Task<ExampleCreateCommandResponse> Handle(ExampleCreateCommandRequest request, CancellationToken cancellationToken)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
             var entity = new ExampleEntity();
 
             // setting the Id since there is no database to do it

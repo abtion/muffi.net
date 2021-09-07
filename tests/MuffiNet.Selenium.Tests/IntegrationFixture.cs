@@ -12,8 +12,8 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
     /// </remarks>
     public class IntegrationFixture : IDisposable
     {
-        protected Process process;
-        public readonly ChromeDriver webDriver;
+        private Process process;
+        internal ChromeDriver webDriver { get; private set; }
 
         public IntegrationFixture()
         {

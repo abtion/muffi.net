@@ -50,17 +50,17 @@ namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleDeleteCommand
         [Fact]
         public void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
         {
-            Action a = () => { new ExampleDeleteCommandHandler(null, exampleHub); };
+            Func<ExampleDeleteCommandHandler> f = () => new ExampleDeleteCommandHandler(null, exampleHub);
 
-            a.Should().Throw<ArgumentNullException>();
+            f.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public void Given_ExampleHubIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
         {
-            Action a = () => { new ExampleDeleteCommandHandler(domainModelTransaction, null); };
+            Func<ExampleDeleteCommandHandler> f = () => new ExampleDeleteCommandHandler(domainModelTransaction, null);
 
-            a.Should().Throw<ArgumentNullException>();
+            f.Should().Throw<ArgumentNullException>();
         }
         #endregion "Guard Tests"
 

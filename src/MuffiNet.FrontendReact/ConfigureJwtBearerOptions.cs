@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using System;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 
 namespace MuffiNet.FrontendReact
@@ -18,7 +19,7 @@ namespace MuffiNet.FrontendReact
                     var path = context.HttpContext.Request.Path;
 
                     if (!string.IsNullOrEmpty(accessToken) &&
-                        path.StartsWithSegments("/hubs/"))
+                        path.StartsWithSegments("/hubs/", StringComparison.InvariantCultureIgnoreCase))
                     {
                         context.Token = accessToken;
                     }

@@ -7,14 +7,14 @@ namespace MuffiNet.Test.Shared.Mocks
     public class ExampleHubMock : IExampleHubContract
     {
 
-        public int EntityDeletedMessageCounter;
-        public SomeEntityDeletedMessage? LatestEntityDeletedMessage;
+        public int EntityDeletedMessageCounter { get; private set; }
+        public SomeEntityDeletedMessage? LatestEntityDeletedMessage { get; private set; }
 
-        public int EntityCreatedMessageCounter;
-        public SomeEntityCreatedMessage? LatestEntityCreatedMessage;
+        public int EntityCreatedMessageCounter { get; private set; }
+        public SomeEntityCreatedMessage? LatestEntityCreatedMessage { get; private set; }
 
-        public int EntityUpdatedMessageCounter;
-        public SomeEntityUpdatedMessage? LatestEntityUpdatedMessage;
+        public int EntityUpdatedMessageCounter { get; private set; }
+        public SomeEntityUpdatedMessage? LatestEntityUpdatedMessage { get; private set; }
 
         public Task SomeEntityCreated(SomeEntityCreatedMessage message)
         {
