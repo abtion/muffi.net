@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using MuffiNet.Backend.Exceptions;
+using MuffiNet.Backend.Models;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using static MuffiNet.Backend.DomainModel.Queries.ExampleQuery.ExampleQueryResponse;
 
 namespace MuffiNet.Backend.DomainModel.Queries.ExampleQuery
 {
@@ -19,6 +19,11 @@ namespace MuffiNet.Backend.DomainModel.Queries.ExampleQuery
 
         public async Task<ExampleQueryResponse> Handle(ExampleQueryRequest request, CancellationToken cancellationToken)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
             var query = from exampleEntity in domainModelTransaction.ExampleEntities().WithId(request.Id)
                         select new ExampleEntityRecord(
                             exampleEntity.Id,

@@ -1,6 +1,5 @@
 ﻿using MuffiNet.Backend.Models;
 using System.Threading.Tasks;
-using static MuffiNet.Backend.DomainModel.Queries.ExampleQuery.ExampleQueryResponse;
 
 namespace MuffiNet.Backend.HubContracts
 {

@@ -1,8 +1,6 @@
 ﻿using MediatR;
 using MuffiNet.Backend.HubContracts;
-using MuffiNet.Backend.Models;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 

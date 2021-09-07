@@ -1,9 +1,9 @@
 ﻿using MediatR;
+using MuffiNet.Backend.Models;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
-using static MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll.ExampleQueryAllResponse;
 
 namespace MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll
 {
@@ -27,7 +27,7 @@ namespace MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll
                             exampleEntity.Phone
                         );
 
-            return await Task.FromResult(new ExampleQueryAllResponse() { ExampleEntities = query.ToList() });
+            return await Task.FromResult(new ExampleQueryAllResponse(query.ToList()));
         }
     }
 }

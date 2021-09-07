@@ -10,10 +10,10 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
     /// <remarks>
     /// https://xunit.net/docs/shared-context
     /// </remarks>
-    public class IntegrationFixture : IDisposable
+    public sealed class IntegrationFixture : IDisposable
     {
-        protected Process process;
-        public readonly ChromeDriver webDriver;
+        private Process process;
+        internal ChromeDriver webDriver { get; private set; }
 
         public IntegrationFixture()
         {
@@ -39,7 +39,7 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
                 System.Console.WriteLine("Dropping test database: failure");
                 System.Console.WriteLine(dropProcess.StandardError.ReadToEnd());
                 System.Console.WriteLine(dropProcess.StandardOutput.ReadToEnd());
-                throw new Exception("Nonzero exit code when dropping test database");
+                throw new InvalidOperationException("Nonzero exit code when dropping test database");
             }
 
             // Create database
@@ -56,15 +56,18 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
                 System.Console.WriteLine("Creating/updating test database: failure");
                 System.Console.WriteLine(updateProcess.StandardError.ReadToEnd());
                 System.Console.WriteLine(updateProcess.StandardOutput.ReadToEnd());
-                throw new Exception("Nonzero exit code when creating/updating test database");
+                throw new InvalidOperationException("Nonzero exit code when creating/updating test database");
             }
 
             // Seed database
             System.Console.WriteLine("Seeding database");
             var queryString = File.ReadAllText(Path.Join(GetWorkingDirectory(), "..", "..", "sql", "create-user.sql"));
-            SqlCommand command = new SqlCommand(queryString, DbConnection());
+            SqlConnection connection = DbConnection();
+            SqlCommand command = new SqlCommand(queryString, connection);
             command.Connection.Open();
             command.ExecuteNonQuery();
+            command.Dispose();
+            connection.Dispose();
             System.Console.WriteLine("Seeding database: success");
         }
 
@@ -79,7 +82,7 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
             {
                 output = process.StandardOutput.ReadLine();
             }
-            while (!output.Contains("Now listening on"));
+            while (!output.Contains("Now listening on", StringComparison.InvariantCultureIgnoreCase));
             System.Console.WriteLine("Starting server: Success");
 
             return process;
@@ -192,7 +195,7 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
     }
 
     [CollectionDefinition("Selenium")]
-    public class IntegrationCollection : ICollectionFixture<IntegrationFixture>
+    public class IntegrationCollectionFixture : ICollectionFixture<IntegrationFixture>
     {
         // This class has no code, and is never created. Its purpose is simply
         // to be the place to apply [CollectionDefinition] and all the

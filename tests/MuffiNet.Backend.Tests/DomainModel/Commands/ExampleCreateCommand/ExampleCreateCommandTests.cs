@@ -43,17 +43,27 @@ namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleCreateCommand
         [Fact]
         public void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
         {
-            Action a = () => { new ExampleCreateCommandHandler(null, exampleHub); };
+            Func<ExampleCreateCommandHandler> f = () => new ExampleCreateCommandHandler(null, exampleHub);
 
-            a.Should().Throw<ArgumentNullException>();
+            f.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public void Given_ExampleHubIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
         {
-            Action a = () => { new ExampleCreateCommandHandler(domainModelTransaction, null); };
+            Func<ExampleCreateCommandHandler> f = () => new ExampleCreateCommandHandler(domainModelTransaction, null);
 
-            a.Should().Throw<ArgumentNullException>();
+            f.Should().Throw<ArgumentNullException>();
+        }
+
+        [Fact]
+        public async Task Given_RequestIsNull_When_HandleIsCalled_Then_AnArgumentNullExceptionIsThrown()
+        {
+            var sut = await CreateSut();
+
+            Task result() => sut.Handle(null, new CancellationToken());
+
+            await Assert.ThrowsAsync<ArgumentNullException>(result);
         }
         #endregion "Guard Tests"
 
