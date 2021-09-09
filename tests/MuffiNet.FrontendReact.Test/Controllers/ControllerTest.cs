@@ -8,7 +8,7 @@ namespace MuffiNet.FrontendReact.Test.Controllers
 {
     public abstract class ControllerTest
     {
-        public ControllerTest()
+        protected ControllerTest()
         {
             var servicesBuilder = new DomainModelBuilderForTest();
             var serviceCollection = new ServiceCollection();
