@@ -1,7 +1,7 @@
 version: "2"
 exclude_patterns:
-  - **/wwwroot/**
-  - **/Data/Migrations/**
+  - src/MuffiNet.Backend/Data/Migrations/**
+  - src/MuffiNet.FrontendReact/wwwroot/**
   - src/MuffiNet.FrontendReact/Startup.cs
 
 plugins:
