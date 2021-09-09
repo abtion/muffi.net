@@ -17,15 +17,15 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
 
         public IntegrationFixture()
         {
-            PrepareDatabase();
-
+            DropDatabase();
+            CreateDatabase();
+            SeedDatabase();
             webDriver = StartWebDriver();
             process = StartServer();
         }
 
-        private void PrepareDatabase()
+        private void DropDatabase()
         {
-            // Drop database
             System.Console.WriteLine("Dropping test database");
             var dropProcess = Process.Start(CreateStartInfo("ef database drop -f"));
             dropProcess.WaitForExit();
@@ -41,8 +41,23 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
                 System.Console.WriteLine(dropProcess.StandardOutput.ReadToEnd());
                 throw new InvalidOperationException("Nonzero exit code when dropping test database");
             }
+        }
 
-            // Create database
+        private void SeedDatabase()
+        {
+            System.Console.WriteLine("Seeding database");
+            var queryString = File.ReadAllText(Path.Join(GetWorkingDirectory(), "..", "..", "sql", "create-user.sql"));
+            SqlConnection connection = DbConnection();
+            SqlCommand command = new SqlCommand(queryString, connection);
+            command.Connection.Open();
+            command.ExecuteNonQuery();
+            command.Dispose();
+            connection.Dispose();
+            System.Console.WriteLine("Seeding database: success");
+        }
+
+        private void CreateDatabase()
+        {
             System.Console.WriteLine("Creating/updating test database");
             var updateProcess = Process.Start(CreateStartInfo("ef database update"));
             updateProcess.WaitForExit();
@@ -58,17 +73,6 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
                 System.Console.WriteLine(updateProcess.StandardOutput.ReadToEnd());
                 throw new InvalidOperationException("Nonzero exit code when creating/updating test database");
             }
-
-            // Seed database
-            System.Console.WriteLine("Seeding database");
-            var queryString = File.ReadAllText(Path.Join(GetWorkingDirectory(), "..", "..", "sql", "create-user.sql"));
-            SqlConnection connection = DbConnection();
-            SqlCommand command = new SqlCommand(queryString, connection);
-            command.Connection.Open();
-            command.ExecuteNonQuery();
-            command.Dispose();
-            connection.Dispose();
-            System.Console.WriteLine("Seeding database: success");
         }
 
         private Process StartServer()
