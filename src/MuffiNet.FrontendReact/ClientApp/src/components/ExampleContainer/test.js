@@ -1,12 +1,10 @@
 import React from "react"
 import { act, render as tlRender, waitFor } from "@testing-library/react"
 import axios from "axios"
-import { createMemoryHistory } from "history"
 import userEvent from "@testing-library/user-event"
 
-import AuthorizedHome from "./"
+import ExampleContainer from "./"
 import useHub from "~/hooks/useHub"
-import { Router } from "react-router-dom"
 
 jest.mock("axios")
 jest.mock("~/hooks/useHub")
@@ -36,19 +34,11 @@ beforeEach(() => {
 })
 
 function render() {
-  const history = createMemoryHistory({
-    initialEntries: [`/authhome`],
-  })
-
-  const context = tlRender(
-    <Router history={history}>
-      <AuthorizedHome />
-    </Router>
-  )
+  const context = tlRender(<ExampleContainer />)
   return { ...context }
 }
 
-describe(AuthorizedHome, () => {
+describe(ExampleContainer, () => {
   axios.get.mockResolvedValue({
     data: { exampleEntities: [entity] },
   })
@@ -69,7 +59,7 @@ describe(AuthorizedHome, () => {
       userEvent.click(getByText("Submit"))
       await waitFor(() =>
         expect(axios.put).toHaveBeenCalledWith(
-          "/api/authorizedexample",
+          "/api/example",
           {
             Name: "Name",
             Description: "Description",
@@ -87,7 +77,7 @@ describe(AuthorizedHome, () => {
       const { findByText } = render()
 
       await waitFor(() =>
-        expect(axios.get).toHaveBeenCalledWith("/api/authorizedexample/all", {
+        expect(axios.get).toHaveBeenCalledWith("/api/example/all", {
           headers: { authorization: "Bearer undefined" },
         })
       )
