@@ -97,6 +97,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@master
 
+      - name: Attempt login to unpause Azure serverless sql 
+        continue-on-error: true
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.MSSQL_CONNECTION_STRING }}
+      
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
