@@ -37,7 +37,7 @@ jobs:
         with:
           find: 'SF:src'
           replace: 'SF:src/MuffiNet.FrontendReact/ClientApp/src'
-          include: './src/MuffiNet.FrontendReact/ClientApp/coverage/lcov.info'
+          include: 'lcov.info'
 
       - name: Create a single report
         run: |
