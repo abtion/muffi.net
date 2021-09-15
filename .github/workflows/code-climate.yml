@@ -1,0 +1,51 @@
+name: CodeClimate
+on: push
+
+jobs:
+  code-climate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2.3.4
+
+      - name: Set up & start Code Climate test reporter
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
+
+      - name: Install collection & report tools
+        run: |
+          dotnet tool install -g coverlet.console
+          dotnet tool install -g dotnet-reportgenerator-globaltool
+
+      - name: Build solution
+        run: |
+          dotnet restore
+          dotnet build ./Muffi.sln
+
+      - name: Run tests
+        run: |
+          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov ./tests/MuffiNet.Backend.Tests
+          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov ./tests/MuffiNet.FrontendReact.Test
+          yarn test --coverage
+
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: 'SF:src'
+          replace: 'SF:src/MuffiNet.FrontendReact/ClientApp/src'
+          include: 'lcov.info'
+
+      - name: Create a single report
+        run: |
+          reportgenerator "-reports:./tests/**/*.info;./src/MuffiNet.FrontendReact/ClientApp/coverage/lcov.info" "-targetdir:coverage" -reporttypes:lcov
+
+      - name: Code Climate test reporter
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          GIT_BRANCH: ${{github.event.workflow_run.head_branch }}
+          GIT_COMMIT_SHA: ${{github.event.workflow_run.head_commit.id }}
+        run: ./cc-test-reporter after-build --exit-code $?

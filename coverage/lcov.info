@@ -1,0 +1,4308 @@
+﻿TN:
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\Data\ApplicationDbContext.cs
+FN:15,System.Void MuffiNet.Backend.Data.ApplicationDbContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions,Microsoft.Extensions.Options.IOptions`1<IdentityServer4.EntityFramework.Options.OperationalStoreOptions>)
+FNDA:0,System.Void MuffiNet.Backend.Data.ApplicationDbContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions,Microsoft.Extensions.Options.IOptions`1<IdentityServer4.EntityFramework.Options.OperationalStoreOptions>)
+FNF:1
+FNH:1
+BRF:0
+BRH:0
+DA:16,22
+DA:17,22
+DA:18,22
+LH:3
+LF:3
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\Data\Migrations\00000000000000_CreateIdentitySchema.cs
+FN:8,System.Void MuffiNet.Backend.Data.Migrations.CreateIdentitySchema::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FN:260,System.Void MuffiNet.Backend.Data.Migrations.CreateIdentitySchema::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void MuffiNet.Backend.Data.Migrations.CreateIdentitySchema::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void MuffiNet.Backend.Data.Migrations.CreateIdentitySchema::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNF:2
+FNH:0
+BRF:0
+BRH:0
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:174,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:186,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:202,0
+DA:203,0
+DA:204,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:209,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:214,0
+DA:216,0
+DA:217,0
+DA:218,0
+DA:219,0
+DA:221,0
+DA:222,0
+DA:223,0
+DA:224,0
+DA:226,0
+DA:227,0
+DA:228,0
+DA:229,0
+DA:230,0
+DA:231,0
+DA:233,0
+DA:234,0
+DA:235,0
+DA:236,0
+DA:237,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:242,0
+DA:244,0
+DA:245,0
+DA:246,0
+DA:247,0
+DA:249,0
+DA:250,0
+DA:251,0
+DA:252,0
+DA:254,0
+DA:255,0
+DA:256,0
+DA:257,0
+DA:258,0
+DA:261,0
+DA:262,0
+DA:263,0
+DA:265,0
+DA:266,0
+DA:268,0
+DA:269,0
+DA:271,0
+DA:272,0
+DA:274,0
+DA:275,0
+DA:277,0
+DA:278,0
+DA:280,0
+DA:281,0
+DA:283,0
+DA:284,0
+DA:286,0
+DA:287,0
+DA:288,0
+LH:0
+LF:250
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs
+FN:16,System.Void MuffiNet.Backend.Data.Migrations.CreateIdentitySchema::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void MuffiNet.Backend.Data.Migrations.CreateIdentitySchema::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:17,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:186,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:202,0
+DA:203,0
+DA:204,0
+DA:205,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:209,0
+DA:210,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:214,0
+DA:215,0
+DA:216,0
+DA:217,0
+DA:219,0
+DA:220,0
+DA:221,0
+DA:222,0
+DA:223,0
+DA:224,0
+DA:225,0
+DA:226,0
+DA:227,0
+DA:228,0
+DA:229,0
+DA:230,0
+DA:231,0
+DA:232,0
+DA:233,0
+DA:234,0
+DA:235,0
+DA:236,0
+DA:237,0
+DA:238,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:243,0
+DA:244,0
+DA:245,0
+DA:246,0
+DA:247,0
+DA:248,0
+DA:249,0
+DA:250,0
+DA:251,0
+DA:252,0
+DA:253,0
+DA:254,0
+DA:255,0
+DA:256,0
+DA:257,0
+DA:258,0
+DA:259,0
+DA:260,0
+DA:261,0
+DA:262,0
+DA:263,0
+DA:264,0
+DA:265,0
+DA:267,0
+DA:268,0
+DA:269,0
+DA:270,0
+DA:271,0
+DA:272,0
+DA:273,0
+DA:274,0
+DA:275,0
+DA:276,0
+DA:277,0
+DA:278,0
+DA:279,0
+DA:280,0
+DA:281,0
+DA:282,0
+DA:283,0
+DA:284,0
+DA:285,0
+DA:286,0
+DA:287,0
+DA:288,0
+DA:289,0
+DA:291,0
+DA:292,0
+DA:293,0
+DA:294,0
+DA:295,0
+DA:296,0
+DA:297,0
+DA:298,0
+DA:299,0
+DA:300,0
+DA:301,0
+DA:302,0
+DA:303,0
+DA:304,0
+DA:306,0
+DA:307,0
+DA:308,0
+DA:309,0
+DA:310,0
+DA:311,0
+DA:312,0
+DA:313,0
+DA:314,0
+DA:315,0
+DA:316,0
+DA:317,0
+DA:318,0
+DA:319,0
+DA:320,0
+DA:321,0
+DA:322,0
+DA:323,0
+DA:324,0
+DA:325,0
+DA:327,0
+DA:328,0
+DA:329,0
+DA:330,0
+DA:331,0
+DA:332,0
+DA:333,0
+DA:334,0
+DA:336,0
+DA:337,0
+DA:338,0
+DA:339,0
+DA:340,0
+DA:341,0
+DA:342,0
+DA:343,0
+DA:345,0
+DA:346,0
+DA:347,0
+DA:348,0
+DA:349,0
+DA:350,0
+DA:351,0
+DA:352,0
+DA:354,0
+DA:355,0
+DA:356,0
+DA:357,0
+DA:358,0
+DA:359,0
+DA:360,0
+DA:361,0
+DA:362,0
+DA:363,0
+DA:364,0
+DA:365,0
+DA:366,0
+DA:367,0
+DA:369,0
+DA:370,0
+DA:371,0
+DA:372,0
+DA:373,0
+DA:374,0
+DA:375,0
+DA:376,0
+DA:378,0
+LH:0
+LF:346
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\Data\Migrations\ApplicationDbContextModelSnapshot.cs
+FN:14,System.Void MuffiNet.Backend.Data.Migrations.ApplicationDbContextModelSnapshot::BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void MuffiNet.Backend.Data.Migrations.ApplicationDbContextModelSnapshot::BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:15,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:186,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:200,0
+DA:201,0
+DA:202,0
+DA:203,0
+DA:204,0
+DA:205,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:209,0
+DA:210,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:214,0
+DA:215,0
+DA:216,0
+DA:217,0
+DA:218,0
+DA:219,0
+DA:220,0
+DA:221,0
+DA:222,0
+DA:224,0
+DA:225,0
+DA:226,0
+DA:227,0
+DA:228,0
+DA:229,0
+DA:230,0
+DA:231,0
+DA:232,0
+DA:233,0
+DA:234,0
+DA:235,0
+DA:236,0
+DA:237,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:242,0
+DA:243,0
+DA:244,0
+DA:245,0
+DA:246,0
+DA:247,0
+DA:248,0
+DA:249,0
+DA:250,0
+DA:251,0
+DA:252,0
+DA:253,0
+DA:254,0
+DA:255,0
+DA:256,0
+DA:257,0
+DA:258,0
+DA:260,0
+DA:261,0
+DA:262,0
+DA:263,0
+DA:264,0
+DA:265,0
+DA:266,0
+DA:267,0
+DA:268,0
+DA:269,0
+DA:270,0
+DA:271,0
+DA:272,0
+DA:273,0
+DA:274,0
+DA:275,0
+DA:276,0
+DA:277,0
+DA:278,0
+DA:279,0
+DA:280,0
+DA:281,0
+DA:282,0
+DA:283,0
+DA:284,0
+DA:285,0
+DA:286,0
+DA:287,0
+DA:288,0
+DA:289,0
+DA:290,0
+DA:291,0
+DA:292,0
+DA:293,0
+DA:294,0
+DA:295,0
+DA:296,0
+DA:297,0
+DA:298,0
+DA:299,0
+DA:300,0
+DA:301,0
+DA:302,0
+DA:303,0
+DA:304,0
+DA:305,0
+DA:306,0
+DA:307,0
+DA:308,0
+DA:309,0
+DA:310,0
+DA:311,0
+DA:312,0
+DA:313,0
+DA:314,0
+DA:315,0
+DA:316,0
+DA:317,0
+DA:318,0
+DA:319,0
+DA:320,0
+DA:321,0
+DA:322,0
+DA:323,0
+DA:324,0
+DA:325,0
+DA:326,0
+DA:327,0
+DA:329,0
+DA:330,0
+DA:331,0
+DA:332,0
+DA:333,0
+DA:334,0
+DA:335,0
+DA:336,0
+DA:337,0
+DA:338,0
+DA:339,0
+DA:340,0
+DA:341,0
+DA:342,0
+DA:343,0
+DA:344,0
+DA:345,0
+DA:346,0
+DA:347,0
+DA:348,0
+DA:349,0
+DA:350,0
+DA:351,0
+DA:352,0
+DA:353,0
+DA:354,0
+DA:355,0
+DA:356,0
+DA:357,0
+DA:358,0
+DA:359,0
+DA:360,0
+DA:361,0
+DA:362,0
+DA:363,0
+DA:364,0
+DA:365,0
+DA:366,0
+DA:367,0
+DA:368,0
+DA:369,0
+DA:370,0
+DA:371,0
+DA:372,0
+DA:373,0
+DA:374,0
+DA:375,0
+DA:376,0
+DA:377,0
+DA:378,0
+DA:379,0
+DA:380,0
+DA:381,0
+DA:382,0
+DA:383,0
+DA:384,0
+DA:385,0
+DA:386,0
+DA:387,0
+DA:388,0
+DA:389,0
+DA:390,0
+DA:391,0
+DA:392,0
+DA:393,0
+DA:394,0
+DA:395,0
+DA:396,0
+DA:397,0
+DA:398,0
+DA:400,0
+DA:401,0
+DA:402,0
+DA:403,0
+DA:404,0
+DA:405,0
+DA:406,0
+DA:407,0
+DA:409,0
+DA:410,0
+DA:411,0
+DA:412,0
+DA:413,0
+DA:414,0
+DA:415,0
+DA:416,0
+DA:418,0
+DA:419,0
+DA:420,0
+DA:421,0
+DA:422,0
+DA:423,0
+DA:424,0
+DA:425,0
+DA:427,0
+DA:428,0
+DA:429,0
+DA:430,0
+DA:431,0
+DA:432,0
+DA:433,0
+DA:434,0
+DA:435,0
+DA:436,0
+DA:437,0
+DA:438,0
+DA:439,0
+DA:440,0
+DA:442,0
+DA:443,0
+DA:444,0
+DA:445,0
+DA:446,0
+DA:447,0
+DA:448,0
+DA:449,0
+DA:451,0
+LH:0
+LF:420
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\DomainModel\Commands\ExampleCreateCommand\ExampleCreateCommandHandler.cs
+FN:15,System.Void MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand.ExampleCreateCommandHandler::.ctor(MuffiNet.Backend.DomainModel.DomainModelTransaction,MuffiNet.Backend.HubContracts.IExampleHubContract)
+FN:22,System.Void MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand.ExampleCreateCommandHandler/<Handle>d__3::MoveNext()
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand.ExampleCreateCommandHandler::.ctor(MuffiNet.Backend.DomainModel.DomainModelTransaction,MuffiNet.Backend.HubContracts.IExampleHubContract)
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand.ExampleCreateCommandHandler/<Handle>d__3::MoveNext()
+FNF:2
+FNH:2
+BRDA:18,18,0,2
+BRDA:18,18,1,8
+BRDA:19,19,2,-
+BRDA:19,19,3,8
+BRDA:24,24,4,1
+BRDA:24,24,5,7
+BRDA:32,32,6,-
+BRDA:32,32,7,7
+BRF:8
+BRH:6
+DA:16,10
+DA:17,10
+DA:18,10
+DA:19,8
+DA:20,8
+DA:23,8
+DA:24,8
+DA:25,1
+DA:26,1
+DA:29,7
+DA:32,7
+DA:33,0
+DA:35,7
+DA:37,7
+DA:38,7
+DA:39,7
+DA:40,7
+DA:42,7
+DA:44,7
+DA:46,7
+DA:47,7
+DA:48,7
+DA:49,7
+DA:50,7
+DA:51,7
+DA:52,7
+DA:54,7
+DA:55,7
+LH:27
+LF:28
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\DomainModel\Commands\ExampleCreateCommand\ExampleCreateCommandRequest.cs
+FN:6,System.String MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand.ExampleCreateCommandRequest::get_Name()
+FN:7,System.String MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand.ExampleCreateCommandRequest::get_Description()
+FN:8,System.String MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand.ExampleCreateCommandRequest::get_Email()
+FN:9,System.String MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand.ExampleCreateCommandRequest::get_Phone()
+FNDA:0,System.String MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand.ExampleCreateCommandRequest::get_Name()
+FNDA:22,System.String MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand.ExampleCreateCommandRequest::get_Description()
+FNDA:22,System.String MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand.ExampleCreateCommandRequest::get_Email()
+FNDA:16,System.String MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand.ExampleCreateCommandRequest::get_Phone()
+FNF:4
+FNH:3
+BRF:0
+BRH:0
+DA:7,22
+DA:8,22
+DA:9,16
+DA:10,16
+LH:4
+LF:4
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\DomainModel\Commands\ExampleCreateCommand\ExampleCreateCommandResponse.cs
+FN:6,MuffiNet.Backend.Models.ExampleEntity MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand.ExampleCreateCommandResponse::get_ExampleEntity()
+FNDA:0,MuffiNet.Backend.Models.ExampleEntity MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand.ExampleCreateCommandResponse::get_ExampleEntity()
+FNF:1
+FNH:1
+BRF:0
+BRH:0
+DA:7,12
+LH:1
+LF:1
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\DomainModel\Commands\ExampleDeleteCommand\ExampleDeleteCommandHandler.cs
+FN:13,System.Void MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand.ExampleDeleteCommandHandler::.ctor(MuffiNet.Backend.DomainModel.DomainModelTransaction,MuffiNet.Backend.HubContracts.IExampleHubContract)
+FN:20,System.Void MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand.ExampleDeleteCommandHandler/<Handle>d__3::MoveNext()
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand.ExampleDeleteCommandHandler::.ctor(MuffiNet.Backend.DomainModel.DomainModelTransaction,MuffiNet.Backend.HubContracts.IExampleHubContract)
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand.ExampleDeleteCommandHandler/<Handle>d__3::MoveNext()
+FNF:2
+FNH:2
+BRDA:16,16,8,2
+BRDA:16,16,9,3
+BRDA:17,17,10,-
+BRDA:17,17,11,3
+BRDA:22,22,12,-
+BRDA:22,22,13,3
+BRF:6
+BRH:4
+DA:14,5
+DA:15,5
+DA:16,5
+DA:17,3
+DA:18,3
+DA:21,3
+DA:22,3
+DA:23,0
+DA:25,3
+DA:26,3
+DA:28,3
+DA:30,3
+DA:31,3
+LH:12
+LF:13
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\DomainModel\Commands\ExampleDeleteCommand\ExampleDeleteCommandRequest.cs
+FN:6,System.Int32 MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand.ExampleDeleteCommandRequest::get_Id()
+FNDA:0,System.Int32 MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand.ExampleDeleteCommandRequest::get_Id()
+FNF:1
+FNH:1
+BRF:0
+BRH:0
+DA:7,9
+LH:1
+LF:1
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\DomainModel\DomainModelBuilder.cs
+FN:12,Microsoft.Extensions.DependencyInjection.IServiceCollection MuffiNet.Backend.DomainModel.DomainModelBuilder::get_Services()
+FN:14,System.Void MuffiNet.Backend.DomainModel.DomainModelBuilder::.ctor(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+FNDA:0,Microsoft.Extensions.DependencyInjection.IServiceCollection MuffiNet.Backend.DomainModel.DomainModelBuilder::get_Services()
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.DomainModelBuilder::.ctor(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+FNF:2
+FNH:1
+BRDA:17,17,14,-
+BRDA:17,17,15,22
+BRF:2
+BRH:1
+DA:13,0
+DA:15,22
+DA:16,22
+DA:17,22
+DA:18,22
+LH:4
+LF:5
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\DomainModel\DomainModelServiceCollectionExtensions.cs
+FN:12,MuffiNet.Backend.DomainModel.IDomainModelBuilder MuffiNet.Backend.DomainModel.DomainModelServiceCollectionExtensions::AddDomainModel(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+FNDA:0,MuffiNet.Backend.DomainModel.IDomainModelBuilder MuffiNet.Backend.DomainModel.DomainModelServiceCollectionExtensions::AddDomainModel(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+FNF:1
+FNH:1
+BRF:0
+BRH:0
+DA:13,22
+DA:15,22
+DA:18,22
+DA:19,22
+DA:22,22
+DA:23,22
+DA:26,22
+DA:27,22
+DA:28,22
+DA:30,22
+DA:31,22
+LH:11
+LF:11
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\DomainModel\DomainModelTransaction.cs
+FN:20,MuffiNet.Backend.Data.ApplicationDbContext MuffiNet.Backend.DomainModel.DomainModelTransaction::get_DbContext()
+FN:25,System.Linq.IQueryable`1<MuffiNet.Backend.Models.ExampleEntity> MuffiNet.Backend.DomainModel.DomainModelTransaction::ExampleEntities()
+FN:33,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction::ResetExampleEntities()
+FN:38,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction::AddExampleEntity(MuffiNet.Backend.Models.ExampleEntity)
+FN:46,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction::RemoveExampleEntity(System.Int32)
+FN:57,System.Linq.IQueryable`1<T> MuffiNet.Backend.DomainModel.DomainModelTransaction::Entities()
+FN:68,System.Linq.IQueryable`1<T> MuffiNet.Backend.DomainModel.DomainModelTransaction::EntitiesNoTracking()
+FN:78,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction::Remove(T)
+FN:15,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction::.ctor(MuffiNet.Backend.Data.ApplicationDbContext)
+FN:73,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction/<AddAsync>d__12`1::MoveNext()
+FN:83,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction/<BeginTransactionAsync>d__14::MoveNext()
+FN:88,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction/<CommitTransactionAsync>d__15::MoveNext()
+FN:93,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction/<RollbackTransactionAsync>d__16::MoveNext()
+FN:98,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction/<SaveChangesAsync>d__17::MoveNext()
+FNDA:0,MuffiNet.Backend.Data.ApplicationDbContext MuffiNet.Backend.DomainModel.DomainModelTransaction::get_DbContext()
+FNDA:0,System.Linq.IQueryable`1<MuffiNet.Backend.Models.ExampleEntity> MuffiNet.Backend.DomainModel.DomainModelTransaction::ExampleEntities()
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction::ResetExampleEntities()
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction::AddExampleEntity(MuffiNet.Backend.Models.ExampleEntity)
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction::RemoveExampleEntity(System.Int32)
+FNDA:0,System.Linq.IQueryable`1<T> MuffiNet.Backend.DomainModel.DomainModelTransaction::Entities()
+FNDA:0,System.Linq.IQueryable`1<T> MuffiNet.Backend.DomainModel.DomainModelTransaction::EntitiesNoTracking()
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction::Remove(T)
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction::.ctor(MuffiNet.Backend.Data.ApplicationDbContext)
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction/<AddAsync>d__12`1::MoveNext()
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction/<BeginTransactionAsync>d__14::MoveNext()
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction/<CommitTransactionAsync>d__15::MoveNext()
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction/<RollbackTransactionAsync>d__16::MoveNext()
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.DomainModelTransaction/<SaveChangesAsync>d__17::MoveNext()
+FNF:14
+FNH:7
+BRDA:27,27,16,7
+BRDA:27,27,17,15
+BRDA:40,40,18,9
+BRDA:40,40,19,44
+BRDA:48,48,20,-
+BRDA:48,48,21,3
+BRF:6
+BRH:5
+DA:16,22
+DA:17,22
+DA:18,22
+DA:19,22
+DA:21,40
+DA:26,15
+DA:27,15
+DA:28,7
+DA:30,15
+DA:31,15
+DA:34,18
+DA:35,18
+DA:36,18
+DA:39,44
+DA:40,44
+DA:41,9
+DA:43,44
+DA:44,44
+DA:47,3
+DA:48,10
+DA:49,3
+DA:58,0
+DA:59,0
+DA:60,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:99,18
+DA:100,18
+DA:101,18
+LH:24
+LF:45
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\DomainModel\ExampleEntityQueryExtensions.cs
+FN:8,System.Linq.IQueryable`1<MuffiNet.Backend.Models.ExampleEntity> MuffiNet.Backend.DomainModel.ExampleEntityQueryExtensions::WithId(System.Linq.IQueryable`1<MuffiNet.Backend.Models.ExampleEntity>,System.Int32)
+FN:13,System.Linq.IQueryable`1<MuffiNet.Backend.Models.ExampleEntity> MuffiNet.Backend.DomainModel.ExampleEntityQueryExtensions::All(System.Linq.IQueryable`1<MuffiNet.Backend.Models.ExampleEntity>)
+FNDA:0,System.Linq.IQueryable`1<MuffiNet.Backend.Models.ExampleEntity> MuffiNet.Backend.DomainModel.ExampleEntityQueryExtensions::WithId(System.Linq.IQueryable`1<MuffiNet.Backend.Models.ExampleEntity>,System.Int32)
+FNDA:0,System.Linq.IQueryable`1<MuffiNet.Backend.Models.ExampleEntity> MuffiNet.Backend.DomainModel.ExampleEntityQueryExtensions::All(System.Linq.IQueryable`1<MuffiNet.Backend.Models.ExampleEntity>)
+FNF:2
+FNH:2
+BRF:0
+BRH:0
+DA:9,5
+DA:10,5
+DA:11,5
+DA:14,2
+DA:15,2
+DA:16,2
+LH:6
+LF:6
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\DomainModel\Queries\ExampleQuery\ExampleQueryHandler.cs
+FN:14,System.Void MuffiNet.Backend.DomainModel.Queries.ExampleQuery.ExampleQueryHandler::.ctor(MuffiNet.Backend.DomainModel.DomainModelTransaction)
+FN:20,System.Void MuffiNet.Backend.DomainModel.Queries.ExampleQuery.ExampleQueryHandler/<Handle>d__2::MoveNext()
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.Queries.ExampleQuery.ExampleQueryHandler::.ctor(MuffiNet.Backend.DomainModel.DomainModelTransaction)
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.Queries.ExampleQuery.ExampleQueryHandler/<Handle>d__2::MoveNext()
+FNF:2
+FNH:2
+BRDA:17,17,22,-
+BRDA:17,17,23,5
+BRDA:22,22,24,1
+BRDA:22,22,25,4
+BRDA:36,36,26,1
+BRDA:36,36,27,3
+BRF:6
+BRH:5
+DA:15,5
+DA:16,5
+DA:17,5
+DA:18,5
+DA:21,5
+DA:22,5
+DA:23,1
+DA:24,1
+DA:27,4
+DA:28,4
+DA:29,4
+DA:30,4
+DA:31,4
+DA:32,4
+DA:33,4
+DA:34,4
+DA:36,4
+DA:37,1
+DA:39,3
+DA:40,3
+DA:41,3
+DA:42,3
+DA:43,3
+LH:23
+LF:23
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\DomainModel\Queries\ExampleQuery\ExampleQueryRequest.cs
+FN:6,System.Int32 MuffiNet.Backend.DomainModel.Queries.ExampleQuery.ExampleQueryRequest::get_Id()
+FNDA:0,System.Int32 MuffiNet.Backend.DomainModel.Queries.ExampleQuery.ExampleQueryRequest::get_Id()
+FNF:1
+FNH:1
+BRF:0
+BRH:0
+DA:7,9
+LH:1
+LF:1
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\DomainModel\Queries\ExampleQuery\ExampleQueryResponse.cs
+FN:6,MuffiNet.Backend.Models.ExampleEntityRecord MuffiNet.Backend.DomainModel.Queries.ExampleQuery.ExampleQueryResponse::get_ExampleEntity()
+FNDA:0,MuffiNet.Backend.Models.ExampleEntityRecord MuffiNet.Backend.DomainModel.Queries.ExampleQuery.ExampleQueryResponse::get_ExampleEntity()
+FNF:1
+FNH:1
+BRF:0
+BRH:0
+DA:7,4
+LH:1
+LF:1
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\DomainModel\Queries\ExampleQueryAll\ExampleQueryAllHandler.cs
+FN:13,System.Void MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll.ExampleQueryAllHandler::.ctor(MuffiNet.Backend.DomainModel.DomainModelTransaction)
+FN:19,System.Void MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll.ExampleQueryAllHandler/<Handle>d__2::MoveNext()
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll.ExampleQueryAllHandler::.ctor(MuffiNet.Backend.DomainModel.DomainModelTransaction)
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll.ExampleQueryAllHandler/<Handle>d__2::MoveNext()
+FNF:2
+FNH:2
+BRDA:16,16,28,-
+BRDA:16,16,29,2
+BRF:2
+BRH:1
+DA:14,2
+DA:15,2
+DA:16,2
+DA:17,2
+DA:20,2
+DA:21,2
+DA:22,2
+DA:23,2
+DA:24,2
+DA:25,2
+DA:26,2
+DA:27,2
+DA:28,2
+DA:30,2
+DA:31,2
+LH:15
+LF:15
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\DomainModel\Queries\ExampleQueryAll\ExampleQueryAllResponse.cs
+FN:7,System.Collections.Generic.IList`1<MuffiNet.Backend.Models.ExampleEntityRecord> MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll.ExampleQueryAllResponse::get_ExampleEntities()
+FN:8,System.Void MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll.ExampleQueryAllResponse::.ctor(System.Collections.Generic.IList`1<MuffiNet.Backend.Models.ExampleEntityRecord>)
+FNDA:0,System.Collections.Generic.IList`1<MuffiNet.Backend.Models.ExampleEntityRecord> MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll.ExampleQueryAllResponse::get_ExampleEntities()
+FNDA:0,System.Void MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll.ExampleQueryAllResponse::.ctor(System.Collections.Generic.IList`1<MuffiNet.Backend.Models.ExampleEntityRecord>)
+FNF:2
+FNH:1
+BRF:0
+BRH:0
+DA:8,0
+DA:9,2
+DA:10,2
+DA:11,2
+DA:12,2
+LH:4
+LF:5
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\Exceptions\ExampleEntityNotFoundException.cs
+FN:7,System.Void MuffiNet.Backend.Exceptions.ExampleEntityNotFoundException::.ctor(System.Int32)
+FNDA:0,System.Void MuffiNet.Backend.Exceptions.ExampleEntityNotFoundException::.ctor(System.Int32)
+FNF:1
+FNH:1
+BRF:0
+BRH:0
+DA:8,1
+DA:9,1
+DA:10,1
+LH:3
+LF:3
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\HubContracts\IExampleHubContract.cs
+FN:19,MuffiNet.Backend.Models.ExampleEntityRecord MuffiNet.Backend.HubContracts.SomeEntityCreatedMessage::get_Entity()
+FN:14,System.Void MuffiNet.Backend.HubContracts.SomeEntityCreatedMessage::.ctor(MuffiNet.Backend.Models.ExampleEntityRecord)
+FN:29,MuffiNet.Backend.Models.ExampleEntityRecord MuffiNet.Backend.HubContracts.SomeEntityUpdatedMessage::get_Entity()
+FN:24,System.Void MuffiNet.Backend.HubContracts.SomeEntityUpdatedMessage::.ctor(MuffiNet.Backend.Models.ExampleEntityRecord)
+FN:39,System.Int32 MuffiNet.Backend.HubContracts.SomeEntityDeletedMessage::get_EntityId()
+FN:34,System.Void MuffiNet.Backend.HubContracts.SomeEntityDeletedMessage::.ctor(System.Int32)
+FNDA:0,MuffiNet.Backend.Models.ExampleEntityRecord MuffiNet.Backend.HubContracts.SomeEntityCreatedMessage::get_Entity()
+FNDA:0,System.Void MuffiNet.Backend.HubContracts.SomeEntityCreatedMessage::.ctor(MuffiNet.Backend.Models.ExampleEntityRecord)
+FNDA:0,MuffiNet.Backend.Models.ExampleEntityRecord MuffiNet.Backend.HubContracts.SomeEntityUpdatedMessage::get_Entity()
+FNDA:0,System.Void MuffiNet.Backend.HubContracts.SomeEntityUpdatedMessage::.ctor(MuffiNet.Backend.Models.ExampleEntityRecord)
+FNDA:0,System.Int32 MuffiNet.Backend.HubContracts.SomeEntityDeletedMessage::get_EntityId()
+FNDA:0,System.Void MuffiNet.Backend.HubContracts.SomeEntityDeletedMessage::.ctor(System.Int32)
+FNF:6
+FNH:3
+BRF:0
+BRH:0
+DA:15,7
+DA:16,7
+DA:17,7
+DA:18,7
+DA:20,7
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:30,0
+DA:35,3
+DA:36,3
+DA:37,3
+DA:38,3
+DA:40,3
+LH:10
+LF:15
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\Models\ExampleEntity.cs
+FN:7,System.Int32 MuffiNet.Backend.Models.ExampleEntity::get_Id()
+FN:9,System.String MuffiNet.Backend.Models.ExampleEntity::get_Name()
+FN:11,System.String MuffiNet.Backend.Models.ExampleEntity::get_Description()
+FN:15,System.String MuffiNet.Backend.Models.ExampleEntity::get_Email()
+FN:19,System.String MuffiNet.Backend.Models.ExampleEntity::get_Phone()
+FNDA:0,System.Int32 MuffiNet.Backend.Models.ExampleEntity::get_Id()
+FNDA:0,System.String MuffiNet.Backend.Models.ExampleEntity::get_Name()
+FNDA:0,System.String MuffiNet.Backend.Models.ExampleEntity::get_Description()
+FNDA:0,System.String MuffiNet.Backend.Models.ExampleEntity::get_Email()
+FNDA:0,System.String MuffiNet.Backend.Models.ExampleEntity::get_Phone()
+FNF:5
+FNH:5
+BRF:0
+BRH:0
+DA:8,102
+DA:10,112
+DA:12,112
+DA:16,74
+DA:20,74
+LH:5
+LF:5
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\Models\ExampleEntityRecord.cs
+FN:3,System.Int32 MuffiNet.Backend.Models.ExampleEntityRecord::get_Id()
+FN:4,System.String MuffiNet.Backend.Models.ExampleEntityRecord::get_Name()
+FN:5,System.String MuffiNet.Backend.Models.ExampleEntityRecord::get_Description()
+FN:6,System.String MuffiNet.Backend.Models.ExampleEntityRecord::get_Email()
+FN:7,System.String MuffiNet.Backend.Models.ExampleEntityRecord::get_Phone()
+FN:2,System.Void MuffiNet.Backend.Models.ExampleEntityRecord::.ctor(System.Int32,System.String,System.String,System.String,System.String)
+FNDA:23,System.Int32 MuffiNet.Backend.Models.ExampleEntityRecord::get_Id()
+FNDA:23,System.String MuffiNet.Backend.Models.ExampleEntityRecord::get_Name()
+FNDA:23,System.String MuffiNet.Backend.Models.ExampleEntityRecord::get_Description()
+FNDA:23,System.String MuffiNet.Backend.Models.ExampleEntityRecord::get_Email()
+FNDA:23,System.String MuffiNet.Backend.Models.ExampleEntityRecord::get_Phone()
+FNDA:0,System.Void MuffiNet.Backend.Models.ExampleEntityRecord::.ctor(System.Int32,System.String,System.String,System.String,System.String)
+FNF:6
+FNH:5
+BRF:0
+BRH:0
+DA:3,23
+DA:4,23
+DA:5,23
+DA:6,23
+DA:7,23
+DA:8,23
+DA:9,23
+LH:7
+LF:7
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\Services\CurrentDateTimeService.cs
+FN:12,System.DateTime MuffiNet.Backend.Services.CurrentDateTimeService::CurrentDateTime()
+FNDA:0,System.DateTime MuffiNet.Backend.Services.CurrentDateTimeService::CurrentDateTime()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:13,0
+DA:14,0
+DA:15,0
+LH:0
+LF:3
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\Services\CurrentUserService.cs
+FN:19,System.Void MuffiNet.Backend.Services.CurrentUserService::.ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>)
+FN:26,System.Void MuffiNet.Backend.Services.CurrentUserService/<CurrentUser>d__3::MoveNext()
+FNDA:0,System.Void MuffiNet.Backend.Services.CurrentUserService::.ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>)
+FNDA:0,System.Void MuffiNet.Backend.Services.CurrentUserService/<CurrentUser>d__3::MoveNext()
+FNF:2
+FNH:0
+BRDA:22,22,30,-
+BRDA:22,22,31,-
+BRDA:23,23,32,-
+BRDA:23,23,33,-
+BRDA:28,28,34,-
+BRDA:28,28,35,-
+BRDA:29,29,36,-
+BRDA:29,29,37,-
+BRF:8
+BRH:0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:31,0
+DA:32,0
+LH:0
+LF:10
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.Backend\Services\ExampleService.cs
+FN:7,System.Void MuffiNet.Backend.Services.ExampleService/<PerformService>d__0::MoveNext()
+FNDA:0,System.Void MuffiNet.Backend.Services.ExampleService/<PerformService>d__0::MoveNext()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:8,0
+DA:9,0
+DA:11,0
+DA:12,0
+LH:0
+LF:4
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\IdentityHostingStartup.cs
+FN:8,System.Void MuffiNet.FrontendReact.Areas.Identity.IdentityHostingStartup::Configure(Microsoft.AspNetCore.Hosting.IWebHostBuilder)
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.IdentityHostingStartup::Configure(Microsoft.AspNetCore.Hosting.IWebHostBuilder)
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+LH:0
+LF:5
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\_ViewStart.cshtml
+FN:2,System.Void AspNetCore.Areas_Identity_Pages__ViewStart/<ExecuteAsync>d__0::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages__ViewStart/<ExecuteAsync>d__0::MoveNext()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:3,0
+LH:0
+LF:1
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\_StatusMessage.cshtml
+FN:2,System.Void AspNetCore.Areas_Identity_Pages_Account__StatusMessage/<ExecuteAsync>d__0::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account__StatusMessage/<ExecuteAsync>d__0::MoveNext()
+FNF:1
+FNH:0
+BRDA:3,3,38,-
+BRDA:3,3,39,-
+BRDA:5,5,40,-
+BRDA:5,5,41,-
+BRF:4
+BRH:0
+DA:3,0
+DA:4,0
+DA:5,0
+DA:6,0
+DA:8,0
+DA:10,0
+LH:0
+LF:6
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\AccessDenied.cshtml
+FN:3,System.Void AspNetCore.Areas_Identity_Pages_Account_AccessDenied/<ExecuteAsync>d__0::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_AccessDenied/<ExecuteAsync>d__0::MoveNext()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:4,0
+DA:8,0
+LH:0
+LF:2
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\AccessDenied.cshtml.cs
+FN:7,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.AccessDeniedModel::OnGet()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.AccessDeniedModel::OnGet()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:8,0
+DA:10,0
+LH:0
+LF:2
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\ConfirmEmail.cshtml
+FN:3,System.Void AspNetCore.Areas_Identity_Pages_Account_ConfirmEmail/<ExecuteAsync>d__0::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_ConfirmEmail/<ExecuteAsync>d__0::MoveNext()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:4,0
+DA:7,0
+LH:0
+LF:2
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\ConfirmEmail.cshtml.cs
+FN:22,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ConfirmEmailModel::get_StatusMessage()
+FN:16,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ConfirmEmailModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>)
+FN:25,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ConfirmEmailModel/<OnGetAsync>d__6::MoveNext()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ConfirmEmailModel::get_StatusMessage()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ConfirmEmailModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>)
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ConfirmEmailModel/<OnGetAsync>d__6::MoveNext()
+FNF:3
+FNH:0
+BRDA:27,27,42,-
+BRDA:27,27,43,-
+BRDA:27,27,44,-
+BRDA:27,27,45,-
+BRDA:33,33,46,-
+BRDA:33,33,47,-
+BRDA:40,40,48,-
+BRDA:40,40,49,-
+BRF:8
+BRH:0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:23,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+LH:0
+LF:18
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml
+FN:3,System.Void AspNetCore.Areas_Identity_Pages_Account_ConfirmEmailChange/<ExecuteAsync>d__8::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_ConfirmEmailChange/<ExecuteAsync>d__8::MoveNext()
+FNF:1
+FNH:0
+BRDA:8,8,50,-
+BRDA:8,8,51,-
+BRF:2
+BRH:0
+DA:4,0
+DA:7,0
+DA:8,0
+LH:0
+LF:3
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml.cs
+FN:24,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ConfirmEmailChangeModel::get_StatusMessage()
+FN:17,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ConfirmEmailChangeModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.AspNetCore.Identity.SignInManager`1<MuffiNet.Backend.Models.ApplicationUser>)
+FN:27,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ConfirmEmailChangeModel/<OnGetAsync>d__7::MoveNext()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ConfirmEmailChangeModel::get_StatusMessage()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ConfirmEmailChangeModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.AspNetCore.Identity.SignInManager`1<MuffiNet.Backend.Models.ApplicationUser>)
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ConfirmEmailChangeModel/<OnGetAsync>d__7::MoveNext()
+FNF:3
+FNH:0
+BRDA:29,29,52,-
+BRDA:29,29,53,-
+BRDA:29,29,54,-
+BRDA:29,29,55,-
+BRDA:29,29,56,-
+BRDA:29,29,57,-
+BRDA:35,35,58,-
+BRDA:35,35,59,-
+BRDA:42,42,60,-
+BRDA:42,42,61,-
+BRDA:51,51,62,-
+BRDA:51,51,63,-
+BRF:12
+BRH:0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:25,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+LH:0
+LF:29
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\ForgotPassword.cshtml
+FN:3,System.Void AspNetCore.Areas_Identity_Pages_Account_ForgotPassword/<ExecuteAsync>d__17::MoveNext()
+FN:12,System.Void AspNetCore.Areas_Identity_Pages_Account_ForgotPassword/<<ExecuteAsync>b__17_0>d::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_ForgotPassword/<ExecuteAsync>d__17::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_ForgotPassword/<<ExecuteAsync>b__17_0>d::MoveNext()
+FNF:2
+FNH:0
+BRDA:7,7,64,-
+BRDA:7,7,65,-
+BRDA:13,13,66,-
+BRDA:13,13,67,-
+BRDA:15,15,68,-
+BRDA:15,15,69,-
+BRDA:16,16,70,-
+BRDA:16,16,71,-
+BRDA:17,17,72,-
+BRDA:17,17,73,-
+BRF:10
+BRH:0
+DA:4,0
+DA:7,0
+DA:13,0
+DA:15,0
+DA:16,0
+DA:17,0
+LH:0
+LF:6
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\ForgotPassword.cshtml.cs
+FN:27,MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ForgotPasswordModel/InputModel MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ForgotPasswordModel::get_Input()
+FN:20,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ForgotPasswordModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.AspNetCore.Identity.UI.Services.IEmailSender)
+FN:33,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ForgotPasswordModel/InputModel::get_Email()
+FN:37,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ForgotPasswordModel/<OnPostAsync>d__8::MoveNext()
+FNDA:0,MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ForgotPasswordModel/InputModel MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ForgotPasswordModel::get_Input()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ForgotPasswordModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.AspNetCore.Identity.UI.Services.IEmailSender)
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ForgotPasswordModel/InputModel::get_Email()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ForgotPasswordModel/<OnPostAsync>d__8::MoveNext()
+FNF:4
+FNH:0
+BRDA:39,39,74,-
+BRDA:39,39,75,-
+BRDA:42,42,76,-
+BRDA:42,42,77,-
+BRDA:42,42,78,-
+BRDA:42,42,79,-
+BRF:6
+BRH:0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:28,0
+DA:34,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:45,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:63,0
+DA:66,0
+DA:67,0
+LH:0
+LF:28
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml
+FN:3,System.Void AspNetCore.Areas_Identity_Pages_Account_ForgotPasswordConfirmation/<ExecuteAsync>d__0::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_ForgotPasswordConfirmation/<ExecuteAsync>d__0::MoveNext()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:4,0
+DA:7,0
+LH:0
+LF:2
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml.cs
+FN:9,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ForgotPasswordConfirmation::OnGet()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ForgotPasswordConfirmation::OnGet()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:10,0
+DA:11,0
+LH:0
+LF:2
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Lockout.cshtml
+FN:3,System.Void AspNetCore.Areas_Identity_Pages_Account_Lockout/<ExecuteAsync>d__0::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Lockout/<ExecuteAsync>d__0::MoveNext()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:4,0
+DA:8,0
+LH:0
+LF:2
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Lockout.cshtml.cs
+FN:9,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LockoutModel::OnGet()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LockoutModel::OnGet()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:10,0
+DA:12,0
+LH:0
+LF:2
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Login.cshtml
+FN:4,System.Void AspNetCore.Areas_Identity_Pages_Account_Login/<ExecuteAsync>d__21::MoveNext()
+FN:28,System.Void AspNetCore.Areas_Identity_Pages_Account_Login/<<ExecuteAsync>b__21_15>d::MoveNext()
+FN:14,System.Void AspNetCore.Areas_Identity_Pages_Account_Login/<<ExecuteAsync>b__21_0>d::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Login/<ExecuteAsync>d__21::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Login/<<ExecuteAsync>b__21_15>d::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Login/<<ExecuteAsync>b__21_0>d::MoveNext()
+FNF:3
+FNH:0
+BRDA:8,8,80,-
+BRDA:8,8,81,-
+BRDA:29,29,82,-
+BRDA:29,29,83,-
+BRDA:15,15,84,-
+BRDA:15,15,85,-
+BRDA:17,17,86,-
+BRDA:17,17,87,-
+BRDA:18,18,88,-
+BRDA:18,18,89,-
+BRDA:19,19,90,-
+BRDA:19,19,91,-
+BRDA:22,22,92,-
+BRDA:22,22,93,-
+BRDA:23,23,94,-
+BRDA:23,23,95,-
+BRDA:24,24,96,-
+BRDA:24,24,97,-
+BRDA:28,28,98,-
+BRDA:28,28,99,-
+BRDA:28,28,100,-
+BRDA:28,28,101,-
+BRF:22
+BRH:0
+DA:5,0
+DA:8,0
+DA:15,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:28,0
+DA:29,0
+DA:30,0
+LH:0
+LF:12
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Login.cshtml.cs
+FN:31,MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel/InputModel MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel::get_Input()
+FN:33,System.Collections.Generic.IList`1<Microsoft.AspNetCore.Authentication.AuthenticationScheme> MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel::get_ExternalLogins()
+FN:35,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel::get_ReturnUrl()
+FN:38,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel::get_ErrorMessage()
+FN:21,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel::.ctor(Microsoft.AspNetCore.Identity.SignInManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.Extensions.Logging.ILogger`1<MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel>,Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>)
+FN:44,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel/InputModel::get_Email()
+FN:48,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel/InputModel::get_Password()
+FN:51,System.Boolean MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel/InputModel::get_RememberMe()
+FN:55,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel/<OnGetAsync>d__21::MoveNext()
+FN:72,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel/<OnPostAsync>d__22::MoveNext()
+FNDA:0,MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel/InputModel MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel::get_Input()
+FNDA:0,System.Collections.Generic.IList`1<Microsoft.AspNetCore.Authentication.AuthenticationScheme> MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel::get_ExternalLogins()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel::get_ReturnUrl()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel::get_ErrorMessage()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel::.ctor(Microsoft.AspNetCore.Identity.SignInManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.Extensions.Logging.ILogger`1<MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel>,Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>)
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel/InputModel::get_Email()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel/InputModel::get_Password()
+FNDA:0,System.Boolean MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel/InputModel::get_RememberMe()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel/<OnGetAsync>d__21::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginModel/<OnPostAsync>d__22::MoveNext()
+FNF:10
+FNH:0
+BRDA:57,57,102,-
+BRDA:57,57,103,-
+BRDA:62,62,104,-
+BRDA:62,62,105,-
+BRDA:74,74,106,-
+BRDA:74,74,107,-
+BRDA:78,78,108,-
+BRDA:78,78,109,-
+BRDA:83,83,110,-
+BRDA:83,83,111,-
+BRDA:88,88,112,-
+BRDA:88,88,113,-
+BRDA:92,92,114,-
+BRDA:92,92,115,-
+BRF:14
+BRH:0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:32,0
+DA:34,0
+DA:36,0
+DA:39,0
+DA:45,0
+DA:49,0
+DA:52,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:62,0
+DA:65,0
+DA:67,0
+DA:69,0
+DA:70,0
+DA:73,0
+DA:74,0
+DA:76,0
+DA:78,0
+DA:79,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:105,0
+DA:106,0
+LH:0
+LF:47
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\LoginWithRecoveryCode.cshtml
+FN:3,System.Void AspNetCore.Areas_Identity_Pages_Account_LoginWithRecoveryCode/<ExecuteAsync>d__18::MoveNext()
+FN:15,System.Void AspNetCore.Areas_Identity_Pages_Account_LoginWithRecoveryCode/<<ExecuteAsync>b__18_0>d::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_LoginWithRecoveryCode/<ExecuteAsync>d__18::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_LoginWithRecoveryCode/<<ExecuteAsync>b__18_0>d::MoveNext()
+FNF:2
+FNH:0
+BRDA:7,7,116,-
+BRDA:7,7,117,-
+BRDA:16,16,118,-
+BRDA:16,16,119,-
+BRDA:18,18,120,-
+BRDA:18,18,121,-
+BRDA:19,19,122,-
+BRDA:19,19,123,-
+BRDA:20,20,124,-
+BRDA:20,20,125,-
+BRF:10
+BRH:0
+DA:4,0
+DA:7,0
+DA:16,0
+DA:18,0
+DA:19,0
+DA:20,0
+LH:0
+LF:6
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\LoginWithRecoveryCode.cshtml.cs
+FN:25,MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel/InputModel MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel::get_Input()
+FN:27,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel::get_ReturnUrl()
+FN:18,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel::.ctor(Microsoft.AspNetCore.Identity.SignInManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.Extensions.Logging.ILogger`1<MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel>)
+FN:35,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel/InputModel::get_RecoveryCode()
+FN:39,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel/<OnGetAsync>d__12::MoveNext()
+FN:53,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel/<OnPostAsync>d__13::MoveNext()
+FNDA:0,MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel/InputModel MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel::get_Input()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel::get_ReturnUrl()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel::.ctor(Microsoft.AspNetCore.Identity.SignInManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.Extensions.Logging.ILogger`1<MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel>)
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel/InputModel::get_RecoveryCode()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel/<OnGetAsync>d__12::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel/<OnPostAsync>d__13::MoveNext()
+FNF:6
+FNH:0
+BRDA:43,43,126,-
+BRDA:43,43,127,-
+BRDA:55,55,128,-
+BRDA:55,55,129,-
+BRDA:61,61,130,-
+BRDA:61,61,131,-
+BRDA:70,70,132,-
+BRDA:70,70,133,-
+BRDA:73,73,134,-
+BRDA:73,73,135,-
+BRDA:75,75,136,-
+BRDA:75,75,137,-
+BRF:12
+BRH:0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:26,0
+DA:28,0
+DA:36,0
+DA:40,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:48,0
+DA:50,0
+DA:51,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:66,0
+DA:68,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:86,0
+LH:0
+LF:39
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Logout.cshtml
+FN:3,System.Void AspNetCore.Areas_Identity_Pages_Account_Logout/<ExecuteAsync>d__12::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Logout/<ExecuteAsync>d__12::MoveNext()
+FNF:1
+FNH:0
+BRDA:10,10,138,-
+BRDA:10,10,139,-
+BRDA:11,11,140,-
+BRDA:11,11,141,-
+BRDA:12,12,142,-
+BRDA:12,12,143,-
+BRF:6
+BRH:0
+DA:4,0
+DA:8,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:15,0
+DA:17,0
+DA:19,0
+LH:0
+LF:8
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Logout.cshtml.cs
+FN:23,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LogoutModel::OnGet()
+FN:16,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LogoutModel::.ctor(Microsoft.AspNetCore.Identity.SignInManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.Extensions.Logging.ILogger`1<MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LogoutModel>)
+FN:27,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LogoutModel/<OnPost>d__4::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LogoutModel::OnGet()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LogoutModel::.ctor(Microsoft.AspNetCore.Identity.SignInManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.Extensions.Logging.ILogger`1<MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LogoutModel>)
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.LogoutModel/<OnPost>d__4::MoveNext()
+FNF:3
+FNH:0
+BRDA:31,31,144,-
+BRDA:31,31,145,-
+BRF:2
+BRH:0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:24,0
+DA:25,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:36,0
+DA:37,0
+DA:39,0
+LH:0
+LF:16
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\_Layout.cshtml
+FN:1,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage__Layout/<ExecuteAsync>d__8::MoveNext()
+FN:27,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage__Layout/<<ExecuteAsync>b__8_1>d::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage__Layout/<ExecuteAsync>d__8::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage__Layout/<<ExecuteAsync>b__8_1>d::MoveNext()
+FNF:2
+FNH:0
+BRDA:2,2,146,-
+BRDA:2,2,147,-
+BRDA:9,9,148,-
+BRDA:9,9,149,-
+BRF:4
+BRH:0
+DA:2,0
+DA:3,0
+DA:4,0
+DA:5,0
+DA:7,0
+DA:8,0
+DA:9,0
+DA:22,0
+DA:28,0
+LH:0
+LF:9
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml
+FN:2,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage__ManageNav/<ExecuteAsync>d__13::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage__ManageNav/<ExecuteAsync>d__13::MoveNext()
+FNF:1
+FNH:0
+BRDA:6,6,150,-
+BRDA:6,6,151,-
+BRDA:7,7,152,-
+BRDA:7,7,153,-
+BRDA:8,8,154,-
+BRDA:8,8,155,-
+BRF:6
+BRH:0
+DA:3,0
+DA:6,0
+DA:7,0
+DA:8,0
+LH:0
+LF:4
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml
+FN:2,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage__StatusMessage/<ExecuteAsync>d__0::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage__StatusMessage/<ExecuteAsync>d__0::MoveNext()
+FNF:1
+FNH:0
+BRDA:3,3,156,-
+BRDA:3,3,157,-
+BRDA:5,5,158,-
+BRDA:5,5,159,-
+BRF:4
+BRH:0
+DA:3,0
+DA:4,0
+DA:5,0
+DA:6,0
+DA:8,0
+DA:10,0
+LH:0
+LF:6
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml
+FN:3,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_ChangePassword/<ExecuteAsync>d__19::MoveNext()
+FN:12,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_ChangePassword/<<ExecuteAsync>b__19_2>d::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_ChangePassword/<ExecuteAsync>d__19::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_ChangePassword/<<ExecuteAsync>b__19_2>d::MoveNext()
+FNF:2
+FNH:0
+BRDA:9,9,160,-
+BRDA:9,9,161,-
+BRDA:9,9,162,-
+BRDA:9,9,163,-
+BRDA:13,13,164,-
+BRDA:13,13,165,-
+BRDA:15,15,166,-
+BRDA:15,15,167,-
+BRDA:16,16,168,-
+BRDA:16,16,169,-
+BRDA:17,17,170,-
+BRDA:17,17,171,-
+BRDA:20,20,172,-
+BRDA:20,20,173,-
+BRDA:21,21,174,-
+BRDA:21,21,175,-
+BRDA:22,22,176,-
+BRDA:22,22,177,-
+BRDA:25,25,178,-
+BRDA:25,25,179,-
+BRDA:26,26,180,-
+BRDA:26,26,181,-
+BRDA:27,27,182,-
+BRDA:27,27,183,-
+BRF:24
+BRH:0
+DA:4,0
+DA:5,0
+DA:8,0
+DA:9,0
+DA:13,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:25,0
+DA:26,0
+DA:27,0
+LH:0
+LF:14
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml.cs
+FN:26,MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel/InputModel MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel::get_Input()
+FN:29,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel::get_StatusMessage()
+FN:15,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.AspNetCore.Identity.SignInManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.Extensions.Logging.ILogger`1<MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel>)
+FN:36,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel/InputModel::get_OldPassword()
+FN:42,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel/InputModel::get_NewPassword()
+FN:47,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel/InputModel::get_ConfirmPassword()
+FN:51,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel/<OnGetAsync>d__13::MoveNext()
+FN:68,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel/<OnPostAsync>d__14::MoveNext()
+FNDA:0,MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel/InputModel MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel::get_Input()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel::get_StatusMessage()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.AspNetCore.Identity.SignInManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.Extensions.Logging.ILogger`1<MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel>)
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel/InputModel::get_OldPassword()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel/InputModel::get_NewPassword()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel/InputModel::get_ConfirmPassword()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel/<OnGetAsync>d__13::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ChangePasswordModel/<OnPostAsync>d__14::MoveNext()
+FNF:8
+FNH:0
+BRDA:54,54,184,-
+BRDA:54,54,185,-
+BRDA:60,60,186,-
+BRDA:60,60,187,-
+BRDA:70,70,188,-
+BRDA:70,70,189,-
+BRDA:76,76,190,-
+BRDA:76,76,191,-
+BRDA:82,82,192,-
+BRDA:82,82,193,-
+BRDA:84,84,194,-
+BRDA:84,84,195,-
+BRF:12
+BRH:0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:27,0
+DA:30,0
+DA:37,0
+DA:43,0
+DA:48,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:65,0
+DA:66,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:95,0
+DA:96,0
+LH:0
+LF:46
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\Email.cshtml
+FN:3,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_Email/<ExecuteAsync>d__27::MoveNext()
+FN:12,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_Email/<<ExecuteAsync>b__27_1>d::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_Email/<ExecuteAsync>d__27::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_Email/<<ExecuteAsync>b__27_1>d::MoveNext()
+FNF:2
+FNH:0
+BRDA:9,9,196,-
+BRDA:9,9,197,-
+BRDA:9,9,198,-
+BRDA:9,9,199,-
+BRDA:13,13,200,-
+BRDA:13,13,201,-
+BRDA:15,15,202,-
+BRDA:15,15,203,-
+BRDA:16,16,204,-
+BRDA:16,16,205,-
+BRDA:19,19,206,-
+BRDA:19,19,207,-
+BRDA:27,27,208,-
+BRDA:27,27,209,-
+BRDA:27,27,210,-
+BRDA:27,27,211,-
+BRDA:32,32,212,-
+BRDA:32,32,213,-
+BRDA:33,33,214,-
+BRDA:33,33,215,-
+BRDA:34,34,216,-
+BRDA:34,34,217,-
+BRDA:34,34,218,-
+BRDA:34,34,219,-
+BRF:24
+BRH:0
+DA:4,0
+DA:5,0
+DA:8,0
+DA:9,0
+DA:13,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:19,0
+DA:24,0
+DA:26,0
+DA:27,0
+DA:29,0
+DA:32,0
+DA:33,0
+DA:34,0
+LH:0
+LF:16
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\Email.cshtml.cs
+FN:29,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel::get_Username()
+FN:31,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel::get_Email()
+FN:33,System.Boolean MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel::get_IsEmailConfirmed()
+FN:36,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel::get_StatusMessage()
+FN:39,MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel/InputModel MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel::get_Input()
+FN:19,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.AspNetCore.Identity.SignInManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.AspNetCore.Identity.UI.Services.IEmailSender)
+FN:46,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel/InputModel::get_NewEmail()
+FN:50,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel/<LoadAsync>d__25::MoveNext()
+FN:63,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel/<OnGetAsync>d__26::MoveNext()
+FN:75,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel/<OnPostChangeEmailAsync>d__27::MoveNext()
+FN:113,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel/<OnPostSendVerificationEmailAsync>d__28::MoveNext()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel::get_Username()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel::get_Email()
+FNDA:0,System.Boolean MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel::get_IsEmailConfirmed()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel::get_StatusMessage()
+FNDA:0,MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel/InputModel MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel::get_Input()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.AspNetCore.Identity.SignInManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.AspNetCore.Identity.UI.Services.IEmailSender)
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel/InputModel::get_NewEmail()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel/<LoadAsync>d__25::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel/<OnGetAsync>d__26::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel/<OnPostChangeEmailAsync>d__27::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.EmailModel/<OnPostSendVerificationEmailAsync>d__28::MoveNext()
+FNF:11
+FNH:0
+BRDA:66,66,220,-
+BRDA:66,66,221,-
+BRDA:78,78,222,-
+BRDA:78,78,223,-
+BRDA:83,83,224,-
+BRDA:83,83,225,-
+BRDA:90,90,226,-
+BRDA:90,90,227,-
+BRDA:116,116,228,-
+BRDA:116,116,229,-
+BRDA:121,121,230,-
+BRDA:121,121,231,-
+BRF:12
+BRH:0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:30,0
+DA:32,0
+DA:34,0
+DA:37,0
+DA:40,0
+DA:47,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:60,0
+DA:61,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:105,0
+DA:106,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:141,0
+DA:142,0
+DA:143,0
+LH:0
+LF:86
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\GenerateRecoveryCodes.cshtml
+FN:3,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_GenerateRecoveryCodes/<ExecuteAsync>d__14::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_GenerateRecoveryCodes/<ExecuteAsync>d__14::MoveNext()
+FNF:1
+FNH:0
+BRDA:8,8,232,-
+BRDA:8,8,233,-
+BRDA:9,9,234,-
+BRDA:9,9,235,-
+BRDA:9,9,236,-
+BRDA:9,9,237,-
+BRF:6
+BRH:0
+DA:4,0
+DA:5,0
+DA:8,0
+DA:9,0
+LH:0
+LF:4
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\GenerateRecoveryCodes.cshtml.cs
+FN:25,System.String[] MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.GenerateRecoveryCodesModel::get_RecoveryCodes()
+FN:28,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.GenerateRecoveryCodesModel::get_StatusMessage()
+FN:16,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.GenerateRecoveryCodesModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.Extensions.Logging.ILogger`1<MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.GenerateRecoveryCodesModel>)
+FN:31,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.GenerateRecoveryCodesModel/<OnGetAsync>d__11::MoveNext()
+FN:49,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.GenerateRecoveryCodesModel/<OnPostAsync>d__12::MoveNext()
+FNDA:0,System.String[] MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.GenerateRecoveryCodesModel::get_RecoveryCodes()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.GenerateRecoveryCodesModel::get_StatusMessage()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.GenerateRecoveryCodesModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.Extensions.Logging.ILogger`1<MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.GenerateRecoveryCodesModel>)
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.GenerateRecoveryCodesModel/<OnGetAsync>d__11::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.GenerateRecoveryCodesModel/<OnPostAsync>d__12::MoveNext()
+FNF:5
+FNH:0
+BRDA:34,34,238,-
+BRDA:34,34,239,-
+BRDA:40,40,240,-
+BRDA:40,40,241,-
+BRDA:52,52,242,-
+BRDA:52,52,243,-
+BRDA:59,59,244,-
+BRDA:59,59,245,-
+BRF:8
+BRH:0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:26,0
+DA:29,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:46,0
+DA:47,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:64,0
+DA:65,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+LH:0
+LF:37
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\Index.cshtml
+FN:3,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_Index/<ExecuteAsync>d__19::MoveNext()
+FN:12,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_Index/<<ExecuteAsync>b__19_1>d::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_Index/<ExecuteAsync>d__19::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_Index/<<ExecuteAsync>b__19_1>d::MoveNext()
+FNF:2
+FNH:0
+BRDA:9,9,246,-
+BRDA:9,9,247,-
+BRDA:9,9,248,-
+BRDA:9,9,249,-
+BRDA:13,13,250,-
+BRDA:13,13,251,-
+BRDA:15,15,252,-
+BRDA:15,15,253,-
+BRDA:16,16,254,-
+BRDA:16,16,255,-
+BRDA:19,19,256,-
+BRDA:19,19,257,-
+BRDA:20,20,258,-
+BRDA:20,20,259,-
+BRDA:21,21,260,-
+BRDA:21,21,261,-
+BRF:16
+BRH:0
+DA:4,0
+DA:5,0
+DA:8,0
+DA:9,0
+DA:13,0
+DA:15,0
+DA:16,0
+DA:19,0
+DA:20,0
+DA:21,0
+LH:0
+LF:10
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\Index.cshtml.cs
+FN:22,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel::get_Username()
+FN:25,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel::get_StatusMessage()
+FN:28,MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel/InputModel MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel::get_Input()
+FN:14,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.AspNetCore.Identity.SignInManager`1<MuffiNet.Backend.Models.ApplicationUser>)
+FN:34,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel/InputModel::get_PhoneNumber()
+FN:38,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel/InputModel::get_FullName()
+FN:42,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel/<LoadAsync>d__16::MoveNext()
+FN:57,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel/<OnGetAsync>d__17::MoveNext()
+FN:69,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel/<OnPostAsync>d__18::MoveNext()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel::get_Username()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel::get_StatusMessage()
+FNDA:0,MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel/InputModel MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel::get_Input()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.AspNetCore.Identity.SignInManager`1<MuffiNet.Backend.Models.ApplicationUser>)
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel/InputModel::get_PhoneNumber()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel/InputModel::get_FullName()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel/<LoadAsync>d__16::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel/<OnGetAsync>d__17::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.IndexModel/<OnPostAsync>d__18::MoveNext()
+FNF:9
+FNH:0
+BRDA:60,60,262,-
+BRDA:60,60,263,-
+BRDA:72,72,264,-
+BRDA:72,72,265,-
+BRDA:77,77,266,-
+BRDA:77,77,267,-
+BRDA:84,84,268,-
+BRDA:84,84,269,-
+BRDA:87,87,270,-
+BRDA:87,87,271,-
+BRF:10
+BRH:0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:23,0
+DA:26,0
+DA:29,0
+DA:35,0
+DA:39,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:47,0
+DA:49,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:92,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+LH:0
+LF:52
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\ManageNavPages.cs
+FN:7,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::get_Index()
+FN:9,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::get_Email()
+FN:11,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::get_ChangePassword()
+FN:13,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::get_DownloadPersonalData()
+FN:15,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::get_DeletePersonalData()
+FN:17,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::get_ExternalLogins()
+FN:19,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::get_PersonalData()
+FN:21,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::get_TwoFactorAuthentication()
+FN:23,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::IndexNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)
+FN:25,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::EmailNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)
+FN:27,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::ChangePasswordNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)
+FN:29,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::DownloadPersonalDataNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)
+FN:31,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::DeletePersonalDataNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)
+FN:33,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::ExternalLoginsNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)
+FN:35,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::PersonalDataNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)
+FN:37,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::TwoFactorAuthenticationNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)
+FN:40,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::PageNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext,System.String)
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::get_Index()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::get_Email()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::get_ChangePassword()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::get_DownloadPersonalData()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::get_DeletePersonalData()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::get_ExternalLogins()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::get_PersonalData()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::get_TwoFactorAuthentication()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::IndexNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::EmailNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::ChangePasswordNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::DownloadPersonalDataNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::DeletePersonalDataNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::ExternalLoginsNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::PersonalDataNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::TwoFactorAuthenticationNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ManageNavPages::PageNavClass(Microsoft.AspNetCore.Mvc.Rendering.ViewContext,System.String)
+FNF:17
+FNH:0
+BRDA:42,42,272,-
+BRDA:42,42,273,-
+BRDA:44,44,274,-
+BRDA:44,44,275,-
+BRF:4
+BRH:0
+DA:8,0
+DA:10,0
+DA:12,0
+DA:14,0
+DA:16,0
+DA:18,0
+DA:20,0
+DA:22,0
+DA:24,0
+DA:26,0
+DA:28,0
+DA:30,0
+DA:32,0
+DA:34,0
+DA:36,0
+DA:38,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+LH:0
+LF:21
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\PersonalData.cshtml
+FN:3,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_PersonalData/<ExecuteAsync>d__18::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_PersonalData/<ExecuteAsync>d__18::MoveNext()
+FNF:1
+FNH:0
+BRDA:8,8,276,-
+BRDA:8,8,277,-
+BRDA:8,8,278,-
+BRDA:8,8,279,-
+BRF:4
+BRH:0
+DA:4,0
+DA:5,0
+DA:8,0
+LH:0
+LF:3
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\PersonalData.cshtml.cs
+FN:14,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.PersonalDataModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.Extensions.Logging.ILogger`1<MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.PersonalDataModel>)
+FN:23,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.PersonalDataModel/<OnGet>d__3::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.PersonalDataModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.Extensions.Logging.ILogger`1<MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.PersonalDataModel>)
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.PersonalDataModel/<OnGet>d__3::MoveNext()
+FNF:2
+FNH:0
+BRDA:26,26,280,-
+BRDA:26,26,281,-
+BRF:2
+BRH:0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:31,0
+DA:32,0
+LH:0
+LF:14
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\SetPassword.cshtml
+FN:3,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_SetPassword/<ExecuteAsync>d__19::MoveNext()
+FN:16,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_SetPassword/<<ExecuteAsync>b__19_2>d::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_SetPassword/<ExecuteAsync>d__19::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_SetPassword/<<ExecuteAsync>b__19_2>d::MoveNext()
+FNF:2
+FNH:0
+BRDA:9,9,282,-
+BRDA:9,9,283,-
+BRDA:9,9,284,-
+BRDA:9,9,285,-
+BRDA:17,17,286,-
+BRDA:17,17,287,-
+BRDA:19,19,288,-
+BRDA:19,19,289,-
+BRDA:20,20,290,-
+BRDA:20,20,291,-
+BRDA:21,21,292,-
+BRDA:21,21,293,-
+BRDA:24,24,294,-
+BRDA:24,24,295,-
+BRDA:25,25,296,-
+BRDA:25,25,297,-
+BRDA:26,26,298,-
+BRDA:26,26,299,-
+BRF:18
+BRH:0
+DA:4,0
+DA:5,0
+DA:9,0
+DA:17,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:24,0
+DA:25,0
+DA:26,0
+LH:0
+LF:10
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\SetPassword.cshtml.cs
+FN:23,MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.SetPasswordModel/InputModel MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.SetPasswordModel::get_Input()
+FN:26,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.SetPasswordModel::get_StatusMessage()
+FN:14,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.SetPasswordModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.AspNetCore.Identity.SignInManager`1<MuffiNet.Backend.Models.ApplicationUser>)
+FN:34,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.SetPasswordModel/InputModel::get_NewPassword()
+FN:39,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.SetPasswordModel/InputModel::get_ConfirmPassword()
+FN:43,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.SetPasswordModel/<OnGetAsync>d__12::MoveNext()
+FN:61,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.SetPasswordModel/<OnPostAsync>d__13::MoveNext()
+FNDA:0,MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.SetPasswordModel/InputModel MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.SetPasswordModel::get_Input()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.SetPasswordModel::get_StatusMessage()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.SetPasswordModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>,Microsoft.AspNetCore.Identity.SignInManager`1<MuffiNet.Backend.Models.ApplicationUser>)
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.SetPasswordModel/InputModel::get_NewPassword()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.SetPasswordModel/InputModel::get_ConfirmPassword()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.SetPasswordModel/<OnGetAsync>d__12::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.SetPasswordModel/<OnPostAsync>d__13::MoveNext()
+FNF:7
+FNH:0
+BRDA:46,46,300,-
+BRDA:46,46,301,-
+BRDA:53,53,302,-
+BRDA:53,53,303,-
+BRDA:63,63,304,-
+BRDA:63,63,305,-
+BRDA:69,69,306,-
+BRDA:69,69,307,-
+BRDA:75,75,308,-
+BRDA:75,75,309,-
+BRDA:77,77,310,-
+BRDA:77,77,311,-
+BRF:12
+BRH:0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:24,0
+DA:27,0
+DA:35,0
+DA:40,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:51,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:58,0
+DA:59,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:84,0
+DA:85,0
+DA:87,0
+DA:88,0
+LH:0
+LF:42
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\ShowRecoveryCodes.cshtml
+FN:3,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_ShowRecoveryCodes/<ExecuteAsync>d__8::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_Manage_ShowRecoveryCodes/<ExecuteAsync>d__8::MoveNext()
+FNF:1
+FNH:0
+BRDA:8,8,312,-
+BRDA:8,8,313,-
+BRDA:20,20,314,-
+BRDA:20,20,315,-
+BRF:4
+BRH:0
+DA:4,0
+DA:5,0
+DA:8,0
+DA:9,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+LH:0
+LF:8
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\Manage\ShowRecoveryCodes.cshtml.cs
+FN:8,System.String[] MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ShowRecoveryCodesModel::get_RecoveryCodes()
+FN:11,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ShowRecoveryCodesModel::get_StatusMessage()
+FN:14,Microsoft.AspNetCore.Mvc.IActionResult MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ShowRecoveryCodesModel::OnGet()
+FNDA:0,System.String[] MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ShowRecoveryCodesModel::get_RecoveryCodes()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ShowRecoveryCodesModel::get_StatusMessage()
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage.ShowRecoveryCodesModel::OnGet()
+FNF:3
+FNH:0
+BRDA:16,16,316,-
+BRDA:16,16,317,-
+BRDA:16,16,318,-
+BRDA:16,16,319,-
+BRF:4
+BRH:0
+DA:9,0
+DA:12,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:21,0
+DA:22,0
+LH:0
+LF:8
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\ResetPassword.cshtml
+FN:3,System.Void AspNetCore.Areas_Identity_Pages_Account_ResetPassword/<ExecuteAsync>d__18::MoveNext()
+FN:12,System.Void AspNetCore.Areas_Identity_Pages_Account_ResetPassword/<<ExecuteAsync>b__18_0>d::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_ResetPassword/<ExecuteAsync>d__18::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_ResetPassword/<<ExecuteAsync>b__18_0>d::MoveNext()
+FNF:2
+FNH:0
+BRDA:7,7,320,-
+BRDA:7,7,321,-
+BRDA:13,13,322,-
+BRDA:13,13,323,-
+BRDA:14,14,324,-
+BRDA:14,14,325,-
+BRDA:16,16,326,-
+BRDA:16,16,327,-
+BRDA:17,17,328,-
+BRDA:17,17,329,-
+BRDA:18,18,330,-
+BRDA:18,18,331,-
+BRDA:21,21,332,-
+BRDA:21,21,333,-
+BRDA:22,22,334,-
+BRDA:22,22,335,-
+BRDA:23,23,336,-
+BRDA:23,23,337,-
+BRDA:26,26,338,-
+BRDA:26,26,339,-
+BRDA:27,27,340,-
+BRDA:27,27,341,-
+BRDA:28,28,342,-
+BRDA:28,28,343,-
+BRF:24
+BRH:0
+DA:4,0
+DA:7,0
+DA:13,0
+DA:14,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:26,0
+DA:27,0
+DA:28,0
+LH:0
+LF:13
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\ResetPassword.cshtml.cs
+FN:23,MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel/InputModel MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel::get_Input()
+FN:45,Microsoft.AspNetCore.Mvc.IActionResult MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel::OnGet(System.String)
+FN:17,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>)
+FN:29,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel/InputModel::get_Email()
+FN:34,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel/InputModel::get_Password()
+FN:39,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel/InputModel::get_ConfirmPassword()
+FN:41,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel/InputModel::get_Code()
+FN:61,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel/<OnPostAsync>d__8::MoveNext()
+FNDA:0,MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel/InputModel MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel::get_Input()
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel::OnGet(System.String)
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<MuffiNet.Backend.Models.ApplicationUser>)
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel/InputModel::get_Email()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel/InputModel::get_Password()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel/InputModel::get_ConfirmPassword()
+FNDA:0,System.String MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel/InputModel::get_Code()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordModel/<OnPostAsync>d__8::MoveNext()
+FNF:8
+FNH:0
+BRDA:47,47,344,-
+BRDA:47,47,345,-
+BRDA:63,63,346,-
+BRDA:63,63,347,-
+BRDA:69,69,348,-
+BRDA:69,69,349,-
+BRDA:76,76,350,-
+BRDA:76,76,351,-
+BRDA:81,81,352,-
+BRDA:81,81,353,-
+BRF:10
+BRH:0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:24,0
+DA:30,0
+DA:35,0
+DA:40,0
+DA:42,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:59,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:72,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+LH:0
+LF:38
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml
+FN:3,System.Void AspNetCore.Areas_Identity_Pages_Account_ResetPasswordConfirmation/<ExecuteAsync>d__8::MoveNext()
+FNDA:0,System.Void AspNetCore.Areas_Identity_Pages_Account_ResetPasswordConfirmation/<ExecuteAsync>d__8::MoveNext()
+FNF:1
+FNH:0
+BRDA:7,7,354,-
+BRDA:7,7,355,-
+BRF:2
+BRH:0
+DA:4,0
+DA:7,0
+LH:0
+LF:2
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml.cs
+FN:9,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordConfirmationModel::OnGet()
+FNDA:0,System.Void MuffiNet.FrontendReact.Areas.Identity.Pages.Account.ResetPasswordConfirmationModel::OnGet()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:10,0
+DA:12,0
+LH:0
+LF:2
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\ConfigureJwtBearerOptions.cs
+FN:9,System.Void MuffiNet.FrontendReact.ConfigureJwtBearerOptions::PostConfigure(System.String,Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions)
+FNDA:0,System.Void MuffiNet.FrontendReact.ConfigureJwtBearerOptions::PostConfigure(System.String,Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions)
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+LH:0
+LF:19
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Controllers\AuthorizedExampleController.cs
+FN:18,System.Void MuffiNet.FrontendReact.Controllers.AuthorizedExampleController/<ExampleQuery>d__0::MoveNext()
+FN:24,System.Void MuffiNet.FrontendReact.Controllers.AuthorizedExampleController/<ExampleQueryAll>d__1::MoveNext()
+FN:30,System.Void MuffiNet.FrontendReact.Controllers.AuthorizedExampleController/<ExampleCreateCommand>d__2::MoveNext()
+FN:36,System.Void MuffiNet.FrontendReact.Controllers.AuthorizedExampleController/<ExampleDeleteCommand>d__3::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Controllers.AuthorizedExampleController/<ExampleQuery>d__0::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Controllers.AuthorizedExampleController/<ExampleQueryAll>d__1::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Controllers.AuthorizedExampleController/<ExampleCreateCommand>d__2::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Controllers.AuthorizedExampleController/<ExampleDeleteCommand>d__3::MoveNext()
+FNF:4
+FNH:3
+BRF:0
+BRH:0
+DA:19,1
+DA:20,1
+DA:21,1
+DA:25,0
+DA:26,0
+DA:27,0
+DA:31,1
+DA:32,1
+DA:33,1
+DA:37,1
+DA:38,1
+DA:39,1
+LH:9
+LF:12
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Controllers\ExampleController.cs
+FN:17,System.Void MuffiNet.FrontendReact.Controllers.ExampleController/<ExampleQuery>d__0::MoveNext()
+FN:23,System.Void MuffiNet.FrontendReact.Controllers.ExampleController/<ExampleQueryAll>d__1::MoveNext()
+FN:29,System.Void MuffiNet.FrontendReact.Controllers.ExampleController/<ExampleCreateCommand>d__2::MoveNext()
+FN:35,System.Void MuffiNet.FrontendReact.Controllers.ExampleController/<ExampleDeleteCommand>d__3::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Controllers.ExampleController/<ExampleQuery>d__0::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Controllers.ExampleController/<ExampleQueryAll>d__1::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Controllers.ExampleController/<ExampleCreateCommand>d__2::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Controllers.ExampleController/<ExampleDeleteCommand>d__3::MoveNext()
+FNF:4
+FNH:4
+BRF:0
+BRH:0
+DA:18,1
+DA:19,1
+DA:20,1
+DA:24,2
+DA:25,2
+DA:26,2
+DA:30,1
+DA:31,1
+DA:32,1
+DA:36,1
+DA:37,1
+DA:38,1
+LH:12
+LF:12
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Controllers\OidcConfigurationController.cs
+FN:16,Microsoft.AspNetCore.ApiAuthorization.IdentityServer.IClientRequestParametersProvider MuffiNet.FrontendReact.Controllers.OidcConfigurationController::get_ClientRequestParametersProvider()
+FN:20,Microsoft.AspNetCore.Mvc.IActionResult MuffiNet.FrontendReact.Controllers.OidcConfigurationController::GetClientRequestParameters(System.String)
+FN:10,System.Void MuffiNet.FrontendReact.Controllers.OidcConfigurationController::.ctor(Microsoft.AspNetCore.ApiAuthorization.IdentityServer.IClientRequestParametersProvider,Microsoft.Extensions.Logging.ILogger`1<MuffiNet.FrontendReact.Controllers.OidcConfigurationController>)
+FNDA:0,Microsoft.AspNetCore.ApiAuthorization.IdentityServer.IClientRequestParametersProvider MuffiNet.FrontendReact.Controllers.OidcConfigurationController::get_ClientRequestParametersProvider()
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult MuffiNet.FrontendReact.Controllers.OidcConfigurationController::GetClientRequestParameters(System.String)
+FNDA:0,System.Void MuffiNet.FrontendReact.Controllers.OidcConfigurationController::.ctor(Microsoft.AspNetCore.ApiAuthorization.IdentityServer.IClientRequestParametersProvider,Microsoft.Extensions.Logging.ILogger`1<MuffiNet.FrontendReact.Controllers.OidcConfigurationController>)
+FNF:3
+FNH:0
+BRF:0
+BRH:0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:17,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+LH:0
+LF:10
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Hubs\ExampleHub.cs
+FN:10,System.Void MuffiNet.FrontendReact.Hubs.ExampleHub::.ctor(Microsoft.AspNetCore.SignalR.IHubContext`1<MuffiNet.FrontendReact.Hubs.ExampleHub>)
+FN:16,System.Void MuffiNet.FrontendReact.Hubs.ExampleHub/<SomeEntityUpdated>d__2::MoveNext()
+FN:21,System.Void MuffiNet.FrontendReact.Hubs.ExampleHub/<SomeEntityCreated>d__3::MoveNext()
+FN:26,System.Void MuffiNet.FrontendReact.Hubs.ExampleHub/<SomeEntityDeleted>d__4::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Hubs.ExampleHub::.ctor(Microsoft.AspNetCore.SignalR.IHubContext`1<MuffiNet.FrontendReact.Hubs.ExampleHub>)
+FNDA:0,System.Void MuffiNet.FrontendReact.Hubs.ExampleHub/<SomeEntityUpdated>d__2::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Hubs.ExampleHub/<SomeEntityCreated>d__3::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Hubs.ExampleHub/<SomeEntityDeleted>d__4::MoveNext()
+FNF:4
+FNH:0
+BRF:0
+BRH:0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:27,0
+DA:28,0
+DA:29,0
+LH:0
+LF:13
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Pages\_ViewStart.cshtml
+FN:1,System.Void MuffiNet.FrontendReact.Pages.Pages__ViewStart/<ExecuteAsync>d__0::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Pages.Pages__ViewStart/<ExecuteAsync>d__0::MoveNext()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:2,0
+LH:0
+LF:1
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Pages\Error.cshtml
+FN:3,System.Void MuffiNet.FrontendReact.Pages.Pages_Error/<ExecuteAsync>d__0::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Pages.Pages_Error/<ExecuteAsync>d__0::MoveNext()
+FNF:1
+FNH:0
+BRDA:10,10,356,-
+BRDA:10,10,357,-
+BRF:2
+BRH:0
+DA:4,0
+DA:10,0
+DA:11,0
+DA:13,0
+DA:15,0
+LH:0
+LF:5
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Pages\Error.cshtml.cs
+FN:17,System.String MuffiNet.FrontendReact.Pages.ErrorModel::get_RequestId()
+FN:19,System.Boolean MuffiNet.FrontendReact.Pages.ErrorModel::get_ShowRequestId()
+FN:22,System.Void MuffiNet.FrontendReact.Pages.ErrorModel::OnGet()
+FN:12,System.Void MuffiNet.FrontendReact.Pages.ErrorModel::.ctor(Microsoft.Extensions.Logging.ILogger`1<MuffiNet.FrontendReact.Pages.ErrorModel>)
+FNDA:0,System.String MuffiNet.FrontendReact.Pages.ErrorModel::get_RequestId()
+FNDA:0,System.Boolean MuffiNet.FrontendReact.Pages.ErrorModel::get_ShowRequestId()
+FNDA:0,System.Void MuffiNet.FrontendReact.Pages.ErrorModel::OnGet()
+FNDA:0,System.Void MuffiNet.FrontendReact.Pages.ErrorModel::.ctor(Microsoft.Extensions.Logging.ILogger`1<MuffiNet.FrontendReact.Pages.ErrorModel>)
+FNF:4
+FNH:0
+BRDA:24,24,358,-
+BRDA:24,24,359,-
+BRDA:24,24,360,-
+BRDA:24,24,361,-
+BRF:4
+BRH:0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:18,0
+DA:20,0
+DA:23,0
+DA:24,0
+DA:25,0
+LH:0
+LF:9
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Pages\Shared\_Layout.cshtml
+FN:9,System.Void MuffiNet.FrontendReact.Pages.Shared.Pages_Shared__Layout/<<ExecuteAsync>b__21_0>d::MoveNext()
+FN:24,System.Void MuffiNet.FrontendReact.Pages.Shared.Pages_Shared__Layout/<<ExecuteAsync>b__21_1>d::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Pages.Shared.Pages_Shared__Layout/<<ExecuteAsync>b__21_0>d::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Pages.Shared.Pages_Shared__Layout/<<ExecuteAsync>b__21_1>d::MoveNext()
+FNF:2
+FNH:0
+BRDA:10,10,362,-
+BRDA:10,10,363,-
+BRDA:10,10,364,-
+BRDA:10,10,365,-
+BRDA:25,25,366,-
+BRDA:25,25,367,-
+BRDA:27,27,368,-
+BRDA:27,27,369,-
+BRDA:44,44,370,-
+BRDA:44,44,371,-
+BRDA:44,44,372,-
+BRDA:44,44,373,-
+BRDA:44,44,374,-
+BRDA:44,44,375,-
+BRDA:54,54,376,-
+BRDA:54,54,377,-
+BRF:16
+BRH:0
+DA:10,0
+DA:25,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:44,0
+DA:54,0
+DA:55,0
+LH:0
+LF:13
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Pages\Shared\_LoginPartial.cshtml
+FN:6,System.Void MuffiNet.FrontendReact.Pages.Shared.Pages_Shared__LoginPartial/<ExecuteAsync>d__17::MoveNext()
+FN:18,System.Void MuffiNet.FrontendReact.Pages.Shared.Pages_Shared__LoginPartial/<<ExecuteAsync>b__17_0>d::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Pages.Shared.Pages_Shared__LoginPartial/<ExecuteAsync>d__17::MoveNext()
+FNDA:0,System.Void MuffiNet.FrontendReact.Pages.Shared.Pages_Shared__LoginPartial/<<ExecuteAsync>b__17_0>d::MoveNext()
+FNF:2
+FNH:0
+BRDA:9,9,378,-
+BRDA:9,9,379,-
+BRDA:16,16,380,-
+BRDA:16,16,381,-
+BRDA:17,17,382,-
+BRDA:17,17,383,-
+BRDA:17,17,384,-
+BRDA:17,17,385,-
+BRDA:17,17,386,-
+BRDA:17,17,387,-
+BRDA:28,28,388,-
+BRDA:28,28,389,-
+BRDA:30,30,390,-
+BRDA:30,30,391,-
+BRF:14
+BRH:0
+DA:7,0
+DA:8,0
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:16,0
+DA:17,0
+DA:19,0
+DA:26,0
+DA:28,0
+DA:30,0
+DA:32,0
+LH:0
+LF:13
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Program.cs
+FN:9,System.Void MuffiNet.FrontendReact.Program::Main(System.String[])
+FN:14,Microsoft.Extensions.Hosting.IHostBuilder MuffiNet.FrontendReact.Program::CreateHostBuilder(System.String[])
+FNDA:0,System.Void MuffiNet.FrontendReact.Program::Main(System.String[])
+FNDA:0,Microsoft.Extensions.Hosting.IHostBuilder MuffiNet.FrontendReact.Program::CreateHostBuilder(System.String[])
+FNF:2
+FNH:0
+BRF:0
+BRH:0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+LH:0
+LF:13
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\src\MuffiNet.FrontendReact\Startup.cs
+FN:26,Microsoft.Extensions.Configuration.IConfiguration MuffiNet.FrontendReact.Startup::get_Configuration()
+FN:30,System.Void MuffiNet.FrontendReact.Startup::ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+FN:92,System.Void MuffiNet.FrontendReact.Startup::Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)
+FN:21,System.Void MuffiNet.FrontendReact.Startup::.ctor(Microsoft.Extensions.Configuration.IConfiguration)
+FNDA:0,Microsoft.Extensions.Configuration.IConfiguration MuffiNet.FrontendReact.Startup::get_Configuration()
+FNDA:0,System.Void MuffiNet.FrontendReact.Startup::ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+FNDA:0,System.Void MuffiNet.FrontendReact.Startup::Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)
+FNDA:0,System.Void MuffiNet.FrontendReact.Startup::.ctor(Microsoft.Extensions.Configuration.IConfiguration)
+FNF:4
+FNH:0
+BRDA:95,95,392,-
+BRDA:95,95,393,-
+BRDA:95,95,394,-
+BRDA:95,95,395,-
+BRDA:135,135,396,-
+BRDA:135,135,397,-
+BRDA:135,135,398,-
+BRDA:135,135,399,-
+BRF:8
+BRH:0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:27,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:36,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:52,0
+DA:53,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:59,0
+DA:60,0
+DA:62,0
+DA:65,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:93,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:101,0
+DA:102,0
+DA:104,0
+DA:105,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:112,0
+DA:114,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+LH:0
+LF:89
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\tests\MuffiNet.Test.Shared\DomainModelBuilderForTest.cs
+FN:16,System.Void MuffiNet.Test.Shared.DomainModelBuilderForTest::ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)
+FNDA:0,System.Void MuffiNet.Test.Shared.DomainModelBuilderForTest::ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)
+FNF:1
+FNH:1
+BRF:0
+BRH:0
+DA:17,22
+DA:18,22
+DA:20,22
+DA:21,44
+DA:24,22
+DA:25,22
+DA:26,22
+DA:28,22
+DA:30,22
+DA:31,22
+LH:10
+LF:10
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\tests\MuffiNet.Test.Shared\Mocks\CurrentDateTimeServiceMock.cs
+FN:9,MuffiNet.Backend.Services.ICurrentDateTimeService MuffiNet.Test.Shared.Mocks.CurrentDateTimeServiceMock::MockCurrentDateTimeService()
+FN:17,System.DateTime MuffiNet.Test.Shared.Mocks.CurrentDateTimeServiceMock::MockedDateTime()
+FNDA:0,MuffiNet.Backend.Services.ICurrentDateTimeService MuffiNet.Test.Shared.Mocks.CurrentDateTimeServiceMock::MockCurrentDateTimeService()
+FNDA:0,System.DateTime MuffiNet.Test.Shared.Mocks.CurrentDateTimeServiceMock::MockedDateTime()
+FNF:2
+FNH:0
+BRF:0
+BRH:0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:14,0
+DA:15,0
+DA:18,0
+DA:19,0
+DA:20,0
+LH:0
+LF:8
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\tests\MuffiNet.Test.Shared\Mocks\CurrentUserServiceMock.cs
+FN:9,System.Void MuffiNet.Test.Shared.Mocks.CurrentUserServiceMock/<CurrentUser>d__0::MoveNext()
+FNDA:0,System.Void MuffiNet.Test.Shared.Mocks.CurrentUserServiceMock/<CurrentUser>d__0::MoveNext()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+LH:0
+LF:8
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\tests\MuffiNet.Test.Shared\Mocks\ExampleHubMock.cs
+FN:9,System.Int32 MuffiNet.Test.Shared.Mocks.ExampleHubMock::get_EntityDeletedMessageCounter()
+FN:10,MuffiNet.Backend.HubContracts.SomeEntityDeletedMessage MuffiNet.Test.Shared.Mocks.ExampleHubMock::get_LatestEntityDeletedMessage()
+FN:12,System.Int32 MuffiNet.Test.Shared.Mocks.ExampleHubMock::get_EntityCreatedMessageCounter()
+FN:13,MuffiNet.Backend.HubContracts.SomeEntityCreatedMessage MuffiNet.Test.Shared.Mocks.ExampleHubMock::get_LatestEntityCreatedMessage()
+FN:15,System.Int32 MuffiNet.Test.Shared.Mocks.ExampleHubMock::get_EntityUpdatedMessageCounter()
+FN:16,MuffiNet.Backend.HubContracts.SomeEntityUpdatedMessage MuffiNet.Test.Shared.Mocks.ExampleHubMock::get_LatestEntityUpdatedMessage()
+FN:19,System.Threading.Tasks.Task MuffiNet.Test.Shared.Mocks.ExampleHubMock::SomeEntityCreated(MuffiNet.Backend.HubContracts.SomeEntityCreatedMessage)
+FN:26,System.Threading.Tasks.Task MuffiNet.Test.Shared.Mocks.ExampleHubMock::SomeEntityDeleted(MuffiNet.Backend.HubContracts.SomeEntityDeletedMessage)
+FN:32,System.Threading.Tasks.Task MuffiNet.Test.Shared.Mocks.ExampleHubMock::SomeEntityUpdated(MuffiNet.Backend.HubContracts.SomeEntityUpdatedMessage)
+FNDA:0,System.Int32 MuffiNet.Test.Shared.Mocks.ExampleHubMock::get_EntityDeletedMessageCounter()
+FNDA:7,MuffiNet.Backend.HubContracts.SomeEntityDeletedMessage MuffiNet.Test.Shared.Mocks.ExampleHubMock::get_LatestEntityDeletedMessage()
+FNDA:0,System.Int32 MuffiNet.Test.Shared.Mocks.ExampleHubMock::get_EntityCreatedMessageCounter()
+FNDA:15,MuffiNet.Backend.HubContracts.SomeEntityCreatedMessage MuffiNet.Test.Shared.Mocks.ExampleHubMock::get_LatestEntityCreatedMessage()
+FNDA:0,System.Int32 MuffiNet.Test.Shared.Mocks.ExampleHubMock::get_EntityUpdatedMessageCounter()
+FNDA:0,MuffiNet.Backend.HubContracts.SomeEntityUpdatedMessage MuffiNet.Test.Shared.Mocks.ExampleHubMock::get_LatestEntityUpdatedMessage()
+FNDA:0,System.Threading.Tasks.Task MuffiNet.Test.Shared.Mocks.ExampleHubMock::SomeEntityCreated(MuffiNet.Backend.HubContracts.SomeEntityCreatedMessage)
+FNDA:0,System.Threading.Tasks.Task MuffiNet.Test.Shared.Mocks.ExampleHubMock::SomeEntityDeleted(MuffiNet.Backend.HubContracts.SomeEntityDeletedMessage)
+FNDA:0,System.Threading.Tasks.Task MuffiNet.Test.Shared.Mocks.ExampleHubMock::SomeEntityUpdated(MuffiNet.Backend.HubContracts.SomeEntityUpdatedMessage)
+FNF:9
+FNH:4
+BRF:0
+BRH:0
+DA:10,7
+DA:11,3
+DA:13,15
+DA:14,7
+DA:16,0
+DA:17,0
+DA:20,7
+DA:21,7
+DA:22,7
+DA:23,7
+DA:24,7
+DA:27,3
+DA:28,3
+DA:29,3
+DA:30,3
+DA:31,3
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+LH:14
+LF:21
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\tests\MuffiNet.Test.Shared\Mocks\ExampleServiceMock.cs
+FN:8,System.Void MuffiNet.Test.Shared.Mocks.ExampleServiceMock/<PerformService>d__0::MoveNext()
+FNDA:0,System.Void MuffiNet.Test.Shared.Mocks.ExampleServiceMock/<PerformService>d__0::MoveNext()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:9,0
+DA:10,0
+DA:11,0
+LH:0
+LF:3
+end_of_record
+SF:C:\Users\meh\Desktop\muffi.net\tests\MuffiNet.Test.Shared\TestData\ExampleTestData.cs
+FN:11,System.Void MuffiNet.Test.Shared.TestData.ExampleTestData::.ctor(MuffiNet.Backend.DomainModel.DomainModelTransaction)
+FN:17,System.Void MuffiNet.Test.Shared.TestData.ExampleTestData/<AddExampleEntitiesToDatabase>d__2::MoveNext()
+FNDA:0,System.Void MuffiNet.Test.Shared.TestData.ExampleTestData::.ctor(MuffiNet.Backend.DomainModel.DomainModelTransaction)
+FNDA:0,System.Void MuffiNet.Test.Shared.TestData.ExampleTestData/<AddExampleEntitiesToDatabase>d__2::MoveNext()
+FNF:2
+FNH:2
+BRDA:14,14,400,-
+BRDA:14,14,401,17
+BRDA:19,19,402,36
+BRDA:19,19,403,8
+BRF:4
+BRH:3
+DA:12,17
+DA:13,17
+DA:14,17
+DA:15,17
+DA:18,8
+DA:19,88
+DA:20,36
+DA:21,36
+DA:22,36
+DA:23,36
+DA:24,36
+DA:25,36
+DA:26,36
+DA:27,36
+DA:29,8
+DA:30,8
+LH:16
+LF:16
+end_of_record
+SF:src\App.js
+FN:18,(anonymous_0)
+FNDA:0,(anonymous_0)
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:16,0
+DA:19,0
+LH:0
+LF:2
+end_of_record
+SF:src\components\AuthorizedLayout\index.js
+FN:4,AuthorizedLayout
+FNDA:0,AuthorizedLayout
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:5,0
+LH:0
+LF:1
+end_of_record
+SF:src\components\AutosizedTextarea\index.js
+FN:4,AutosizedTextarea
+FN:11,(anonymous_1)
+FN:29,(anonymous_2)
+FNDA:0,AutosizedTextarea
+FNDA:0,(anonymous_1)
+FNDA:0,(anonymous_2)
+FNF:3
+FNH:0
+BRDA:5,5,404,-
+BRDA:6,6,405,-
+BRDA:30,30,406,-
+BRDA:30,30,407,-
+BRF:4
+BRH:0
+DA:9,0
+DA:11,0
+DA:12,0
+DA:14,0
+DA:16,0
+DA:17,0
+DA:19,0
+DA:21,0
+DA:22,0
+DA:24,0
+DA:27,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:36,0
+DA:38,0
+LH:0
+LF:17
+end_of_record
+SF:src\components\Button\index.js
+FN:6,Button
+FNDA:0,Button
+FNF:1
+FNH:1
+BRDA:7,7,408,90
+BRDA:8,8,409,-
+BRDA:9,9,410,80
+BRF:3
+BRH:2
+DA:12,90
+DA:25,90
+LH:2
+LF:2
+end_of_record
+SF:src\components\Duration\index.js
+FN:7,(anonymous_0)
+FN:9,Duration
+FN:13,(anonymous_2)
+FNDA:13,(anonymous_0)
+FNDA:0,Duration
+FNDA:0,(anonymous_2)
+FNF:3
+FNH:3
+BRDA:9,9,411,4
+BRDA:20,20,412,2
+BRDA:20,20,413,6
+BRDA:20,20,414,8
+BRDA:20,20,415,2
+BRDA:24,24,416,2
+BRDA:24,24,417,4
+BRF:7
+BRH:7
+DA:5,1
+DA:7,13
+DA:10,8
+DA:12,8
+DA:14,5
+DA:20,8
+DA:21,2
+DA:24,6
+DA:26,4
+LH:9
+LF:9
+end_of_record
+SF:src\components\ExampleContainer\index.js
+FN:9,ExampleContainer
+FN:11,(anonymous_1)
+FN:14,(anonymous_2)
+FN:19,(anonymous_3)
+FN:26,(anonymous_4)
+FN:33,(anonymous_5)
+FN:37,(anonymous_6)
+FN:43,(anonymous_7)
+FN:44,(anonymous_8)
+FN:47,(anonymous_9)
+FN:50,(anonymous_10)
+FN:58,(anonymous_11)
+FN:65,(anonymous_12)
+FN:68,(anonymous_13)
+FN:73,(anonymous_14)
+FN:84,(anonymous_15)
+FN:87,(anonymous_16)
+FNDA:0,ExampleContainer
+FNDA:20,(anonymous_1)
+FNDA:17,(anonymous_2)
+FNDA:17,(anonymous_3)
+FNDA:17,(anonymous_4)
+FNDA:0,(anonymous_5)
+FNDA:0,(anonymous_6)
+FNDA:0,(anonymous_7)
+FNDA:17,(anonymous_8)
+FNDA:17,(anonymous_9)
+FNDA:17,(anonymous_10)
+FNDA:17,(anonymous_11)
+FNDA:0,(anonymous_12)
+FNDA:0,(anonymous_13)
+FNDA:17,(anonymous_14)
+FNDA:0,(anonymous_15)
+FNDA:0,(anonymous_16)
+FNF:17
+FNH:12
+BRDA:12,12,418,-
+BRDA:12,12,419,17
+BRDA:20,20,420,10
+BRDA:20,20,421,-
+BRF:4
+BRH:2
+DA:11,20
+DA:12,17
+DA:14,17
+DA:15,17
+DA:19,17
+DA:20,10
+DA:21,10
+DA:23,17
+DA:26,17
+DA:27,6
+DA:34,6
+DA:35,6
+DA:38,0
+DA:42,17
+DA:44,17
+DA:45,3
+DA:47,17
+DA:48,2
+DA:50,17
+DA:51,3
+DA:56,17
+DA:58,17
+DA:59,1
+DA:73,17
+DA:74,0
+DA:92,17
+LH:24
+LF:26
+end_of_record
+SF:src\components\ExampleForm\index.js
+FN:8,ExampleForm
+FN:16,(anonymous_1)
+FN:21,(anonymous_2)
+FNDA:0,ExampleForm
+FNDA:80,(anonymous_1)
+FNDA:80,(anonymous_2)
+FNF:3
+FNH:3
+BRDA:22,22,422,30
+BRDA:22,22,423,30
+BRDA:22,22,424,60
+BRDA:22,22,425,44
+BRF:4
+BRH:4
+DA:9,80
+DA:16,80
+DA:17,2
+DA:18,2
+DA:21,80
+DA:22,60
+DA:23,30
+DA:26,60
+DA:32,80
+LH:9
+LF:9
+end_of_record
+SF:src\components\ExampleTable\index.js
+FN:5,ExampleTable
+FN:6,(anonymous_1)
+FN:24,(anonymous_2)
+FN:35,(anonymous_3)
+FNDA:0,ExampleTable
+FNDA:34,(anonymous_1)
+FNDA:0,(anonymous_2)
+FNDA:0,(anonymous_3)
+FNF:4
+FNH:2
+BRF:0
+BRH:0
+DA:6,34
+DA:7,0
+DA:8,0
+DA:11,34
+DA:25,10
+DA:35,0
+LH:3
+LF:6
+end_of_record
+SF:src\components\Input\index.js
+FN:4,Input
+FNDA:0,Input
+FNF:1
+FNH:1
+BRF:0
+BRH:0
+DA:5,320
+DA:29,320
+LH:2
+LF:2
+end_of_record
+SF:src\components\Layout\index.js
+FN:3,Layout
+FNDA:0,Layout
+FNF:1
+FNH:1
+BRF:0
+BRH:0
+DA:4,1
+LH:1
+LF:1
+end_of_record
+SF:src\components\NavItem\index.js
+FN:3,NavLink
+FNDA:0,NavLink
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:4,0
+LH:0
+LF:1
+end_of_record
+SF:src\components\NavLink\index.js
+FN:5,NavLink
+FNDA:0,NavLink
+FNF:1
+FNH:0
+BRDA:5,5,426,-
+BRF:1
+BRH:0
+DA:6,0
+DA:14,0
+LH:0
+LF:2
+end_of_record
+SF:src\components\NavMenu\index.js
+FN:10,NavMenu
+FN:13,(anonymous_1)
+FNDA:0,NavMenu
+FNDA:0,(anonymous_1)
+FNF:2
+FNH:0
+BRF:0
+BRH:0
+DA:11,0
+DA:13,0
+DA:14,0
+DA:17,0
+DA:24,0
+LH:0
+LF:5
+end_of_record
+SF:src\components\Select\index.js
+FN:4,Select
+FNDA:0,Select
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:5,0
+DA:29,0
+LH:0
+LF:2
+end_of_record
+SF:src\components\Spinner\index.js
+FN:4,Spinner
+FNDA:0,Spinner
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:5,0
+DA:10,0
+LH:0
+LF:2
+end_of_record
+SF:src\components\Table\index.js
+FN:6,Spinner
+FNDA:0,Spinner
+FNF:1
+FNH:1
+BRF:0
+BRH:0
+DA:7,34
+DA:12,34
+LH:2
+LF:2
+end_of_record
+SF:src\contexts\ThemeContext.js
+FNF:0
+FNH:0
+BRF:0
+BRH:0
+LH:0
+LF:0
+end_of_record
+SF:src\hooks\useHub.js
+FN:4,useHub
+FN:7,(anonymous_1)
+FN:15,(anonymous_2)
+FN:20,(anonymous_3)
+FN:23,(anonymous_4)
+FN:25,(anonymous_5)
+FNDA:0,useHub
+FNDA:0,(anonymous_1)
+FNDA:0,(anonymous_2)
+FNDA:0,(anonymous_3)
+FNDA:0,(anonymous_4)
+FNDA:0,(anonymous_5)
+FNF:6
+FNH:0
+BRDA:16,16,427,-
+BRDA:16,16,428,-
+BRF:2
+BRH:0
+DA:5,0
+DA:7,0
+DA:8,0
+DA:12,0
+DA:15,0
+DA:16,0
+DA:18,0
+DA:21,0
+DA:23,0
+DA:25,0
+LH:0
+LF:10
+end_of_record
+SF:src\hooks\useInterval.js
+FN:3,(anonymous_0)
+FN:7,(anonymous_1)
+FN:11,(anonymous_2)
+FNDA:0,(anonymous_0)
+FNDA:15,(anonymous_1)
+FNDA:10,(anonymous_2)
+FNF:3
+FNH:3
+BRDA:4,4,429,1
+BRDA:4,4,430,15
+BRDA:4,4,431,16
+BRDA:4,4,432,15
+BRF:4
+BRH:4
+DA:4,16
+DA:5,1
+DA:7,15
+DA:8,10
+DA:9,10
+DA:11,10
+LH:6
+LF:6
+end_of_record
+SF:src\hooks\useMappedRecords.js
+FN:3,(anonymous_0)
+FN:11,(anonymous_1)
+FN:12,(anonymous_2)
+FN:17,(anonymous_3)
+FN:28,(anonymous_4)
+FN:41,useMappedRecords
+FN:45,(anonymous_6)
+FN:50,(anonymous_7)
+FNDA:1,(anonymous_0)
+FNDA:1,(anonymous_1)
+FNDA:17,(anonymous_2)
+FNDA:17,(anonymous_3)
+FNDA:3,(anonymous_4)
+FNDA:0,useMappedRecords
+FNDA:0,(anonymous_6)
+FNDA:0,(anonymous_7)
+FNF:8
+FNH:8
+BRDA:13,13,433,17
+BRDA:13,13,434,3
+BRDA:13,13,435,-
+BRDA:41,41,436,-
+BRF:4
+BRH:2
+DA:3,1
+DA:5,1
+DA:11,1
+DA:12,17
+DA:13,20
+DA:15,17
+DA:17,17
+DA:18,17
+DA:19,17
+DA:22,17
+DA:26,3
+DA:28,3
+DA:29,3
+DA:30,3
+DA:33,3
+DA:37,0
+DA:42,17
+DA:44,17
+DA:46,11
+DA:49,17
+DA:51,3
+DA:55,17
+LH:21
+LF:22
+end_of_record
+SF:src\hooks\useWindowSizeEffect.js
+FN:3,useWindowSizeEffect
+FN:4,(anonymous_1)
+FN:8,(anonymous_2)
+FNDA:0,useWindowSizeEffect
+FNDA:0,(anonymous_1)
+FNDA:0,(anonymous_2)
+FNF:3
+FNH:0
+BRF:0
+BRH:0
+DA:4,0
+DA:5,0
+DA:6,0
+DA:8,0
+LH:0
+LF:4
+end_of_record
+SF:src\pages\AuthorizedHome\index.js
+FN:7,AuthorizedHome
+FN:9,(anonymous_1)
+FN:10,(anonymous_2)
+FNDA:0,AuthorizedHome
+FNDA:0,(anonymous_1)
+FNDA:0,(anonymous_2)
+FNF:3
+FNH:0
+BRF:0
+BRH:0
+DA:8,0
+DA:9,0
+DA:10,0
+DA:16,0
+LH:0
+LF:4
+end_of_record
+SF:src\pages\Home\index.js
+FN:5,Home
+FNDA:0,Home
+FNF:1
+FNH:1
+BRF:0
+BRH:0
+DA:6,1
+LH:1
+LF:1
+end_of_record
+SF:src\utils\getFirstName.js
+FN:1,getFirstName
+FNDA:0,getFirstName
+FNF:1
+FNH:1
+BRF:0
+BRH:0
+DA:2,4
+LH:1
+LF:1
+end_of_record
+SF:src\utils\withMockedDate.js
+FN:1,(anonymous_0)
+FN:7,(anonymous_1)
+FN:13,(anonymous_2)
+FN:19,(anonymous_3)
+FN:24,(anonymous_4)
+FNDA:0,(anonymous_0)
+FNDA:0,(anonymous_1)
+FNDA:0,(anonymous_2)
+FNDA:7,(anonymous_3)
+FNDA:7,(anonymous_4)
+FNF:5
+FNH:5
+BRDA:8,8,437,19
+BRDA:8,8,438,4
+BRDA:8,8,439,23
+BRDA:8,8,440,4
+BRDA:27,27,441,7
+BRDA:27,27,442,2
+BRDA:28,28,443,2
+BRDA:28,28,444,5
+BRF:8
+BRH:8
+DA:3,7
+DA:6,7
+DA:8,23
+DA:10,4
+DA:14,7
+DA:19,7
+DA:20,7
+DA:24,7
+DA:27,7
+DA:28,7
+DA:29,2
+DA:31,5
+LH:12
+LF:12
+end_of_record
