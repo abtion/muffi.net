@@ -103,7 +103,8 @@ jobs:
         with:
           server-name: muffi-net-sql-server
           connection-string: ${{ secrets.MSSQL_CONNECTION_STRING }}
-      
+          sql-file: './sql/create-user.sql'
+
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
