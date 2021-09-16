@@ -34,10 +34,7 @@ export default function ExampleContainer({ connectionOptions, accessToken }) {
         const { exampleEntities } = response.data
         upsertExampleEntity(exampleEntities)
       })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [accessToken, upsertExampleEntity])
+  }, [accessToken, endpoint, upsertExampleEntity])
 
   const onHubConnected = useCallback(
     (connection) => {
@@ -65,9 +62,6 @@ export default function ExampleContainer({ connectionOptions, accessToken }) {
       .then((response) => {
         // console.log(response)
       })
-      .catch((error) => {
-        // console.log(error)
-      })
   }
 
   const removeExampleEntity = (id) => {
@@ -83,9 +77,6 @@ export default function ExampleContainer({ connectionOptions, accessToken }) {
       )
       .then((response) => {
         // console.log(response)
-      })
-      .catch((error) => {
-        // console.log(error)
       })
   }
 

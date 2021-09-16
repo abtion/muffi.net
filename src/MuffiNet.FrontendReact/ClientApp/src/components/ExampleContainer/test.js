@@ -22,34 +22,37 @@ const updatedEntity = {
   name: "updated name",
 }
 
+const unnamedEntity = {
+  id: "2",
+  name: undefined,
+  description: "something",
+  email: "some@email.dk",
+  phone: "9999999",
+}
+
 afterEach(() => {
   axios._reset()
   useHub._reset()
 })
-
 beforeEach(() => {
   axios.get.mockResolvedValue({
-    data: { exampleEntities: [entity] },
+    data: { exampleEntities: [entity, unnamedEntity] },
   })
+  axios.post.mockResolvedValue({})
 })
-
-function render() {
-  const context = tlRender(<ExampleContainer />)
+function render(accessToken) {
+  const context = tlRender(<ExampleContainer accessToken={accessToken} />)
   return { ...context }
 }
 
 describe(ExampleContainer, () => {
-  axios.get.mockResolvedValue({
-    data: { exampleEntities: [entity] },
-  })
-
   it("renders two tables", async () => {
     const { findAllByRole } = render()
     expect(await findAllByRole("table")).toHaveLength(2)
   })
 
-  describe("when submitting the form", () => {
-    it("posts an exampleEntity", async () => {
+  describe("when submitting the form ", () => {
+    it("posts an exampleEntity to unauthorized endpoint", async () => {
       axios.put.mockResolvedValue({ data: { Id: "1234" } })
       const { getByLabelText, getByText } = render()
       userEvent.type(getByLabelText("Name"), "Name")
@@ -70,6 +73,53 @@ describe(ExampleContainer, () => {
         )
       )
     })
+
+    it("posts an unnamed exampleEntity to authorized endpoint", async () => {
+      axios.put.mockResolvedValue({ data: { Id: "1234" } })
+      const { getByLabelText, getByText } = render("accessToken")
+      userEvent.type(getByLabelText("Description"), "Description")
+      userEvent.type(getByLabelText("E-mail"), "Em@a.il")
+      userEvent.type(getByLabelText("Phone"), "12345678")
+      userEvent.click(getByText("Submit"))
+      await waitFor(() =>
+        expect(axios.put).toHaveBeenCalledWith(
+          "/api/authorizedexample",
+          {
+            Name: "",
+            Description: "Description",
+            Email: "Em@a.il",
+            Phone: "12345678",
+          },
+          { headers: { authorization: "Bearer accessToken" } }
+        )
+      )
+    })
+  })
+
+  describe("when clicking remove ", () => {
+    it("calls backend to remove", async () => {
+      const { getAllByRole } = render()
+
+      await waitFor(() =>
+        expect(axios.get).toHaveBeenCalledWith("/api/example/all", {
+          headers: { authorization: "Bearer undefined" },
+        })
+      )
+
+      const removeBtn = await getAllByRole("button", {
+        name: /Remove/i,
+      })[0]
+      userEvent.click(removeBtn)
+      await waitFor(() =>
+        expect(axios.post).toHaveBeenCalledWith(
+          "/api/example",
+          { id: "1" },
+          {
+            headers: { authorization: "Bearer undefined" },
+          }
+        )
+      )
+    })
   })
 
   describe("when entering page", () => {
@@ -86,6 +136,8 @@ describe(ExampleContainer, () => {
       expect(await findByText(entity.description)).toBeInTheDocument()
       expect(await findByText(entity.email)).toBeInTheDocument()
       expect(await findByText(entity.phone)).toBeInTheDocument()
+
+      expect(await findByText(unnamedEntity.description)).toBeInTheDocument()
     })
   })
 
