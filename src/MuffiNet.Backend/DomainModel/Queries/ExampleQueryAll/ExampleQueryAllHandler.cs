@@ -18,6 +18,10 @@ namespace MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll
 
         public async Task<ExampleQueryAllResponse> Handle(ExampleQueryAllRequest request, CancellationToken cancellationToken)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
             var query = from exampleEntity in domainModelTransaction.ExampleEntities().All()
                         select new ExampleEntityRecord(
                             exampleEntity.Id,

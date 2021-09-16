@@ -1,5 +1,9 @@
 name: CodeClimate
-on: push
+on:
+  workflow_run:
+    workflows: ['CI']
+    types:
+      - completed
 
 jobs:
   code-climate:
@@ -28,9 +32,9 @@ jobs:
 
       - name: Run  tests
         run: |
-          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov ./tests/MuffiNet.Backend.Tests /p:excludebyfile="**/MuffiNet.Backend/Data/**/*.cs%2c**/MuffiNet.FrontendReact/Areas/Identity/**/*.cs*%2c**/MuffiNet.FrontendReact/Pages/**/*.cs*%2c**/MuffiNet.FrontendReact/*.cs%2c**/MuffiNet.Test.Shared/**"
+          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov ./tests/MuffiNet.Backend.Tests /p:excludebyfile="**/MuffiNet.Backend/DomainModel/*.cs%2c**/MuffiNet.Backend/Data/**/*.cs%2c**/MuffiNet.FrontendReact/Areas/Identity/**/*.cs*%2c**/MuffiNet.FrontendReact/Pages/**/*.cs*%2c**/MuffiNet.FrontendReact/*.cs%2c**/MuffiNet.Test.Shared/**"
 
-          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov ./tests/MuffiNet.FrontendReact.Test /p:excludebyfile="**/MuffiNet.Backend/Data/**/*.cs%2c**/MuffiNet.FrontendReact/Areas/Identity/**/*.cs*%2c**/MuffiNet.FrontendReact/Pages/**/*.cs*%2c**/MuffiNet.FrontendReact/*.cs%2c**/MuffiNet.Test.Shared/**"
+          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov ./tests/MuffiNet.FrontendReact.Test /p:excludebyfile="**/MuffiNet.Backend/DomainModel/*.cs%2c**/MuffiNet.Backend/Data/**/*.cs%2c**/MuffiNet.FrontendReact/Areas/Identity/**/*.cs*%2c**/MuffiNet.FrontendReact/Pages/**/*.cs*%2c**/MuffiNet.FrontendReact/*.cs%2c**/MuffiNet.Test.Shared/**"
 
           yarn test --coverage
 

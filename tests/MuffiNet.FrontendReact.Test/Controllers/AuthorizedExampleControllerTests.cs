@@ -11,6 +11,7 @@ using Xunit;
 using MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand;
 using MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand;
 using MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll;
+using MuffiNet.Backend.Services;
 
 namespace MuffiNet.FrontendReact.Test.Controllers
 {
@@ -29,7 +30,7 @@ namespace MuffiNet.FrontendReact.Test.Controllers
             await testData.AddExampleEntitiesToDatabase(5);
 
             var controller = new AuthorizedExampleController();
-            var handler = new ExampleQueryHandler(transaction);
+            var handler = new ExampleQueryHandler(transaction, new ExampleReverseStringService());
 
             int exampleEntityId = 3;
 
@@ -50,7 +51,7 @@ namespace MuffiNet.FrontendReact.Test.Controllers
             var testData = new ExampleTestData(transaction);
             await testData.AddExampleEntitiesToDatabase(5);
 
-            var controller = new ExampleController();
+            var controller = new AuthorizedExampleController();
             var handler = new ExampleQueryAllHandler(transaction);
 
             // Act

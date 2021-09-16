@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using MuffiNet.Backend.Exceptions;
 using MuffiNet.Backend.Models;
+using MuffiNet.Backend.Services;
 using System;
 using System.Linq;
 using System.Threading;
@@ -11,10 +12,12 @@ namespace MuffiNet.Backend.DomainModel.Queries.ExampleQuery
     public class ExampleQueryHandler : IRequestHandler<ExampleQueryRequest, ExampleQueryResponse>
     {
         private readonly DomainModelTransaction domainModelTransaction;
+        private readonly IExampleReverseStringService exampleService;
 
-        public ExampleQueryHandler(DomainModelTransaction domainModelTransaction)
+        public ExampleQueryHandler(DomainModelTransaction domainModelTransaction, IExampleReverseStringService exampleService)
         {
             this.domainModelTransaction = domainModelTransaction ?? throw new ArgumentNullException(nameof(domainModelTransaction));
+            this.exampleService = exampleService ?? throw new ArgumentNullException(nameof(exampleService));
         }
 
         public async Task<ExampleQueryResponse> Handle(ExampleQueryRequest request, CancellationToken cancellationToken)
@@ -28,7 +31,7 @@ namespace MuffiNet.Backend.DomainModel.Queries.ExampleQuery
                         select new ExampleEntityRecord(
                             exampleEntity.Id,
                             exampleEntity.Name,
-                            exampleEntity.Description,
+                            exampleService.ReverseString(exampleEntity.Description),
                             exampleEntity.Email,
                             exampleEntity.Phone
                         );

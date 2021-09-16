@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MuffiNet.Backend.Services
 {
@@ -6,7 +7,7 @@ namespace MuffiNet.Backend.Services
     {
         DateTime CurrentDateTime();
     }
-
+    [ExcludeFromCodeCoverage]
     public class CurrentDateTimeService : ICurrentDateTimeService
     {
         public DateTime CurrentDateTime()
