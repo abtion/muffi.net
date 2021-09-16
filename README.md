@@ -8,11 +8,13 @@
      - [2. Dependencies and database setup](#2-dependencies-and-database-setup)
      - [3. Ensure that linting and tests pass](#3-ensure-that-linting-and-tests-pass)
    - [Day-to-day](#day-to-day)
-3. [Production](#production)
+   - [Test Coverage](#test-coverage)
+3. [Configure Code Climate](#configure-code-climate)
+4. [Production](#production)
    1. [Deployments](#deployments)
-4. [Third party services](#third-party-services)
-5. [Backend projects](#backend-projects)
-6. [How to use the template](#how-to-use-the-template)
+5. [Third party services](#third-party-services)
+6. [Backend projects](#backend-projects)
+7. [How to use the template](#how-to-use-the-template)
 
 # Requirements
 
@@ -125,6 +127,32 @@ yarn test
 - Run backend tests: `dotnet test`
 - Run frontend tests: `yarn test`
 
+## Test Coverage
+
+Backend code coverage requires Coverlet & ReportGenerator:
+
+- `dotnet tool install -g dotnet-reportgenerator-globaltool`
+- `dotnet tool install -g coverlet.console`
+
+Backend report: (note slash/backslash use differs on different cmd shells)
+
+- `dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov ./tests/MuffiNet.Backend.Tests`
+- `dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov ./tests/MuffiNet.FrontendReact.Test`
+- `reportgenerator "-reports:./tests/**/*.info" "-targetdir:coverage"`
+
+Frontend report:
+
+- `yarn test --coverage`
+
+# Configure Code Climate
+
+1. Login to CodeClimate and add your project
+2. Go to the `Repo Settings` -> `Test coverage`
+3. Enable `Enforce Diff Coverage` with a threshold of 100%
+4. Copy the `TEST REPORTER ID`
+5. Visit `https://github.com/abtion/<Project name>/settings/secrets`
+6. Add a new Github Secret: `CC_TEST_REPORTER_ID` with the copied value from codeclimate
+
 # Production
 
 ## Script for creating a new user in the database
@@ -183,10 +211,6 @@ Contains end-to-end tests running in a headless browser (Selenium).
 ### Microsoft Entity Framework Core
 
 - https://docs.microsoft.com/en-us/ef/core/
-
-### Microsoft Azure Cosmos DB
-
-- https://docs.microsoft.com/en-us/azure/cosmos-db/introduction
 
 ### Microsoft Azure SQL Database
 
