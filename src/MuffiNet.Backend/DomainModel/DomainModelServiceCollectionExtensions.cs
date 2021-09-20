@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand;
 using MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand;
+using MuffiNet.Backend.DomainModel.Commands.ExampleUpdateCommand;
 using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
 using MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll;
 using MuffiNet.Backend.Services;
@@ -16,6 +18,7 @@ namespace MuffiNet.Backend.DomainModel
 
             // Command Handlers
             services.AddScoped<ExampleCreateCommandHandler>();
+            services.AddScoped<ExampleUpdateCommandHandler>();
             services.AddScoped<ExampleDeleteCommandHandler>();
 
             // Query Handlers
