@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using MuffiNet.Backend.Models;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace MuffiNet.Backend.Services
     {
         Task<IdentityUser> CurrentUser();
     }
-
+    [ExcludeFromCodeCoverage]
     public class CurrentUserService : ICurrentUserService
     {
         private readonly IHttpContextAccessor httpContext;

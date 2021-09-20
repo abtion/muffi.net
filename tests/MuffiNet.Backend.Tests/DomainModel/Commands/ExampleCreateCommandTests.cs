@@ -41,16 +41,18 @@ namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleCreateCommand
 
         #region "Guard Tests"
         [Fact]
-        public void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
+        public async void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
         {
+            await CreateSut();
             Func<ExampleCreateCommandHandler> f = () => new ExampleCreateCommandHandler(null, exampleHub);
 
             f.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
-        public void Given_ExampleHubIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
+        public async void Given_ExampleHubIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
         {
+            await CreateSut();
             Func<ExampleCreateCommandHandler> f = () => new ExampleCreateCommandHandler(domainModelTransaction, null);
 
             f.Should().Throw<ArgumentNullException>();
@@ -127,6 +129,19 @@ namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleCreateCommand
             var result = await sut.Handle(request, cancellationToken);
 
             result.ExampleEntity.Id.Should().BeGreaterThan(0);
+        }
+
+        [Fact]
+        public async void Given_TwoRequestsAreSent_Then_BothAreStored()
+        {
+            var cancellationToken = new CancellationToken();
+            var sut = await CreateSut();
+            var request = CreateValidRequest();
+
+            await sut.Handle(request, cancellationToken);
+            await sut.Handle(request, cancellationToken);
+
+            domainModelTransaction.ExampleEntities().Should().HaveCount(2);
         }
         #endregion "Happy Path Tests"
 

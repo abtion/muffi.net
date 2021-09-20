@@ -25,7 +25,7 @@ namespace MuffiNet.Backend.DomainModel
             // Services
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddTransient<ICurrentDateTimeService, CurrentDateTimeService>();
-            services.AddTransient<IExampleService, ExampleService>();
+            services.AddTransient<IExampleReverseStringService, ExampleReverseStringService>();
 
             return new DomainModelBuilder(services);
         }

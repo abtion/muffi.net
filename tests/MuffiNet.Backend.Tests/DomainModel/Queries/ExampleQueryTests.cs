@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
 using MuffiNet.Backend.Exceptions;
+using MuffiNet.Backend.Services;
 using MuffiNet.Test.Shared.TestData;
 using System;
 using System.Threading;
@@ -13,7 +14,7 @@ namespace MuffiNet.Backend.Tests.DomainModel.Queries.ExampleQuery
     public class ExampleQueryTests : DomainModelTest<ExampleQueryHandler>
     {
         private ExampleTestData exampleTestData;
-
+        private ExampleReverseStringService exampleReverseStringService;
         public ExampleQueryTests()
         {
             // uses static member as database - that needs to be flushed with every test
@@ -24,7 +25,8 @@ namespace MuffiNet.Backend.Tests.DomainModel.Queries.ExampleQuery
 
         protected async internal override Task<ExampleQueryHandler> CreateSut()
         {
-            var sut = new ExampleQueryHandler(Transaction);
+            exampleReverseStringService = new ExampleReverseStringService();
+            var sut = new ExampleQueryHandler(Transaction, exampleReverseStringService);
 
             return await Task.FromResult(sut);
         }
@@ -40,6 +42,24 @@ namespace MuffiNet.Backend.Tests.DomainModel.Queries.ExampleQuery
         }
 
         #region "Guard Tests"
+        [Fact]
+        public async void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
+        {
+            await CreateSut();
+            Func<ExampleQueryHandler> f = () => new ExampleQueryHandler(null, exampleReverseStringService);
+
+            f.Should().Throw<ArgumentNullException>();
+        }
+
+        [Fact]
+        public async void Given_ExampleReverseStringServiceIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
+        {
+            await CreateSut();
+            Func<ExampleQueryHandler> f = () => new ExampleQueryHandler(Transaction, null);
+
+            f.Should().Throw<ArgumentNullException>();
+        }
+
         [Fact]
         public async Task Given_RequestIsNull_When_HandleIsCalled_Then_AnArgumentNullExceptionIsThrown()
         {

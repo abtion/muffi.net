@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using MuffiNet.Backend.HubContracts;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 namespace MuffiNet.FrontendReact.Hubs
 {
+    [ExcludeFromCodeCoverage]
     public class ExampleHub : Hub, IExampleHubContract
     {
         private readonly IHubContext<ExampleHub> context;

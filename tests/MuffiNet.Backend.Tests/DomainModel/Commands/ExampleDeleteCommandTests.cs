@@ -48,19 +48,31 @@ namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleDeleteCommand
 
         #region "Guard Tests"
         [Fact]
-        public void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
+        public async void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
         {
+            await CreateSut();
             Func<ExampleDeleteCommandHandler> f = () => new ExampleDeleteCommandHandler(null, exampleHub);
 
             f.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
-        public void Given_ExampleHubIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
+        public async void Given_ExampleHubIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
         {
+            await CreateSut();
             Func<ExampleDeleteCommandHandler> f = () => new ExampleDeleteCommandHandler(domainModelTransaction, null);
 
             f.Should().Throw<ArgumentNullException>();
+        }
+
+        [Fact]
+        public async Task Given_RequestIsNull_When_HandleIsCalled_Then_AnArgumentNullExceptionIsThrown()
+        {
+            var sut = await CreateSut();
+
+            Task result() => sut.Handle(null, new CancellationToken());
+
+            await Assert.ThrowsAsync<ArgumentNullException>(result);
         }
         #endregion "Guard Tests"
 

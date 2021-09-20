@@ -1,9 +1,7 @@
-import React, { useContext, useState } from "react"
-import { Link } from "react-router-dom"
+import React, { useState } from "react"
 
 import Button from "~/components/Button"
 import Input from "~/components/Input"
-import Select from "~/components/Select"
 
 export default function ExampleForm({ onSubmit }) {
   const [formData, setFormData] = useState({
