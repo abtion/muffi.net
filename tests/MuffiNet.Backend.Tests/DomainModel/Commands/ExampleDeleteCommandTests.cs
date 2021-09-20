@@ -84,11 +84,35 @@ namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleDeleteCommand
             var cancellationToken = new CancellationToken();
             var sut = await CreateSut();
 
-            await sut.Handle(request, cancellationToken);
+            var result = await sut.Handle(request, cancellationToken);
 
             domainModelTransaction.ExampleEntities().Should().BeEmpty();
+        }
+
+        [Fact]
+        public async void Given_RequestIsValid_When_HandlerIsCalled_Then_TheEntityCountIsReduced()
+        {
+            var request = CreateValidRequest();
+            var cancellationToken = new CancellationToken();
+            var sut = await CreateSut();
+
+            var result = await sut.Handle(request, cancellationToken);
+
             exampleHub.EntityDeletedMessageCounter.Should().Be(1);
         }
+
+        [Fact]
+        public async void Given_RequestIsValid_When_HandlerIsCalled_Then_TheReturnTypeIsNotNull()
+        {
+            var request = CreateValidRequest();
+            var cancellationToken = new CancellationToken();
+            var sut = await CreateSut();
+
+            var result = await sut.Handle(request, cancellationToken);
+
+            result.Should().NotBeNull();
+        }
+
         #endregion "Happy Path Tests"
     }
 }
