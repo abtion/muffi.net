@@ -15,8 +15,10 @@ namespace MuffiNet.Backend.Tests.DomainModel
         [Fact]
         public void Given_ServicesIsNull_When_CtorIsCalled_Then_ExceptionIsThrown() 
         {
-            Action act = () => new DomainModelBuilder(null);
-            
+            Action act = () => { 
+                var x = new DomainModelBuilder(null); 
+            };
+
             act.Should().Throw<ArgumentNullException>();
         }
     }
