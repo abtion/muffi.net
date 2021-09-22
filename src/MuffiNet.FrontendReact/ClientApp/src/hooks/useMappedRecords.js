@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import { useReducer, useCallback } from "react"
 
 const defaultKeyFinder = (entity) => entity.id
@@ -32,9 +33,6 @@ const createReducer =
 
         return updatedMap
       }
-
-      default:
-        throw new Error(`Unknown action: ${type}`)
     }
   }
 
