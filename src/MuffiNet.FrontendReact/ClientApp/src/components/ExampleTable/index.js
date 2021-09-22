@@ -29,11 +29,7 @@ export default function ExampleTable({ entities, onRemove }) {
             <td>{entity.email}</td>
             <td>{entity.phone}</td>
             <td>
-              <Button
-                size="sm"
-                color="primary"
-                onClick={(e) => handleClick(e, entity.id)}
-              >
+              <Button size="sm" onClick={(e) => handleClick(e, entity.id)}>
                 Remove
               </Button>
             </td>

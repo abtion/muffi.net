@@ -185,5 +185,17 @@ describe(AuthorizedHome, () => {
 
       expect(nameElement).not.toBeInTheDocument()
     })
+
+    it("uses the right access token", async () => {
+      const { findByText } = render()
+
+      // Wait for component to finish loading to prevent "not wrapped in act" error
+      await findByText(entity.name)
+
+      const useHubParams = useHub.mock.calls[0]
+      const [_path, _onConnected, connectionOptions] = useHubParams
+
+      expect(connectionOptions.accessTokenFactory()).toEqual("accessTokenText")
+    })
   })
 })
