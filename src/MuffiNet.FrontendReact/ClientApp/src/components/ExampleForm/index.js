@@ -98,7 +98,9 @@ export default function ExampleForm({ onSubmit }) {
         />
       </div>
       <div>
-        <Button color="success">Submit</Button>
+        <Button variant={Variants.Primary} size={Sizes.Large}>
+          Submit
+        </Button>
       </div>
     </form>
   )
