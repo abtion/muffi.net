@@ -15,9 +15,6 @@ module.exports = {
         .use("@svgr/webpack")
         .loader(require.resolve("@svgr/webpack"))
         .options({ svgoConfig: { plugins: { removeViewBox: false } } }), // allow resizing SVGs (default options strip viewBox for some strange reason)
-    // .end()      // these next bits are not needed if your files are named '.svg' since the built-in rules do this for you
-    // .use('url') // but if you pick a different extension, this is needed
-    // .loader(require.resolve('url-loader')),
 
     react({
       html: {
@@ -38,10 +35,17 @@ module.exports = {
           "sass-loader",
         ],
       },
+      babel: {
+        presets: [
+          ["@babel/preset-typescript", { allExtensions: true, isTSX: true }],
+        ],
+      },
     }),
+
     jest({
-      testRegex: "src/.*test.js$",
-      collectCoverageFrom: ["**/src/**/*.{js,jsx}"],
+      testRegex: ".*test.(t|j)sx?$",
+      testEnvironment: "jsdom",
+      collectCoverageFrom: ["./**/*.{js,ts,tsx}", "!./**/*.d.ts"],
       coveragePathIgnorePatterns: [
         "src/authorization",
         "src/registerServiceWorker.js",
@@ -50,14 +54,24 @@ module.exports = {
         "src/contexts",
         "src/components/Nav",
       ],
-      setupFiles: ["./src/setupTests.js"],
-      setupFilesAfterEnv: ["./src/setupTestsAfterEnv.js"],
+      transform: {
+        "\\.(ts|tsx)$": "@neutrinojs/jest/src/transformer.js", // Compile ts and tsx files with babel (regular js files)
+      },
+      setupFiles: ["./src/setupTests.ts"],
+      setupFilesAfterEnv: ["./src/setupTestsAfterEnv.ts"],
+      moduleFileExtensions: ["js", "ts", "json", "tsx", "scss"],
       moduleNameMapper: {
         "~/(.*)$": "<rootDir>/src/$1",
         "\\.svg": "<rootDir>/__mocks__/svgr-webpack.js",
       },
     }),
+
     (neutrino) => {
+      // Add typescript extensions
+      neutrino.config.resolve.extensions.add(".tsx")
+      neutrino.config.resolve.extensions.add(".ts")
+      neutrino.config.module.rule("compile").test(/\.(wasm|mjs|jsx|js|tsx|ts)$/)
+
       neutrino.config.resolve.alias.set("~", path.resolve(__dirname, "src"))
       neutrino.config.devServer.port(process.env.PORT || 3000)
       neutrino.config.devServer.host(process.env.PORT ? "0.0.0.0" : "localhost")
