@@ -1,10 +1,10 @@
 import { renderHook, act } from "@testing-library/react-hooks"
-import useMappedRecords from "./useMappedRecords"
+import useMappedRecords, { RecordMap } from "./useMappedRecords"
 
 describe(useMappedRecords, () => {
   it("manages records", () => {
     const { result } = renderHook(() => useMappedRecords())
-    let currentRecordMap
+    let currentRecordMap: RecordMap
 
     // Add records
     act(() => {
