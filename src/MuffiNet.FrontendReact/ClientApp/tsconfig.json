@@ -13,7 +13,10 @@
     "noEmit": true,
     "types": ["webpack-env", "jest", "@testing-library/jest-dom"],
     "resolveJsonModule": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": {
+      "~/*": ["./src/*"]
+    }
   },
   "include": ["**/*"],
   "exclude": ["**/*.test.{ts,tsx}", "node_modules", "vendor", "public"],
