@@ -32,5 +32,11 @@ module.exports = {
         "@typescript-eslint/explicit-module-boundary-types": 0,
       },
     },
+    {
+      files: ["./*.js"],
+      rules: {
+        "@typescript-eslint/no-var-requires": 0,
+      },
+    },
   ],
 }
