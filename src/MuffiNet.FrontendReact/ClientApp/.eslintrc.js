@@ -24,4 +24,13 @@ module.exports = {
       { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
     ],
   },
+  overrides: [
+    {
+      // enable the rule specifically for TypeScript files
+      files: ["*.js"],
+      rules: {
+        "@typescript-eslint/explicit-module-boundary-types": false,
+      },
+    },
+  ],
 }
