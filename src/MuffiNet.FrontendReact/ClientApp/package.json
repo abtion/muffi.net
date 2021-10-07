@@ -60,7 +60,7 @@
     "build": "webpack --mode production",
     "test": "jest",
     "test:watch": "jest --watch",
-    "lint": "eslint ./src/ & prettier . --check",
+    "lint": "eslint . & prettier . --check",
     "format": "prettier --write ."
   },
   "browserslist": {
