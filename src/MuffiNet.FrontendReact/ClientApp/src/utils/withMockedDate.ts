@@ -1,22 +1,29 @@
-export default (date, callback) => {
+export default (date: string | number | Date, callback: Function) => {
   // Mock Date
   const realDate = Date
 
-  // eslint-disable-next-line no-native-reassign
-  Date = class extends Date {
-    constructor(...args) {
-      if (args.length || !date) return super(...args)
+  new Date()
 
-      return new Date(date)
+  // eslint-disable-next-line no-native-reassign
+  class MockedDate extends Date {
+    constructor(...args: [(string | number | Date)?]) {
+      if (args.length || !date) {
+        super(...args)
+      } else {
+        super(date)
+      }
     }
 
     static now() {
-      return date * 1
+      return new realDate(date).getTime()
     }
   }
 
+  // @ts-expect-error: We are overriding Date class on purpose
+  Date = MockedDate
+
   // Run callback
-  const updateDate = (newDate) => (date = newDate)
+  const updateDate = (newDate: string | number) => (date = newDate)
   const callbackResult = callback({ date, updateDate })
 
   // Reset differently depending on whether or not the callback was async
