@@ -1,9 +1,10 @@
 import { useEffect } from "react"
 
-export default (callback, delay, dependencies) => {
-  if (!delay || !Number.isInteger(delay))
-    throw Error("Delay must be an integer")
-
+export default (
+  callback: () => void,
+  delay: number,
+  dependencies?: React.DependencyList
+) => {
   useEffect(() => {
     callback()
     const interval = setInterval(callback, delay)

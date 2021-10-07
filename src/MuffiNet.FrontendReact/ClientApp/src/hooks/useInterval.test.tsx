@@ -3,13 +3,6 @@ import useInterval from "./useInterval"
 import { render } from "@testing-library/react"
 
 describe(useInterval, () => {
-  it("requires a delay to be specified", () => {
-    expect(() => {
-      const callback = () => {}
-      useInterval(callback)
-    }).toThrow("Delay must be an integer")
-  })
-
   it("calls the callback immediately", () => {
     const callback = jest.fn()
 
