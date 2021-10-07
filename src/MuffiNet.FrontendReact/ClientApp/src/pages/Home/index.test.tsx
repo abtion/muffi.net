@@ -2,14 +2,18 @@ import React from "react"
 import { createMemoryHistory } from "history"
 import { Router } from "react-router"
 import { act, render as tlRender, waitFor } from "@testing-library/react"
-import axios from "axios"
 import userEvent from "@testing-library/user-event"
 
 import useHub from "~/hooks/useHub"
 
-import Home from "./"
+import Home from "."
+import AxiosMock from "../../../__mocks__/axios"
+import { UseHubMock } from "~/hooks/__mocks__/useHub"
+import axios from "axios"
 
-jest.mock("axios")
+const mockedAxios = axios as AxiosMock
+const mockedUseHub = useHub as UseHubMock
+
 jest.mock("~/hooks/useHub")
 
 const entity = {
@@ -34,14 +38,14 @@ const unnamedEntity = {
 }
 
 afterEach(() => {
-  axios._reset()
-  useHub._reset()
+  mockedAxios._reset()
+  mockedUseHub._reset()
 })
 beforeEach(() => {
-  axios.get.mockResolvedValue({
+  mockedAxios.get.mockResolvedValue({
     data: { exampleEntities: [entity, unnamedEntity] },
   })
-  axios.post.mockResolvedValue({})
+  mockedAxios.post.mockResolvedValue({})
 })
 
 function render() {
@@ -71,7 +75,7 @@ describe(Home, () => {
 
   describe("when submitting the form ", () => {
     it("posts an exampleEntity to unauthorized endpoint", async () => {
-      axios.put.mockResolvedValue({ data: { Id: "1234" } })
+      mockedAxios.put.mockResolvedValue({ data: { Id: "1234" } })
       const { getByLabelText, getByText } = render()
       userEvent.type(getByLabelText("Name"), "Name")
       userEvent.type(getByLabelText("Description"), "Description")
@@ -79,7 +83,7 @@ describe(Home, () => {
       userEvent.type(getByLabelText("Phone"), "12345678")
       userEvent.click(getByText("Submit"))
       await waitFor(() =>
-        expect(axios.put).toHaveBeenCalledWith("/api/example", {
+        expect(mockedAxios.put).toHaveBeenCalledWith("/api/example", {
           Name: "Name",
           Description: "Description",
           Email: "Em@a.il",
@@ -94,7 +98,7 @@ describe(Home, () => {
       const { getAllByRole } = render()
 
       await waitFor(() =>
-        expect(axios.get).toHaveBeenCalledWith("/api/example/all")
+        expect(mockedAxios.get).toHaveBeenCalledWith("/api/example/all")
       )
 
       const removeBtn = await getAllByRole("button", {
@@ -102,7 +106,9 @@ describe(Home, () => {
       })[0]
       userEvent.click(removeBtn)
       await waitFor(() =>
-        expect(axios.post).toHaveBeenCalledWith("/api/example", { id: "1" })
+        expect(mockedAxios.post).toHaveBeenCalledWith("/api/example", {
+          id: "1",
+        })
       )
     })
   })
@@ -112,7 +118,7 @@ describe(Home, () => {
       const { findByText } = render()
 
       await waitFor(() =>
-        expect(axios.get).toHaveBeenCalledWith("/api/example/all")
+        expect(mockedAxios.get).toHaveBeenCalledWith("/api/example/all")
       )
 
       expect(await findByText(entity.name)).toBeInTheDocument()
@@ -128,7 +134,7 @@ describe(Home, () => {
       const { findByText } = render()
 
       act(() => {
-        useHub.connectionMock._trigger("SomeEntityCreated", {
+        mockedUseHub.connectionMock._trigger("SomeEntityCreated", {
           entity,
         })
       })
@@ -142,13 +148,13 @@ describe(Home, () => {
     it("adds & then updates existing records", async () => {
       const { findByText, queryByText } = render()
       act(() => {
-        useHub.connectionMock._trigger("SomeEntityCreated", {
+        mockedUseHub.connectionMock._trigger("SomeEntityCreated", {
           entity,
         })
       })
 
       act(() => {
-        useHub.connectionMock._trigger("SomeEntityUpdated", {
+        mockedUseHub.connectionMock._trigger("SomeEntityUpdated", {
           entity: updatedEntity,
         })
       })
@@ -161,7 +167,7 @@ describe(Home, () => {
       const { findByText } = render()
 
       act(() => {
-        useHub.connectionMock._trigger("SomeEntityCreated", {
+        mockedUseHub.connectionMock._trigger("SomeEntityCreated", {
           entity,
         })
       })
@@ -170,7 +176,7 @@ describe(Home, () => {
       expect(nameElement).toBeInTheDocument()
 
       act(() => {
-        useHub.connectionMock._trigger("SomeEntityDeleted", {
+        mockedUseHub.connectionMock._trigger("SomeEntityDeleted", {
           entityId: entity.id,
         })
       })

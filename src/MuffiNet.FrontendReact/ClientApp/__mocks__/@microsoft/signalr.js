@@ -1,9 +1,5 @@
 export * from "@microsoft/signalr"
-
-export const connectionMock = {
-  start: jest.fn(() => Promise.resolve()),
-  stop: jest.fn(),
-}
+import connectionMock from "./signalr/connectionMock"
 
 const mocks = {
   withUrl: jest.fn(),

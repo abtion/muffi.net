@@ -7,17 +7,18 @@ import useMappedRecords from "~/hooks/useMappedRecords"
 import ExampleForm from "~/components/ExampleForm"
 import ExampleTable from "~/components/ExampleTable"
 import useHub from "~/hooks/useHub"
+import { ExampleEntity } from "~/types/ExampleEntity"
 
-export default function Home() {
+export default function Home(): JSX.Element {
   const [exampleEntityMap, upsertExampleEntity, deleteExampleEntity] =
-    useMappedRecords((exampleEntity) => exampleEntity.id)
+    useMappedRecords((exampleEntity: ExampleEntity) => exampleEntity.id)
 
   const exampleEntityTables = useMemo(() => {
     const result = {
       named: [],
       unnamed: [],
     }
-    Object.values(exampleEntityMap).forEach((exampleEntity) => {
+    Object.values(exampleEntityMap).forEach((exampleEntity: ExampleEntity) => {
       const table = exampleEntity.name ? result.named : result.unnamed
       table.push(exampleEntity)
     })
@@ -47,16 +48,14 @@ export default function Home() {
   )
   useHub("/hubs/example", onHubConnected)
 
-  const createExampleEntity = (formData) => {
-    return axios.put("/api/example", formData).then((response) => {
-      // console.log(response)
-    })
+  const createExampleEntity = async (formData) => {
+    const _response = await axios.put("/api/example", formData)
+    // console.log(_response)
   }
 
-  const removeExampleEntity = (id) => {
-    return axios.post("/api/example", { id: id }).then((response) => {
-      // console.log(response)
-    })
+  const removeExampleEntity = async (id) => {
+    const _response = await axios.post("/api/example", { id })
+    // console.log(_response)
   }
 
   return (

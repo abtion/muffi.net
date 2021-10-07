@@ -7,8 +7,11 @@ import ExampleTable from "~/components/ExampleTable"
 import { HttpTransportType } from "@microsoft/signalr"
 import useMappedRecords from "~/hooks/useMappedRecords"
 import useHub from "~/hooks/useHub"
+import { ExampleEntity } from "~/types/ExampleEntity"
 
-export default function AuthorizedHome({ accessToken }) {
+export default function AuthorizedHome({
+  accessToken,
+}: AuthorizedHomeProps): JSX.Element {
   const connectionOptions = useMemo(
     () => ({
       accessTokenFactory: () => accessToken,
@@ -18,14 +21,14 @@ export default function AuthorizedHome({ accessToken }) {
   )
 
   const [exampleEntityMap, upsertExampleEntity, deleteExampleEntity] =
-    useMappedRecords((exampleEntity) => exampleEntity.id)
+    useMappedRecords((exampleEntity: ExampleEntity) => exampleEntity.id)
 
   const exampleEntityTables = useMemo(() => {
     const result = {
       named: [],
       unnamed: [],
     }
-    Object.values(exampleEntityMap).forEach((exampleEntity) => {
+    Object.values(exampleEntityMap).forEach((exampleEntity: ExampleEntity) => {
       const table = exampleEntity.name ? result.named : result.unnamed
       table.push(exampleEntity)
     })
@@ -68,7 +71,7 @@ export default function AuthorizedHome({ accessToken }) {
           authorization: `Bearer ${accessToken}`,
         },
       })
-      .then((response) => {
+      .then((_response) => {
         // console.log(response)
       })
   }
@@ -84,7 +87,7 @@ export default function AuthorizedHome({ accessToken }) {
           },
         }
       )
-      .then((response) => {
+      .then((_response) => {
         // console.log(response)
       })
   }
@@ -107,4 +110,8 @@ export default function AuthorizedHome({ accessToken }) {
       </div>
     </AuthorizedLayout>
   )
+}
+
+type AuthorizedHomeProps = {
+  accessToken: string
 }
