@@ -48,11 +48,12 @@ module.exports = {
       collectCoverageFrom: ["./**/*.{js,ts,tsx}", "!./**/*.d.ts"],
       coveragePathIgnorePatterns: [
         "src/authorization",
-        "src/registerServiceWorker.js",
-        "src/index.js",
-        "src/App.js",
+        "src/index.tsx",
+        "src/App.tsx",
         "src/contexts",
-        "src/components/Nav",
+        "src/types",
+        "src/const",
+        "./*.js",
       ],
       transform: {
         "\\.(ts|tsx)$": "@neutrinojs/jest/src/transformer.js", // Compile ts and tsx files with babel (regular js files)
