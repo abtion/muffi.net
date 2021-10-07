@@ -3,13 +3,13 @@ import { createMemoryHistory } from "history"
 import { Router } from "react-router"
 import { act, render as tlRender, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-
-import useHub from "~/hooks/useHub"
+import axios from "axios"
 
 import Home from "."
+
+import useHub from "~/hooks/useHub"
 import AxiosMock from "../../../__mocks__/axios"
 import { UseHubMock } from "~/hooks/__mocks__/useHub"
-import axios from "axios"
 
 const mockedAxios = axios as AxiosMock
 const mockedUseHub = useHub as UseHubMock

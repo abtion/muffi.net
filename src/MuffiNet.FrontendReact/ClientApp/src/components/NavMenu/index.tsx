@@ -8,7 +8,7 @@ import { LoginMenu } from "~/authorization/LoginMenu"
 import NavItem from "~/components/NavItem"
 import NavLink from "~/components/NavLink"
 
-export default function NavMenu() {
+export default function NavMenu(): JSX.Element {
   const [isCollapsed, setIsCollapsed] = useState(true)
 
   const toggleNavbar = useCallback(() => {

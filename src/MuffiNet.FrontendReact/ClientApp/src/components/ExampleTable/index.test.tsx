@@ -4,7 +4,8 @@ import userEvent from "@testing-library/user-event"
 
 import ExampleTable from "./"
 
-let onRemove = jest.fn()
+const onRemove = jest.fn()
+
 function render(entityList) {
   const context = tlRender(
     <ExampleTable entities={entityList} onRemove={onRemove} />

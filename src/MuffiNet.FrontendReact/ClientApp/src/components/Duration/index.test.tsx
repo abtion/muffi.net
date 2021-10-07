@@ -9,7 +9,7 @@ describe(Duration, () => {
   describe("since-prop is in the future", () => {
     it("displays 00:00", () => {
       const { getByText } = render(<Duration since={new Date("2222-01-21")} />)
-      expect(getByText("00:00")).toBeTruthy()
+      expect(getByText("00:00")).toBeInTheDocument()
     })
   })
 
@@ -22,7 +22,7 @@ describe(Duration, () => {
 
         const { getByText } = render(<Duration since={since} />)
 
-        expect(getByText("48:00")).toBeTruthy()
+        expect(getByText("48:00")).toBeInTheDocument()
 
         act(() => {
           const newTime = DateTime.now().minus({ hours: 2 }).toJSDate()
@@ -30,7 +30,7 @@ describe(Duration, () => {
           jest.runOnlyPendingTimers()
         })
 
-        expect(getByText("46:00")).toBeTruthy()
+        expect(getByText("46:00")).toBeInTheDocument()
 
         jest.clearAllTimers()
         jest.useRealTimers()
@@ -42,7 +42,7 @@ describe(Duration, () => {
         const since = DateTime.now().minus({ hours: 2 }).toJSDate()
 
         const { getByText } = render(<Duration since={since} format="mmm:ss" />)
-        expect(getByText("120:00")).toBeTruthy()
+        expect(getByText("120:00")).toBeInTheDocument()
       })
     })
 
@@ -54,7 +54,7 @@ describe(Duration, () => {
         const { getByText } = render(
           <Duration since={since} format="mm:ss" upperLimit={upperLimit} />
         )
-        expect(getByText("> 60:00")).toBeTruthy()
+        expect(getByText("> 60:00")).toBeInTheDocument()
       })
     })
   })

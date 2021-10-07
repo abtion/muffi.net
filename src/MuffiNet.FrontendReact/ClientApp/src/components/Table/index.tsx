@@ -3,11 +3,11 @@ import React from "react"
 
 import "./style.scss"
 
-export default function Table(props): JSX.Element {
-  const usedProps = {
-    ...props,
-    className: classNames("Table", props.className),
-  }
+export default function Table({
+  className,
+  ...rest
+}: React.TableHTMLAttributes<HTMLTableElement>): JSX.Element {
+  const usedClassName = classNames("Table", className)
 
-  return <table {...usedProps} />
+  return <table className={usedClassName} {...rest} />
 }

@@ -69,7 +69,12 @@ describe(useInterval, () => {
       const callback = jest.fn()
       const delay = 1000
 
-      const Component = ({ dependency, nonDependency }) => {
+      const Component = ({
+        dependency,
+      }: {
+        dependency: string
+        nonDependency: string
+      }) => {
         useInterval(callback, delay, [dependency])
         return null
       }

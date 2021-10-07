@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { UserManager, WebStorageStateStore } from "oidc-client"
 import { ApplicationPaths, ApplicationName } from "./ApiAuthorizationConstants"
 

@@ -1,9 +1,6 @@
 import React from "react"
 import { render as tlRender } from "@testing-library/react"
-import { waitFor } from "@testing-library/dom"
 import userEvent from "@testing-library/user-event"
-import { createMemoryHistory } from "history"
-import { Router } from "react-router"
 
 import axios from "axios"
 
@@ -11,8 +8,7 @@ import ExampleForm from "./"
 import AxiosMock from "../../../__mocks__/axios"
 
 const mockedAxios = axios as AxiosMock
-
-var onSubmit = jest.fn()
+const onSubmit = jest.fn()
 
 function render() {
   const context = tlRender(<ExampleForm onSubmit={onSubmit} />)
@@ -40,19 +36,14 @@ describe(ExampleForm, () => {
 
   describe("when submitting the form", () => {
     it("posts an exampleEntity", () => {
-      //mockedAxios.post.mockResolvedValue({ data: { Id: "1234" } })
       const { getByLabelText, getByText } = render()
       userEvent.type(getByLabelText("Name"), "Name")
       userEvent.type(getByLabelText("Description"), "Description")
       userEvent.type(getByLabelText("E-mail"), "Em@a.il")
       userEvent.type(getByLabelText("Phone"), "12345678")
+
       userEvent.click(getByText("Submit"))
-      //   expect(mockedAxios.post).toHaveBeenCalledWith("/api/signup", {
-      //     Name: "Name",
-      //     Description: "Description",
-      //     Email: "Em@a.il",
-      //     Phone: "12345678",
-      //   })
+
       expect(onSubmit).toHaveBeenCalledTimes(1)
     })
   })

@@ -4,12 +4,11 @@ export default (
   callback: () => void,
   delay: number,
   dependencies?: React.DependencyList
-) => {
+): void => {
   useEffect(() => {
     callback()
     const interval = setInterval(callback, delay)
 
     return () => clearInterval(interval)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies)
 }

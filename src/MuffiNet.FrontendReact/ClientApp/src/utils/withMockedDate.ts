@@ -1,4 +1,15 @@
-export default (date: string | number | Date, callback: Function) => {
+interface WithMockedDateCallbackOptions {
+  date: string | number | Date
+  updateDate: (date: string | number | Date) => void
+}
+interface WithMockedDateCallback {
+  (options: WithMockedDateCallbackOptions): void | Promise<void>
+}
+
+export default (
+  date: string | number | Date,
+  callback: WithMockedDateCallback
+): void | Promise<void> => {
   // Mock Date
   const realDate = Date
 
@@ -20,18 +31,24 @@ export default (date: string | number | Date, callback: Function) => {
   }
 
   // @ts-expect-error: We are overriding Date class on purpose
+  // eslint-disable-next-line no-global-assign
   Date = MockedDate
 
   // Run callback
-  const updateDate = (newDate: string | number) => (date = newDate)
+  const updateDate = (newDate: string | number) => {
+    date = newDate
+  }
   const callbackResult = callback({ date, updateDate })
 
   // Reset differently depending on whether or not the callback was async
-  // eslint-disable-next-line no-native-reassign
-  const resetDateClass = () => (Date = realDate)
+  const resetDateClass = () => {
+    // eslint-disable-next-line no-global-assign
+    Date = realDate
+  }
 
   const callbackIsPromise =
     callbackResult && typeof callbackResult.then === "function"
+
   if (callbackIsPromise) {
     return callbackResult.then(resetDateClass)
   } else {

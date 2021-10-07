@@ -6,9 +6,14 @@ import { createMemoryHistory } from "history"
 import { Router } from "react-router"
 
 import AuthorizedHome from "./"
-import useHub from "~/hooks/useHub"
 
-jest.mock("axios")
+import useHub from "~/hooks/useHub"
+import AxiosMock from "../../../__mocks__/axios"
+import { UseHubMock } from "~/hooks/__mocks__/useHub"
+
+const mockedAxios = axios as AxiosMock
+const mockedUseHub = useHub as UseHubMock
+
 jest.mock("~/hooks/useHub")
 
 const entity = {
@@ -33,14 +38,14 @@ const unnamedEntity = {
 }
 
 afterEach(() => {
-  axios._reset()
-  useHub._reset()
+  mockedAxios._reset()
+  mockedUseHub._reset()
 })
 beforeEach(() => {
-  axios.get.mockResolvedValue({
+  mockedAxios.get.mockResolvedValue({
     data: { exampleEntities: [entity, unnamedEntity] },
   })
-  axios.post.mockResolvedValue({})
+  mockedAxios.post.mockResolvedValue({})
 })
 
 function render() {
@@ -65,14 +70,14 @@ describe(AuthorizedHome, () => {
 
   describe("when submitting the form ", () => {
     it("posts an unnamed exampleEntity to authorized endpoint", async () => {
-      axios.put.mockResolvedValue({ data: { Id: "1234" } })
+      mockedAxios.put.mockResolvedValue({ data: { Id: "1234" } })
       const { getByLabelText, getByText } = render()
       userEvent.type(getByLabelText("Description"), "Description")
       userEvent.type(getByLabelText("E-mail"), "Em@a.il")
       userEvent.type(getByLabelText("Phone"), "12345678")
       userEvent.click(getByText("Submit"))
       await waitFor(() =>
-        expect(axios.put).toHaveBeenCalledWith(
+        expect(mockedAxios.put).toHaveBeenCalledWith(
           "/api/authorizedexample",
           {
             Name: "",
@@ -91,9 +96,12 @@ describe(AuthorizedHome, () => {
       const { getAllByRole } = render()
 
       await waitFor(() =>
-        expect(axios.get).toHaveBeenCalledWith("/api/authorizedexample/all", {
-          headers: { authorization: "Bearer accessTokenText" },
-        })
+        expect(mockedAxios.get).toHaveBeenCalledWith(
+          "/api/authorizedexample/all",
+          {
+            headers: { authorization: "Bearer accessTokenText" },
+          }
+        )
       )
 
       const removeBtn = await getAllByRole("button", {
@@ -101,7 +109,7 @@ describe(AuthorizedHome, () => {
       })[0]
       userEvent.click(removeBtn)
       await waitFor(() =>
-        expect(axios.post).toHaveBeenCalledWith(
+        expect(mockedAxios.post).toHaveBeenCalledWith(
           "/api/authorizedexample",
           { id: "1" },
           {
@@ -117,9 +125,12 @@ describe(AuthorizedHome, () => {
       const { findByText } = render()
 
       await waitFor(() =>
-        expect(axios.get).toHaveBeenCalledWith("/api/authorizedexample/all", {
-          headers: { authorization: "Bearer accessTokenText" },
-        })
+        expect(mockedAxios.get).toHaveBeenCalledWith(
+          "/api/authorizedexample/all",
+          {
+            headers: { authorization: "Bearer accessTokenText" },
+          }
+        )
       )
 
       expect(await findByText(entity.name)).toBeInTheDocument()
@@ -136,7 +147,7 @@ describe(AuthorizedHome, () => {
       const { findByText } = render()
 
       act(() => {
-        useHub.connectionMock._trigger("SomeEntityCreated", {
+        mockedUseHub.connectionMock._trigger("SomeEntityCreated", {
           entity,
         })
       })
@@ -150,13 +161,13 @@ describe(AuthorizedHome, () => {
     it("adds & then updates existing records", async () => {
       const { findByText, queryByText } = render()
       act(() => {
-        useHub.connectionMock._trigger("SomeEntityCreated", {
+        mockedUseHub.connectionMock._trigger("SomeEntityCreated", {
           entity,
         })
       })
 
       act(() => {
-        useHub.connectionMock._trigger("SomeEntityUpdated", {
+        mockedUseHub.connectionMock._trigger("SomeEntityUpdated", {
           entity: updatedEntity,
         })
       })
@@ -169,7 +180,7 @@ describe(AuthorizedHome, () => {
       const { findByText } = render()
 
       act(() => {
-        useHub.connectionMock._trigger("SomeEntityCreated", {
+        mockedUseHub.connectionMock._trigger("SomeEntityCreated", {
           entity,
         })
       })
@@ -178,7 +189,7 @@ describe(AuthorizedHome, () => {
       expect(nameElement).toBeInTheDocument()
 
       act(() => {
-        useHub.connectionMock._trigger("SomeEntityDeleted", {
+        mockedUseHub.connectionMock._trigger("SomeEntityDeleted", {
           entityId: entity.id,
         })
       })
@@ -192,7 +203,7 @@ describe(AuthorizedHome, () => {
       // Wait for component to finish loading to prevent "not wrapped in act" error
       await findByText(entity.name)
 
-      const useHubParams = useHub.mock.calls[0]
+      const useHubParams = mockedUseHub.mock.calls[0]
       const [_path, _onConnected, connectionOptions] = useHubParams
 
       expect(connectionOptions.accessTokenFactory()).toEqual("accessTokenText")
