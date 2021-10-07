@@ -1,7 +1,19 @@
 import { useEffect, useState } from "react"
-import { HubConnectionBuilder } from "@microsoft/signalr"
+import {
+  HubConnection,
+  HubConnectionBuilder,
+  IHttpConnectionOptions,
+} from "@microsoft/signalr"
 
-export default function useHub(path, onHubConnected, connectionOptions) {
+export interface onHubConnected {
+  (connection: HubConnection): void
+}
+
+export default function useHub(
+  path: string,
+  onHubConnected: onHubConnected,
+  connectionOptions?: IHttpConnectionOptions
+): void {
   const [connection, setConnection] = useState(null)
 
   useEffect(() => {
@@ -20,7 +32,8 @@ export default function useHub(path, onHubConnected, connectionOptions) {
       .then(() => {
         onHubConnected(connection)
       })
-      .catch((e) => console.log("Connection failed: ", e))
+      // eslint-disable-next-line no-console
+      .catch((error: Error) => console.error(error))
 
     return () => connection.stop()
   }, [connection, connectionOptions, onHubConnected])

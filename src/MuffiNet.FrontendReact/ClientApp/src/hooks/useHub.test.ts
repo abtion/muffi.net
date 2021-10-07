@@ -1,15 +1,17 @@
-import { renderHook, act } from "@testing-library/react-hooks"
+import { renderHook } from "@testing-library/react-hooks"
 import { waitFor } from "@testing-library/react"
-import { HubConnectionBuilder, connectionMock } from "@microsoft/signalr"
+import { HubConnectionBuilder } from "@microsoft/signalr"
+import connectionMock from "../../__mocks__/@microsoft/signalr/connectionMock"
 
 import useHub from "./useHub"
 
 const path = "endpoint/api"
 const onHubConnected = jest.fn()
-const connectionOptions = jest.fn()
 
 describe(useHub, () => {
   it("creates HubConnectionBuilder & tries to connect to hub", async () => {
+    const connectionOptions = {}
+
     renderHook(() => useHub(path, onHubConnected, connectionOptions))
 
     expect(HubConnectionBuilder.prototype.withUrl).toHaveBeenCalledWith(
@@ -29,20 +31,20 @@ describe(useHub, () => {
 
   describe("when connection cannot be started", () => {
     it("fails with undefined connection", async () => {
-      const consoleLogSpy = jest.spyOn(console, "log")
-      consoleLogSpy.mockImplementation()
+      const consoleErrorSpy = jest.spyOn(console, "error")
+      consoleErrorSpy.mockImplementation()
 
       connectionMock.start.mockImplementationOnce(async () => {
         throw new Error("Some error")
       })
 
-      renderHook(() => useHub(path, onHubConnected, connectionOptions))
+      renderHook(() => useHub(path, onHubConnected))
 
       await waitFor(() => {
-        expect(console.log).toHaveBeenCalled()
+        expect(consoleErrorSpy).toHaveBeenCalled()
       })
 
-      consoleLogSpy.mockRestore()
+      consoleErrorSpy.mockRestore()
     })
   })
 })
