@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const colors = require("../../../colors.json")
 const prepareColorVariables = require("./src/utils/prepareColorVariables")
-/* eslint-enable @typescript-eslint/no-var-requires */
 
 const tailwindConfig = prepareColorVariables(colors).tailwindConfig
 
