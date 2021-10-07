@@ -5,7 +5,9 @@ import Input from "~/components/Input"
 import Sizes from "~/const/sizes"
 import Variants from "~/const/variants"
 
-export default function ExampleForm({ onSubmit }) {
+export default function ExampleForm({
+  onSubmit,
+}: ExampleFormProps): JSX.Element {
   const [formData, setFormData] = useState({
     Name: "",
     Description: "",
@@ -13,12 +15,14 @@ export default function ExampleForm({ onSubmit }) {
     Phone: "",
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
     onSubmit(formData)
   }
 
-  const handleInput = ({ currentTarget: { type, name, value, checked } }) => {
+  const handleInput = ({
+    currentTarget: { name, value },
+  }: React.ChangeEvent<HTMLInputElement>): void => {
     if (name === "Phone" || name === "Email") {
       value = value.replace(/ /g, "")
     }
@@ -104,4 +108,15 @@ export default function ExampleForm({ onSubmit }) {
       </div>
     </form>
   )
+}
+
+type ExampleFormProps = {
+  onSubmit: (formdata: FormData) => void
+}
+
+type FormData = {
+  Name: string
+  Description: string
+  Email: string
+  Phone: string
 }

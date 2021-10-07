@@ -8,6 +8,9 @@ import { Router } from "react-router"
 import axios from "axios"
 
 import ExampleForm from "./"
+import AxiosMock from "../../../__mocks__/axios"
+
+const mockedAxios = axios as AxiosMock
 
 var onSubmit = jest.fn()
 
@@ -17,7 +20,7 @@ function render() {
   return { ...context }
 }
 
-afterEach(() => axios._reset())
+afterEach(() => mockedAxios._reset())
 
 describe(ExampleForm, () => {
   it("renders correct inputs", () => {
@@ -37,14 +40,14 @@ describe(ExampleForm, () => {
 
   describe("when submitting the form", () => {
     it("posts an exampleEntity", () => {
-      //axios.post.mockResolvedValue({ data: { Id: "1234" } })
+      //mockedAxios.post.mockResolvedValue({ data: { Id: "1234" } })
       const { getByLabelText, getByText } = render()
       userEvent.type(getByLabelText("Name"), "Name")
       userEvent.type(getByLabelText("Description"), "Description")
       userEvent.type(getByLabelText("E-mail"), "Em@a.il")
       userEvent.type(getByLabelText("Phone"), "12345678")
       userEvent.click(getByText("Submit"))
-      //   expect(axios.post).toHaveBeenCalledWith("/api/signup", {
+      //   expect(mockedAxios.post).toHaveBeenCalledWith("/api/signup", {
       //     Name: "Name",
       //     Description: "Description",
       //     Email: "Em@a.il",

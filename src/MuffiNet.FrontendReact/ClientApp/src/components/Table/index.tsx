@@ -3,7 +3,7 @@ import React from "react"
 
 import "./style.scss"
 
-export default function Spinner(props) {
+export default function Table(props): JSX.Element {
   const usedProps = {
     ...props,
     className: classNames("Table", props.className),

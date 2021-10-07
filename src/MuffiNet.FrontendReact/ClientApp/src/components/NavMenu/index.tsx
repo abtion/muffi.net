@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react"
 import { Link } from "react-router-dom"
+// @ts-expect-error: SVG's should be able to load given the later compilation, lets revisit this later
 import { ReactComponent as ListIcon } from "bootstrap-icons/icons/list.svg"
 import classNames from "classnames"
 

@@ -1,8 +1,13 @@
 import React from "react"
 import Table from "~/components/Table"
 import Button from "~/components/Button"
+import { ExampleEntity } from "~/types/ExampleEntity"
+import Sizes from "~/const/sizes"
 
-export default function ExampleTable({ entities, onRemove }) {
+export default function ExampleTable({
+  entities,
+  onRemove,
+}: ExampleTableProps): JSX.Element {
   const handleClick = (e, id) => {
     e.preventDefault()
     onRemove(id)
@@ -29,7 +34,10 @@ export default function ExampleTable({ entities, onRemove }) {
             <td>{entity.email}</td>
             <td>{entity.phone}</td>
             <td>
-              <Button size="sm" onClick={(e) => handleClick(e, entity.id)}>
+              <Button
+                size={Sizes.Small}
+                onClick={(e) => handleClick(e, entity.id)}
+              >
                 Remove
               </Button>
             </td>
@@ -38,4 +46,9 @@ export default function ExampleTable({ entities, onRemove }) {
       </tbody>
     </Table>
   )
+}
+
+type ExampleTableProps = {
+  entities: ExampleEntity[]
+  onRemove: (id: string) => void
 }
