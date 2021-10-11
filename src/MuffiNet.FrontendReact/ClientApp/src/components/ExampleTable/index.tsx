@@ -50,5 +50,5 @@ export default function ExampleTable({
 
 type ExampleTableProps = {
   entities: ExampleEntity[]
-  onRemove: (id: string) => void
+  onRemove: (id: string | number) => void
 }

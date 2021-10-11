@@ -2,9 +2,9 @@ import React, { useMemo, useCallback, useEffect } from "react"
 import axios from "axios"
 
 import AuthorizedLayout from "~/components/AuthorizedLayout"
-import ExampleForm from "~/components/ExampleForm"
+import ExampleForm, { ExampleFormData } from "~/components/ExampleForm"
 import ExampleTable from "~/components/ExampleTable"
-import { HttpTransportType } from "@microsoft/signalr"
+import { HttpTransportType, HubConnection } from "@microsoft/signalr"
 import useMappedRecords from "~/hooks/useMappedRecords"
 import useHub from "~/hooks/useHub"
 import { ExampleEntity } from "~/types/ExampleEntity"
@@ -21,7 +21,7 @@ export default function AuthorizedHome({
   )
 
   const [exampleEntityMap, upsertExampleEntity, deleteExampleEntity] =
-    useMappedRecords((exampleEntity: ExampleEntity) => exampleEntity.id)
+    useMappedRecords<ExampleEntity>()
 
   const exampleEntityTables = useMemo(() => {
     const result = {
@@ -29,7 +29,7 @@ export default function AuthorizedHome({
       unnamed: [],
     }
     Object.values(exampleEntityMap).forEach((exampleEntity: ExampleEntity) => {
-      const table = exampleEntity.name ? result.named : result.unnamed
+      const table: ExampleEntity[] = exampleEntity.name ? result.named : result.unnamed
       table.push(exampleEntity)
     })
     return result
@@ -49,7 +49,7 @@ export default function AuthorizedHome({
   }, [accessToken, upsertExampleEntity])
 
   const onHubConnected = useCallback(
-    (connection) => {
+    (connection: HubConnection) => {
       connection.on("SomeEntityCreated", (message) => {
         upsertExampleEntity(message.entity)
       })
@@ -57,14 +57,14 @@ export default function AuthorizedHome({
         upsertExampleEntity(message.entity)
       })
       connection.on("SomeEntityDeleted", (message) => {
-        deleteExampleEntity({ id: message.entityId })
+        deleteExampleEntity(message.entityId)
       })
     },
     [upsertExampleEntity, deleteExampleEntity]
   )
   useHub("/hubs/example", onHubConnected, connectionOptions)
 
-  const createExampleEntity = (formData) => {
+  const createExampleEntity = (formData: ExampleFormData) => {
     return axios
       .put("/api/authorizedexample", formData, {
         headers: {
@@ -76,7 +76,7 @@ export default function AuthorizedHome({
       })
   }
 
-  const removeExampleEntity = (id) => {
+  const removeExampleEntity = (id: string) => {
     return axios
       .post(
         "/api/authorizedexample",

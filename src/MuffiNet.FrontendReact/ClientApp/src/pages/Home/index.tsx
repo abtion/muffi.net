@@ -4,10 +4,11 @@ import axios from "axios"
 import Layout from "~/components/Layout"
 
 import useMappedRecords from "~/hooks/useMappedRecords"
-import ExampleForm from "~/components/ExampleForm"
+import ExampleForm, { ExampleFormData } from "~/components/ExampleForm"
 import ExampleTable from "~/components/ExampleTable"
 import useHub from "~/hooks/useHub"
 import { ExampleEntity } from "~/types/ExampleEntity"
+import { HubConnection } from "@microsoft/signalr"
 
 export default function Home(): JSX.Element {
   const [exampleEntityMap, upsertExampleEntity, deleteExampleEntity] =
@@ -19,7 +20,7 @@ export default function Home(): JSX.Element {
       unnamed: [],
     }
     Object.values(exampleEntityMap).forEach((exampleEntity: ExampleEntity) => {
-      const table = exampleEntity.name ? result.named : result.unnamed
+      const table: ExampleEntity[] = exampleEntity.name ? result.named : result.unnamed
       table.push(exampleEntity)
     })
     return result
@@ -33,27 +34,27 @@ export default function Home(): JSX.Element {
   }, [upsertExampleEntity])
 
   const onHubConnected = useCallback(
-    (connection) => {
+    (connection: HubConnection) => {
       connection.on("SomeEntityCreated", (message) => {
         upsertExampleEntity(message.entity)
       })
       connection.on("SomeEntityUpdated", (message) => {
         upsertExampleEntity(message.entity)
       })
-      connection.on("SomeEntityDeleted", (message) => {
-        deleteExampleEntity({ id: message.entityId })
+      connection.on("SomeEntityDeleted", (message: { entityId: string }) => {
+        deleteExampleEntity(message.entityId)
       })
     },
     [upsertExampleEntity, deleteExampleEntity]
   )
   useHub("/hubs/example", onHubConnected)
 
-  const createExampleEntity = async (formData) => {
+  const createExampleEntity = async (formData: ExampleFormData) => {
     const _response = await axios.put("/api/example", formData)
     // console.log(_response)
   }
 
-  const removeExampleEntity = async (id) => {
+  const removeExampleEntity = async (id: string | number) => {
     const _response = await axios.post("/api/example", { id })
     // console.log(_response)
   }

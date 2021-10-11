@@ -1,86 +1,87 @@
 /* eslint-disable default-case */
 import { useReducer, useCallback } from "react"
 
+interface IdWise {
+  id: string | number
+}
+
 interface KeyFinder<T> {
   (record: T): string | number
 }
 
-const defaultKeyFinder = <T>(entity: T) => entity.id as string
-
-enum Actions {
-  Upsert = "Upsert",
-  Delete = "Delete",
-}
+const defaultKeyFinder = <T extends IdWise>(entity: T) => entity.id as string
 
 export interface RecordMap<T> {
   [key: string]: T
 }
 
-interface RecordAction<T> {
-  type: Actions
+class UpsertAction<T> {
   records: T[]
+
+  constructor(records: T[]) {
+    this.records = records
+  }
+}
+
+class DeleteAction {
+  keys: string[]
+
+  constructor(keys: string[]) {
+    this.keys = keys
+  }
 }
 
 const createReducer =
   <T>(keyFinder: KeyFinder<T>) =>
-  (map: RecordMap<T>, { type, records }: RecordAction<T>) => {
-    switch (type) {
-      case Actions.Upsert: {
-        const updatedMap = { ...map }
+  (map: RecordMap<T>, action: UpsertAction<T> | DeleteAction): RecordMap<T> => {
+    if (action instanceof UpsertAction) {
+      const updatedMap = { ...map }
 
-        records.forEach((record) => {
-          const key = keyFinder(record)
-          updatedMap[key] = record
-        })
+      action.records.forEach((record) => {
+        const key = keyFinder(record)
+        updatedMap[key] = record
+      })
 
-        return updatedMap
-      }
+      return updatedMap
+    } else if (action instanceof DeleteAction) {
+      const updatedMap = { ...map }
 
-      case Actions.Delete: {
-        const updatedMap = { ...map }
+      action.keys.forEach((key) => {
+        delete updatedMap[key]
+      })
 
-        records.forEach((record) => {
-          const key = keyFinder(record)
-          delete updatedMap[key]
-        })
-
-        return updatedMap
-      }
+      return updatedMap
     }
+
+    return map
   }
 
 interface RecordUpserter<T> {
   (records: T | T[]): void
 }
 
-interface RecordDeleter<T> {
-  (records: T | T[]): void
+interface RecordDeleter {
+  (keys: string | string[]): void
 }
 
-export default function useMappedRecords<T>(
+export default function useMappedRecords<T extends IdWise>(
   keyFinder: KeyFinder<T> = defaultKeyFinder
-): [RecordMap<T>, RecordUpserter<T>, RecordDeleter<T>] {
+): [RecordMap<T>, RecordUpserter<T>, RecordDeleter] {
   const [recordMap, dispatch] = useReducer(createReducer<T>(keyFinder), {})
 
   const upsertRecords: RecordUpserter<T> = useCallback(
     (records) => {
       const recordsArray: T[] = []
 
-      return dispatch({
-        type: Actions.Upsert,
-        records: recordsArray.concat(records),
-      })
+      return dispatch(new UpsertAction(recordsArray.concat(records)))
     },
     [dispatch]
   )
-  const deleteRecord: RecordDeleter<T> = useCallback(
-    (records) => {
-      const recordsArray: T[] = []
+  const deleteRecord: RecordDeleter = useCallback(
+    (keys) => {
+      const keysArray: string[] = []
 
-      dispatch({
-        type: Actions.Delete,
-        records: recordsArray.concat(records),
-      })
+      return dispatch(new DeleteAction(keysArray.concat(keys)))
     },
     [dispatch]
   )

@@ -1,10 +1,15 @@
 import { renderHook, act } from "@testing-library/react-hooks"
 import useMappedRecords, { RecordMap } from "./useMappedRecords"
 
+interface Record {
+  id: string,
+  name: string
+}
+
 describe(useMappedRecords, () => {
   it("manages records", () => {
-    const { result } = renderHook(() => useMappedRecords())
-    let currentRecordMap: RecordMap
+    const { result } = renderHook(() => useMappedRecords<Record>())
+    let currentRecordMap: RecordMap<Record>
 
     // Add records
     act(() => {
@@ -39,7 +44,7 @@ describe(useMappedRecords, () => {
     act(() => {
       const [_recordMap, _upsertRecords, deleteRecord] = result.current
 
-      deleteRecord([{ id: "2" }])
+      deleteRecord(["2"])
     })
 
     currentRecordMap = result.current[0]

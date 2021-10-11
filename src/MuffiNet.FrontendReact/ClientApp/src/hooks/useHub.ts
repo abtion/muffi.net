@@ -13,14 +13,17 @@ export default function useHub(
   onHubConnected: onHubConnected,
   connectionOptions?: IHttpConnectionOptions
 ): void {
-  const [connection, setConnection] = useState(null)
+  const [connection, setConnection] = useState<HubConnection | undefined>(undefined)
 
   useEffect(() => {
-    const connect = new HubConnectionBuilder()
-      .withUrl(path, connectionOptions)
+    const builder = new HubConnectionBuilder()
+    connectionOptions ? builder.withUrl(path, connectionOptions) : builder.withUrl(path)
+
+    const connection = builder
       .withAutomaticReconnect()
       .build()
-    setConnection(connect)
+
+    setConnection(connection)
   }, [path, setConnection, connectionOptions])
 
   useEffect(() => {
@@ -34,6 +37,6 @@ export default function useHub(
       // eslint-disable-next-line no-console
       .catch((error: Error) => console.error(error))
 
-    return () => connection.stop()
+    return () => { connection.stop() }
   }, [connection, connectionOptions, onHubConnected])
 }

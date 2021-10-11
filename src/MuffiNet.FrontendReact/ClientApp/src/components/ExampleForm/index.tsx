@@ -111,10 +111,10 @@ export default function ExampleForm({
 }
 
 type ExampleFormProps = {
-  onSubmit: (formdata: FormData) => void
+  onSubmit: (formdata: ExampleFormData) => void
 }
 
-type FormData = {
+export type ExampleFormData = {
   Name: string
   Description: string
   Email: string
