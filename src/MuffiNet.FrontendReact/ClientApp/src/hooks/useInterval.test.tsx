@@ -108,7 +108,9 @@ describe(useInterval, () => {
       const callback = jest.fn()
       const delay = 1000
 
-      const Component = ({ dependency }) => {
+      const Component = (props: { dependency: string }) => {
+        const { dependency } = props
+
         useInterval(
           () => callback(dependency), // Using an arrow function lets us check the callback argument
           delay,

@@ -4,7 +4,7 @@ import axios from "axios"
 import AuthorizedLayout from "~/components/AuthorizedLayout"
 import ExampleForm, { ExampleFormData } from "~/components/ExampleForm"
 import ExampleTable from "~/components/ExampleTable"
-import { HttpTransportType } from "@microsoft/signalr"
+import { HttpTransportType, HubConnection } from "@microsoft/signalr"
 import useIdMap from "~/hooks/useIdMap"
 import useHub from "~/hooks/useHub"
 import { ExampleEntity } from "~/types/ExampleEntity"
@@ -52,14 +52,20 @@ export default function AuthorizedHome({
 
   const onHubConnected = useCallback(
     (connection: HubConnection) => {
-      connection.on("SomeEntityCreated", (message) => {
-        upsertExampleEntity(message.entity)
-      })
-      connection.on("SomeEntityUpdated", (message) => {
-        upsertExampleEntity(message.entity)
-      })
-      connection.on("SomeEntityDeleted", (message) => {
-        deleteExampleEntity(message.entityId)
+      connection.on(
+        "SomeEntityCreated",
+        (message: { entity: ExampleEntity }) => {
+          upsertExampleEntity(message.entity)
+        }
+      )
+      connection.on(
+        "SomeEntityUpdated",
+        (message: { entity: ExampleEntity }) => {
+          upsertExampleEntity(message.entity)
+        }
+      )
+      connection.on("SomeEntityDeleted", (message: { entityId: number }) => {
+        deleteExampleEntity({ id: message.entityId })
       })
     },
     [upsertExampleEntity, deleteExampleEntity]
@@ -78,7 +84,7 @@ export default function AuthorizedHome({
       })
   }
 
-  const removeExampleEntity = (id: string) => {
+  const removeExampleEntity = (id: string | number) => {
     return axios
       .post(
         "/api/authorizedexample",

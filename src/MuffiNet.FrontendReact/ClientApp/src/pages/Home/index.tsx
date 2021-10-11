@@ -4,7 +4,7 @@ import axios from "axios"
 import Layout from "~/components/Layout"
 
 import useIdMap from "~/hooks/useIdMap"
-import ExampleForm from "~/components/ExampleForm"
+import ExampleForm, { ExampleFormData } from "~/components/ExampleForm"
 import ExampleTable from "~/components/ExampleTable"
 import useHub from "~/hooks/useHub"
 import { ExampleEntity } from "~/types/ExampleEntity"
@@ -34,7 +34,7 @@ export default function Home(): JSX.Element {
   }, [upsertExampleEntity])
 
   const onHubConnected = useCallback(
-    (connection) => {
+    (connection: HubConnection) => {
       connection.on(
         "SomeEntityCreated",
         (message: { entity: ExampleEntity }) => {

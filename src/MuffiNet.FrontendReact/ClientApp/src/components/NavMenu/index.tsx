@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { ReactComponent as ListIcon } from "bootstrap-icons/icons/list.svg"
 import classNames from "classnames"
 
-import { LoginMenu } from "~/authorization/LoginMenu"
+import LoginMenu from "~/authorization/LoginMenu"
 import NavItem from "~/components/NavItem"
 import NavLink from "~/components/NavLink"
 

@@ -7,13 +7,16 @@ import App from "~/App"
 import prepareColorVariables from "~/utils/prepareColorVariables"
 import colors from "../../../../colors.json"
 
-const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href")
+const baseElement = document.querySelector("base")
+const baseUrl = baseElement?.getAttribute("href") || "/"
+
 const rootElement = document.getElementById("root")
 
-const cssRoot: HTMLElement = document.querySelector(":root")
+const cssRoot: HTMLElement | null = document.querySelector(":root")
 const cssVariables = prepareColorVariables(colors).cssVariables
+
 Object.entries(cssVariables).forEach(([name, value]) =>
-  cssRoot.style.setProperty(name, value)
+  cssRoot?.style.setProperty(name, value)
 )
 
 ReactDOM.render(

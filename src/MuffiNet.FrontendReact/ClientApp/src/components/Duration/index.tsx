@@ -23,7 +23,7 @@ export default function Duration({
   )
 
   if (upperLimit && duration > upperLimit) {
-    return LuxonDuration.fromMillis(upperLimit).toFormat(`> ${format}`)
+    return <>{LuxonDuration.fromMillis(upperLimit).toFormat(`> ${format}`)}</>
   }
 
   if (duration < 0) return <>00:00</>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import authService from "./AuthorizeService"
 import { ApplicationPaths } from "./ApiAuthorizationConstants"
 
-export class LoginMenu extends Component {
+export default class LoginMenu extends Component {
   constructor(props) {
     super(props)
 

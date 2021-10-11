@@ -3,10 +3,11 @@ import { render as tlRender } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 
 import ExampleTable from "./"
+import { ExampleEntity } from "~/types/ExampleEntity"
 
 const onRemove = jest.fn()
 
-function render(entityList) {
+function render(entityList: ExampleEntity[]) {
   const context = tlRender(
     <ExampleTable entities={entityList} onRemove={onRemove} />
   )

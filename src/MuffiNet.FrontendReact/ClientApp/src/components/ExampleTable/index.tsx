@@ -8,8 +8,11 @@ export default function ExampleTable({
   entities,
   onRemove,
 }: ExampleTableProps): JSX.Element {
-  const handleClick = (e, id) => {
-    e.preventDefault()
+  const handleClick = (
+    event: React.MouseEvent<HTMLElement>,
+    id: string | number
+  ) => {
+    event.preventDefault()
     onRemove(id)
   }
 

@@ -7,9 +7,9 @@ import { createMemoryHistory } from "history"
 
 import NavMenu from "."
 
-jest.mock("~/authorization/LoginMenu", () => ({
-  LoginMenu: jest.fn(() => <div>LoginMenu</div>),
-}))
+jest.mock("~/authorization/LoginMenu", () =>
+  jest.fn(() => <div>LoginMenu</div>)
+)
 
 function render() {
   const history = createMemoryHistory({
@@ -35,7 +35,9 @@ describe(NavMenu, () => {
     expect(navMenu).toHaveClass("hidden")
 
     act(() => {
-      userEvent.click(mobileMenuButton)
+      if (mobileMenuButton) {
+        userEvent.click(mobileMenuButton)
+      }
     })
 
     expect(navMenu).not.toHaveClass("hidden")
