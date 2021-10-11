@@ -1,34 +1,34 @@
 /* eslint-disable default-case */
 import { useReducer, useCallback } from "react"
 
-interface KeyFinder {
-  (record: unknown): string | number
+interface KeyFinder<T> {
+  (record: T): string | number
 }
 
-const defaultKeyFinder = (entity: { id: string }) => entity.id
+const defaultKeyFinder = <T>(entity: T) => entity.id as string
 
 enum Actions {
   Upsert = "Upsert",
   Delete = "Delete",
 }
 
-export interface RecordMap {
-  [key: string]: unknown
+export interface RecordMap<T> {
+  [key: string]: T
 }
 
-interface RecordAction {
+interface RecordAction<T> {
   type: Actions
-  records: [unknown]
+  records: T[]
 }
 
 const createReducer =
-  (keyFinder: KeyFinder) =>
-  (map: RecordMap, { type, records }: RecordAction) => {
+  <T>(keyFinder: KeyFinder<T>) =>
+  (map: RecordMap<T>, { type, records }: RecordAction<T>) => {
     switch (type) {
       case Actions.Upsert: {
         const updatedMap = { ...map }
 
-        records.forEach((record: unknown) => {
+        records.forEach((record) => {
           const key = keyFinder(record)
           updatedMap[key] = record
         })
@@ -39,7 +39,7 @@ const createReducer =
       case Actions.Delete: {
         const updatedMap = { ...map }
 
-        records.forEach((record: unknown) => {
+        records.forEach((record) => {
           const key = keyFinder(record)
           delete updatedMap[key]
         })
@@ -49,33 +49,39 @@ const createReducer =
     }
   }
 
-interface RecordUpserter {
-  (records: unknown | [unknown]): void
+interface RecordUpserter<T> {
+  (records: T | T[]): void
 }
 
-interface RecordDeleter {
-  (records: unknown | [unknown]): void
+interface RecordDeleter<T> {
+  (records: T | T[]): void
 }
 
-export default function useMappedRecords(
-  keyFinder: KeyFinder = defaultKeyFinder
-): [RecordMap, RecordUpserter, RecordDeleter] {
-  const [recordMap, dispatch] = useReducer(createReducer(keyFinder), {})
+export default function useMappedRecords<T>(
+  keyFinder: KeyFinder<T> = defaultKeyFinder
+): [RecordMap<T>, RecordUpserter<T>, RecordDeleter<T>] {
+  const [recordMap, dispatch] = useReducer(createReducer<T>(keyFinder), {})
 
-  const upsertRecords: RecordUpserter = useCallback(
-    (records) =>
-      dispatch({
+  const upsertRecords: RecordUpserter<T> = useCallback(
+    (records) => {
+      const recordsArray: T[] = []
+
+      return dispatch({
         type: Actions.Upsert,
-        records: [].concat(records) as [unknown],
-      }),
+        records: recordsArray.concat(records),
+      })
+    },
     [dispatch]
   )
-  const deleteRecord: RecordDeleter = useCallback(
-    (records) =>
+  const deleteRecord: RecordDeleter<T> = useCallback(
+    (records) => {
+      const recordsArray: T[] = []
+
       dispatch({
         type: Actions.Delete,
-        records: [].concat(records) as [unknown],
-      }),
+        records: recordsArray.concat(records),
+      })
+    },
     [dispatch]
   )
 

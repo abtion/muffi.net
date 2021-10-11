@@ -4,7 +4,6 @@ import {
   HubConnectionBuilder,
   IHttpConnectionOptions,
 } from "@microsoft/signalr"
-
 export interface onHubConnected {
   (connection: HubConnection): void
 }

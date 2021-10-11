@@ -1,13 +1,19 @@
+type MockedDateDate = string | number | Date
+
+interface UpdateDate {
+  (date: MockedDateDate): void
+}
+
 interface WithMockedDateCallbackOptions {
-  date: string | number | Date
-  updateDate: (date: string | number | Date) => void
+  date: MockedDateDate
+  updateDate: UpdateDate
 }
 interface WithMockedDateCallback {
   (options: WithMockedDateCallbackOptions): void | Promise<void>
 }
 
 export default (
-  date: string | number | Date,
+  date: MockedDateDate,
   callback: WithMockedDateCallback
 ): void | Promise<void> => {
   // Mock Date
@@ -17,7 +23,7 @@ export default (
 
   // eslint-disable-next-line no-native-reassign
   class MockedDate extends Date {
-    constructor(...args: [(string | number | Date)?]) {
+    constructor(...args: Parameters<typeof Date>) {
       if (args.length || !date) {
         super(...args)
       } else {
@@ -35,7 +41,7 @@ export default (
   Date = MockedDate
 
   // Run callback
-  const updateDate = (newDate: string | number) => {
+  const updateDate = (newDate: MockedDateDate) => {
     date = newDate
   }
   const callbackResult = callback({ date, updateDate })

@@ -11,7 +11,7 @@ import { ExampleEntity } from "~/types/ExampleEntity"
 
 export default function Home(): JSX.Element {
   const [exampleEntityMap, upsertExampleEntity, deleteExampleEntity] =
-    useMappedRecords((exampleEntity: ExampleEntity) => exampleEntity.id)
+    useMappedRecords<ExampleEntity>()
 
   const exampleEntityTables = useMemo(() => {
     const result = {

@@ -4,7 +4,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "lib": ["es2017", "dom"],
+    "lib": ["es5", "es2017", "dom"],
     "module": "es6",
     "moduleResolution": "node",
     "sourceMap": true,
@@ -16,7 +16,9 @@
     "esModuleInterop": true,
     "paths": {
       "~/*": ["./src/*"]
-    }
+    },
+    "strict": true,
+    "skipLibCheck": true
   },
   "include": ["**/*"],
   "exclude": ["**/*.test.{ts,tsx}", "node_modules", "vendor", "public"],
