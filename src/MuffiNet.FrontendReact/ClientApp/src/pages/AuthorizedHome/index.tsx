@@ -4,8 +4,8 @@ import axios from "axios"
 import AuthorizedLayout from "~/components/AuthorizedLayout"
 import ExampleForm, { ExampleFormData } from "~/components/ExampleForm"
 import ExampleTable from "~/components/ExampleTable"
-import { HttpTransportType, HubConnection } from "@microsoft/signalr"
-import useMappedRecords from "~/hooks/useMappedRecords"
+import { HttpTransportType } from "@microsoft/signalr"
+import useIdMap from "~/hooks/useIdMap"
 import useHub from "~/hooks/useHub"
 import { ExampleEntity } from "~/types/ExampleEntity"
 
@@ -21,17 +21,19 @@ export default function AuthorizedHome({
   )
 
   const [exampleEntityMap, upsertExampleEntity, deleteExampleEntity] =
-    useMappedRecords<ExampleEntity>()
+    useIdMap<ExampleEntity>()
 
   const exampleEntityTables = useMemo(() => {
     const result = {
-      named: [],
-      unnamed: [],
+      named: [] as ExampleEntity[],
+      unnamed: [] as ExampleEntity[],
     }
-    Object.values(exampleEntityMap).forEach((exampleEntity: ExampleEntity) => {
-      const table: ExampleEntity[] = exampleEntity.name ? result.named : result.unnamed
+
+    for (const exampleEntity of exampleEntityMap.values()) {
+      const table = exampleEntity.name ? result.named : result.unnamed
       table.push(exampleEntity)
-    })
+    }
+
     return result
   }, [exampleEntityMap])
 

@@ -3,8 +3,8 @@ import axios from "axios"
 
 import Layout from "~/components/Layout"
 
-import useMappedRecords from "~/hooks/useMappedRecords"
-import ExampleForm, { ExampleFormData } from "~/components/ExampleForm"
+import useIdMap from "~/hooks/useIdMap"
+import ExampleForm from "~/components/ExampleForm"
 import ExampleTable from "~/components/ExampleTable"
 import useHub from "~/hooks/useHub"
 import { ExampleEntity } from "~/types/ExampleEntity"
@@ -12,17 +12,17 @@ import { HubConnection } from "@microsoft/signalr"
 
 export default function Home(): JSX.Element {
   const [exampleEntityMap, upsertExampleEntity, deleteExampleEntity] =
-    useMappedRecords<ExampleEntity>()
+    useIdMap<ExampleEntity>()
 
   const exampleEntityTables = useMemo(() => {
     const result = {
-      named: [],
-      unnamed: [],
+      named: [] as ExampleEntity[],
+      unnamed: [] as ExampleEntity[],
     }
-    Object.values(exampleEntityMap).forEach((exampleEntity: ExampleEntity) => {
-      const table: ExampleEntity[] = exampleEntity.name ? result.named : result.unnamed
+    for (const exampleEntity of exampleEntityMap.values()) {
+      const table = exampleEntity.name ? result.named : result.unnamed
       table.push(exampleEntity)
-    })
+    }
     return result
   }, [exampleEntityMap])
 
@@ -34,15 +34,21 @@ export default function Home(): JSX.Element {
   }, [upsertExampleEntity])
 
   const onHubConnected = useCallback(
-    (connection: HubConnection) => {
-      connection.on("SomeEntityCreated", (message) => {
-        upsertExampleEntity(message.entity)
-      })
-      connection.on("SomeEntityUpdated", (message) => {
-        upsertExampleEntity(message.entity)
-      })
-      connection.on("SomeEntityDeleted", (message: { entityId: string }) => {
-        deleteExampleEntity(message.entityId)
+    (connection) => {
+      connection.on(
+        "SomeEntityCreated",
+        (message: { entity: ExampleEntity }) => {
+          upsertExampleEntity(message.entity)
+        }
+      )
+      connection.on(
+        "SomeEntityUpdated",
+        (message: { entity: ExampleEntity }) => {
+          upsertExampleEntity(message.entity)
+        }
+      )
+      connection.on("SomeEntityDeleted", (message: { entityId: number }) => {
+        deleteExampleEntity({ id: message.entityId })
       })
     },
     [upsertExampleEntity, deleteExampleEntity]
