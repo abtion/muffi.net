@@ -23,6 +23,7 @@ export class Login extends Component {
 
   componentDidMount() {
     const action = this.props.action
+
     switch (action) {
       case LoginActions.Login:
         this.login(this.getReturnUrl())
@@ -30,11 +31,12 @@ export class Login extends Component {
       case LoginActions.LoginCallback:
         this.processLoginCallback()
         break
-      case LoginActions.LoginFailed:
+      case LoginActions.LoginFailed: {
         const params = new URLSearchParams(window.location.search)
         const error = params.get(QueryParameterNames.Message)
         this.setState({ message: error })
         break
+      }
       case LoginActions.Profile:
         this.redirectToProfile()
         break
@@ -50,7 +52,7 @@ export class Login extends Component {
     const action = this.props.action
     const { message } = this.state
 
-    if (!!message) {
+    if (message) {
       return <div>{message}</div>
     } else {
       switch (action) {
