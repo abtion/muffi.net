@@ -12,10 +12,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2.3.4
 
-      - name: Set up .NET Core 5
+      - name: Set up .NET 6
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '5.0.x'
+          dotnet-version: '6.0.100-rc.1.21463.6'
           include-prerelease: true
 
       - name: Set up & start Code Climate test reporter
@@ -31,12 +31,6 @@ jobs:
           dotnet tool install -g coverlet.console
           dotnet tool install -g dotnet-reportgenerator-globaltool
 
-      - name: Set up .NET Core 6
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '6.0.x'
-          include-prerelease: true
-
       - name: Build solution
         run: |
           dotnet restore
@@ -51,11 +45,12 @@ jobs:
           yarn test --coverage
 
       - name: Find and Replace
-        uses: jacobtomlinson/gha-find-replace@master
+        uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: 'SF:src'
           replace: 'SF:src/MuffiNet.FrontendReact/ClientApp/src'
-          include: 'lcov.info'
+          include: '**/lcov.info'
+          regex: false
 
       - name: Create a single report
         run: |
