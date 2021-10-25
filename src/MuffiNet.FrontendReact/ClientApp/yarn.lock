@@ -1392,10 +1392,10 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@microsoft/signalr@^5.0.9":
-  version "5.0.9"
-  resolved "https://registry.yarnpkg.com/@microsoft/signalr/-/signalr-5.0.9.tgz#cff2b0a091298049fd012e7b6cd015a814f8698d"
-  integrity sha512-pQufk3+mChfystnmYpglyRYQFp+036QmOxbZUFr2cFf2iiS8ekBX5uVBOG8OexKcsG4TcJNAU/ref90Y9+3ZiA==
+"@microsoft/signalr@^5.0.11":
+  version "5.0.11"
+  resolved "https://registry.yarnpkg.com/@microsoft/signalr/-/signalr-5.0.11.tgz#fe3cd64668039d45219fdc7d6ac582b51f73a006"
+  integrity sha512-sek3lNroiutZ6XAb2UxwBkAgLWIXS7DQpRU5zKtus63xyZ2UUKQvCyT8US++1+UG3HSkSfEgaMa+o1xQfmuGGg==
   dependencies:
     abort-controller "^3.0.0"
     eventsource "^1.0.7"
