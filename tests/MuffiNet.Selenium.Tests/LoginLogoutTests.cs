@@ -13,90 +13,90 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
             // skip
         }
 
-        [Fact]
-        public void Given_UserExists_When_LoggingIn_Then_UserIsLoggedInAndRedirected()
-        {
-            webDriver.Navigate().GoToUrl($"{siteUrl}authhome");
+        //[Fact]
+        //public void Given_UserExists_When_LoggingIn_Then_UserIsLoggedInAndRedirected()
+        //{
+        //    webDriver.Navigate().GoToUrl($"{siteUrl}authhome");
 
-            wait().Until(webDriver => webDriver.FindElement(By.TagName("main")));
+        //    wait().Until(webDriver => webDriver.FindElement(By.TagName("main")));
 
-            webDriver.Url.Should().StartWith($"{siteUrl}Identity/Account/Login?");
+        //    webDriver.Url.Should().StartWith($"{siteUrl}Identity/Account/Login?");
 
-            var emailInput = webDriver.FindElement(By.Id("Input_Email"));
-            emailInput.Clear();
-            emailInput.SendKeys("MuffiNet@abtion.com");
+        //    var emailInput = webDriver.FindElement(By.Id("Input_Email"));
+        //    emailInput.Clear();
+        //    emailInput.SendKeys("MuffiNet@abtion.com");
 
-            var passwordInput = webDriver.FindElement(By.Id("Input_Password"));
-            passwordInput.Clear();
-            passwordInput.SendKeys("Test1234!");
+        //    var passwordInput = webDriver.FindElement(By.Id("Input_Password"));
+        //    passwordInput.Clear();
+        //    passwordInput.SendKeys("Test1234!");
 
-            var submitButton = webDriver.FindElement(By.TagName("form")).FindElement(By.TagName("button"));
-            submitButton.Click();
+        //    var submitButton = webDriver.FindElement(By.TagName("form")).FindElement(By.TagName("button"));
+        //    submitButton.Click();
 
-            wait().Until(webDriver => webDriver.FindElement(By.TagName("nav")));
+        //    wait().Until(webDriver => webDriver.FindElement(By.TagName("nav")));
 
-            webDriver.Url.Should().StartWith($"{siteUrl}");
-        }
+        //    webDriver.Url.Should().StartWith($"{siteUrl}");
+        //}
 
-        [Fact]
-        public void Given_UserDoesNotExist_When_LoggingIn_Then_UserIsNotLoggedIn()
-        {
-            webDriver.Navigate().GoToUrl($"{siteUrl}authhome");
+        //[Fact]
+        //public void Given_UserDoesNotExist_When_LoggingIn_Then_UserIsNotLoggedIn()
+        //{
+        //    webDriver.Navigate().GoToUrl($"{siteUrl}authhome");
 
-            wait().Until(webDriver => webDriver.FindElement(By.TagName("main")));
+        //    wait().Until(webDriver => webDriver.FindElement(By.TagName("main")));
 
-            webDriver.Url.Should().StartWith($"{siteUrl}Identity/Account/Login?");
+        //    webDriver.Url.Should().StartWith($"{siteUrl}Identity/Account/Login?");
 
-            var emailInput = webDriver.FindElement(By.Id("Input_Email"));
-            emailInput.Clear();
-            emailInput.SendKeys("care2@abtion.com");
+        //    var emailInput = webDriver.FindElement(By.Id("Input_Email"));
+        //    emailInput.Clear();
+        //    emailInput.SendKeys("care2@abtion.com");
 
-            var passwordInput = webDriver.FindElement(By.Id("Input_Password"));
-            passwordInput.Clear();
-            passwordInput.SendKeys("Test1234!");
+        //    var passwordInput = webDriver.FindElement(By.Id("Input_Password"));
+        //    passwordInput.Clear();
+        //    passwordInput.SendKeys("Test1234!");
 
-            var submitButton = webDriver.FindElement(By.TagName("form")).FindElement(By.TagName("button"));
-            submitButton.Click();
+        //    var submitButton = webDriver.FindElement(By.TagName("form")).FindElement(By.TagName("button"));
+        //    submitButton.Click();
 
-            wait().Until(webDriver => webDriver.FindElement(By.Id("forgot-password")));
+        //    wait().Until(webDriver => webDriver.FindElement(By.Id("forgot-password")));
 
-            webDriver.Url.Should().StartWith($"{siteUrl}Identity/Account/Login?");
-        }
+        //    webDriver.Url.Should().StartWith($"{siteUrl}Identity/Account/Login?");
+        //}
 
-        [Fact]
-        public void Given_UserExistsAndIsLoggedIn_When_LoggingOut_Then_UserIsLoggedOutAndRedirected()
-        {
-            // log in
-            webDriver.Navigate().GoToUrl($"{siteUrl}authhome");
+        //[Fact]
+        //public void Given_UserExistsAndIsLoggedIn_When_LoggingOut_Then_UserIsLoggedOutAndRedirected()
+        //{
+        //    // log in
+        //    webDriver.Navigate().GoToUrl($"{siteUrl}authhome");
 
-            wait().Until(webDriver => webDriver.FindElement(By.TagName("main")));
+        //    wait().Until(webDriver => webDriver.FindElement(By.TagName("main")));
 
-            webDriver.Url.Should().StartWith($"{siteUrl}Identity/Account/Login?");
+        //    webDriver.Url.Should().StartWith($"{siteUrl}Identity/Account/Login?");
 
-            var emailInput = webDriver.FindElement(By.Id("Input_Email"));
-            emailInput.Clear();
-            emailInput.SendKeys("user@abtion.com");
+        //    var emailInput = webDriver.FindElement(By.Id("Input_Email"));
+        //    emailInput.Clear();
+        //    emailInput.SendKeys("user@abtion.com");
 
-            var passwordInput = webDriver.FindElement(By.Id("Input_Password"));
-            passwordInput.Clear();
-            passwordInput.SendKeys("Test1234!");
+        //    var passwordInput = webDriver.FindElement(By.Id("Input_Password"));
+        //    passwordInput.Clear();
+        //    passwordInput.SendKeys("Test1234!");
 
-            var submitButton = webDriver.FindElement(By.TagName("form")).FindElement(By.TagName("button"));
-            submitButton.Click();
+        //    var submitButton = webDriver.FindElement(By.TagName("form")).FindElement(By.TagName("button"));
+        //    submitButton.Click();
 
-            // tag = a + text = logout
-            wait().Until(webDriver => webDriver.FindElements(By.TagName("a")).Where(p => p.Text == "Logout").Single());
+        //    // tag = a + text = logout
+        //    wait().Until(webDriver => webDriver.FindElements(By.TagName("a")).Where(p => p.Text == "Logout").Single());
 
-            // find logout button
-            var logoutButton = webDriver.FindElement(By.TagName("header")).FindElements(By.TagName("a")).Where(p => p.Text == "Logout").Single();
+        //    // find logout button
+        //    var logoutButton = webDriver.FindElement(By.TagName("header")).FindElements(By.TagName("a")).Where(p => p.Text == "Logout").Single();
 
-            // Act
-            logoutButton.Click();
+        //    // Act
+        //    logoutButton.Click();
 
-            // check
-            wait().Until(webDriver => webDriver.FindElement(By.Id("forgot-password")));
+        //    // check
+        //    wait().Until(webDriver => webDriver.FindElement(By.Id("forgot-password")));
 
-            webDriver.Url.Should().StartWith($"{siteUrl}Identity/Account/Login?");
-        }
+        //    webDriver.Url.Should().StartWith($"{siteUrl}Identity/Account/Login?");
+        //}
     }
 }

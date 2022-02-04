@@ -24,6 +24,7 @@ namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account
         {
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1848:Use the LoggerMessage delegates", Justification = "<Pending>")]
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();

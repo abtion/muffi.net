@@ -69,7 +69,10 @@ namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        public ILogger Logger => _logger;
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1848:Use the LoggerMessage delegates", Justification = "<Pending>")]
+        public async Task<IActionResult> OnPostAsync(ILogger _logger, string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
 
