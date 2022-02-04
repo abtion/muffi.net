@@ -4,7 +4,9 @@ using System;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 using Xunit;
+
 namespace MuffiNet.FrontendReact.Selenium.Tests
 {
     /// <remarks>
@@ -13,15 +15,24 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
     public sealed class IntegrationFixture : IDisposable
     {
         private Process process;
+        private IConfigurationRoot Configuration;
         internal ChromeDriver webDriver { get; private set; }
 
         public IntegrationFixture()
         {
-            DropDatabase();
-            CreateDatabase();
-            SeedDatabase();
-            webDriver = StartWebDriver();
-            process = StartServer();
+            var task = Task.Run(() =>
+            {
+                DropDatabase();
+                CreateDatabase();
+                SeedDatabase();
+            });
+            if (task.Wait(TimeSpan.FromSeconds(80)))
+            {
+                webDriver = StartWebDriver();
+                process = StartServer();
+            }
+            else
+                throw new TimeoutException("Database setup timed out");
         }
 
         private void DropDatabase()
@@ -46,6 +57,7 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
         private void SeedDatabase()
         {
             System.Console.WriteLine("Seeding database");
+
             var queryString = File.ReadAllText(Path.Join(GetWorkingDirectory(), "..", "..", "sql", "create-user.sql"));
             SqlConnection connection = DbConnection();
             SqlCommand command = new SqlCommand(queryString, connection);
@@ -53,6 +65,7 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
             command.ExecuteNonQuery();
             command.Dispose();
             connection.Dispose();
+
             System.Console.WriteLine("Seeding database: success");
         }
 
@@ -174,15 +187,17 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
         // https://github.com/dotnet/aspnetcore/blob/8b30d862de6c9146f466061d51aa3f1414ee2337/src/DefaultBuilder/src/WebHost.cs#L171
         //
         // And code from our own host builder
-        // https://github.com/abtion/care1-vci/blob/a34d975fb9178517370206bfaf4ce626a8302558/src/MuffiNet.FrontendReact/Program.cs#L22
+        // https://github.com/abtion/care1-vci/blob/a34d975fb9178517370206bfaf4ce626a8302558/src/InfarePortal.FrontendReact/Program.cs#L22
         public IConfigurationRoot GetConfiguration()
         {
+            if (Configuration != null) return Configuration;
+
             // From dotnet
             var config = new ConfigurationBuilder();
 
             config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.Test.json", optional: true, reloadOnChange: true)
-                .AddEnvironmentVariables();
+                .AddEnvironmentVariables("DOTNET_");
 
             var args = Environment.GetCommandLineArgs();
             if (args != null)
@@ -194,7 +209,9 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
             config.AddJsonFile("appsettings.Local.json", true, true)
                   .AddJsonFile($"appsettings.Test.Local.json", true, true);
 
-            return config.Build();
+            Configuration = config.Build();
+
+            return Configuration;
         }
     }
 
