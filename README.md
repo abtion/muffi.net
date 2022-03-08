@@ -127,6 +127,25 @@ yarn test
 - Run backend tests: `dotnet test`
 - Run frontend tests: `yarn test`
 
+## Test Naming Convention
+
+### Selenium Tests (end-to-end)
+
+For these tests we use the Gherkin syntax. Examples:
+
+- Given_SystemIsRunning_When_TheLandingPageIsCall_Then_ThePageIsShown
+- Given_UserExists_When_LoggingIn_Then_UserIsLoggedInAndRedirected
+- Given_UserDoesNotExist_When_LoggingIn_Then_UserIsNotLoggedIn
+- Given_UserExistsAndIsLoggedIn_When_LoggingOut_Then_UserIsLoggedOutAndRedirected
+
+### Unit Tests and Integration Tests
+
+For these tests we use a shorter naming convention: MethodName_ExpectedBehavior_StateUnderTest. Examples:
+
+- LoadAll_ReturnTypeIsCorrect_WhenRequestIsValid
+- GetContactFormInformationIsCalled_ReturnsLoadContactFormResponse_WhenRequestIsValid
+- LoadJiraIssueDetails_ReturnsAnJiraIssueDetailsInstanceWithCorrectFields_WhenJiraIdentifierIsCorrect
+
 ## Test Coverage
 
 Backend code coverage requires Coverlet & ReportGenerator:
