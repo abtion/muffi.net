@@ -9,7 +9,7 @@
 	<SpaRoot>ClientApp\</SpaRoot>
 	<DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
 	<SpaProxyServerUrl>https://localhost:44479</SpaProxyServerUrl>
-	<SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+	<SpaProxyLaunchCommand>yarn start</SpaProxyLaunchCommand>
 	<ImplicitUsings>enable</ImplicitUsings>
 
 	<AnalysisMode>AllEnabledByDefault</AnalysisMode>

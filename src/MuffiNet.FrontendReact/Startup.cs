@@ -31,7 +31,10 @@ namespace MuffiNet.FrontendReact
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    sqlServerOptions => sqlServerOptions.EnableRetryOnFailure(2, TimeSpan.FromSeconds(5), null)
+                )
+            );
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
