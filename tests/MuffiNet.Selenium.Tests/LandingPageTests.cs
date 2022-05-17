@@ -17,7 +17,7 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
         {
             webDriver.Navigate().GoToUrl(siteUrl);
 
-            wait().Until(webDriver => webDriver.FindElement(By.TagName("h1")));
+            Wait().Until(webDriver => webDriver.FindElement(By.TagName("h1")));
 
             webDriver.Url.Should().Be($"{siteUrl}");
         }

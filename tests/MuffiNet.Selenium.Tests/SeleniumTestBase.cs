@@ -22,7 +22,7 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
             webDriver = integrationFixture.webDriver;
         }
 
-        protected WebDriverWait wait()
+        protected WebDriverWait Wait()
         {
             return new WebDriverWait(webDriver, TimeSpan.FromSeconds(10));
         }
