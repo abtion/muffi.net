@@ -79,8 +79,6 @@ jobs:
             
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '6.0.x'
 
       - name: Install dotnet ef
         run: dotnet tool install --global dotnet-ef
@@ -122,8 +120,6 @@ jobs:
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '6.0.x'
 
       - name: Publish
         run: dotnet publish src/MuffiNet.FrontendReact/MuffiNet.FrontendReact.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
