@@ -26,37 +26,40 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
                 CreateDatabase();
                 SeedDatabase();
             });
+
             if (task.Wait(TimeSpan.FromSeconds(80)))
             {
                 webDriver = StartWebDriver();
                 process = StartServer();
             }
             else
+            {
                 throw new TimeoutException("Database setup timed out");
+            }
         }
 
         private void DropDatabase()
         {
-            System.Console.WriteLine("Dropping test database");
+            Console.WriteLine("Dropping test database");
             var dropProcess = Process.Start(CreateStartInfo("ef database drop -f"));
             dropProcess.WaitForExit();
 
             if (dropProcess.ExitCode == 0)
             {
-                System.Console.WriteLine("Dropping test database: success");
+                Console.WriteLine("Dropping test database: success");
             }
             else
             {
-                System.Console.WriteLine("Dropping test database: failure");
-                System.Console.WriteLine(dropProcess.StandardError.ReadToEnd());
-                System.Console.WriteLine(dropProcess.StandardOutput.ReadToEnd());
+                Console.WriteLine("Dropping test database: failure");
+                Console.WriteLine(dropProcess.StandardError.ReadToEnd());
+                Console.WriteLine(dropProcess.StandardOutput.ReadToEnd());
                 throw new InvalidOperationException("Nonzero exit code when dropping test database");
             }
         }
 
         private void SeedDatabase()
         {
-            System.Console.WriteLine("Seeding database");
+            Console.WriteLine("Seeding database");
 
             var queryString = File.ReadAllText(Path.Join(GetWorkingDirectory(), "..", "..", "sql", "create-user.sql"));
             SqlConnection connection = DbConnection();
@@ -66,31 +69,31 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
             command.Dispose();
             connection.Dispose();
 
-            System.Console.WriteLine("Seeding database: success");
+            Console.WriteLine("Seeding database: success");
         }
 
         private void CreateDatabase()
         {
-            System.Console.WriteLine("Creating/updating test database");
+            Console.WriteLine("Creating/updating test database");
             var updateProcess = Process.Start(CreateStartInfo("ef database update"));
             updateProcess.WaitForExit();
 
             if (updateProcess.ExitCode == 0)
             {
-                System.Console.WriteLine("Creating/updating test database: success");
+                Console.WriteLine("Creating/updating test database: success");
             }
             else
             {
-                System.Console.WriteLine("Creating/updating test database: failure");
-                System.Console.WriteLine(updateProcess.StandardError.ReadToEnd());
-                System.Console.WriteLine(updateProcess.StandardOutput.ReadToEnd());
+                Console.WriteLine("Creating/updating test database: failure");
+                Console.WriteLine(updateProcess.StandardError.ReadToEnd());
+                Console.WriteLine(updateProcess.StandardOutput.ReadToEnd());
                 throw new InvalidOperationException("Nonzero exit code when creating/updating test database");
             }
         }
 
         private Process StartServer()
         {
-            System.Console.WriteLine("Starting server");
+            Console.WriteLine("Starting server");
             var process = Process.Start(CreateStartInfo("run --launch-profile \"MuffiNet.FrontendReact Test\""));
 
             string output;
@@ -100,7 +103,7 @@ namespace MuffiNet.FrontendReact.Selenium.Tests
                 output = process.StandardOutput.ReadLine();
             }
             while (!output.Contains("Now listening on", StringComparison.InvariantCultureIgnoreCase));
-            System.Console.WriteLine("Starting server: Success");
+            Console.WriteLine("Starting server: Success");
 
             return process;
         }

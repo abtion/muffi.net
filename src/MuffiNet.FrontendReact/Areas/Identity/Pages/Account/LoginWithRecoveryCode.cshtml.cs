@@ -20,12 +20,13 @@ namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account
         {
             _signInManager = signInManager;
             _logger = logger;
+            Input = new();
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
 
-        public string ReturnUrl { get; set; }
+        public string? ReturnUrl { get; set; }
 
         public class InputModel
         {
@@ -33,10 +34,10 @@ namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account
             [Required]
             [DataType(DataType.Text)]
             [Display(Name = "Recovery Code")]
-            public string RecoveryCode { get; set; }
+            public string RecoveryCode { get; set; } = string.Empty;
         }
 
-        public async Task<IActionResult> OnGetAsync(string returnUrl = null)
+        public async Task<IActionResult> OnGetAsync(string? returnUrl = null)
         {
             // Ensure the user has gone through the username & password screen first
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
@@ -51,7 +52,7 @@ namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1848:Use the LoggerMessage delegates", Justification = "<Pending>")]
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        public async Task<IActionResult> OnPostAsync(string? returnUrl = null)
         {
             if (!ModelState.IsValid)
             {

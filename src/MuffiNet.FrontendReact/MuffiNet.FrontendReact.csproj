@@ -1,20 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
-    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+	<TargetFramework>net6.0</TargetFramework>
+	<Nullable>enable</Nullable>
+	<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+	<TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+	<IsPackable>false</IsPackable>
+	<SpaRoot>ClientApp\</SpaRoot>
+	<DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+	<SpaProxyServerUrl>https://localhost:44479</SpaProxyServerUrl>
+	<SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+	<ImplicitUsings>enable</ImplicitUsings>
+
+	<AnalysisMode>AllEnabledByDefault</AnalysisMode>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
-    <IsPackable>false</IsPackable>
-    <SpaRoot>ClientApp\</SpaRoot>
-    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
     <UserSecretsId>8c2386d9-e0e3-4fe9-a579-74fa10f8cc7f</UserSecretsId>
     <ApplicationInsightsResourceId>/subscriptions/8df1f0a7-2aaf-45a5-a132-25001ce58c8b/resourceGroups/MuffiNet/providers/microsoft.insights/components/MuffiNet</ApplicationInsightsResourceId>
   </PropertyGroup>
-
 	
-	<ItemGroup>
+  <ItemGroup>
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.20.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.3" />

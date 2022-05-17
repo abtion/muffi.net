@@ -22,6 +22,7 @@ namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account
         {
             _userManager = userManager;
             _emailSender = emailSender;
+            Input = new();
         }
 
         [BindProperty]
@@ -31,7 +32,7 @@ namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
-            public string Email { get; set; }
+            public string Email { get; set; } = string.Empty;
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -58,7 +59,7 @@ namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account
                 await _emailSender.SendEmailAsync(
                     Input.Email,
                     "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl!)}'>clicking here</a>.");
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

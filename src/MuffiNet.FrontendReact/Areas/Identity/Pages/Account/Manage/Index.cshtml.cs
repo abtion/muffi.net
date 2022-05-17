@@ -18,12 +18,15 @@ namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage
         {
             _userManager = userManager;
             _signInManager = signInManager;
+
+            Username = string.Empty;
+            Input = new();
         }
 
         public string Username { get; set; }
 
         [TempData]
-        public string StatusMessage { get; set; }
+        public string? StatusMessage { get; set; }
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -32,11 +35,11 @@ namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage
         {
             [Phone]
             [Display(Name = "Phone number")]
-            public string PhoneNumber { get; set; }
+            public string PhoneNumber { get; set; } = string.Empty;
 
             [Required]
             [MaxLength(200)]
-            public string FullName { get; set; }
+            public string FullName { get; set; } = string.Empty;
         }
 
         private async Task LoadAsync(ApplicationUser user)

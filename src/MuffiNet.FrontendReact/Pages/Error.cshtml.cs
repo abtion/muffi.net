@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
 namespace MuffiNet.FrontendReact.Pages
@@ -15,7 +14,7 @@ namespace MuffiNet.FrontendReact.Pages
             _logger = logger;
         }
 
-        public string RequestId { get; set; }
+        public string RequestId { get; set; } = string.Empty;
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
