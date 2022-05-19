@@ -1,6 +1,5 @@
-﻿namespace MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand
+﻿namespace MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand;
+
+public class ExampleDeleteCommandResponse
 {
-    public class ExampleDeleteCommandResponse
-    {
-    }
 }

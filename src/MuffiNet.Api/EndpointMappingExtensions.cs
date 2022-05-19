@@ -2,7 +2,6 @@
 using MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand;
 using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
 using MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll;
-using System.ComponentModel;
 
 public static class EndpointMappingExtensions
 {

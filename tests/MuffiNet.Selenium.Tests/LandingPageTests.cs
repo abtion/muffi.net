@@ -2,24 +2,23 @@ using FluentAssertions;
 using OpenQA.Selenium;
 using Xunit;
 
-namespace MuffiNet.FrontendReact.Selenium.Tests
+namespace MuffiNet.FrontendReact.Selenium.Tests;
+
+[Collection("Selenium")]
+public class LandingPageTests : SeleniumTestBase
 {
-    [Collection("Selenium")]
-    public class LandingPageTests : SeleniumTestBase
+    public LandingPageTests(IntegrationFixture integrationFixture) : base(integrationFixture)
     {
-        public LandingPageTests(IntegrationFixture integrationFixture) : base(integrationFixture)
-        {
-            // skip
-        }
+        // skip
+    }
 
-        [Fact]
-        public void Given_SystemIsRunning_When_TheLandingPageIsCall_Then_ThePageIsShown()
-        {
-            webDriver.Navigate().GoToUrl(siteUrl);
+    [Fact]
+    public void Given_SystemIsRunning_When_TheLandingPageIsCall_Then_ThePageIsShown()
+    {
+        webDriver.Navigate().GoToUrl(siteUrl);
 
-            Wait().Until(webDriver => webDriver.FindElement(By.TagName("h1")));
+        Wait().Until(webDriver => webDriver.FindElement(By.TagName("h1")));
 
-            webDriver.Url.Should().Be($"{siteUrl}");
-        }
+        webDriver.Url.Should().Be($"{siteUrl}");
     }
 }

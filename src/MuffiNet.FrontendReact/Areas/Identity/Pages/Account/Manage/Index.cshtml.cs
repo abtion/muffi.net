@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MuffiNet.Backend.Models;
 using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
 
 namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account.Manage
 {

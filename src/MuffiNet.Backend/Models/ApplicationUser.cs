@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace MuffiNet.Backend.Models
-{
-    public class ApplicationUser : IdentityUser
-    {
+namespace MuffiNet.Backend.Models;
 
-    }
+public class ApplicationUser : IdentityUser
+{
+
 }

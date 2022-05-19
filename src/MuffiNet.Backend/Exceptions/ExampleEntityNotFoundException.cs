@@ -1,12 +1,11 @@
 ﻿using System;
 
-namespace MuffiNet.Backend.Exceptions
-{
-    public class ExampleEntityNotFoundException : Exception
-    {
+namespace MuffiNet.Backend.Exceptions;
 
-        public ExampleEntityNotFoundException(int exampleEntityId) : base($"ExampleEntity with id {exampleEntityId} was not found")
-        {
-        }
+public class ExampleEntityNotFoundException : Exception
+{
+
+    public ExampleEntityNotFoundException(int exampleEntityId) : base($"ExampleEntity with id {exampleEntityId} was not found")
+    {
     }
 }

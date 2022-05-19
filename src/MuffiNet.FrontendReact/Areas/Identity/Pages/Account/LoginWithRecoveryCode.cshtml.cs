@@ -2,11 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using MuffiNet.Backend.Models;
-using System;
 using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
 
 namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account
 {

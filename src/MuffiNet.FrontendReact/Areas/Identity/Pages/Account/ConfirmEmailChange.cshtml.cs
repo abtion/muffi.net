@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using MuffiNet.Backend.Models;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MuffiNet.FrontendReact.Areas.Identity.Pages.Account
 {

@@ -1,114 +1,109 @@
 ﻿using FluentAssertions;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.DependencyInjection;
 using MuffiNet.Backend.HubContracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using MuffiNet.FrontendReact.Hubs;
 using System.Threading.Tasks;
 using Xunit;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Builder;
-using MuffiNet.FrontendReact.Hubs;
 
-namespace MuffiNet.FrontendReact.Tests.Hubs
+namespace MuffiNet.FrontendReact.Tests.Hubs;
+
+[Collection("Hubs")]
+public class ExampleHubTests
 {
-    [Collection("Hubs")]
-    public class ExampleHubTests
+    private static HubConnection SetupHubConnection(TestServer server)
     {
-        private static HubConnection SetupHubConnection(TestServer server)
-        {
-            var connection = new HubConnectionBuilder()
-                .WithUrl(
-                    "http://localhost/hubs/example",
-                    o => o.HttpMessageHandlerFactory = _ => server.CreateHandler())
-                .Build();
+        var connection = new HubConnectionBuilder()
+            .WithUrl(
+                "http://localhost/hubs/example",
+                o => o.HttpMessageHandlerFactory = _ => server.CreateHandler())
+            .Build();
 
-            return connection;
-        }
+        return connection;
+    }
 
-        private static TestServer CreateServer()
+    private static TestServer CreateServer()
+    {
+        var webHostBuilder = new WebHostBuilder()
+            .ConfigureServices(services =>
+            {
+                services.AddSignalR();
+            })
+            .Configure(app =>
+            {
+                app.UseRouting();
+                app.UseEndpoints(endpoints =>
+                {
+                    // Setup SignalR Hubs
+                    endpoints.MapHub<ExampleHub>("/hubs/example");
+                });
+            });
+
+        var server = new TestServer(webHostBuilder);
+        return server;
+    }
+
+    [Fact]
+    public async Task ShouldSendEntityCreatedMessage()
+    {
+        using (var server = CreateServer())
         {
-            var webHostBuilder = new WebHostBuilder()
-                .ConfigureServices(services =>
+            await using (var connection = SetupHubConnection(server))
+            {
+
+                connection.On<SomeEntityUpdatedMessage>("SomeEntityCreated", msg =>
                 {
-                    services.AddSignalR();
-                })
-                .Configure(app =>
-                {
-                    app.UseRouting();
-                    app.UseEndpoints(endpoints =>
-                    {
-                        // Setup SignalR Hubs
-                        endpoints.MapHub<ExampleHub>("/hubs/example");
-                    });
+                    msg.Should().NotBeNull();
                 });
 
-            var server = new TestServer(webHostBuilder);
-            return server;
-        }
+                var message = new SomeEntityCreatedMessage(new Backend.Models.ExampleEntityRecord(123, "My Name", "MyDescription", "My Email", "My Phone"));
 
-        [Fact]
-        public async Task ShouldSendEntityCreatedMessage()
-        {
-            using (var server = CreateServer())
-            {
-                await using (var connection = SetupHubConnection(server))
-                {
-
-                    connection.On<SomeEntityUpdatedMessage>("SomeEntityCreated", msg =>
-                    {
-                        msg.Should().NotBeNull();
-                    });
-
-                    var message = new SomeEntityCreatedMessage(new Backend.Models.ExampleEntityRecord(123, "My Name", "MyDescription", "My Email", "My Phone"));
-
-                    await connection.StartAsync();
-                    await connection.InvokeAsync("SomeEntityCreated", message);
-                }
+                await connection.StartAsync();
+                await connection.InvokeAsync("SomeEntityCreated", message);
             }
         }
+    }
 
-        [Fact]
-        public async Task ShouldSendEntityDeletedMessage()
+    [Fact]
+    public async Task ShouldSendEntityDeletedMessage()
+    {
+        using (var server = CreateServer())
         {
-            using (var server = CreateServer())
+            await using (var connection = SetupHubConnection(server))
             {
-                await using (var connection = SetupHubConnection(server))
+                connection.On<SomeEntityUpdatedMessage>("SomeEntityDeleted", msg =>
                 {
-                    connection.On<SomeEntityUpdatedMessage>("SomeEntityDeleted", msg =>
-                    {
-                        msg.Should().Be(123);
-                    });
+                    msg.Should().Be(123);
+                });
 
-                    var message = new SomeEntityDeletedMessage(123);
+                var message = new SomeEntityDeletedMessage(123);
 
-                    await connection.StartAsync();
-                    await connection.InvokeAsync("SomeEntityDeleted", message);
-                }
+                await connection.StartAsync();
+                await connection.InvokeAsync("SomeEntityDeleted", message);
             }
         }
+    }
 
-        [Fact]
-        public async Task ShouldSendEntityUpdatedMessage()
+    [Fact]
+    public async Task ShouldSendEntityUpdatedMessage()
+    {
+        using (var server = CreateServer())
         {
-            using (var server = CreateServer())
+            await using (var connection = SetupHubConnection(server))
             {
-                await using (var connection = SetupHubConnection(server))
+
+                connection.On<SomeEntityUpdatedMessage>("SomeEntityUpdated", msg =>
                 {
+                    msg.Should().NotBeNull();
+                });
 
-                    connection.On<SomeEntityUpdatedMessage>("SomeEntityUpdated", msg =>
-                    {
-                        msg.Should().NotBeNull();
-                    });
+                var message = new SomeEntityUpdatedMessage(new Backend.Models.ExampleEntityRecord(123, "My Name", "MyDescription", "My Email", "My Phone"));
 
-                    var message = new SomeEntityUpdatedMessage(new Backend.Models.ExampleEntityRecord(123, "My Name", "MyDescription", "My Email", "My Phone"));
-
-                    await connection.StartAsync();
-                    await connection.InvokeAsync("SomeEntityUpdated", message);
-                }
+                await connection.StartAsync();
+                await connection.InvokeAsync("SomeEntityUpdated", message);
             }
         }
     }

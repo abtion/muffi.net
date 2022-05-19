@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace MuffiNet.Backend.Services
+namespace MuffiNet.Backend.Services;
+
+public interface ICurrentDateTimeService
 {
-    public interface ICurrentDateTimeService
+    DateTime CurrentDateTime();
+}
+[ExcludeFromCodeCoverage]
+public class CurrentDateTimeService : ICurrentDateTimeService
+{
+    public DateTime CurrentDateTime()
     {
-        DateTime CurrentDateTime();
-    }
-    [ExcludeFromCodeCoverage]
-    public class CurrentDateTimeService : ICurrentDateTimeService
-    {
-        public DateTime CurrentDateTime()
-        {
-            return DateTime.UtcNow;
-        }
+        return DateTime.UtcNow;
     }
 }

@@ -4,17 +4,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using MuffiNet.Backend.Models;
 
-namespace MuffiNet.Backend.Data
+namespace MuffiNet.Backend.Data;
+
+/// <summary>
+/// Never use this class for database access - always use DomainModelTransaction
+/// </summary>
+public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
 {
-    /// <summary>
-    /// Never use this class for database access - always use DomainModelTransaction
-    /// </summary>
-    public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
+    public ApplicationDbContext(
+        DbContextOptions options,
+        IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
     {
-        public ApplicationDbContext(
-            DbContextOptions options,
-            IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
-        {
-        }
     }
 }
