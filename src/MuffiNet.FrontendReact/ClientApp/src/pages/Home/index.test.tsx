@@ -98,7 +98,7 @@ describe(Home, () => {
       const { getAllByRole } = render()
 
       await waitFor(() =>
-        expect(mockedAxios.get).toHaveBeenCalledWith("/api/example/all")
+        expect(mockedAxios.get).toHaveBeenCalledWith("/api/example/get-all")
       )
 
       const removeBtn = await getAllByRole("button", {
@@ -118,7 +118,7 @@ describe(Home, () => {
       const { findByText } = render()
 
       await waitFor(() =>
-        expect(mockedAxios.get).toHaveBeenCalledWith("/api/example/all")
+        expect(mockedAxios.get).toHaveBeenCalledWith("/api/example/get-all")
       )
 
       expect(await findByText(entity.name)).toBeInTheDocument()

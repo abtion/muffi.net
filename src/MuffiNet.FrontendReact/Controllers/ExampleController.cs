@@ -6,32 +6,32 @@ using MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll;
 using System.Threading;
 using System.Threading.Tasks;
 
-
 namespace MuffiNet.FrontendReact.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ExampleController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet()]
         public async Task<ActionResult<ExampleQueryResponse>> ExampleQuery([FromServices] ExampleQueryHandler handler, [FromQuery] int exampleEntityId, CancellationToken cancellationToken)
         {
             return await handler.Handle(new ExampleQueryRequest() { Id = exampleEntityId }, cancellationToken);
         }
 
-        [HttpGet("all")]
+        // endpoints with complex names must use all lower case and hyphens to separate words
+        [HttpGet(Name = "get-all")]
         public async Task<ActionResult<ExampleQueryAllResponse>> ExampleQueryAll([FromServices] ExampleQueryAllHandler handler, CancellationToken cancellationToken)
         {
             return await handler.Handle(new ExampleQueryAllRequest(), cancellationToken);
         }
 
-        [HttpPut]
+        [HttpPut()]
         public async Task<ActionResult<ExampleCreateCommandResponse>> ExampleCreateCommand([FromServices] ExampleCreateCommandHandler handler, ExampleCreateCommandRequest request, CancellationToken cancellationToken)
         {
             return await handler.Handle(request, cancellationToken);
         }
 
-        [HttpPost]
+        [HttpPost()]
         public async Task<ActionResult<ExampleDeleteCommandResponse>> ExampleDeleteCommand([FromServices] ExampleDeleteCommandHandler handler, ExampleDeleteCommandRequest request, CancellationToken cancellationToken)
         {
             return await handler.Handle(request, cancellationToken);

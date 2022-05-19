@@ -27,7 +27,7 @@ export default function Home(): JSX.Element {
   }, [exampleEntityMap])
 
   useEffect(() => {
-    axios.get("/api/example/all").then((response) => {
+    axios.get("/api/example/get-all").then((response) => {
       const { exampleEntities } = response.data
       upsertExampleEntity(exampleEntities)
     })

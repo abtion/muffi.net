@@ -21,6 +21,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.Backend.Tests", "t
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.Test.Shared", "tests\MuffiNet.Test.Shared\MuffiNet.Test.Shared.csproj", "{2DBB65C5-5458-4991-954A-8C33A667F3E9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{854E07AA-80CE-46F9-8DE5-44C650E8F4DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuffiNet.Api", "src\MuffiNet.Api\MuffiNet.Api.csproj", "{DE367751-3BE0-49E5-8302-F4B0630D85F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,9 +55,18 @@ Global
 		{2DBB65C5-5458-4991-954A-8C33A667F3E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DBB65C5-5458-4991-954A-8C33A667F3E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DBB65C5-5458-4991-954A-8C33A667F3E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE367751-3BE0-49E5-8302-F4B0630D85F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE367751-3BE0-49E5-8302-F4B0630D85F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE367751-3BE0-49E5-8302-F4B0630D85F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE367751-3BE0-49E5-8302-F4B0630D85F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{15066F15-59C8-4708-AA56-061EE9294780} = {854E07AA-80CE-46F9-8DE5-44C650E8F4DE}
+		{0F23A7E8-0BDF-4543-A06F-EBD92ED439FE} = {854E07AA-80CE-46F9-8DE5-44C650E8F4DE}
+		{8E153A9A-42A8-4CC0-A320-4F6334068A8D} = {854E07AA-80CE-46F9-8DE5-44C650E8F4DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AC61DEE4-E637-4588-AC38-790199F05131}

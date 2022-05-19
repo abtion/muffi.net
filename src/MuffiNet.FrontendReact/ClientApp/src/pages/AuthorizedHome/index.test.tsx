@@ -97,7 +97,7 @@ describe(AuthorizedHome, () => {
 
       await waitFor(() =>
         expect(mockedAxios.get).toHaveBeenCalledWith(
-          "/api/authorizedexample/all",
+          "/api/authorizedexample/get-all",
           {
             headers: { authorization: "Bearer accessTokenText" },
           }
@@ -126,7 +126,7 @@ describe(AuthorizedHome, () => {
 
       await waitFor(() =>
         expect(mockedAxios.get).toHaveBeenCalledWith(
-          "/api/authorizedexample/all",
+          "/api/authorizedexample/get-all",
           {
             headers: { authorization: "Bearer accessTokenText" },
           }

@@ -39,7 +39,7 @@ export default function AuthorizedHome({
 
   useEffect(() => {
     axios
-      .get(`/api/authorizedexample/all`, {
+      .get(`/api/authorizedexample/get-all`, {
         headers: {
           authorization: `Bearer ${accessToken}`,
         },

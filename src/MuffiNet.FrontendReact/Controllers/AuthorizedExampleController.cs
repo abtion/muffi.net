@@ -20,7 +20,8 @@ namespace MuffiNet.FrontendReact.Controllers
             return await handler.Handle(new ExampleQueryRequest() { Id = idOfExampleEntity }, cancellationToken);
         }
 
-        [HttpGet("all")]
+        // endpoints with complex names must use all lower case and hyphens to separate words
+        [HttpGet("get-all")]
         public async Task<ActionResult<ExampleQueryAllResponse>> ExampleQueryAll([FromServices] ExampleQueryAllHandler handler, CancellationToken cancellationToken)
         {
             return await handler.Handle(new ExampleQueryAllRequest(), cancellationToken);
@@ -37,7 +38,5 @@ namespace MuffiNet.FrontendReact.Controllers
         {
             return await handler.Handle(request, cancellationToken);
         }
-
-
     }
 }
