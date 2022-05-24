@@ -10,14 +10,14 @@ namespace MuffiNet.FrontendReact.Controllers;
 [ApiController]
 public class ExampleController : ControllerBase
 {
-    [HttpGet()]
-    public async Task<ActionResult<ExampleQueryResponse>> ExampleQuery([FromServices] ExampleQueryHandler handler, [FromQuery] int exampleEntityId, CancellationToken cancellationToken)
+    [HttpGet("{exampleEntityId}")]
+    public async Task<ActionResult<ExampleQueryResponse>> ExampleQuery([FromServices] ExampleQueryHandler handler, [FromRoute] int exampleEntityId, CancellationToken cancellationToken)
     {
         return await handler.Handle(new ExampleQueryRequest() { Id = exampleEntityId }, cancellationToken);
     }
 
     // endpoints with complex names must use all lower case and hyphens to separate words
-    [HttpGet(Name = "get-all")]
+    [HttpGet("get-all")]
     public async Task<ActionResult<ExampleQueryAllResponse>> ExampleQueryAll([FromServices] ExampleQueryAllHandler handler, CancellationToken cancellationToken)
     {
         return await handler.Handle(new ExampleQueryAllRequest(), cancellationToken);

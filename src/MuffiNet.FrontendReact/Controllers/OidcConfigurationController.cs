@@ -5,11 +5,13 @@ using System.Diagnostics.CodeAnalysis;
 namespace MuffiNet.FrontendReact.Controllers;
 
 [ExcludeFromCodeCoverage]
-public class OidcConfigurationController : Controller
+public class OidcConfigurationController : ControllerBase
 {
     private readonly ILogger<OidcConfigurationController> _logger;
 
-    public OidcConfigurationController(IClientRequestParametersProvider clientRequestParametersProvider, ILogger<OidcConfigurationController> logger)
+    public OidcConfigurationController(
+        IClientRequestParametersProvider clientRequestParametersProvider, 
+        ILogger<OidcConfigurationController> logger)
     {
         ClientRequestParametersProvider = clientRequestParametersProvider;
         _logger = logger;

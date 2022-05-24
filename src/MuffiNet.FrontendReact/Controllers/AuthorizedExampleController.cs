@@ -12,8 +12,8 @@ namespace MuffiNet.FrontendReact.Controllers;
 [Authorize]
 public class AuthorizedExampleController : ControllerBase
 {
-    [HttpGet]
-    public async Task<ActionResult<ExampleQueryResponse>> ExampleQuery([FromServices] ExampleQueryHandler handler, [FromQuery] int idOfExampleEntity, CancellationToken cancellationToken)
+    [HttpGet("{idOfExampleEntity}")]
+    public async Task<ActionResult<ExampleQueryResponse>> ExampleQuery([FromServices] ExampleQueryHandler handler, [FromRoute] int idOfExampleEntity, CancellationToken cancellationToken)
     {
         return await handler.Handle(new ExampleQueryRequest() { Id = idOfExampleEntity }, cancellationToken);
     }

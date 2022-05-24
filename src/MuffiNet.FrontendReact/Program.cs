@@ -21,14 +21,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddControllers();
 
-builder.Services.AddControllersWithViews(options =>
+/*builder.Services.AddControllersWithViews(options =>
 {
     var policy = new AuthorizationPolicyBuilder()
         .RequireAuthenticatedUser()
         .Build();
 
     options.Filters.Add(new AuthorizeFilter(policy));
-});
+});*/
 
 builder.Services.AddRazorPages()
         .AddMicrosoftIdentityUI();
