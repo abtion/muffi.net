@@ -17,14 +17,7 @@ public class ApplicationDbContextTests
             .UseInMemoryDatabase(databaseName: "TestDbContext")
             .Options;
 
-        OperationalStoreOptions storeOptions = new OperationalStoreOptions
-        {
-            //populate needed members
-        };
-
-        IOptions<OperationalStoreOptions> operationalStoreOptions = Options.Create(storeOptions);
-
-        using (var _context = new ApplicationDbContext(options, operationalStoreOptions))
+        using (var _context = new ApplicationDbContext(options))
         {
             _context.Should().NotBeNull();
         }
