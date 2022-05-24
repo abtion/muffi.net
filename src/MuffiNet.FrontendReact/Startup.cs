@@ -8,7 +8,6 @@ using Microsoft.Identity.Web.UI;
 using MuffiNet.Backend.Data;
 using MuffiNet.Backend.DomainModel;
 using MuffiNet.Backend.HubContracts;
-using MuffiNet.Backend.Models;
 using MuffiNet.FrontendReact.Hubs;
 
 namespace MuffiNet.FrontendReact;
@@ -22,7 +21,7 @@ public class Startup
 
     public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+    // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddDbContext<ApplicationDbContext>(options =>
@@ -62,7 +61,7 @@ public class Startup
                 .Build();
             options.Filters.Add(new AuthorizeFilter(policy));
         });
-        
+
         services.AddRazorPages()
                 .AddMicrosoftIdentityUI();
 
