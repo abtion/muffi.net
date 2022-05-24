@@ -13,9 +13,7 @@ using MuffiNet.FrontendReact.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//                builder.AddJsonFile("appsettings.Local.json", true, true);
-//                builder.AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.Local.json", true, true);
-
+builder.Configuration.AddJsonFile("appsettings.Local.json", true, true);
 
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
