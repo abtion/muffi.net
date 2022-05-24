@@ -19,6 +19,7 @@ export default function App(): JSX.Element {
         component={ApiAuthorizationRoutes}
       />
 
+      {/* https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-spa-app-registration */}
       <AuthorizeRoute exact path="/authhome" component={AuthorizedHome} />
 
       <Switch>

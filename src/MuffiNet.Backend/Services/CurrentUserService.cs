@@ -13,9 +13,9 @@ public interface ICurrentUserService
     Task<IdentityUser> CurrentUser();
 }
 [ExcludeFromCodeCoverage]
-public class CurrentUserService : ICurrentUserService
+public class CurrentUserService //: ICurrentUserService
 {
-    private readonly IHttpContextAccessor httpContext;
+    /*private readonly IHttpContextAccessor httpContext;
     private readonly UserManager<ApplicationUser> userManager;
 
     public CurrentUserService(IHttpContextAccessor httpContext, UserManager<ApplicationUser> userManager)
@@ -30,5 +30,5 @@ public class CurrentUserService : ICurrentUserService
         var user = await userManager.FindByIdAsync(userId?.Value);
 
         return user;
-    }
+    }*/
 }

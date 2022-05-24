@@ -194,14 +194,23 @@ export class AuthorizeService {
       return
     }
 
-    let response = await fetch(
+    /*let response = await fetch(
       ApplicationPaths.ApiAuthorizationClientConfigurationUrl
     )
     if (!response.ok) {
       throw new Error(`Could not load settings for '${ApplicationName}'`)
     }
 
-    let settings = await response.json()
+    let settings = await response.json()*/
+
+    let settings = {
+      authority: "https://login.microsoftonline.com/63bdf5ff-bc58-43a9-8a61-1861f19f8e0e/v2.0",
+      client_id: "a507680f-bc92-4a58-aa69-917d9d33ea45",
+      redirect_uri: "https://localhost:5001",
+      response_type: "token id_token",
+      scope: "openid"
+    }
+
     settings.automaticSilentRenew = true
     settings.includeIdTokenInSilentRenew = true
     settings.userStore = new WebStorageStateStore({

@@ -1,9 +1,10 @@
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Options;
+using Microsoft.Identity.Web;
+using Microsoft.Identity.Web.UI;
 using MuffiNet.Backend.Data;
 using MuffiNet.Backend.DomainModel;
 using MuffiNet.Backend.HubContracts;
@@ -22,39 +23,49 @@ public class Startup
     public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"),
-                    sqlServerOptions => sqlServerOptions.EnableRetryOnFailure()
-                )
-            );
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(
+                Configuration.GetConnectionString("DefaultConnection"),
+                sqlServerOptions => sqlServerOptions.EnableRetryOnFailure()
+            )
+        );
 
-        services.AddDatabaseDeveloperPageExceptionFilter();
+        /*services.AddDatabaseDeveloperPageExceptionFilter();
 
         services.AddDefaultIdentity<ApplicationUser>(options =>
         {
             options.SignIn.RequireConfirmedAccount = true;
         })
-            .AddEntityFrameworkStores<ApplicationDbContext>();
+            .AddEntityFrameworkStores<ApplicationDbContext>();*/
 
-        services.AddIdentityServer()
+        /*services.AddIdentityServer()
             .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
             { // Debugging identityserver purposes
                 // foreach (var c in options.Clients) {
                 //     c.AccessTokenLifetime = 30;
                 // }
-            });
+            });*/
 
-        services.AddAuthentication()
-            .AddIdentityServerJwt();
+        services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+                .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
 
-        services.TryAddEnumerable(
+        /*services.TryAddEnumerable(
             ServiceDescriptor.Singleton<IPostConfigureOptions<JwtBearerOptions>,
-                ConfigureJwtBearerOptions>());
+                ConfigureJwtBearerOptions>());*/
 
-        services.AddControllersWithViews();
+        services.AddControllersWithViews(options =>
+        {
+            var policy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
+            options.Filters.Add(new AuthorizeFilter(policy));
+        });
+        
+        services.AddRazorPages()
+                .AddMicrosoftIdentityUI();
+
         services.AddRazorPages();
 
         services.AddDomainModel();
@@ -112,8 +123,9 @@ public class Startup
         app.UseRouting();
 
         app.UseAuthentication();
-        app.UseIdentityServer();
+        //app.UseIdentityServer();
         app.UseAuthorization();
+
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllerRoute(

@@ -25,7 +25,7 @@ public static class DomainModelServiceCollectionExtensions
         services.AddScoped<ExampleQueryAllHandler>();
 
         // Services
-        services.AddScoped<ICurrentUserService, CurrentUserService>();
+        //services.AddScoped<ICurrentUserService, CurrentUserService>();
         services.AddTransient<ICurrentDateTimeService, CurrentDateTimeService>();
         services.AddTransient<IExampleReverseStringService, ExampleReverseStringService>();
 
