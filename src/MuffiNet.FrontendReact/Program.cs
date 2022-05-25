@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using MuffiNet.Backend.Data;
 using MuffiNet.Backend.DomainModel;
 using MuffiNet.Backend.HubContracts;
 using MuffiNet.FrontendReact.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 builder.Configuration.AddJsonFile("appsettings.Local.json", true, true);
 
@@ -15,10 +17,16 @@ builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.Authority = "https://login.microsoftonline.com/63bdf5ff-bc58-43a9-8a61-1861f19f8e0e/v2.0";
-        options.TokenValidationParameters = new()
+        options.Authority = configuration.GetValue<string>("Authentication:Authority");
+        options.ClaimsIssuer = configuration.GetValue<string>("Authentication:ClaimsIssuer"); 
+        options.TokenValidationParameters = new TokenValidationParameters()
         {
-            ValidateAudience = false
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateTokenReplay = true,
+            ValidIssuer = configuration.GetValue<string>("Authentication:ValidIssuer"),
+            ValidAudience = configuration.GetValue<string>("Authentication:ValidAudience"),
         };
     });
 
