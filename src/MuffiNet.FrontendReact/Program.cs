@@ -1,11 +1,6 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Web;
-using Microsoft.Identity.Web.UI;
 using MuffiNet.Backend.Data;
 using MuffiNet.Backend.DomainModel;
 using MuffiNet.Backend.HubContracts;
@@ -16,22 +11,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.Local.json", true, true);
 
 // Add services to the container.
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.Authority = "https://login.microsoftonline.com/63bdf5ff-bc58-43a9-8a61-1861f19f8e0e/v2.0";
+        options.TokenValidationParameters = new()
+        {
+            ValidateAudience = false
+        };
+    });
 
 builder.Services.AddControllers();
-
-/*builder.Services.AddControllersWithViews(options =>
-{
-    var policy = new AuthorizationPolicyBuilder()
-        .RequireAuthenticatedUser()
-        .Build();
-
-    options.Filters.Add(new AuthorizeFilter(policy));
-});*/
-
-builder.Services.AddRazorPages()
-        .AddMicrosoftIdentityUI();
+builder.Services.AddRazorPages();
 
 builder.Services.AddRazorPages();
 
@@ -61,8 +53,6 @@ builder.Services.AddCors(options =>
         policy.AllowAnyHeader()
             .AllowAnyMethod()
             .AllowAnyOrigin();
-        //.WithOrigins("http://localhost:3000", "http://localhost:5000", "https://localhost:5001")
-        //.AllowCredentials();
     });
 });
 
