@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using MuffiNet.Authentication.OpenIdConnect;
 using MuffiNet.Backend.Data;
 using MuffiNet.Backend.DomainModel;
 using MuffiNet.Backend.HubContracts;
@@ -12,23 +13,8 @@ var configuration = builder.Configuration;
 
 builder.Configuration.AddJsonFile("appsettings.Local.json", true, true);
 
-// Add services to the container.
-builder.Services
-    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.Authority = configuration.GetValue<string>("Authentication:Authority");
-        options.ClaimsIssuer = configuration.GetValue<string>("Authentication:ClaimsIssuer"); 
-        options.TokenValidationParameters = new TokenValidationParameters()
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateTokenReplay = true,
-            ValidIssuer = configuration.GetValue<string>("Authentication:ValidIssuer"),
-            ValidAudience = configuration.GetValue<string>("Authentication:ValidAudience"),
-        };
-    });
+// OIDC Authentication
+builder.Services.AddOidcAuthentication(builder.Configuration);
 
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
@@ -83,7 +69,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Test"))
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options => 
+    {
+        options.EnableTryItOutByDefault();
+    });
 
     app.UseDeveloperExceptionPage();
     app.UseMigrationsEndPoint();

@@ -38,6 +38,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\MuffiNet.Authentication.OpenIdConnect\MuffiNet.Authentication.OpenIdConnect.csproj" />
 		<ProjectReference Include="..\MuffiNet.Backend\MuffiNet.Backend.csproj" />
 	</ItemGroup>
 
