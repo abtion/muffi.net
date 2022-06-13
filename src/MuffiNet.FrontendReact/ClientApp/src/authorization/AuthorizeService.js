@@ -204,11 +204,12 @@ export class AuthorizeService {
     let settings = await response.json()*/
 
     let settings = {
-      authority: "https://login.microsoftonline.com/63bdf5ff-bc58-43a9-8a61-1861f19f8e0e/v2.0",
+      authority:
+        "https://login.microsoftonline.com/63bdf5ff-bc58-43a9-8a61-1861f19f8e0e/v2.0",
       client_id: "a507680f-bc92-4a58-aa69-917d9d33ea45",
       redirect_uri: "https://localhost:5001",
       response_type: "id_token",
-      scope: "openid"
+      scope: "openid",
     }
 
     settings.automaticSilentRenew = true
