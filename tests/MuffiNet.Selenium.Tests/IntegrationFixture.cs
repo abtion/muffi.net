@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using MuffiNet.Backend.Data;
 using OpenQA.Selenium.Chrome;
 using System;
 using System.Data.SqlClient;
@@ -40,20 +42,24 @@ public sealed class IntegrationFixture : IDisposable
 
     private void DropDatabase()
     {
-        Console.WriteLine("Dropping test database");
-        var dropProcess = Process.Start(CreateStartInfo("ef database drop -f"));
-        dropProcess.WaitForExit();
+        var config = GetConfiguration();
 
-        if (dropProcess.ExitCode == 0)
+        try
         {
+            var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            builder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+
+            using var context = new ApplicationDbContext(builder.Options);
+            context.Database.EnsureDeletedAsync().Wait();
+
             Console.WriteLine("Dropping test database: success");
         }
-        else
+        catch (Exception ex)
         {
             Console.WriteLine("Dropping test database: failure");
-            Console.WriteLine(dropProcess.StandardError.ReadToEnd());
-            Console.WriteLine(dropProcess.StandardOutput.ReadToEnd());
-            throw new InvalidOperationException("Nonzero exit code when dropping test database");
+            Console.WriteLine(ex.ToString());
+
+            throw new InvalidOperationException("Nonzero exit code when dropping test database", ex);
         }
     }
 
@@ -61,33 +67,37 @@ public sealed class IntegrationFixture : IDisposable
     {
         Console.WriteLine("Seeding database");
 
-        var queryString = File.ReadAllText(Path.Join(GetWorkingDirectory(), "..", "..", "sql", "create-user.sql"));
-        SqlConnection connection = DbConnection();
-        SqlCommand command = new SqlCommand(queryString, connection);
-        command.Connection.Open();
-        command.ExecuteNonQuery();
-        command.Dispose();
-        connection.Dispose();
+        //var queryString = File.ReadAllText(Path.Join(GetWorkingDirectory(), "..", "..", "sql", "create-user.sql"));
+        //SqlConnection connection = DbConnection();
+        //SqlCommand command = new SqlCommand(queryString, connection);
+        //command.Connection.Open();
+        //command.ExecuteNonQuery();
+        //command.Dispose();
+        //connection.Dispose();
 
         Console.WriteLine("Seeding database: success");
     }
 
     private void CreateDatabase()
     {
-        Console.WriteLine("Creating/updating test database");
-        var updateProcess = Process.Start(CreateStartInfo("ef database update"));
-        updateProcess.WaitForExit();
+        var config = GetConfiguration();
 
-        if (updateProcess.ExitCode == 0)
+        try
         {
+            var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            builder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+
+            using var context = new ApplicationDbContext(builder.Options);
+            context.Database.EnsureCreatedAsync().Wait();
+
             Console.WriteLine("Creating/updating test database: success");
         }
-        else
+        catch (Exception ex)
         {
             Console.WriteLine("Creating/updating test database: failure");
-            Console.WriteLine(updateProcess.StandardError.ReadToEnd());
-            Console.WriteLine(updateProcess.StandardOutput.ReadToEnd());
-            throw new InvalidOperationException("Nonzero exit code when creating/updating test database");
+            Console.WriteLine(ex.ToString());
+
+            throw new InvalidOperationException("Nonzero exit code when creating/updating test database", ex);
         }
     }
 
