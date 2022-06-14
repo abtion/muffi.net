@@ -74,8 +74,9 @@ module.exports = {
       neutrino.config.module.rule("compile").test(/\.(wasm|mjs|jsx|js|tsx|ts)$/)
 
       neutrino.config.resolve.alias.set("~", path.resolve(__dirname, "src"))
-      neutrino.config.devServer.port(process.env.PORT || 3000)
+      neutrino.config.devServer.port(process.env.PORT || 44437)
       neutrino.config.devServer.host(process.env.PORT ? "0.0.0.0" : "localhost")
+      neutrino.config.devServer.set("https", true)
       neutrino.config.devServer.set("sockPort", "location")
       neutrino.config.devServer.set("disableHostCheck", true)
       neutrino.config.devServer.set("onListening", () => {
