@@ -77,6 +77,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
             
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+            
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v2
 
@@ -118,6 +125,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+            
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v2
 
