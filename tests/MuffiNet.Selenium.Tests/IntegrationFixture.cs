@@ -210,7 +210,8 @@ public sealed class IntegrationFixture : IDisposable
 
         config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
             .AddJsonFile($"appsettings.Test.json", optional: true, reloadOnChange: true)
-            .AddEnvironmentVariables("DOTNET_");
+            .AddEnvironmentVariables("DOTNET_")
+            .AddUserSecrets(System.Reflection.Assembly.GetExecutingAssembly(), optional: true, reloadOnChange: true);
 
         var args = Environment.GetCommandLineArgs();
         if (args != null)
@@ -218,9 +219,9 @@ public sealed class IntegrationFixture : IDisposable
             config.AddCommandLine(args);
         }
 
-        // From our own hostbuilder
-        config.AddJsonFile("appsettings.Local.json", true, true)
-              .AddJsonFile($"appsettings.Test.Local.json", true, true);
+        //// From our own hostbuilder
+        //config.AddJsonFile("appsettings.Local.json", true, true)
+        //      .AddJsonFile($"appsettings.Test.Local.json", true, true);
 
         Configuration = config.Build();
 

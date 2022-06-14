@@ -22,8 +22,10 @@ You must have the following installed and available on your machine:
 
 - **Microsoft .NET 5**
 - **Microsoft SQL Server Compact running locally on in Docker**
-- **Node JS >12.x**
+- **Node JS >12.x** (16.11.0)
 - **Yarn 1.x**
+- https://github.com/coreybutler/nvm-windows
+
 
 # Developing
 
@@ -31,11 +33,14 @@ You must have the following installed and available on your machine:
 
 ### 1. Configuration
 
-If you need to override configuration for the project, you can create a `src/MuffiNet.FrontendReact/appsettings.Local.json`-file.
+Local overrides of configurations/secret must be done through [Secret Manager](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows)
 
-If such a file exists, any values in that file will override the corresponding project settings.
+These projects have user secrets:
+  - MuffiNet.Selenium.Tests
+  - MuffiNet.Api
+  - MuffiNet.FrontendReact
 
-It is also possible to override select environments with `src/MuffiNet.FrontendReact/appsettings.[Environment].Local.json`. E.g. `src/MuffiNet.FrontendReact/appsettings.Development.Local.json`.
+
 
 #### Database connection
 
@@ -44,29 +49,16 @@ Start the DB with `docker-compose up`, then no further setup is required.
 
 ##### LocalDB
 
-If you prefer LocalDB, you can create local configurations for the `Development` and `Test` environments (see [configuration](#1-configuration))
+If you are running Windows with a instance of MS LocalDb, you can avoid using Docker for development and for the Selenium tests by running these commands.
 
-Add the following to `src/MuffiNet.FrontendReact/appsettings.Development.Local.json`
+In the "MuffiNet.Selenium.Tests" project folder:
+`dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Server=(localdb)\mssqllocaldb;Database=MUFFINET-TEST;Trusted_Connection=True;MultipleActiveResultSets=true"`
 
-```json
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=MUFFINET;Trusted_Connection=True;MultipleActiveResultSets=true"
-  },
-  ...
-}
-```
+In the "MuffiNet.FrontendReact" project folder:
+`dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Server=(localdb)\mssqllocaldb;Database=MUFFINET;Trusted_Connection=True;MultipleActiveResultSets=true"`
 
-And to `src/MuffiNet.FrontendReact/appsettings.Test.Local.json`:
-
-```json
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=MUFFINET-TEST;Trusted_Connection=True;MultipleActiveResultSets=true"
-  },
-  ...
-}
-```
+In the "MuffiNet.Api" project folder:
+`dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Server=(localdb)\mssqllocaldb;Database=MUFFINET;Trusted_Connection=True;MultipleActiveResultSets=true"`
 
 ### 2. Dependencies and database setup
 
@@ -174,18 +166,6 @@ Frontend report:
 
 # Production
 
-## Script for creating a new user in the database
-
-Use this script:
-[sql/create-user.sql](sql/create-user.sql)
-
-As is it will create user with the following credentials:
-
-- user@abtion.com
-- Test1234!
-
-You can change @UserName and @Email to make a user with another email address.
-
 ## Deployments
 
 TBD
@@ -201,6 +181,10 @@ The template is built with the Microsoft Azure stack in mind - it can be hosted 
 The template can be developed and debugged on all platforms supported by Microsoft .NET (Windows, Linux, and macOS).
 
 ## Projects
+
+### Muffi.API
+
+Contains a Minimal API setup for pure backend API projects.
 
 ### Muffi.Backend
 
@@ -249,7 +233,7 @@ Contains end-to-end tests running in a headless browser (Selenium).
 
 ### Dependency Injection further reading
 
-- https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-5.0
+- https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-6.0
 
 # How to use the template
 
@@ -263,6 +247,10 @@ Contains end-to-end tests running in a headless browser (Selenium).
 - Rename project and test folders from File Explorer or similar
 - Replace MuffiNet to [ProjectName] in .sln file
 - Replace MuffiNet to [ProjectName] in .yarnrc file
+- Replace the User Secret Keys in these projects (by deleting the existing keys in the project files and running `dotnet user-secrets init` in each of the directories):
+  - MuffiNet.Selenium.Tests
+  - MuffiNet.Api
+  - MuffiNet.FrontendReact
 - Open Visual Studio/VS Code
 - `yarn install`
 - `dotnet build`

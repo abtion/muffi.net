@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <UserSecretsId>a221ff6f-30f9-475e-9389-75b85af6cd06</UserSecretsId>
   </PropertyGroup>
 
 	<ItemGroup>
@@ -11,7 +12,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\MuffiNet.Authentication.OpenIdConnect\MuffiNet.Authentication.OpenIdConnect.csproj" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
+		<ProjectReference Include="..\MuffiNet.Authentication.OpenIdConnect\MuffiNet.Authentication.OpenIdConnect.csproj" />
 	  <ProjectReference Include="..\MuffiNet.Backend\MuffiNet.Backend.csproj" />
 	</ItemGroup>
 	
