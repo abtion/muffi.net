@@ -77,7 +77,12 @@ module.exports = {
 
       neutrino.config.devServer.port(process.env.PORT || 44437)
       neutrino.config.devServer.host(process.env.PORT ? "0.0.0.0" : "localhost")
-      neutrino.config.devServer.set("proxy", { '/api': 'https://localhost:5001' })
+      neutrino.config.devServer.set("proxy", {
+        "/api": {
+          target: "https://localhost:5001",
+          secure: false,
+        },
+      })
       neutrino.config.devServer.set("https", true)
       neutrino.config.devServer.set("sockPort", "location")
       neutrino.config.devServer.set("disableHostCheck", true)

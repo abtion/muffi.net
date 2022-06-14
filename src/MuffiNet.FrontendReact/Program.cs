@@ -10,8 +10,6 @@ using MuffiNet.FrontendReact.Hubs;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
-builder.Configuration.AddJsonFile("appsettings.Local.json", true, true);
-
 // OIDC Authentication
 builder.Services.AddOidcAuthentication(builder.Configuration);
 
