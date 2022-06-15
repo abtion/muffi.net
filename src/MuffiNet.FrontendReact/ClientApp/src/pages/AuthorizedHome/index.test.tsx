@@ -10,6 +10,8 @@ import AuthorizedHome from "./"
 import useHub from "~/hooks/useHub"
 import AxiosMock from "../../../__mocks__/axios"
 import { UseHubMock } from "~/hooks/__mocks__/useHub"
+import ApiContext from "~/contexts/ApiContext"
+import { AuthContext } from "oidc-react"
 
 const mockedAxios = axios as AxiosMock
 const mockedUseHub = useHub as UseHubMock
@@ -53,9 +55,21 @@ function render() {
     initialEntries: [`/authhome`],
   })
 
+  const userData = {
+    // eslint-disable-next-line camelcase
+    id_token: "1234",
+  }
+
   const context = tlRender(
     <Router history={history}>
-      <AuthorizedHome accessToken={"accessTokenText"} />
+      <ApiContext.Provider value={mockedAxios}>
+        <AuthContext.Provider
+          // @ts-expect-error No need to supply a full set of user data
+          value={{ userData }}
+        >
+          <AuthorizedHome />
+        </AuthContext.Provider>
+      </ApiContext.Provider>
     </Router>
   )
 
@@ -77,16 +91,12 @@ describe(AuthorizedHome, () => {
       userEvent.type(getByLabelText("Phone"), "12345678")
       userEvent.click(getByText("Submit"))
       await waitFor(() =>
-        expect(mockedAxios.put).toHaveBeenCalledWith(
-          "/api/authorizedexample",
-          {
-            Name: "",
-            Description: "Description",
-            Email: "Em@a.il",
-            Phone: "12345678",
-          },
-          { headers: { authorization: "Bearer accessTokenText" } }
-        )
+        expect(mockedAxios.put).toHaveBeenCalledWith("/api/authorizedexample", {
+          Name: "",
+          Description: "Description",
+          Email: "Em@a.il",
+          Phone: "12345678",
+        })
       )
     })
   })
@@ -97,10 +107,7 @@ describe(AuthorizedHome, () => {
 
       await waitFor(() =>
         expect(mockedAxios.get).toHaveBeenCalledWith(
-          "/api/authorizedexample/get-all",
-          {
-            headers: { authorization: "Bearer accessTokenText" },
-          }
+          "/api/authorizedexample/get-all"
         )
       )
 
@@ -111,10 +118,7 @@ describe(AuthorizedHome, () => {
       await waitFor(() =>
         expect(mockedAxios.post).toHaveBeenCalledWith(
           "/api/authorizedexample",
-          { id: "1" },
-          {
-            headers: { authorization: "Bearer accessTokenText" },
-          }
+          { id: "1" }
         )
       )
     })
@@ -126,10 +130,7 @@ describe(AuthorizedHome, () => {
 
       await waitFor(() =>
         expect(mockedAxios.get).toHaveBeenCalledWith(
-          "/api/authorizedexample/get-all",
-          {
-            headers: { authorization: "Bearer accessTokenText" },
-          }
+          "/api/authorizedexample/get-all"
         )
       )
 
@@ -206,7 +207,7 @@ describe(AuthorizedHome, () => {
       const useHubParams = mockedUseHub.mock.calls[0]
       const [_path, _onConnected, connectionOptions] = useHubParams
 
-      expect(connectionOptions.accessTokenFactory()).toEqual("accessTokenText")
+      expect(connectionOptions.accessTokenFactory()).toEqual("1234")
     })
   })
 })

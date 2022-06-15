@@ -7,10 +7,6 @@ import { createMemoryHistory } from "history"
 
 import NavMenu from "."
 
-jest.mock("~/authorization/LoginMenu", () =>
-  jest.fn(() => <div>LoginMenu</div>)
-)
-
 function render() {
   const history = createMemoryHistory({
     initialEntries: [`/`],

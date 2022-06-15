@@ -4,6 +4,8 @@ import AuthBarrier from "."
 import { render } from "@testing-library/react"
 import ApiContext from "~/contexts/ApiContext"
 
+jest.unmock("axios")
+
 const emptyAuthContext = {
   signIn: jest.fn(),
   signInPopup: jest.fn(),
@@ -37,7 +39,7 @@ describe(AuthBarrier, () => {
         ...emptyAuthContext,
         isLoading: false,
         // eslint-disable-next-line camelcase
-        userData: { access_token: "abcd1234" },
+        userData: { id_token: "abcd1234" },
       }
 
       const { queryByText } = render(
@@ -58,7 +60,7 @@ describe(AuthBarrier, () => {
         ...emptyAuthContext,
         isLoading: false,
         // eslint-disable-next-line camelcase
-        userData: { access_token: "abcd1234" },
+        userData: { id_token: "abcd1234" },
       }
 
       const InnerComponent = () => {
