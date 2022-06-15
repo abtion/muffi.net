@@ -1,0 +1,7 @@
+.LoaderFullPage {
+  @apply h-full h-screen w-full flex;
+
+  &__loader {
+    @apply m-auto;
+  }
+}

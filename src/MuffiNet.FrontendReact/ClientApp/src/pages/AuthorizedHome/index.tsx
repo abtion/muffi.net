@@ -1,23 +1,22 @@
-import React, { useMemo, useCallback, useEffect } from "react"
-import axios from "axios"
+import React, { useMemo, useCallback, useEffect, useContext } from "react"
 
 import AuthorizedLayout from "~/components/AuthorizedLayout"
 import ExampleForm, { ExampleFormData } from "~/components/ExampleForm"
 import ExampleTable from "~/components/ExampleTable"
-import { HttpTransportType, HubConnection } from "@microsoft/signalr"
+import { HubConnection } from "@microsoft/signalr"
 import useIdMap from "~/hooks/useIdMap"
 import useHub from "~/hooks/useHub"
 import { ExampleEntity } from "~/types/ExampleEntity"
+import { useAuth } from "oidc-react"
+import ApiContext from "~/contexts/ApiContext"
 
-export default function AuthorizedHome({
-  accessToken,
-}: AuthorizedHomeProps): JSX.Element {
+export default function AuthorizedHome(): JSX.Element {
+  const idToken = useAuth().userData?.id_token || ""
+  const api = useContext(ApiContext)
+
   const connectionOptions = useMemo(
-    () => ({
-      accessTokenFactory: () => accessToken,
-      transport: HttpTransportType.LongPolling,
-    }),
-    [accessToken]
+    () => ({ accessTokenFactory: () => idToken }),
+    [idToken]
   )
 
   const [exampleEntityMap, upsertExampleEntity, deleteExampleEntity] =
@@ -38,17 +37,11 @@ export default function AuthorizedHome({
   }, [exampleEntityMap])
 
   useEffect(() => {
-    axios
-      .get(`/api/authorizedexample/get-all`, {
-        headers: {
-          authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then((response) => {
-        const { exampleEntities } = response.data
-        upsertExampleEntity(exampleEntities)
-      })
-  }, [accessToken, upsertExampleEntity])
+    api.get("/api/authorizedexample/get-all").then((response) => {
+      const { exampleEntities } = response.data
+      upsertExampleEntity(exampleEntities)
+    })
+  }, [upsertExampleEntity])
 
   const onHubConnected = useCallback(
     (connection: HubConnection) => {
@@ -73,31 +66,15 @@ export default function AuthorizedHome({
   useHub("/hubs/example", onHubConnected, connectionOptions)
 
   const createExampleEntity = (formData: ExampleFormData) => {
-    return axios
-      .put("/api/authorizedexample", formData, {
-        headers: {
-          authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then((_response) => {
-        // console.log(response)
-      })
+    return api.put("/api/authorizedexample", formData).then((_response) => {
+      // console.log(response)
+    })
   }
 
   const removeExampleEntity = (id: string | number) => {
-    return axios
-      .post(
-        "/api/authorizedexample",
-        { id: id },
-        {
-          headers: {
-            authorization: `Bearer ${accessToken}`,
-          },
-        }
-      )
-      .then((_response) => {
-        // console.log(response)
-      })
+    return api.post("/api/authorizedexample", { id: id }).then((_response) => {
+      // console.log(response)
+    })
   }
   return (
     <AuthorizedLayout>
@@ -118,8 +95,4 @@ export default function AuthorizedHome({
       </div>
     </AuthorizedLayout>
   )
-}
-
-type AuthorizedHomeProps = {
-  accessToken: string
 }

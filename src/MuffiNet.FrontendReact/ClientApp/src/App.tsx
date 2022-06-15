@@ -1,9 +1,8 @@
 import React from "react"
 import { Switch, Route } from "react-router"
 
-import AuthorizeRoute from "~/authorization/AuthorizeRoute"
-import ApiAuthorizationRoutes from "~/authorization/ApiAuthorizationRoutes"
-import { ApplicationPaths } from "~/authorization/ApiAuthorizationConstants"
+import AuthOidcProvider from "~/components/AuthOidcProvider"
+import AuthBarrier from "~/components/AuthBarrier"
 
 // Visitors
 import Home from "~/pages/Home"
@@ -14,17 +13,17 @@ import AuthorizedHome from "~/pages/AuthorizedHome"
 export default function App(): JSX.Element {
   return (
     <Switch>
-      <Route
-        path={ApplicationPaths.ApiAuthorizationPrefix}
-        component={ApiAuthorizationRoutes}
-      />
+      <Route exact path="/" component={Home} />
 
-      {/* https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-spa-app-registration */}
-      <AuthorizeRoute exact path="/authhome" component={AuthorizedHome} />
-
-      <Switch>
-        <Route exact path={"/"} component={Home} />
-      </Switch>
+      <Route path="/admin">
+        <AuthOidcProvider>
+          <AuthBarrier>
+            <Switch>
+              <Route exact path="" component={AuthorizedHome} />
+            </Switch>
+          </AuthBarrier>
+        </AuthOidcProvider>
+      </Route>
     </Switch>
   )
 }

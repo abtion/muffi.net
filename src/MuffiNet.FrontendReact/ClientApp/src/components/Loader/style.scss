@@ -1,0 +1,14 @@
+.Loader {
+  @apply text-center;
+  min-width: 112px;
+  &__icon {
+    @apply w-min;
+    @apply animate-spin;
+    @apply mx-auto;
+  }
+
+  &__text {
+    @apply text-neutral-500;
+    @apply mt-2;
+  }
+}
