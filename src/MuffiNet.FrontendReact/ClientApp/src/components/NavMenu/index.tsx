@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import { ReactComponent as ListIcon } from "bootstrap-icons/icons/list.svg"
 import classNames from "classnames"
 
-import LoginMenu from "~/authorization/LoginMenu"
 import NavItem from "~/components/NavItem"
 import NavLink from "~/components/NavLink"
 
@@ -30,7 +29,7 @@ export default function NavMenu(): JSX.Element {
               <div>
                 <Link
                   className="flex items-center py-4 px-2 text-gray-700 hover:text-gray-900"
-                  to="/authhome"
+                  to="/admin"
                 >
                   <span className="font-bold">MuffiNet</span>
                 </Link>
@@ -48,10 +47,8 @@ export default function NavMenu(): JSX.Element {
 
             <ul className={collapseClass}>
               <NavItem>
-                <NavLink to="/authhome">Overview</NavLink>
+                <NavLink to="/admin">Overview</NavLink>
               </NavItem>
-
-              <LoginMenu />
             </ul>
           </div>
         </div>
