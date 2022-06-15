@@ -75,9 +75,10 @@ module.exports = {
       neutrino.config.resolve.alias.set("~", path.resolve(__dirname, "src"))
 
       neutrino.config.module.rule("compile").test(/\.(wasm|mjs|jsx|js|tsx|ts)$/)
-    }, (neutrino) => {
+    },
+    (neutrino) => {
       if (process.env.NODE_ENV === "test") {
-        return; // skip dev-server setup when running Jest
+        return // skip dev-server setup when running Jest
       }
 
       // Proxy the API backend server
@@ -88,10 +89,6 @@ module.exports = {
           target: "https://localhost:5001",
           secure: false,
         },
-        // "/hubs": {
-        //   target: "https://localhost:5001",
-        //   secure: false,
-        // },
         "/hubs": {
           target: "https://localhost:5001",
           secure: false,
