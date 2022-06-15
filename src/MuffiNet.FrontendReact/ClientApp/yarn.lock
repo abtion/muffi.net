@@ -6661,11 +6661,6 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-linkifyjs@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/linkifyjs/-/linkifyjs-3.0.3.tgz#51ea2160b4c60c2c87c27757a1e9eacd422c6076"
-  integrity sha512-ba5opS5wRHSbDC8VaiDdN14nPGm6LqyRsIPQZGG4qXV4scFdrPneT/uoZOaq9QAPBf6W9I9D/6tNSzWH//815Q==
-
 loader-runner@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-2.4.0.tgz#ed47066bfe534d7e84c4c7b9998c2a75607d9357"
@@ -7438,6 +7433,13 @@ oidc-client@^1.11.5:
     core-js "^3.8.3"
     crypto-js "^4.0.0"
     serialize-javascript "^4.0.0"
+
+oidc-react@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/oidc-react/-/oidc-react-1.5.1.tgz#afe83335252b7657835298b80f5e4b8bbb8f5bd1"
+  integrity sha512-rbNfWUBRiqolht9J5tRu5HktDs8yXii1KfOBXtM9uwQNaiY0UgvIzl2h7NNOYA04TFxKtGlXkwrs9cPn28JwEg==
+  dependencies:
+    oidc-client "^1.11.5"
 
 on-finished@~2.3.0:
   version "2.3.0"
