@@ -88,6 +88,15 @@ module.exports = {
           target: "https://localhost:5001",
           secure: false,
         },
+        // "/hubs": {
+        //   target: "https://localhost:5001",
+        //   secure: false,
+        // },
+        "/hubs": {
+          target: "https://localhost:5001",
+          secure: false,
+          ws: true,
+        },
       })
 
       const baseFolder =
