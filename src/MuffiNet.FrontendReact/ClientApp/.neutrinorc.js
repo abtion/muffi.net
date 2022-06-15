@@ -75,7 +75,12 @@ module.exports = {
       neutrino.config.resolve.alias.set("~", path.resolve(__dirname, "src"))
 
       neutrino.config.module.rule("compile").test(/\.(wasm|mjs|jsx|js|tsx|ts)$/)
+    }, (neutrino) => {
+      if (process.env.NODE_ENV === "test") {
+        return; // skip dev-server setup when running Jest
+      }
 
+      // Proxy the API backend server
       neutrino.config.devServer.port(process.env.PORT || 44437)
       neutrino.config.devServer.host(process.env.PORT ? "0.0.0.0" : "localhost")
       neutrino.config.devServer.set("proxy", {
@@ -100,10 +105,6 @@ module.exports = {
       })
       neutrino.config.devServer.set("sockPort", "location")
       neutrino.config.devServer.set("disableHostCheck", true)
-      neutrino.config.devServer.set("onListening", () => {
-        // aspnetcore's React SPA boilerplate waits for this non-configurable "magic string" before concluding that the development server is ready
-        console.log("Starting the development server")
-      })
     },
   ],
 }
