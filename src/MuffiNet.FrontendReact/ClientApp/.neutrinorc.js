@@ -68,7 +68,6 @@ module.exports = {
       },
     }),
 
-   
     (neutrino) => {
       // Add typescript extensions
       neutrino.config.resolve.extensions.add(".tsx")
@@ -92,8 +91,12 @@ module.exports = {
           : `${process.env.HOME}/.aspnet/https`
 
       neutrino.config.devServer.set("https", {
-        key: fs.readFileSync(path.resolve(baseFolder,"muffinet.frontendreact.key")),
-        cert: fs.readFileSync(path.resolve(baseFolder,"muffinet.frontendreact.pem")),
+        key: fs.readFileSync(
+          path.resolve(baseFolder, "muffinet.frontendreact.key")
+        ),
+        cert: fs.readFileSync(
+          path.resolve(baseFolder, "muffinet.frontendreact.pem")
+        ),
       })
       neutrino.config.devServer.set("sockPort", "location")
       neutrino.config.devServer.set("disableHostCheck", true)
