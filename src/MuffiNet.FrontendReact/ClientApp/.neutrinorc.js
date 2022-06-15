@@ -89,6 +89,10 @@ module.exports = {
           target: "https://localhost:5001",
           secure: false,
         },
+        "/swagger": {
+          target: "https://localhost:5001",
+          secure: false,
+        },
         "/hubs": {
           target: "https://localhost:5001",
           secure: false,
