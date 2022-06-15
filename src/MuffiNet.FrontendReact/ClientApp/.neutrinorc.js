@@ -1,6 +1,7 @@
 const react = require("@neutrinojs/react")
 const jest = require("@neutrinojs/jest")
 const path = require("path")
+const fs = require("fs")
 
 module.exports = {
   options: {
@@ -67,6 +68,7 @@ module.exports = {
       },
     }),
 
+   
     (neutrino) => {
       // Add typescript extensions
       neutrino.config.resolve.extensions.add(".tsx")
@@ -83,7 +85,16 @@ module.exports = {
           secure: false,
         },
       })
-      neutrino.config.devServer.set("https", true)
+
+      const baseFolder =
+        process.env.APPDATA !== undefined && process.env.APPDATA !== ""
+          ? `${process.env.APPDATA}/ASP.NET/https`
+          : `${process.env.HOME}/.aspnet/https`
+
+      neutrino.config.devServer.set("https", {
+        key: fs.readFileSync(path.resolve(baseFolder,"muffinet.frontendreact.key")),
+        cert: fs.readFileSync(path.resolve(baseFolder,"muffinet.frontendreact.pem")),
+      })
       neutrino.config.devServer.set("sockPort", "location")
       neutrino.config.devServer.set("disableHostCheck", true)
       neutrino.config.devServer.set("onListening", () => {
