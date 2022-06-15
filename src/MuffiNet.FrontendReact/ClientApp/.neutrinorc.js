@@ -1,6 +1,7 @@
 const react = require("@neutrinojs/react")
 const jest = require("@neutrinojs/jest")
 const path = require("path")
+const fs = require("fs")
 
 module.exports = {
   options: {
@@ -71,17 +72,45 @@ module.exports = {
       // Add typescript extensions
       neutrino.config.resolve.extensions.add(".tsx")
       neutrino.config.resolve.extensions.add(".ts")
-      neutrino.config.module.rule("compile").test(/\.(wasm|mjs|jsx|js|tsx|ts)$/)
-
       neutrino.config.resolve.alias.set("~", path.resolve(__dirname, "src"))
-      neutrino.config.devServer.port(process.env.PORT || 3000)
+
+      neutrino.config.module.rule("compile").test(/\.(wasm|mjs|jsx|js|tsx|ts)$/)
+    },
+    (neutrino) => {
+      if (process.env.NODE_ENV === "test") {
+        return // skip dev-server setup when running Jest
+      }
+
+      // Proxy the API backend server
+      neutrino.config.devServer.port(process.env.PORT || 44437)
       neutrino.config.devServer.host(process.env.PORT ? "0.0.0.0" : "localhost")
+      neutrino.config.devServer.set("proxy", {
+        "/api": {
+          target: "https://localhost:5001",
+          secure: false,
+        },
+        "/hubs": {
+          target: "https://localhost:5001",
+          secure: false,
+          ws: true,
+        },
+      })
+
+      const baseFolder =
+        process.env.APPDATA !== undefined && process.env.APPDATA !== ""
+          ? `${process.env.APPDATA}/ASP.NET/https`
+          : `${process.env.HOME}/.aspnet/https`
+
+      neutrino.config.devServer.set("https", {
+        key: fs.readFileSync(
+          path.resolve(baseFolder, "muffinet.frontendreact.key")
+        ),
+        cert: fs.readFileSync(
+          path.resolve(baseFolder, "muffinet.frontendreact.pem")
+        ),
+      })
       neutrino.config.devServer.set("sockPort", "location")
       neutrino.config.devServer.set("disableHostCheck", true)
-      neutrino.config.devServer.set("onListening", () => {
-        // aspnetcore's React SPA boilerplate waits for this non-configurable "magic string" before concluding that the development server is ready
-        console.log("Starting the development server")
-      })
     },
   ],
 }

@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using MuffiNet.Authentication.OpenIdConnect;
@@ -11,14 +10,10 @@ using MuffiNet.FrontendReact.Hubs;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
-builder.Configuration.AddJsonFile("appsettings.Local.json", true, true);
-
 // OIDC Authentication
 builder.Services.AddOidcAuthentication(builder.Configuration);
 
 builder.Services.AddControllers();
-builder.Services.AddRazorPages();
-
 builder.Services.AddRazorPages();
 
 builder.Services.AddDomainModel();
@@ -50,12 +45,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-// In production, the React files will be served from this directory
-builder.Services.AddSpaStaticFiles(configuration =>
-{
-    configuration.RootPath = "ClientApp/build";
-});
-
 builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
 builder.Services.AddHttpContextAccessor();
 
@@ -80,7 +69,6 @@ if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Test"))
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseSpaStaticFiles();
 
 // SignalR CORS
 app.UseCors("ClientPermission");
@@ -101,17 +89,6 @@ app.UseEndpoints(endpoints =>
 
     // Setup SignalR Hubs
     endpoints.MapHub<ExampleHub>("/hubs/example");
-});
-
-app.UseSpa(spa =>
-{
-    spa.Options.SourcePath = "ClientApp";
-    spa.Options.PackageManagerCommand = "yarn";
-
-    if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Test"))
-    {
-        spa.UseReactDevelopmentServer(npmScript: "start");
-    }
 });
 
 app.Run();

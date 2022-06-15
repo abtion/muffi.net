@@ -58,6 +58,7 @@
     "webpack-dev-server": "^3.11.3"
   },
   "scripts": {
+    "prestart": "node aspnetcore-https && node aspnetcore-react",
     "start": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --mode development",
     "build": "webpack --mode production",
     "test": "jest",
