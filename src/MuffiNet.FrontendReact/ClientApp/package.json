@@ -58,9 +58,9 @@
     "webpack-dev-server": "^3.11.3"
   },
   "scripts": {
-    "prestart": "node aspnetcore-https && node aspnetcore-react",
-    "start": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --mode development",
-    "build": "webpack --mode production",
+    "create-cert": "node aspnetcore-https && node aspnetcore-react",
+    "start": "yarn create-cert && node node_modules/webpack-dev-server/bin/webpack-dev-server.js --mode development",
+    "build": "yarn create-cert && webpack --mode production",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint . & prettier . --check",
