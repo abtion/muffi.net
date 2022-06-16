@@ -2,8 +2,7 @@ import React from "react"
 import { act, render as tlRender, waitFor } from "@testing-library/react"
 import axios from "axios"
 import userEvent from "@testing-library/user-event"
-import { createMemoryHistory } from "history"
-import { Router, MemoryRouter } from "react-router"
+import { MemoryRouter } from "react-router"
 
 import AuthorizedHome from "./"
 

@@ -1,6 +1,5 @@
 import React from "react"
-import { createMemoryHistory } from "history"
-import { Router, MemoryRouter } from "react-router"
+import { MemoryRouter } from "react-router"
 import { act, render as tlRender, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import axios from "axios"

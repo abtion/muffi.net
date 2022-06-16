@@ -18,7 +18,7 @@ const emptyAuthContext = {
 
 describe(AuthBarrier, () => {
   it("renders a loader", () => {
-      describe("when not logged in", () => {
+    describe("when not logged in", () => {
       const { queryByText } = render(
         // @ts-expect-error: No need to implement the whole auth context
         <AuthContext.Provider value={emptyAuthContext}>

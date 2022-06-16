@@ -2,8 +2,7 @@ import React from "react"
 import { render as tlRender } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { act } from "react-dom/test-utils"
-import { Router, MemoryRouter } from "react-router"
-import { createMemoryHistory } from "history"
+import { MemoryRouter } from "react-router"
 
 import NavMenu from "."
 
