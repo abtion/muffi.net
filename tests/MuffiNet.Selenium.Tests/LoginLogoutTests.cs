@@ -13,7 +13,7 @@ public class LoginLogoutTests : SeleniumTestBase
     //[Fact]
     //public void Given_UserExists_When_LoggingIn_Then_UserIsLoggedInAndRedirected()
     //{
-    //    webDriver.Navigate().GoToUrl($"{siteUrl}authhome");
+    //    webDriver.Navigate().GoToUrl($"{siteUrl}admin");
 
     //    wait().Until(webDriver => webDriver.FindElement(By.TagName("main")));
 
@@ -38,7 +38,7 @@ public class LoginLogoutTests : SeleniumTestBase
     //[Fact]
     //public void Given_UserDoesNotExist_When_LoggingIn_Then_UserIsNotLoggedIn()
     //{
-    //    webDriver.Navigate().GoToUrl($"{siteUrl}authhome");
+    //    webDriver.Navigate().GoToUrl($"{siteUrl}admin");
 
     //    wait().Until(webDriver => webDriver.FindElement(By.TagName("main")));
 
@@ -64,7 +64,7 @@ public class LoginLogoutTests : SeleniumTestBase
     //public void Given_UserExistsAndIsLoggedIn_When_LoggingOut_Then_UserIsLoggedOutAndRedirected()
     //{
     //    // log in
-    //    webDriver.Navigate().GoToUrl($"{siteUrl}authhome");
+    //    webDriver.Navigate().GoToUrl($"{siteUrl}admin");
 
     //    wait().Until(webDriver => webDriver.FindElement(By.TagName("main")));
 

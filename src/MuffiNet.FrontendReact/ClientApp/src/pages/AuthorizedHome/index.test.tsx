@@ -3,7 +3,7 @@ import { act, render as tlRender, waitFor } from "@testing-library/react"
 import axios from "axios"
 import userEvent from "@testing-library/user-event"
 import { createMemoryHistory } from "history"
-import { Router } from "react-router"
+import { Router, MemoryRouter } from "react-router"
 
 import AuthorizedHome from "./"
 
@@ -51,17 +51,13 @@ beforeEach(() => {
 })
 
 function render() {
-  const history = createMemoryHistory({
-    initialEntries: [`/authhome`],
-  })
-
   const userData = {
     // eslint-disable-next-line camelcase
     id_token: "1234",
   }
 
   const context = tlRender(
-    <Router history={history}>
+    <MemoryRouter initialEntries={[`/admin`]}>
       <ApiContext.Provider value={mockedAxios}>
         <AuthContext.Provider
           // @ts-expect-error No need to supply a full set of user data
@@ -70,10 +66,10 @@ function render() {
           <AuthorizedHome />
         </AuthContext.Provider>
       </ApiContext.Provider>
-    </Router>
+    </MemoryRouter>
   )
 
-  return { ...context, history }
+  return { ...context }
 }
 
 describe(AuthorizedHome, () => {

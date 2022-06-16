@@ -2,20 +2,16 @@ import React from "react"
 import { render as tlRender } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { act } from "react-dom/test-utils"
-import { Router } from "react-router"
+import { Router, MemoryRouter } from "react-router"
 import { createMemoryHistory } from "history"
 
 import NavMenu from "."
 
 function render() {
-  const history = createMemoryHistory({
-    initialEntries: [`/`],
-  })
-
   const context = tlRender(
-    <Router history={history}>
+    <MemoryRouter>
       <NavMenu />
-    </Router>
+    </MemoryRouter>
   )
 
   return { ...context }

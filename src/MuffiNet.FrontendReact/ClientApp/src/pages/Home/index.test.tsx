@@ -1,6 +1,6 @@
 import React from "react"
 import { createMemoryHistory } from "history"
-import { Router } from "react-router"
+import { Router, MemoryRouter } from "react-router"
 import { act, render as tlRender, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import axios from "axios"
@@ -49,17 +49,13 @@ beforeEach(() => {
 })
 
 function render() {
-  const history = createMemoryHistory({
-    initialEntries: [`/`],
-  })
-
   const context = tlRender(
-    <Router history={history}>
+    <MemoryRouter>
       <Home />
-    </Router>
+    </MemoryRouter>
   )
 
-  return { ...context, history }
+  return { ...context }
 }
 
 describe(Home, () => {
