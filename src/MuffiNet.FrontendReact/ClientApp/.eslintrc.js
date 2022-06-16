@@ -1,10 +1,12 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
     es6: true,
     node: true,
     jest: true,
   },
+  plugins: ["@typescript-eslint"],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -25,20 +27,5 @@ module.exports = {
       { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
     ],
   },
-  overrides: [
-    {
-      // enable the rule specifically for TypeScript files
-      files: ["*.js"],
-      rules: {
-        "@typescript-eslint/explicit-module-boundary-types": 0,
-      },
-    },
-    {
-      files: ["./*.js"],
-      rules: {
-        "@typescript-eslint/no-var-requires": 0,
-      },
-    },
-  ],
-  ignorePatterns: ["coverage/**/*", "src/authorization"],
+  ignorePatterns: ["coverage/**/*", "build/**/*"],
 }
