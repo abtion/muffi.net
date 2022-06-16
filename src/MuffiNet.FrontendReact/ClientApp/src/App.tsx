@@ -1,5 +1,5 @@
 import React from "react"
-import { Switch, Route } from "react-router"
+import { Route, Routes } from "react-router"
 
 import AuthOidcProvider from "~/components/AuthOidcProvider"
 import AuthBarrier from "~/components/AuthBarrier"
@@ -12,18 +12,21 @@ import AuthorizedHome from "~/pages/AuthorizedHome"
 
 export default function App(): JSX.Element {
   return (
-    <Switch>
-      <Route exact path="/" component={Home} />
+    <Routes>
+      <Route index element={<Home />} />
 
-      <Route path="/admin">
-        <AuthOidcProvider>
-          <AuthBarrier>
-            <Switch>
-              <Route exact path="" component={AuthorizedHome} />
-            </Switch>
-          </AuthBarrier>
-        </AuthOidcProvider>
-      </Route>
-    </Switch>
+      <Route
+        path="/admin"
+        element={
+          <AuthOidcProvider>
+            <AuthBarrier>
+              <Routes>
+                <Route index element={<AuthorizedHome />} />
+              </Routes>
+            </AuthBarrier>
+          </AuthOidcProvider>
+        }
+      />
+    </Routes>
   )
 }
