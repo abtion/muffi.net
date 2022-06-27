@@ -12,7 +12,6 @@ const certificateDir = process.env.APPDATA
 const host = process.env.PORT ? "0.0.0.0" : "localhost";
 const port = process.env.PORT || 44437;
 
-// TODO remove neutrino deps
 // TODO avoid inline require() - use package names where possible (for easier diagnostics)
 // TODO add dependencies to package.json
 
@@ -352,14 +351,6 @@ function configureBabel({ isDev }) {
     plugins: [
       "@babel/plugin-syntax-dynamic-import",
       "react-hot-loader/babel",
-      ... isDev ? [] : [
-        [
-          "babel-plugin-transform-react-remove-prop-types",
-          {
-            removeImport: true
-          }
-        ]
-      ]
     ]
   };
 
