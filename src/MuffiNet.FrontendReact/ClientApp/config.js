@@ -121,7 +121,15 @@ function configureWebpack({ isDev }) {
             resolve(rootDir, "test"),
           ],
           loader: "babel-loader",
-          options: configureBabel({ isDev })
+          options: {
+            /**
+             * These are additional options for `babel-loader` - the configuration
+             * for Babel itself is automatically merged from `babel-config.js`
+             * 
+             * https://github.com/babel/babel-loader#options
+             */
+            cacheDirectory: false
+          }
         },
         {
           test: /\.s?css$/,
@@ -221,7 +229,6 @@ function configureBabel({ isDev }) {
    * @type {import('@babel/core').TransformOptions}
    */
   const options = {
-    // cacheDirectory: isTest, // TODO the neutrino jest plugin specified this this, but it's not a documented option??
     babelrc: false,
     presets: [
       [
