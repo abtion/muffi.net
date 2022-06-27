@@ -176,11 +176,6 @@ function configureWebpack({ isDev }) {
                 /* config.module.rule('style').oneOf('modules').use('css-2') */
                 {
                   loader: 'postcss-loader',
-                  options: {
-                    postcssOptions: {
-                      plugins: [require("tailwindcss"), require("autoprefixer")]
-                    }
-                  }
                 },
                 /* config.module.rule('style').oneOf('modules').use('css-3') */
                 {
@@ -209,11 +204,6 @@ function configureWebpack({ isDev }) {
                 /* config.module.rule('style').oneOf('normal').use('css-2') */
                 {
                   loader: 'postcss-loader',
-                  options: {
-                    postcssOptions: {
-                      plugins: [require("tailwindcss"), require("autoprefixer")]
-                    }
-                  }
                 },
                 /* config.module.rule('style').oneOf('normal').use('css-3') */
                 {
@@ -357,6 +347,15 @@ function configureBabel({ isDev }) {
   return options;
 }
 
+function configurePostCSS() {
+  // TODO figure out the right @type annotation (and documentation line) for postCSS options?
+  const options = {
+    plugins: ["tailwindcss", "autoprefixer"]
+  };
+
+  return options;
+}
+
 function configureJest() {
   /**
    * @link https://jestjs.io/docs/configuration
@@ -402,4 +401,4 @@ function configureJest() {
   return config;
 }
 
-module.exports = { configureWebpack, configureBabel, configureJest };
+module.exports = { configureWebpack, configureBabel, configurePostCSS, configureJest };
