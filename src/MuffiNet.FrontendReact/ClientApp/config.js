@@ -97,127 +97,54 @@ function configureWebpack({ isDev }) {
       sockPort: 'location',
       disableHostCheck: true
     },
-    // TODO refactor: remove duplicate code, clean up Neutrino's comments
     module: {
       rules: [
-        /* config.module.rule('svgr') */
         {
-          test: /\.svg$/, // you can pick whatever file extension you like here (TODO moved this comment from .neutrinorc.js - what does it mean? might have been just a boilerplate explainer copy/pasted from somewhere?)
+          test: /\.svg$/,
           issuer: {
-            test: /\.[tj]sx?$/ // optional, but lets you continue importing SVGs from CSS files etc. without it breaking
+            test: /\.[tj]sx?$/ // apply only when svg is imported from jsx/tsx files
           },
-          use: [
-            /* config.module.rule('svgr').use('@svgr/webpack') */
-            {
-              loader: "@svgr\\webpack",
-              options: {
-                svgoConfig: {
-                  plugins: {
-                    removeViewBox: false // allow resizing SVGs (default options strip viewBox for some strange reason)
-                  }
-                }
+          loader: "@svgr\\webpack",
+          options: {
+            // https://react-svgr.com/docs/options/
+            svgoConfig: {
+              plugins: {
+                removeViewBox: false // allow resizing SVGs (default options strip viewBox for some strange reason)
               }
             }
-          ]
+          }
         },
-        /* config.module.rule('html') */
-        {
-          test: /\.html$/,
-          use: [
-            /* config.module.rule('html').use('html') */
-            {
-              loader: "html-loader",
-              options: {
-                attrs: [
-                  'img:src',
-                  'link:href'
-                ]
-              }
-            }
-          ]
-        },
-        /* config.module.rule('compile') */
         {
           test: /\.(wasm|mjs|jsx|js|tsx|ts)$/,
           include: [
             resolve(rootDir, "src"),
             resolve(rootDir, "test"),
           ],
-          use: [
-            /* config.module.rule('compile').use('babel') */
-            {
-              loader: "babel-loader",
-              options: configureBabel({ isDev })
-            }
-          ]
+          loader: "babel-loader",
+          options: configureBabel({ isDev })
         },
-        /* config.module.rule('style') */
         {
-          oneOf: [
-            /* config.module.rule('style').oneOf('modules') */
+          test: /\.s?css$/,
+          use: [
             {
-              test: /\.module\.css$/,
-              use: [
-                /* config.module.rule('style').oneOf('modules').use('style') */
-                {
-                  loader: "style-loader",
-                  options: {
-                    esModule: true // TODO check this: this was enabled in production mode only - not sure if that was intentional? it's enabled by default, so we can probably just delete this section. make sure!
-                  }
-                },
-                /* config.module.rule('style').oneOf('modules').use('css') */
-                {
-                  loader: "css-loader",
-                  options: {
-                    importLoaders: 2,
-                    modules: true
-                  }
-                },
-                /* config.module.rule('style').oneOf('modules').use('css-2') */
-                {
-                  loader: 'postcss-loader',
-                },
-                /* config.module.rule('style').oneOf('modules').use('css-3') */
-                {
-                  loader: 'sass-loader'
-                }
-              ]
+              loader: "style-loader",
+              options: {
+                esModule: true
+              }
             },
-            /* config.module.rule('style').oneOf('normal') */
             {
-              test: /\.s?css$/,
-              use: [
-                /* config.module.rule('style').oneOf('normal').use('style') */
-                {
-                  loader: "style-loader",
-                  options: {
-                    esModule: true // TODO check this: this was enabled in production mode only - not sure if that was intentional? it's enabled by default, so we can probably just delete this section. make sure!
-                  }
-                },
-                /* config.module.rule('style').oneOf('normal').use('css') */
-                {
-                  loader: "css-loader",
-                  options: {
-                    importLoaders: 2
-                  }
-                },
-                /* config.module.rule('style').oneOf('normal').use('css-2') */
-                {
-                  loader: 'postcss-loader',
-                },
-                /* config.module.rule('style').oneOf('normal').use('css-3') */
-                {
-                  loader: 'sass-loader'
-                }
-              ]
-            }
+              loader: "css-loader",
+              options: {
+                importLoaders: 2
+              }
+            },
+            'postcss-loader',
+            'sass-loader',
           ]
         },
-        /* config.module.rule('font') */
         {
           test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
           use: [
-            /* config.module.rule('font').use('file') */
             {
               loader: "file-loader",
               options: {
@@ -228,11 +155,9 @@ function configureWebpack({ isDev }) {
             }
           ]
         },
-        /* config.module.rule('image') */
         {
           test: /\.(ico|png|jpg|jpeg|gif|svg|webp)(\?v=\d+\.\d+\.\d+)?$/,
           use: [
-            /* config.module.rule('image').use('url') */
             {
               loader: "url-loader",
               options: {
@@ -255,8 +180,8 @@ function configureWebpack({ isDev }) {
       },
       runtimeChunk: 'single'
     },
+    // TODO clean up inline require statements
     plugins: [
-      /* config.plugin('html-index') */
       new (require('html-webpack-plugin'))(
         {
           template: resolve(rootDir, 'public/index.ejs'),
@@ -273,14 +198,11 @@ function configureWebpack({ isDev }) {
         }
       ),
       ... isDev ? [
-        /* config.plugin('hot') */
         new (require("webpack").HotModuleReplacementPlugin)()
       ] : [
-        /* config.plugin('extract') */
         new (require("mini-css-extract-plugin"))({
           filename: 'assets/[name].[contenthash:8].css'
         }),
-        /* config.plugin('clean') */
         new (require("clean-webpack-plugin").CleanWebpackPlugin)({
           verbose: false
         }),
@@ -386,10 +308,10 @@ function configureJest() {
     moduleFileExtensions: ["web.jsx", "web.js","wasm", "jsx", "js", "json", "tsx", "ts", "scss"],
     moduleNameMapper: {
       "~/(.*)$": "<rootDir>/src/$1",
-      "\\.svg": "<rootDir>/__mocks__/svgr-webpack.js",
+      "\\.svg": "<rootDir>/__mocks__/svgr-webpack.js", // TODO fix conflict with file mock below? not sure which one is being used. is the string in the mocked file important? if not, we can probably just delete this line
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/file.js",
       "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/style.js",
-      "^react-native$": "<rootDir>\\node_modules\\react-native-web",
+      "^react-native$": "<rootDir>\\node_modules\\react-native-web", // TODO remove? I don't think we use this
       "^~$": "<rootDir>/src",
     },
     bail: true,
