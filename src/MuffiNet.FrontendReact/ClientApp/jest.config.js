@@ -1,6 +1,3 @@
-// jest.config.js
-const neutrino = require("neutrino")
+const { configureJest } = require("./config.js");
 
-process.env.NODE_ENV = process.env.NODE_ENV || "test"
-
-module.exports = neutrino().jest()
+module.exports = configureJest();

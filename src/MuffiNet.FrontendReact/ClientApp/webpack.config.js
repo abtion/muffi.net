@@ -1,3 +1,5 @@
-const neutrino = require("neutrino")
+const { configureWebpack} = require("./config.js");
 
-module.exports = neutrino().webpack()
+module.exports = (env, { mode }) => configureWebpack({
+  isDev: mode === "development",
+});
