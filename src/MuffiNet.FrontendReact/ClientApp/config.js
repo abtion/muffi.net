@@ -180,23 +180,20 @@ function configureWebpack({ isDev }) {
       },
       runtimeChunk: 'single'
     },
-    // TODO clean up inline require statements
     plugins: [
-      new (require('html-webpack-plugin'))(
-        {
-          template: resolve(rootDir, 'public/index.ejs'),
-          appMountId: 'root',
-          lang: 'en',
-          meta: {
-            viewport: 'width=device-width, initial-scale=1'
-          },
-          filename: 'index.html',
-          chunks: [
-            'index'
-          ],
-          title: 'MuffiNet'
-        }
-      ),
+      new (require('html-webpack-plugin'))({
+        template: resolve(rootDir, 'public/index.ejs'),
+        appMountId: 'root',
+        lang: 'en',
+        meta: {
+          viewport: 'width=device-width, initial-scale=1'
+        },
+        filename: 'index.html',
+        chunks: [
+          'index'
+        ],
+        title: 'MuffiNet'
+      }),
       ... isDev ? [
         new (require("webpack").HotModuleReplacementPlugin)()
       ] : [
