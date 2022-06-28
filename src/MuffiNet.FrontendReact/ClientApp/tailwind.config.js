@@ -4,7 +4,13 @@ const prepareColorVariables = require("./src/utils/prepareColorVariables")
 const tailwindConfig = prepareColorVariables(colors).tailwindConfig
 
 module.exports = {
-  purge: ["./src/**/*.{js,jsx,ts,tsx,scss,css}", "./public/index.ejs"],
+  purge: {
+    enabled: true, // TODO enable this in production mode only
+    content: [
+      "./src/**/*.{js,jsx,ts,tsx,scss,css}",
+      "./public/index.ejs"
+    ],
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     container: {
