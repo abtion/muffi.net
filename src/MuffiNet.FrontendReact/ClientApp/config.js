@@ -198,7 +198,9 @@ function configureWebpack({ isDev }) {
         title: 'MuffiNet'
       }),
       new (require("mini-css-extract-plugin"))({
-        filename: 'assets/[name].[contenthash:8].css'
+        filename: isDev
+          ? 'assets/[name].css'
+          : 'assets/[name].[contenthash:8].css'
       }),
       ... isDev ? [
         new (require("webpack").HotModuleReplacementPlugin)()
