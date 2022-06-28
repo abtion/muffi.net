@@ -181,7 +181,15 @@ function configureWebpack({ isDev }) {
         maxInitialRequests: isDev ? Infinity : 5,
         name: isDev
       },
-      runtimeChunk: 'single'
+      runtimeChunk: 'single',
+      ... isDev ? {} : {
+        minimizer: [
+          new (require("terser-webpack-plugin"))({
+            test: /\.[cm]?js(\?.*)?$/i,
+            extractComments: true,
+          })
+        ]
+      }
     },
     plugins: [
       new (require('html-webpack-plugin'))({
@@ -249,7 +257,7 @@ function configureBabel({ isDev }) {
       [
         "@babel/preset-react",
         {
-          development: true,
+          development: isDev,
           useSpread: true
         }
       ],
@@ -263,7 +271,9 @@ function configureBabel({ isDev }) {
     ],
     plugins: [
       "@babel/plugin-syntax-dynamic-import",
-      "react-hot-loader/babel",
+      ... isDev ? [
+        "react-hot-loader/babel",
+      ] : [],
     ]
   };
 
