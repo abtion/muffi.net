@@ -26,7 +26,7 @@ function configureWebpack({ isDev }) {
       : "production",
     devtool: isDev
       ? "cheap-module-eval-source-map"
-      : undefined,
+      : "source-map", // TODO confirm that we want this? the Ruby vesion has it - the .NET version had no source-maps in prod
     target: 'web',
     context: rootDir,
     stats: {
@@ -134,12 +134,7 @@ function configureWebpack({ isDev }) {
         {
           test: /\.s?css$/,
           use: [
-            {
-              loader: "style-loader",
-              options: {
-                esModule: true
-              }
-            },
+            require("mini-css-extract-plugin").loader,
             {
               loader: "css-loader",
               options: {
@@ -147,7 +142,7 @@ function configureWebpack({ isDev }) {
               }
             },
             'postcss-loader',
-            'sass-loader',
+            'sass-loader', // TODO optimize this? so the sass-loader doesn't waste time process plain .css files
           ]
         },
         {
@@ -202,12 +197,12 @@ function configureWebpack({ isDev }) {
         ],
         title: 'MuffiNet'
       }),
+      new (require("mini-css-extract-plugin"))({
+        filename: 'assets/[name].[contenthash:8].css'
+      }),
       ... isDev ? [
         new (require("webpack").HotModuleReplacementPlugin)()
       ] : [
-        new (require("mini-css-extract-plugin"))({
-          filename: 'assets/[name].[contenthash:8].css'
-        }),
         new (require("clean-webpack-plugin").CleanWebpackPlugin)({
           verbose: false
         }),
