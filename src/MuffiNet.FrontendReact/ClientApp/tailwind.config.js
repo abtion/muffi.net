@@ -5,7 +5,7 @@ const tailwindConfig = prepareColorVariables(colors).tailwindConfig
 
 module.exports = {
   purge: {
-    enabled: true, // TODO enable this in production mode only
+    enabled: false, // TODO enable this in production mode
     content: [
       "./src/**/*.{js,jsx,ts,tsx,scss,css}",
       "./public/index.ejs"
