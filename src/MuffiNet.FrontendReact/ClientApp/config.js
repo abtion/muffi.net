@@ -13,7 +13,6 @@ const host = process.env.PORT ? "0.0.0.0" : "localhost";
 const port = process.env.PORT || 44437;
 
 // TODO avoid inline require() - use package names where possible (for easier diagnostics)
-// TODO add dependencies to package.json
 
 function configureWebpack({ isDev }) {
   /**
