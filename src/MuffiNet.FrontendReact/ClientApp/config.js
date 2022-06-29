@@ -46,17 +46,7 @@ function configureWebpack({ isDev }) {
       alias: {
         '~': resolve(rootDir, "src"),
       },
-      extensions: [
-        '.web.jsx',
-        '.web.js',
-        '.wasm',
-        '.mjs',
-        '.jsx',
-        '.js',
-        '.json',
-        '.tsx',
-        '.ts'
-      ]
+      extensions: ['.web.jsx', '.web.js', '.wasm', '.mjs', '.jsx', '.js', '.json', '.tsx', '.ts']
     },
     devServer: {
       host,
