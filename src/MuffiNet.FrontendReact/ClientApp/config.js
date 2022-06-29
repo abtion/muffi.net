@@ -12,8 +12,6 @@ const certificateDir = process.env.APPDATA
 const host = process.env.PORT ? "0.0.0.0" : "localhost";
 const port = process.env.PORT || 44437;
 
-// TODO avoid inline require() - use package names where possible (for easier diagnostics)
-
 function configureWebpack({ isDev }) {
   /**
    * @link https://webpack.js.org/configuration/#options
