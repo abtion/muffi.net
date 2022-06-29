@@ -1,4 +1,4 @@
-const isDev = false; // TODO vary with dev/prod
+const isDev = require("./mode.js").mode === "development";
 
 /**
  * @type {import('postcss').AcceptedPlugin}

@@ -1,11 +1,18 @@
-const colors = require("../../../colors.json")
-const prepareColorVariables = require("./src/utils/prepareColorVariables")
+const mode = require("./mode").mode;
 
-const tailwindConfig = prepareColorVariables(colors).tailwindConfig
+const colors = require("../../../colors.json");
 
-module.exports = {
+const prepareColorVariables = require("./src/utils/prepareColorVariables");
+
+const tailwindConfig = prepareColorVariables(colors).tailwindConfig;
+
+/**
+ * @link https://tailwindcss.com/docs/configuration
+ * @type {import('@types/tailwindcss/tailwind-config').TailwindConfig}
+ */
+const config = {
   purge: {
-    enabled: false, // TODO enable this in production mode
+    enabled: mode === "production",
     content: [
       "./src/**/*.{js,jsx,ts,tsx,scss,css}",
       "./public/index.ejs"
@@ -29,4 +36,6 @@ module.exports = {
     },
   },
   plugins: [require("@tailwindcss/aspect-ratio")],
-}
+};
+
+module.exports = config;

@@ -1,4 +1,4 @@
-const isDev = false; // TODO make this vary with webpack mode
+const isDev = require("./mode.js").mode === "development";
 
 /**
  * @link https://babeljs.io/docs/en/options

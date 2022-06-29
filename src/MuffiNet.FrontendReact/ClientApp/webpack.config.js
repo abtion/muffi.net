@@ -12,6 +12,8 @@ const host = "localhost";
 const port = 44437;
 
 module.exports = (env, { mode }) => {
+  require("./mode.js").mode = mode; // made available to other configuration files
+
   const isDev = mode === "development";
 
   /**
