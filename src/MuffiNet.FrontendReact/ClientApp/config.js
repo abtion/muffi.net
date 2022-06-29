@@ -45,7 +45,6 @@ function configureWebpack({ isDev }) {
     },
     resolve: {
       alias: {
-        'react-native': 'react-native-web',
         '~': resolve(rootDir, "src"),
       },
       extensions: [
@@ -329,7 +328,6 @@ function configureJest() {
       "\\.svg": "<rootDir>/__mocks__/svgr-webpack.js", // TODO fix conflict with file mock below? not sure which one is being used. is the string in the mocked file important? if not, we can probably just delete this line
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/file.js",
       "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/style.js",
-      "^react-native$": "<rootDir>\\node_modules\\react-native-web", // TODO remove? I don't think we use this
       "^~$": "<rootDir>/src",
     },
     bail: true,
