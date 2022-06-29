@@ -23,7 +23,7 @@ function configureWebpack({ isDev }) {
       : "production",
     devtool: isDev
       ? "cheap-module-eval-source-map"
-      : "source-map", // TODO confirm that we want this? the Ruby vesion has it - the .NET version had no source-maps in prod
+      : undefined, // TODO use "source-map" in production build? the Ruby vesion has it, but it didn't immediately work, so more configuration and testing needed here
     target: 'web',
     context: rootDir,
     stats: {
