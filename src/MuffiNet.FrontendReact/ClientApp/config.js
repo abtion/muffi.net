@@ -134,7 +134,11 @@ function configureWebpack({ isDev }) {
         {
           test: /\.s?css$/,
           use: [
-            require("mini-css-extract-plugin").loader,
+            ... isDev ? [
+              "style-loader",
+            ]: [
+              require("mini-css-extract-plugin").loader,
+            ],
             {
               loader: "css-loader",
               options: {
@@ -205,14 +209,14 @@ function configureWebpack({ isDev }) {
         ],
         title: 'MuffiNet'
       }),
-      new (require("mini-css-extract-plugin"))({
-        filename: isDev
-          ? 'assets/[name].css'
-          : 'assets/[name].[contenthash:8].css'
-      }),
       ... isDev ? [
         new (require("webpack").HotModuleReplacementPlugin)()
       ] : [
+        new (require("mini-css-extract-plugin"))({
+          filename: isDev
+            ? 'assets/[name].css'
+            : 'assets/[name].[contenthash:8].css'
+        }),
         new (require("clean-webpack-plugin").CleanWebpackPlugin)({
           verbose: false
         }),
