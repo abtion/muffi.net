@@ -143,7 +143,7 @@ function configureWebpack({ isDev }) {
               }
             },
             'postcss-loader',
-            'sass-loader', // TODO optimize this? so the sass-loader doesn't waste time process plain .css files
+            'sass-loader',
           ]
         },
         {
