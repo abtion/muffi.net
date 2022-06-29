@@ -8,9 +8,8 @@ const certificateDir = process.env.APPDATA
   ? `${process.env.APPDATA}/ASP.NET/https`
   : `${process.env.HOME}/.aspnet/https`;
 
-// TODO remove these? no longer necessary
-const host = process.env.PORT ? "0.0.0.0" : "localhost";
-const port = process.env.PORT || 44437;
+const host = "localhost";
+const port = 44437;
 
 function configureWebpack({ isDev }) {
   /**
