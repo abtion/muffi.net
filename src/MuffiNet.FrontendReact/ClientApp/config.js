@@ -282,13 +282,15 @@ function configureBabel({ isDev }) {
 }
 
 function configurePostCSS({ isDev }) {
-  // TODO figure out the right @type annotation (and documentation line) for postCSS options?
+  /**
+   * @type {import('postcss').AcceptedPlugin}
+   */
   const options = {
     plugins: [
       "tailwindcss",
       "autoprefixer",
       ... isDev ? [] : ["cssnano"],
-    ]
+    ],
   };
 
   return options;
