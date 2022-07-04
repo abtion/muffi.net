@@ -23,7 +23,7 @@ module.exports = (env, { mode }) => {
   const config = {
     mode,
     devtool: isDev
-      ? "cheap-module-eval-source-map"
+      ? "eval-cheap-module-source-map"
       : undefined, // TODO use "source-map" in production build? the Ruby vesion has it, but it didn't immediately work, so more configuration and testing needed here
     target: 'web',
     context: rootDir,
@@ -31,11 +31,6 @@ module.exports = (env, { mode }) => {
       children: false,
       entrypoints: false,
       modules: false
-    },
-    node: {
-      Buffer: false,
-      fs: 'empty',
-      tls: 'empty'
     },
     output: {
       path: resolve(rootDir, "build"),
@@ -48,19 +43,27 @@ module.exports = (env, { mode }) => {
       alias: {
         '~': resolve(rootDir, "src"),
       },
-      extensions: ['.web.jsx', '.web.js', '.wasm', '.mjs', '.jsx', '.js', '.json', '.tsx', '.ts']
+      extensions: ['.web.jsx', '.web.js', '.wasm', '.mjs', '.jsx', '.js', '.json', '.tsx', '.ts'],
+      fallback: {
+        fs: false,
+        tls: false,
+      }
     },
     devServer: {
       host,
       port,
       hot: true,
       historyApiFallback: true,
-      overlay: true,
-      stats: {
-        all: false,
-        errors: true,
-        timings: true,
-        warnings: true
+      client: {
+        overlay: true,
+      },
+      devMiddleware: {
+        stats: {
+          all: false,
+          errors: true,
+          timings: true,
+          warnings: true,
+        },
       },
       proxy: {
         '/api': {
@@ -81,16 +84,15 @@ module.exports = (env, { mode }) => {
         key: readFileSync(resolve(certificateDir, "muffinet.frontendreact.key")),
         cert: readFileSync(resolve(certificateDir, "muffinet.frontendreact.pem")),
       },
-      sockPort: 'location',
-      disableHostCheck: true
+      // TODO wtf?
+      // sockPort: 'location',
+      allowedHosts: "all",
     },
     module: {
       rules: [
         {
           test: /\.svg$/,
-          issuer: {
-            test: /\.[tj]sx?$/ // apply only when svg is imported from jsx/tsx files
-          },
+          issuer: /\.[tj]sx?$/, // apply only when svg is imported from jsx/tsx files,
           loader: "@svgr\\webpack",
           options: {
             // https://react-svgr.com/docs/options/
@@ -169,8 +171,9 @@ module.exports = (env, { mode }) => {
       minimize: ! isDev,
       splitChunks: {
         chunks: 'all',
-        maxInitialRequests: isDev ? Infinity : 5,
-        name: isDev
+        // TODO optimizations for dev mode?? migration guide was unhelpful
+        // maxInitialRequests: isDev ? Infinity : 5,
+        // name: isDev
       },
       runtimeChunk: 'single',
       ... isDev ? {} : {
@@ -196,9 +199,7 @@ module.exports = (env, { mode }) => {
         ],
         title: 'MuffiNet'
       }),
-      ... isDev ? [
-        new (require("webpack").HotModuleReplacementPlugin)()
-      ] : [
+      ... isDev ? [] : [
         new (require("mini-css-extract-plugin"))({
           filename: isDev
             ? 'assets/[name].css'
