@@ -139,16 +139,12 @@ module.exports = (env, { mode }) => {
         },
         {
           test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-          use: [
-            {
-              loader: "file-loader",
-              options: {
-                name: isDev
-                  ? 'assets/[name].[ext]'
-                  : 'assets/[name].[hash:8].[ext]'
-              }
-            }
-          ]
+          type: "asset/resource",
+          generator: {
+            filename: isDev
+              ? 'assets/[name].[ext]'
+              : 'assets/[name].[hash:8].[ext]'
+          }
         },
         {
           test: /\.(ico|png|jpg|jpeg|gif|svg|webp)(\?v=\d+\.\d+\.\d+)?$/,
