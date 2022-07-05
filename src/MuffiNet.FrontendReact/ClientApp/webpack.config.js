@@ -130,7 +130,7 @@ module.exports = (env, { mode }) => {
               loader: "css-loader",
               options: {
                 importLoaders: 2,
-                sourceMap: true, // not enabled by default (despite the devtool setting) - it's slower, but CSS sourcemap doesn't work without it
+                sourceMap: isDev, // not enabled by default (despite the devtool setting) - it's slower, but CSS sourcemap doesn't work without it
               }
             },
             'postcss-loader',
