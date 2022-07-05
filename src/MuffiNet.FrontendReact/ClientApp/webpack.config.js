@@ -84,8 +84,6 @@ module.exports = (env, { mode }) => {
         key: readFileSync(resolve(certificateDir, "muffinet.frontendreact.key")),
         cert: readFileSync(resolve(certificateDir, "muffinet.frontendreact.pem")),
       },
-      // TODO wtf?
-      // sockPort: 'location',
       allowedHosts: "all",
     },
     module: {
