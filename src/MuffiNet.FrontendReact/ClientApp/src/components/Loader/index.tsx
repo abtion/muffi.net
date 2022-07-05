@@ -1,5 +1,5 @@
 import React from "react"
-import { ReactComponent as LoaderIcon } from "./icon.svg"
+import LoaderIcon from "./icon.svg"
 import "./style.scss"
 
 export default function Loader({ text }: { text?: string }): JSX.Element {

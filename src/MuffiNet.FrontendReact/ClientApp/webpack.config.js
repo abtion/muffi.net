@@ -88,16 +88,25 @@ module.exports = (env, { mode }) => {
     },
     module: {
       rules: [
+        // TODO do we need this to support icon imports from CSS files? (we should test by actually importing an icon from a CSS file)
+        // {
+        //   test: /\.svg$/,
+        //   issuer: /\.s?css$/,
+        //   type: "asset/inline",
+        // },
         {
           test: /\.svg$/,
           issuer: /\.[tj]sx?$/, // apply only when svg is imported from jsx/tsx files,
-          loader: "@svgr\\webpack",
+          loader: "@svgr/webpack",
           options: {
             // https://react-svgr.com/docs/options/
             svgoConfig: {
-              plugins: {
-                removeViewBox: false // allow resizing SVGs (default options strip viewBox for some strange reason)
-              }
+              plugins: [
+                {
+                  name: 'removeViewBox', // allow resizing SVGs (default options strip viewBox for some strange reason)
+                  active: false
+                }
+              ]
             }
           }
         },
@@ -147,18 +156,18 @@ module.exports = (env, { mode }) => {
           }
         },
         {
-          test: /\.(ico|png|jpg|jpeg|gif|svg|webp)(\?v=\d+\.\d+\.\d+)?$/,
-          use: [
-            {
-              loader: "url-loader",
-              options: {
-                limit: 8192,
-                name: isDev
-                  ? 'assets/[name].[ext]'
-                  : 'assets/[name].[hash:8].[ext]'
-              }
+          test: /\.(ico|png|jpg|jpeg|gif|webp)(\?v=\d+\.\d+\.\d+)?$/,
+          type: "asset",
+          generator: {
+            filename: isDev
+              ? 'assets/[name].[ext]'
+              : 'assets/[name].[hash:8].[ext]'
+          },
+          parser: {
+            dataUrlCondition: {
+              maxSize: 8192
             }
-          ]
+          }
         }
       ]
     },

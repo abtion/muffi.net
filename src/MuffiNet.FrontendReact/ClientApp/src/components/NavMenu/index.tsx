@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react"
 import { Link } from "react-router-dom"
-import { ReactComponent as ListIcon } from "bootstrap-icons/icons/list.svg"
+import ListIcon from "bootstrap-icons/icons/list.svg"
 import classNames from "classnames"
 
 import NavItem from "~/components/NavItem"
