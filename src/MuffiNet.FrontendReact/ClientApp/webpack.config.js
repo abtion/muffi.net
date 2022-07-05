@@ -171,9 +171,7 @@ module.exports = (env, { mode }) => {
       minimize: ! isDev,
       splitChunks: {
         chunks: 'all',
-        // TODO optimizations for dev mode?? migration guide was unhelpful
-        // maxInitialRequests: isDev ? Infinity : 5,
-        // name: isDev
+        maxInitialRequests: isDev ? Infinity : 5,
       },
       runtimeChunk: 'single',
       ... isDev ? {} : {
