@@ -11,14 +11,11 @@ const tailwindConfig = prepareColorVariables(colors).tailwindConfig;
  * @type {import('@types/tailwindcss/tailwind-config').TailwindConfig}
  */
 const config = {
-  purge: {
-    enabled: mode === "production",
-    content: [
-      "./src/**/*.{js,jsx,ts,tsx,scss,css}",
-      "./public/index.ejs"
-    ],
-  },
-  darkMode: false, // or 'media' or 'class'
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx,scss,css}",
+    "./public/index.ejs"
+  ],
+  darkMode: "media",
   theme: {
     container: {
       center: true,
@@ -26,13 +23,10 @@ const config = {
     },
     colors: {
       transparent: "transparent",
+      white: "white",
+      black: "black",
       current: "currentColor",
       ...tailwindConfig,
-    },
-  },
-  variants: {
-    extend: {
-      backgroundColor: ["odd"],
     },
   },
   plugins: [require("@tailwindcss/aspect-ratio")],
