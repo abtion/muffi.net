@@ -13,16 +13,7 @@ const options = {
         debug: false,
         useBuiltIns: false,
         shippedProposals: true,
-        targets: {
-          browsers: [
-            'last 2 Chrome versions',
-            'last 2 Firefox versions',
-            'last 2 Edge versions',
-            'last 2 Opera versions',
-            'last 2 Safari versions',
-            'last 2 iOS versions'
-          ]
-        }
+        // NOTE: this preset uses the .browserslistrc file
       }
     ],
     [

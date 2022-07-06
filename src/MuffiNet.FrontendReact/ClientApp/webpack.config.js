@@ -23,44 +23,54 @@ module.exports = (env, { mode }) => {
   const config = {
     mode,
     devtool: isDev
-      ? "cheap-module-eval-source-map"
+      ? "eval-cheap-module-source-map"
       : undefined, // TODO use "source-map" in production build? the Ruby vesion has it, but it didn't immediately work, so more configuration and testing needed here
     target: 'web',
     context: rootDir,
+
     stats: {
       children: false,
       entrypoints: false,
       modules: false
     },
-    node: {
-      Buffer: false,
-      fs: 'empty',
-      tls: 'empty'
-    },
+
     output: {
       path: resolve(rootDir, "build"),
       publicPath: "/",
       filename: isDev
         ? "assets/[name].js"
-        : "assets/[name].[contenthash:8].js"
+        : "assets/[name].[contenthash:8].js",
+      assetModuleFilename: isDev
+        ? 'assets/[name][ext]'
+        : 'assets/[name].[contenthash:8][ext]'
     },
+
     resolve: {
       alias: {
         '~': resolve(rootDir, "src"),
       },
-      extensions: ['.web.jsx', '.web.js', '.wasm', '.mjs', '.jsx', '.js', '.json', '.tsx', '.ts']
+      extensions: ['.web.jsx', '.web.js', '.wasm', '.mjs', '.jsx', '.js', '.json', '.tsx', '.ts'],
+      fallback: {
+        fs: false,
+        tls: false,
+      }
     },
+
     devServer: {
       host,
       port,
       hot: true,
       historyApiFallback: true,
-      overlay: true,
-      stats: {
-        all: false,
-        errors: true,
-        timings: true,
-        warnings: true
+      client: {
+        overlay: true,
+      },
+      devMiddleware: {
+        stats: {
+          all: false,
+          errors: true,
+          timings: true,
+          warnings: true,
+        },
       },
       proxy: {
         '/api': {
@@ -77,30 +87,44 @@ module.exports = (env, { mode }) => {
           ws: true
         }
       },
-      https: {
-        key: readFileSync(resolve(certificateDir, "muffinet.frontendreact.key")),
-        cert: readFileSync(resolve(certificateDir, "muffinet.frontendreact.pem")),
+      server: {
+        type: "https",
+        options: {
+          key: readFileSync(resolve(certificateDir, "muffinet.frontendreact.key")),
+          cert: readFileSync(resolve(certificateDir, "muffinet.frontendreact.pem")),
+        }
       },
-      sockPort: 'location',
-      disableHostCheck: true
+      allowedHosts: "all",
     },
+
     module: {
       rules: [
+        // Inline SVG icons when referenced via url() in CSS properties:
         {
           test: /\.svg$/,
-          issuer: {
-            test: /\.[tj]sx?$/ // apply only when svg is imported from jsx/tsx files
-          },
-          loader: "@svgr\\webpack",
+          issuer: /\.s?css$/,
+          type: "asset/inline",
+        },
+
+        // Generate React components when .svg files are imported from .jsx/.tsx files:
+        {
+          test: /\.svg$/,
+          issuer: /\.[tj]sx?$/,
+          loader: "@svgr/webpack",
           options: {
             // https://react-svgr.com/docs/options/
             svgoConfig: {
-              plugins: {
-                removeViewBox: false // allow resizing SVGs (default options strip viewBox for some strange reason)
-              }
+              plugins: [
+                {
+                  name: 'removeViewBox', // allow resizing SVGs (default options strip viewBox for some strange reason)
+                  active: false
+                }
+              ]
             }
           }
         },
+
+        // Use Babel (see "babel.config.js") for TypeScript, JSX, and modern JS support:
         {
           test: /\.(wasm|mjs|jsx|js|tsx|ts)$/,
           include: [
@@ -118,59 +142,52 @@ module.exports = (env, { mode }) => {
             cacheDirectory: false
           }
         },
+
+        // Add support for SASS, use PostCSS for modern CSS support, and extract CSS assets:
         {
           test: /\.s?css$/,
           use: [
             ... isDev ? [
               "style-loader",
             ]: [
-              require("mini-css-extract-plugin").loader,
+              require("mini-css-extract-plugin").loader, // see also `plugins` (below)
             ],
             {
               loader: "css-loader",
               options: {
-                importLoaders: 2
+                importLoaders: 2,
+                sourceMap: isDev, // not enabled by default (despite the devtool setting) - it's slower, but CSS sourcemap doesn't work without it
               }
             },
             'postcss-loader',
             'sass-loader',
           ]
         },
+
+        // Publish static assets, such as fonts:
         {
           test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-          use: [
-            {
-              loader: "file-loader",
-              options: {
-                name: isDev
-                  ? 'assets/[name].[ext]'
-                  : 'assets/[name].[hash:8].[ext]'
-              }
-            }
-          ]
+          type: "asset/resource",
         },
+
+        // Publish, or inline smaller images:
         {
-          test: /\.(ico|png|jpg|jpeg|gif|svg|webp)(\?v=\d+\.\d+\.\d+)?$/,
-          use: [
-            {
-              loader: "url-loader",
-              options: {
-                limit: 8192,
-                name: isDev
-                  ? 'assets/[name].[ext]'
-                  : 'assets/[name].[hash:8].[ext]'
-              }
+          test: /\.(ico|png|jpg|jpeg|gif|webp)(\?v=\d+\.\d+\.\d+)?$/,
+          type: "asset",
+          parser: {
+            dataUrlCondition: {
+              maxSize: 8192
             }
-          ]
+          }
         }
       ]
     },
+
     optimization: {
       minimize: ! isDev,
       splitChunks: {
         chunks: 'all',
         maxInitialRequests: isDev ? Infinity : 5,
-        name: isDev
       },
       runtimeChunk: 'single',
       ... isDev ? {} : {
@@ -182,6 +199,7 @@ module.exports = (env, { mode }) => {
         ]
       }
     },
+
     plugins: [
       new (require('html-webpack-plugin'))({
         template: resolve(rootDir, 'public/index.ejs'),
@@ -196,10 +214,8 @@ module.exports = (env, { mode }) => {
         ],
         title: 'MuffiNet'
       }),
-      ... isDev ? [
-        new (require("webpack").HotModuleReplacementPlugin)()
-      ] : [
-        new (require("mini-css-extract-plugin"))({
+      ... isDev ? [] : [
+        new (require("mini-css-extract-plugin"))({ // see also `rules` (above)
           filename: isDev
             ? 'assets/[name].css'
             : 'assets/[name].[contenthash:8].css'
@@ -209,6 +225,7 @@ module.exports = (env, { mode }) => {
         }),
       ],
     ],
+
     entry: {
       index: [
         resolve(rootDir, 'src/index')

@@ -1,0 +1,23 @@
+# TODO Before starting a new project:
+#
+#      1. Configure the target browsers for your project:
+#         https://github.com/browserslist/browserslist#query-composition
+#     
+#      2. Update the browser information database:
+#         https://github.com/browserslist/update-db#readme
+#
+# This configuration file is used by e.g. @babel/preset-env and autoprefixer:
+#
+# https://babeljs.io/docs/en/babel-preset-env#browserslist-integration
+# https://github.com/postcss/autoprefixer#browsers
+#
+# For more information about this config file:
+#
+# https://github.com/browserslist/browserslist#browserslistrc
+
+last 2 Chrome versions
+last 2 Firefox versions
+last 2 Edge versions
+last 2 Opera versions
+last 2 Safari versions
+last 2 iOS versions

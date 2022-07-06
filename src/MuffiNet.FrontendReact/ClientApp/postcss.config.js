@@ -6,7 +6,7 @@ const isDev = require("./mode.js").mode === "development";
 const options = {
   plugins: [
     "tailwindcss",
-    "autoprefixer",
+    "autoprefixer", // NOTE: this plugin uses the .browserslistrc file
     ... isDev ? [] : ["cssnano"],
   ],
 };
