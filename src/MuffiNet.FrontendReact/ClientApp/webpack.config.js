@@ -80,9 +80,12 @@ module.exports = (env, { mode }) => {
           ws: true
         }
       },
-      https: {
-        key: readFileSync(resolve(certificateDir, "muffinet.frontendreact.key")),
-        cert: readFileSync(resolve(certificateDir, "muffinet.frontendreact.pem")),
+      server: {
+        type: "https",
+        options: {
+          key: readFileSync(resolve(certificateDir, "muffinet.frontendreact.key")),
+          cert: readFileSync(resolve(certificateDir, "muffinet.frontendreact.pem")),
+        }
       },
       allowedHosts: "all",
     },
