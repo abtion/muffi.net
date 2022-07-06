@@ -39,7 +39,10 @@ module.exports = (env, { mode }) => {
       publicPath: "/",
       filename: isDev
         ? "assets/[name].js"
-        : "assets/[name].[contenthash:8].js"
+        : "assets/[name].[contenthash:8].js",
+      assetModuleFilename: isDev
+        ? 'assets/[name][ext]'
+        : 'assets/[name].[contenthash:8][ext]'
     },
 
     resolve: {
@@ -165,22 +168,12 @@ module.exports = (env, { mode }) => {
         {
           test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
           type: "asset/resource",
-          generator: {
-            filename: isDev
-              ? 'assets/[name].[ext]'
-              : 'assets/[name].[hash:8].[ext]'
-          }
         },
 
         // Publish, or inline smaller images:
         {
           test: /\.(ico|png|jpg|jpeg|gif|webp)(\?v=\d+\.\d+\.\d+)?$/,
           type: "asset",
-          generator: {
-            filename: isDev
-              ? 'assets/[name].[ext]'
-              : 'assets/[name].[hash:8].[ext]'
-          },
           parser: {
             dataUrlCondition: {
               maxSize: 8192
