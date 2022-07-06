@@ -64,8 +64,8 @@
     "webpack-dev-server": "^4.9.3"
   },
   "scripts": {
-    "start": "node create-dev-cert && node node_modules/webpack-dev-server/bin/webpack-dev-server.js --mode development",
-    "build": "node create-dev-cert && webpack --mode production",
+    "start": "node create-dev-cert && webpack serve --mode development",
+    "build": "node create-dev-cert && webpack build --mode production",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint src & prettier src --check",
