@@ -27,11 +27,13 @@ module.exports = (env, { mode }) => {
       : undefined, // TODO use "source-map" in production build? the Ruby vesion has it, but it didn't immediately work, so more configuration and testing needed here
     target: 'web',
     context: rootDir,
+
     stats: {
       children: false,
       entrypoints: false,
       modules: false
     },
+
     output: {
       path: resolve(rootDir, "build"),
       publicPath: "/",
@@ -39,6 +41,7 @@ module.exports = (env, { mode }) => {
         ? "assets/[name].js"
         : "assets/[name].[contenthash:8].js"
     },
+
     resolve: {
       alias: {
         '~': resolve(rootDir, "src"),
@@ -49,6 +52,7 @@ module.exports = (env, { mode }) => {
         tls: false,
       }
     },
+
     devServer: {
       host,
       port,
@@ -89,17 +93,20 @@ module.exports = (env, { mode }) => {
       },
       allowedHosts: "all",
     },
+
     module: {
       rules: [
-        // TODO do we need this to support icon imports from CSS files? (we should test by actually importing an icon from a CSS file)
-        // {
-        //   test: /\.svg$/,
-        //   issuer: /\.s?css$/,
-        //   type: "asset/inline",
-        // },
+        // Inline SVG icons when referenced via url() in CSS properties:
         {
           test: /\.svg$/,
-          issuer: /\.[tj]sx?$/, // apply only when svg is imported from jsx/tsx files,
+          issuer: /\.s?css$/,
+          type: "asset/inline",
+        },
+
+        // Generate React components when .svg files are imported from .jsx/.tsx files:
+        {
+          test: /\.svg$/,
+          issuer: /\.[tj]sx?$/,
           loader: "@svgr/webpack",
           options: {
             // https://react-svgr.com/docs/options/
@@ -113,6 +120,8 @@ module.exports = (env, { mode }) => {
             }
           }
         },
+
+        // Use Babel (see "babel.config.js") for TypeScript, JSX, and modern JS support:
         {
           test: /\.(wasm|mjs|jsx|js|tsx|ts)$/,
           include: [
@@ -130,13 +139,15 @@ module.exports = (env, { mode }) => {
             cacheDirectory: false
           }
         },
+
+        // Add support for SASS, use PostCSS for modern CSS support, and extract CSS assets:
         {
           test: /\.s?css$/,
           use: [
             ... isDev ? [
               "style-loader",
             ]: [
-              require("mini-css-extract-plugin").loader,
+              require("mini-css-extract-plugin").loader, // see also `plugins` (below)
             ],
             {
               loader: "css-loader",
@@ -149,6 +160,8 @@ module.exports = (env, { mode }) => {
             'sass-loader',
           ]
         },
+
+        // Publish static assets, such as fonts:
         {
           test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
           type: "asset/resource",
@@ -158,6 +171,8 @@ module.exports = (env, { mode }) => {
               : 'assets/[name].[hash:8].[ext]'
           }
         },
+
+        // Publish, or inline smaller images:
         {
           test: /\.(ico|png|jpg|jpeg|gif|webp)(\?v=\d+\.\d+\.\d+)?$/,
           type: "asset",
@@ -174,6 +189,7 @@ module.exports = (env, { mode }) => {
         }
       ]
     },
+
     optimization: {
       minimize: ! isDev,
       splitChunks: {
@@ -190,6 +206,7 @@ module.exports = (env, { mode }) => {
         ]
       }
     },
+
     plugins: [
       new (require('html-webpack-plugin'))({
         template: resolve(rootDir, 'public/index.ejs'),
@@ -205,7 +222,7 @@ module.exports = (env, { mode }) => {
         title: 'MuffiNet'
       }),
       ... isDev ? [] : [
-        new (require("mini-css-extract-plugin"))({
+        new (require("mini-css-extract-plugin"))({ // see also `rules` (above)
           filename: isDev
             ? 'assets/[name].css'
             : 'assets/[name].[contenthash:8].css'
@@ -215,6 +232,7 @@ module.exports = (env, { mode }) => {
         }),
       ],
     ],
+
     entry: {
       index: [
         resolve(rootDir, 'src/index')
