@@ -1,3 +1,4 @@
+// TODO upgrade react, react-dom, @types/react, @types/react-dom to version 18 (blocked by oidc-react at this time)
 import React from "react"
 import ReactDOM from "react-dom"
 import { BrowserRouter } from "react-router-dom"

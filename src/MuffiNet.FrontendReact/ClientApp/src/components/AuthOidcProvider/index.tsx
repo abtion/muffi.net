@@ -1,5 +1,5 @@
 import React, { useEffect, useState, ReactNode } from "react"
-import { AuthProvider } from "oidc-react"
+import { AuthProvider } from "oidc-react" // TODO upgrade oidc-react to next version, once this PR is released: https://github.com/bjerkio/oidc-react/pull/827
 import axios from "axios"
 import LoaderFullPage from "~/components/LoaderFullPage"
 import AuthOidcConfigContext, {
