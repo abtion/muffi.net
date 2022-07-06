@@ -68,7 +68,7 @@
     "build": "node create-dev-cert && webpack build --mode production",
     "test": "jest",
     "test:watch": "jest --watch",
-    "lint": "eslint src & prettier src --check",
+    "lint": "tsc --noEmit && eslint src && prettier src --check",
     "format": "prettier --write ."
   }
 }
