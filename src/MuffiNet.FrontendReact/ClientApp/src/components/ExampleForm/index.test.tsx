@@ -37,7 +37,7 @@ describe(ExampleForm, () => {
   describe("when submitting the form", () => {
     it("posts an exampleEntity", async () => {
       const { getByLabelText, getByText } = render()
-      
+
       await userEvent.type(getByLabelText("Name"), "Name")
       await userEvent.type(getByLabelText("Description"), "Description")
       await userEvent.type(getByLabelText("E-mail"), "Em@a.il")

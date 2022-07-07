@@ -80,14 +80,14 @@ describe(AuthorizedHome, () => {
   describe("when submitting the form ", () => {
     it("posts an unnamed exampleEntity to authorized endpoint", async () => {
       mockedAxios.put.mockResolvedValue({ data: { Id: "1234" } })
-      
+
       const { getByLabelText, getByText } = render()
-      
+
       await userEvent.type(getByLabelText("Description"), "Description")
       await userEvent.type(getByLabelText("E-mail"), "Em@a.il")
       await userEvent.type(getByLabelText("Phone"), "12345678")
       await userEvent.click(getByText("Submit"))
-      
+
       await waitFor(() =>
         expect(mockedAxios.put).toHaveBeenCalledWith("/api/authorizedexample", {
           Name: "",
@@ -112,9 +112,9 @@ describe(AuthorizedHome, () => {
       const removeBtn = await getAllByRole("button", {
         name: /Remove/i,
       })[0]
-      
+
       await userEvent.click(removeBtn)
-      
+
       await waitFor(() =>
         expect(mockedAxios.post).toHaveBeenCalledWith(
           "/api/authorizedexample",
