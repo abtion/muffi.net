@@ -34,7 +34,7 @@ const options = {
   plugins: [
     "@babel/plugin-syntax-dynamic-import",
     ... isDev ? [
-      "react-hot-loader/babel",
+      "react-hot-loader/babel", // TODO react-hot-loader is deprecated: switch to react-fast-refresh? the webpack plugin is an unstable beta at this time
     ] : [],
   ]
 };

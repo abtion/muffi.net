@@ -3,7 +3,6 @@ import { DateTime } from "luxon"
 import { render, act } from "@testing-library/react"
 
 import Duration from "."
-import withMockedDate from "~/utils/withMockedDate"
 
 describe(Duration, () => {
   describe("since-prop is in the future", () => {
@@ -15,26 +14,24 @@ describe(Duration, () => {
 
   describe("since-prop is in the past", () => {
     it("displays and updates a countdown", async () => {
-      await withMockedDate(new Date(), async ({ updateDate }) => {
-        jest.useFakeTimers()
+      jest.useFakeTimers()
+      jest.setSystemTime(new Date())
 
-        const since = DateTime.now().minus({ hours: 48 }).toJSDate()
+      const since = DateTime.now().minus({ hours: 48 }).toJSDate()
 
-        const { getByText } = render(<Duration since={since} />)
+      const { getByText } = render(<Duration since={since} />)
 
-        expect(getByText("48:00")).toBeInTheDocument()
+      expect(getByText("48:00")).toBeInTheDocument()
 
-        act(() => {
-          const newTime = DateTime.now().minus({ hours: 2 }).toJSDate()
-          updateDate(newTime)
-          jest.runOnlyPendingTimers()
-        })
-
-        expect(getByText("46:00")).toBeInTheDocument()
-
-        jest.clearAllTimers()
-        jest.useRealTimers()
+      await act(async () => {
+        const twoHours = 2 * 60 * 60 * 1000
+        jest.advanceTimersByTime(twoHours)
       })
+
+      expect(getByText("50:00")).toBeInTheDocument()
+
+      jest.clearAllTimers()
+      jest.useRealTimers()
     })
 
     describe("format", () => {
