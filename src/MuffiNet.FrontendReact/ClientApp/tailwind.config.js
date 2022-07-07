@@ -1,10 +1,10 @@
-const mode = require("./mode").mode;
+const mode = require("./mode").mode
 
-const colors = require("../../../colors.json");
+const colors = require("../../../colors.json")
 
-const prepareColorVariables = require("./src/utils/prepareColorVariables");
+const prepareColorVariables = require("./src/utils/prepareColorVariables")
 
-const tailwindConfig = prepareColorVariables(colors).tailwindConfig;
+const tailwindConfig = prepareColorVariables(colors).tailwindConfig
 
 /**
  * @link https://tailwindcss.com/docs/configuration
@@ -30,6 +30,6 @@ const config = {
     },
   },
   plugins: [require("@tailwindcss/aspect-ratio")],
-};
+}
 
-module.exports = config;
+module.exports = config

@@ -1,1 +1,1 @@
-export const ReactComponent = () => "Mocked SVG Icon"
+export default () => "Mocked SVG Icon"

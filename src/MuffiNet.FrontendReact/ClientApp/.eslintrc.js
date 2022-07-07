@@ -1,10 +1,19 @@
-module.exports = {
+/**
+ * @link https://eslint.org/docs/latest/user-guide/configuring/configuration-files
+ * @type {import('eslint').ESLint.ConfigData}
+ */
+const options = {
   root: true,
   env: {
     browser: true,
     es6: true,
     node: true,
     jest: true,
+  },
+  settings: {
+    react: {
+      version: "detect",
+    },
   },
   plugins: ["@typescript-eslint"],
   extends: [
@@ -29,3 +38,5 @@ module.exports = {
   },
   ignorePatterns: ["coverage/**/*", "build/**/*"],
 }
+
+module.exports = options

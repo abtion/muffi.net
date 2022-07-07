@@ -1,4 +1,4 @@
-const rootDir = __dirname;
+const rootDir = __dirname
 
 /**
  * @link https://jestjs.io/docs/configuration
@@ -26,11 +26,22 @@ const config = {
     "\\.(js|jsx|mjs|ts|tsx)$": "babel-jest", // Compile ts and tsx files with babel (regular js files)
   },
   moduleDirectories: ["node_modules"],
-  moduleFileExtensions: ["web.jsx", "web.js","wasm", "jsx", "js", "json", "tsx", "ts", "scss"],
+  moduleFileExtensions: [
+    "web.jsx",
+    "web.js",
+    "wasm",
+    "jsx",
+    "js",
+    "json",
+    "tsx",
+    "ts",
+    "scss",
+  ],
   moduleNameMapper: {
     "~/(.*)$": "<rootDir>/src/$1",
     "\\.svg": "<rootDir>/__mocks__/svgr-webpack.js", // TODO fix conflict with file mock below? not sure which one is being used. is the string in the mocked file important? if not, we can probably just delete this line
-    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/file.js",
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+      "<rootDir>/__mocks__/file.js",
     "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/style.js",
     "^~$": "<rootDir>/src",
   },
@@ -38,6 +49,6 @@ const config = {
   verbose: false,
   setupFiles: ["./src/setupTests.ts"],
   setupFilesAfterEnv: ["./src/setupTestsAfterEnv.ts"],
-};
+}
 
-module.exports = config;
+module.exports = config
