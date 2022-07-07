@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@microsoft/signalr": "^5.0.17",
+    "@microsoft/signalr": "^6.0.6",
     "axios": "^0.21.4",
     "bootstrap-icons": "^1.8.3",
     "classnames": "^2.3.1",
