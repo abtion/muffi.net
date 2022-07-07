@@ -71,12 +71,16 @@ describe(Home, () => {
   describe("when submitting the form ", () => {
     it("posts an exampleEntity to unauthorized endpoint", async () => {
       mockedAxios.put.mockResolvedValue({ data: { Id: "1234" } })
+
       const { getByLabelText, getByText } = render()
-      userEvent.type(getByLabelText("Name"), "Name")
-      userEvent.type(getByLabelText("Description"), "Description")
-      userEvent.type(getByLabelText("E-mail"), "Em@a.il")
-      userEvent.type(getByLabelText("Phone"), "12345678")
-      userEvent.click(getByText("Submit"))
+
+      await userEvent.type(getByLabelText("Name"), "Name")
+      await userEvent.type(getByLabelText("Description"), "Description")
+      await userEvent.type(getByLabelText("E-mail"), "Em@a.il")
+      await userEvent.type(getByLabelText("Phone"), "12345678")
+
+      await userEvent.click(getByText("Submit"))
+
       await waitFor(() =>
         expect(mockedAxios.put).toHaveBeenCalledWith("/api/example", {
           Name: "Name",
@@ -99,7 +103,9 @@ describe(Home, () => {
       const removeBtn = await getAllByRole("button", {
         name: /Remove/i,
       })[0]
-      userEvent.click(removeBtn)
+
+      await userEvent.click(removeBtn)
+
       await waitFor(() =>
         expect(mockedAxios.post).toHaveBeenCalledWith("/api/example", {
           id: "1",

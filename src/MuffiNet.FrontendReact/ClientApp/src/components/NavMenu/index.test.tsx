@@ -17,7 +17,7 @@ function render() {
 }
 
 describe(NavMenu, () => {
-  it("allows toggling the nav menu for small screens", () => {
+  it("allows toggling the nav menu for small screens", async () => {
     const { container } = render()
 
     const mobileMenuButton = container.querySelector(".mobile-menu-button")
@@ -25,9 +25,9 @@ describe(NavMenu, () => {
 
     expect(navMenu).toHaveClass("hidden")
 
-    act(() => {
+    await act(async () => {
       if (mobileMenuButton) {
-        userEvent.click(mobileMenuButton)
+        await userEvent.click(mobileMenuButton)
       }
     })
 

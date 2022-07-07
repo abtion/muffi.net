@@ -35,14 +35,15 @@ describe(ExampleForm, () => {
   })
 
   describe("when submitting the form", () => {
-    it("posts an exampleEntity", () => {
+    it("posts an exampleEntity", async () => {
       const { getByLabelText, getByText } = render()
-      userEvent.type(getByLabelText("Name"), "Name")
-      userEvent.type(getByLabelText("Description"), "Description")
-      userEvent.type(getByLabelText("E-mail"), "Em@a.il")
-      userEvent.type(getByLabelText("Phone"), "12345678")
+      
+      await userEvent.type(getByLabelText("Name"), "Name")
+      await userEvent.type(getByLabelText("Description"), "Description")
+      await userEvent.type(getByLabelText("E-mail"), "Em@a.il")
+      await userEvent.type(getByLabelText("Phone"), "12345678")
 
-      userEvent.click(getByText("Submit"))
+      await userEvent.click(getByText("Submit"))
 
       expect(onSubmit).toHaveBeenCalledTimes(1)
     })

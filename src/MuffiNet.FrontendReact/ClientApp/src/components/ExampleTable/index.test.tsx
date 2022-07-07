@@ -33,7 +33,7 @@ describe(ExampleTable, () => {
     const removeBtn = await findByText("Remove")
     expect(removeBtn).toBeInTheDocument()
 
-    userEvent.click(removeBtn)
+    await userEvent.click(removeBtn)
     expect(onRemove).toHaveBeenCalledTimes(1)
   })
 })
