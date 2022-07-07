@@ -1,20 +1,20 @@
-const process = require("process");
-const { resolve } = require("path");
-const { readFileSync } = require("fs");
+const process = require("process")
+const { resolve } = require("path")
+const { readFileSync } = require("fs")
 
-const rootDir = __dirname;
+const rootDir = __dirname
 
 const certificateDir = process.env.APPDATA
   ? `${process.env.APPDATA}/ASP.NET/https`
-  : `${process.env.HOME}/.aspnet/https`;
+  : `${process.env.HOME}/.aspnet/https`
 
-const host = "localhost";
-const port = 44437;
+const host = "localhost"
+const port = 44437
 
 module.exports = (env, { mode }) => {
-  require("./mode.js").mode = mode; // made available to other configuration files
+  require("./mode.js").mode = mode // made available to other configuration files
 
-  const isDev = mode === "development";
+  const isDev = mode === "development"
 
   /**
    * @link https://webpack.js.org/configuration/#options
@@ -22,38 +22,44 @@ module.exports = (env, { mode }) => {
    */
   const config = {
     mode,
-    devtool: isDev
-      ? "eval-cheap-module-source-map"
-      : undefined, // TODO use "source-map" in production build? the Ruby vesion has it, but it didn't immediately work, so more configuration and testing needed here
-    target: 'web',
+    devtool: isDev ? "eval-cheap-module-source-map" : undefined, // TODO use "source-map" in production build? the Ruby vesion has it, but it didn't immediately work, so more configuration and testing needed here
+    target: "web",
     context: rootDir,
 
     stats: {
       children: false,
       entrypoints: false,
-      modules: false
+      modules: false,
     },
 
     output: {
       path: resolve(rootDir, "build"),
       publicPath: "/",
-      filename: isDev
-        ? "assets/[name].js"
-        : "assets/[name].[contenthash:8].js",
+      filename: isDev ? "assets/[name].js" : "assets/[name].[contenthash:8].js",
       assetModuleFilename: isDev
-        ? 'assets/[name][ext]'
-        : 'assets/[name].[contenthash:8][ext]'
+        ? "assets/[name][ext]"
+        : "assets/[name].[contenthash:8][ext]",
     },
 
     resolve: {
       alias: {
-        '~': resolve(rootDir, "src"),
+        "~": resolve(rootDir, "src"),
       },
-      extensions: ['.web.jsx', '.web.js', '.wasm', '.mjs', '.jsx', '.js', '.json', '.tsx', '.ts'],
+      extensions: [
+        ".web.jsx",
+        ".web.js",
+        ".wasm",
+        ".mjs",
+        ".jsx",
+        ".js",
+        ".json",
+        ".tsx",
+        ".ts",
+      ],
       fallback: {
         fs: false,
         tls: false,
-      }
+      },
     },
 
     devServer: {
@@ -73,26 +79,30 @@ module.exports = (env, { mode }) => {
         },
       },
       proxy: {
-        '/api': {
-          target: 'https://localhost:5001',
-          secure: false
-        },
-        '/swagger': {
-          target: 'https://localhost:5001',
-          secure: false
-        },
-        '/hubs': {
-          target: 'https://localhost:5001',
+        "/api": {
+          target: "https://localhost:5001",
           secure: false,
-          ws: true
-        }
+        },
+        "/swagger": {
+          target: "https://localhost:5001",
+          secure: false,
+        },
+        "/hubs": {
+          target: "https://localhost:5001",
+          secure: false,
+          ws: true,
+        },
       },
       server: {
         type: "https",
         options: {
-          key: readFileSync(resolve(certificateDir, "muffinet.frontendreact.key")),
-          cert: readFileSync(resolve(certificateDir, "muffinet.frontendreact.pem")),
-        }
+          key: readFileSync(
+            resolve(certificateDir, "muffinet.frontendreact.key")
+          ),
+          cert: readFileSync(
+            resolve(certificateDir, "muffinet.frontendreact.pem")
+          ),
+        },
       },
       allowedHosts: "all",
     },
@@ -116,52 +126,49 @@ module.exports = (env, { mode }) => {
             svgoConfig: {
               plugins: [
                 {
-                  name: 'removeViewBox', // allow resizing SVGs (default options strip viewBox for some strange reason)
-                  active: false
-                }
-              ]
-            }
-          }
+                  name: "removeViewBox", // allow resizing SVGs (default options strip viewBox for some strange reason)
+                  active: false,
+                },
+              ],
+            },
+          },
         },
 
         // Use Babel (see "babel.config.js") for TypeScript, JSX, and modern JS support:
         {
           test: /\.(wasm|mjs|jsx|js|tsx|ts)$/,
-          include: [
-            resolve(rootDir, "src"),
-            resolve(rootDir, "test"),
-          ],
+          include: [resolve(rootDir, "src"), resolve(rootDir, "test")],
           loader: "babel-loader",
           options: {
             /**
              * These are additional options for `babel-loader` - the configuration
              * for Babel itself is automatically merged from `babel-config.js`
-             * 
+             *
              * https://github.com/babel/babel-loader#options
              */
-            cacheDirectory: false
-          }
+            cacheDirectory: false,
+          },
         },
 
         // Add support for SASS, use PostCSS for modern CSS support, and extract CSS assets:
         {
           test: /\.s?css$/,
           use: [
-            ... isDev ? [
-              "style-loader",
-            ]: [
-              require("mini-css-extract-plugin").loader, // see also `plugins` (below)
-            ],
+            ...(isDev
+              ? ["style-loader"]
+              : [
+                  require("mini-css-extract-plugin").loader, // see also `plugins` (below)
+                ]),
             {
               loader: "css-loader",
               options: {
                 importLoaders: 2,
                 sourceMap: isDev, // not enabled by default (despite the devtool setting) - it's slower, but CSS sourcemap doesn't work without it
-              }
+              },
             },
-            'postcss-loader',
-            'sass-loader',
-          ]
+            "postcss-loader",
+            "sass-loader",
+          ],
         },
 
         // Publish static assets, such as fonts:
@@ -176,62 +183,63 @@ module.exports = (env, { mode }) => {
           type: "asset",
           parser: {
             dataUrlCondition: {
-              maxSize: 8192
-            }
-          }
-        }
-      ]
+              maxSize: 8192,
+            },
+          },
+        },
+      ],
     },
 
     optimization: {
-      minimize: ! isDev,
+      minimize: !isDev,
       splitChunks: {
-        chunks: 'all',
+        chunks: "all",
         maxInitialRequests: isDev ? Infinity : 5,
       },
-      runtimeChunk: 'single',
-      ... isDev ? {} : {
-        minimizer: [
-          new (require("terser-webpack-plugin"))({
-            test: /\.[cm]?js(\?.*)?$/i,
-            extractComments: true,
-          })
-        ]
-      }
+      runtimeChunk: "single",
+      ...(isDev
+        ? {}
+        : {
+            minimizer: [
+              new (require("terser-webpack-plugin"))({
+                test: /\.[cm]?js(\?.*)?$/i,
+                extractComments: true,
+              }),
+            ],
+          }),
     },
 
     plugins: [
-      new (require('html-webpack-plugin'))({
-        template: resolve(rootDir, 'public/index.ejs'),
-        appMountId: 'root',
-        lang: 'en',
+      new (require("html-webpack-plugin"))({
+        template: resolve(rootDir, "public/index.ejs"),
+        appMountId: "root",
+        lang: "en",
         meta: {
-          viewport: 'width=device-width, initial-scale=1'
+          viewport: "width=device-width, initial-scale=1",
         },
-        filename: 'index.html',
-        chunks: [
-          'index'
-        ],
-        title: 'MuffiNet'
+        filename: "index.html",
+        chunks: ["index"],
+        title: "MuffiNet",
       }),
-      ... isDev ? [] : [
-        new (require("mini-css-extract-plugin"))({ // see also `rules` (above)
-          filename: isDev
-            ? 'assets/[name].css'
-            : 'assets/[name].[contenthash:8].css'
-        }),
-        new (require("clean-webpack-plugin").CleanWebpackPlugin)({
-          verbose: false
-        }),
-      ],
+      ...(isDev
+        ? []
+        : [
+            new (require("mini-css-extract-plugin"))({
+              // see also `rules` (above)
+              filename: isDev
+                ? "assets/[name].css"
+                : "assets/[name].[contenthash:8].css",
+            }),
+            new (require("clean-webpack-plugin").CleanWebpackPlugin)({
+              verbose: false,
+            }),
+          ]),
     ],
 
     entry: {
-      index: [
-        resolve(rootDir, 'src/index')
-      ]
-    }
-  };
+      index: [resolve(rootDir, "src/index")],
+    },
+  }
 
-  return config;
+  return config
 }

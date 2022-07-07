@@ -12,12 +12,10 @@ const options = {
   },
   settings: {
     react: {
-      version: "detect"
-    }
+      version: "detect",
+    },
   },
-  plugins: [
-    "@typescript-eslint"
-  ],
+  plugins: ["@typescript-eslint"],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -39,6 +37,6 @@ const options = {
     ],
   },
   ignorePatterns: ["coverage/**/*", "build/**/*"],
-};
+}
 
-module.exports = options;
+module.exports = options
