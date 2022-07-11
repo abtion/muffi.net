@@ -1,9 +1,9 @@
 // This file uses js and commonjs to be compatible with tailwind config
 
-import getContrastColor from "./getContrastColor"
+const getContrastColor = require("./getContrastColor")
 
 // Prepare colors for usage in tailwind config and as css variables
-export default function prepareColorVariables(jsonColors) {
+module.exports = function prepareColorVariables(jsonColors) {
   const tailwindConfig = {}
   const cssVariables = {}
 

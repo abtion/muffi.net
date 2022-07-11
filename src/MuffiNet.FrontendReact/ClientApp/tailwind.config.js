@@ -1,6 +1,6 @@
-import colors from "../../../colors.json"
+const colors = require("../../../colors.json")
 
-import prepareColorVariables from "./src/utils/prepareColorVariables"
+const prepareColorVariables = require("./src/utils/prepareColorVariables")
 
 const tailwindConfig = prepareColorVariables(colors).tailwindConfig
 
@@ -33,4 +33,4 @@ const config = {
   plugins: [require("@tailwindcss/aspect-ratio")],
 }
 
-export default config
+module.exports = config
