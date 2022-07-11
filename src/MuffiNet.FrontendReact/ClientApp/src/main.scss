@@ -1,7 +1,13 @@
 /* Provide sufficient contrast against white background */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+// TODO unsure about this change
+//      see this issue
+//      https://github.com/vitejs/vite/issues/5647
+//      locked and limited, so no telling if this was fixed for people
+//      maybe try upgrading this repo to see if the issue was fixed
+//      https://github.com/scott-lc/vite-issue-20211111
 
 @font-face {
   font-family: "Roboto";

@@ -1,8 +1,8 @@
-const mode = require("./mode").mode
+//const mode = require("./mode").mode
 
-const colors = require("../../../colors.json")
+import colors from "../../../colors.json"
 
-const prepareColorVariables = require("./src/utils/prepareColorVariables")
+import prepareColorVariables from "./src/utils/prepareColorVariables"
 
 const tailwindConfig = prepareColorVariables(colors).tailwindConfig
 

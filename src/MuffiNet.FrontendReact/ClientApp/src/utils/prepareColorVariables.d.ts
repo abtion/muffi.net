@@ -1,6 +1,6 @@
 export as namespace prepareColorVariables
 
-export = prepareColorVariables
+export default prepareColorVariables
 
 declare function prepareColorVariables(
   jsonColors: prepareColorVariables.JsonColors

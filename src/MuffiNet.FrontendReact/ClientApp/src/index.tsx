@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom"
 import "~/main.scss"
 import App from "~/App"
 
-import prepareColorVariables from "~/utils/prepareColorVariables"
+import prepareColorVariables from "~/utils/prepareColorVariables.js"
 import colors from "../../../../colors.json"
 
 const baseElement = document.querySelector("base")

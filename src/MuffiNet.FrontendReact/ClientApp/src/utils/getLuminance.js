@@ -39,7 +39,7 @@ const luminanceList = [
   0.9473, 0.956, 0.9647, 0.9734, 0.9823, 0.9911, 1,
 ]
 
-module.exports = function getLuminance(color) {
+export default function getLuminance(color) {
   let [rInt, gInt, bInt] = colorString.get.rgb(color)
 
   const rFloat = rInt / 255
