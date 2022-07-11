@@ -1,14 +1,13 @@
-//const isDev = require("./mode.js").mode === "development"
-
 /**
  * @type {import('postcss').AcceptedPlugin}
  */
 const options = {
-  plugins: [
-    require("tailwindcss"),
-    require("autoprefixer"), // NOTE: this plugin uses the .browserslistrc file
-    //...(import.meta.env.DEV ? [] : ["cssnano"]),
-  ],
+  modules: true,
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {}, // NOTE: this plugin uses the .browserslistrc file
+    // TODO enable nanocss in prod mode
+  },
 }
 
-module.exports = options
+export default options;

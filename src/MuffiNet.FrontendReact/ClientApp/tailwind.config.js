@@ -1,5 +1,3 @@
-//const mode = require("./mode").mode
-
 import colors from "../../../colors.json"
 
 import prepareColorVariables from "./src/utils/prepareColorVariables"
@@ -12,8 +10,8 @@ const tailwindConfig = prepareColorVariables(colors).tailwindConfig
  */
 const config = {
   purge: {
-    enabled: mode === "production",
-    content: ["./src/**/*.{js,jsx,ts,tsx,scss,css}", "./public/index.ejs"],
+    enabled: true, // TODO disable in dev mode
+    content: ["./src/**/*.{js,jsx,ts,tsx,scss,css}", "./index.html"],
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -35,4 +33,4 @@ const config = {
   plugins: [require("@tailwindcss/aspect-ratio")],
 }
 
-module.exports = config
+export default config

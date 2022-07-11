@@ -1,6 +1,6 @@
 // This file uses js and commonjs to be compatible with tailwind config
 
-import getContrastColor from "./getContrastColor.js"
+import getContrastColor from "./getContrastColor"
 
 // Prepare colors for usage in tailwind config and as css variables
 export default function prepareColorVariables(jsonColors) {

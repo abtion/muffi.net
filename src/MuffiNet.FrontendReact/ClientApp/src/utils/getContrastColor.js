@@ -1,7 +1,7 @@
 // This file uses js and commonjs to be compatible with tailwind config
 
 /* eslint-disable @typescript-eslint/no-var-requires */
-import getLuminance from "./getLuminance"
+import getLuminance from "./getLuminance.mjs"
 /* eslint-enable @typescript-eslint/no-var-requires */
 
 // Based on luminance, pick the best suited contrast color (dark/light) to the target color

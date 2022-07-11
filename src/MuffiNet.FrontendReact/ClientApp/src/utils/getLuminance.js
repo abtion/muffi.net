@@ -1,7 +1,7 @@
 // This file uses js and commonjs to be compatible with tailwind config
 
 /* eslint-disable @typescript-eslint/no-var-requires */
-const colorString = require("color-string")
+import colorString from "color-string"
 /* eslint-enable @typescript-eslint/no-var-requires */
 
 // The calculation is based on the following algorithm:
