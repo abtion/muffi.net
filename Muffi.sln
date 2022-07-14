@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solutions Items", "Solution
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
 		muffinet.pfx = muffinet.pfx
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.Selenium.Tests", "tests\MuffiNet.Selenium.Tests\MuffiNet.Selenium.Tests.csproj", "{0F23A7E8-0BDF-4543-A06F-EBD92ED439FE}"
@@ -25,7 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{854E07AA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.Api", "src\MuffiNet.Api\MuffiNet.Api.csproj", "{DE367751-3BE0-49E5-8302-F4B0630D85F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuffiNet.Authentication.OpenIdConnect", "src\MuffiNet.Authentication.OpenIdConnect\MuffiNet.Authentication.OpenIdConnect.csproj", "{3E48AEF0-5ABF-4928-8C01-D396FB7703A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.Authentication.OpenIdConnect", "src\MuffiNet.Authentication.OpenIdConnect\MuffiNet.Authentication.OpenIdConnect.csproj", "{3E48AEF0-5ABF-4928-8C01-D396FB7703A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

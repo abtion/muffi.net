@@ -5,6 +5,7 @@
    - [First time setup](#first-time-setup)
      - [1. Configuration](#1-configuration)
        - [Database connection](#database-connection)
+       - [Azure Active Directory](#azure-active-directory)
      - [2. Dependencies and database setup](#2-dependencies-and-database-setup)
      - [3. Ensure that linting and tests pass](#3-ensure-that-linting-and-tests-pass)
    - [Day-to-day](#day-to-day)
@@ -59,6 +60,79 @@ In the "MuffiNet.FrontendReact" project folder:
 
 In the "MuffiNet.Api" project folder:
 `dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Server=(localdb)\mssqllocaldb;Database=MUFFINET;Trusted_Connection=True;MultipleActiveResultSets=true"`
+
+#### Azure Active Directory
+
+In the Azure Portal, [create an "Enterprise Application"](https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal) in Active Directory.
+
+In the following two sections, we will walk through the configuration steps, and collect
+the IDs required for the `ActiveDirectoryConfig` properties, which are configured via the
+`appsettings.json` file - this is done from two different areas in the Active Directory
+management tool in Azure Portal.
+
+##### From the "App Registrations" area, select your application.
+
+Under "App Roles", create a new "App Role" with allowed member types "Users / Groups",
+and a "Value" of `Administrators`.
+
+Take down the ID of this Role - this is your `AdminRoleID` for your `ActiveDirectoryConfig`.
+
+Note that:
+
+  - Currently there is no UI to copy the Administrator Role ID - if the ID isn't fully
+    visible, use DevTools to inspect the ID value and copy it from the `title` attribute
+    on that element.
+
+  - Users with this Role will have the right to assign Roles to other Users via `/admin`.
+
+  - Roles cannot be assigned from the Azure Portal without a Premium subscription.
+    (Creating the first Administrator User will be covered below.)
+
+Under "API Permissions", add a new Permission for the "Microsoft Graph" API - select the
+"Application Permissions" type, and select the following Permissions:
+
+* `Application.Read.All`
+* `AppRoleAssignment.ReadWrite.All`
+
+Press "Add Permissions", and then click the "Grant admin consent" button to confirm.
+
+From the "Overview" tab, take down the following details for your `ActiveDirectoryConfig`:
+
+* `AppClientID` from "Application (client) ID".
+* `AppRegistrationID` from "Object ID"
+* `DirectoryTenantID` from "Directory (tenant) ID"
+
+Under "Certificates & Secrets", create a "Client Secret", and take down the "Value" (not
+the "Secret ID") - this is your `AppClientSecret` for your `ActiveDirectoryConfig`.
+
+⚠ **The secret will be displayed only once** - it should be recorded in a password manager.
+
+TODO the secret should be stored in Secret Manager, rather than appsettings.json ??
+
+##### From the "Enterprise Applications" area, select your application.
+
+From the "Overview" tab, take down the "Object ID" - this is your `AppID` for your
+`ActiveDirectoryConfig`.
+
+From the "Users and Groups" screen, create or select an existing User, and take down the
+"Object ID" for that User - this is your `AdminUserID` for your `ActiveDirectoryConfig`,
+which will be used (at application launch) to assign the `Administrator` Role to
+the first User.
+
+(You can safely remove this value from your configuration after the first launch, as from
+here on out, this User will be able to grant the `Administrator` Role to other Users in the
+Directory via the user interface in `/admin`.)
+
+##### Creating Authorized Controllers
+
+Controllers by default are open and can be accessed by anyone, without logging in.
+
+To limit access to controllers, apply the [Authorize](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute?view=aspnetcore-6.0)
+attribute to your controller class declarations - refer to [this section of the ASP.NET documentation](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles?view=aspnetcore-6.0#adding-role-checks)
+for details.
+
+Note that the Role name(s) you specify with this attribute must match the "Value" property
+of the Role in question - do not confuse this with the "Display Name", which is just a label.
 
 ### 2. Dependencies and database setup
 
