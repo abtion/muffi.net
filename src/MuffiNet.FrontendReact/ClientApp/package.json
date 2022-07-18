@@ -5,7 +5,7 @@
   "dependencies": {
     "@microsoft/signalr": "^6.0.6",
     "axios": "^1.0.0-alpha.1",
-    "bootstrap-icons": "^1.8.3",
+    "bootstrap-icons": "^1.9.1",
     "classnames": "^2.3.1",
     "color-string": "^1.9.1",
     "history": "^5.3.0",
