@@ -48,11 +48,6 @@ public class UserRoleService
         }
     }
 
-    // TODO add .Top(999) to all queries for the time being (in lieu of paging and/or search capability)
-    //      https://docs.microsoft.com/en-us/graph/sdks/paging?tabs=csharp
-    //      no idea how many records these are fetching by default.
-    //      the Top method doesn't seem to exist - might not be supported in the current version?
-
     public async Task<IEnumerable<AppRole>> ListAppRoles()
     {
         var app = await client
