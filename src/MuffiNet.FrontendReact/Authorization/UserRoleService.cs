@@ -94,16 +94,16 @@ public class UserRoleService
             .AddAsync(assignment);
     }
 
-    public async Task ListRoleAssignments()
+    public async Task<IEnumerable<AppRoleAssignment>> ListRoleAssignments()
     {
-        var appRoleAssignments = await client
+        var page = await client
             .ServicePrincipals[config.AppID]
             .AppRoleAssignments
             .Request()
+            .Top(999)
             .GetAsync();
 
-
-        // ...
+        return page.AsEnumerable();
     }
 
     public async Task RevokeUserRoleAssignment(string appRoleAssignmentID)

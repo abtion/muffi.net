@@ -11,7 +11,7 @@ namespace MuffiNet.FrontendReact.Tests.Authorization
 {
     public class UserRoleServiceTest
     {
-        private ActiveDirectoryConfig credentials => new ActiveDirectoryConfig()
+        private ActiveDirectoryConfig config = new ActiveDirectoryConfig()
         {
             AppID = "16c880f4-e984-4ebe-8c4d-ae1a4a935a08",
             AppRegistrationID = "ff9d8859-4cde-408a-ba67-898200137521",
@@ -25,13 +25,21 @@ namespace MuffiNet.FrontendReact.Tests.Authorization
         [Fact]
         public async Task CanListAppRoles()
         {
-            var service = new UserRoleService(credentials);
+            var service = new UserRoleService(config);
 
             var roles = await service.ListAppRoles();
 
             roles.Should().NotBeEmpty();
         }
 
+        [Fact]
+        public async Task CanListRoleAssignments()
+        {
+            var service = new UserRoleService(config);
 
+            var roles = await service.ListRoleAssignments();
+
+            roles.Should().NotBeEmpty();
+        }
     }
 }
