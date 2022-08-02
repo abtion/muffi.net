@@ -4,6 +4,10 @@ public class ActiveDirectoryConfig
 {
     // See the README.md file in the project root for details about this configuration.
 
+    // TODO will this work with IConfig<> ?
+    //private ActiveDirectoryConfig()
+    //{}
+
     #nullable disable
 
     public string AppID { get; set; }
