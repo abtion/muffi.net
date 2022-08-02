@@ -1,7 +1,11 @@
-﻿namespace MuffiNet.FrontendReact.Authorization;
+﻿namespace MuffiNet.Backend.Services.Authorization;
 
 using Azure.Identity;
 using Microsoft.Graph;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 public class UserRoleService
 {
@@ -30,19 +34,14 @@ public class UserRoleService
             }
             catch (Exception exception)
             {
-                var expected = false;
+                var expected = exception.InnerException is ServiceException innerException
+                    && innerException.Error.Details.First().Code == "InvalidUpdate";
 
-                if (exception.InnerException is ServiceException innerException)
-                {
-                    if (innerException.Error.Details.First().Code == "InvalidUpdate")
-                    {
-                        expected = true; // NOTE: invalid updates are expected, if the User has already been granted the Administrators Role.
-                    }
-                }
+                // NOTE: invalid updates are expected, if the User has already been granted the Administrators Role.
 
                 if (! expected)
                 {
-                    throw new Exception("Unexpected Service Error", exception);
+                    throw new InvalidOperationException("Unexpected Service Error", exception);
                 }
             }
         }
@@ -67,7 +66,7 @@ public class UserRoleService
 
         if (role is null)
         {
-            throw new Exception($"Role does not exist: {name}");
+            throw new ArgumentException($"No Role with the specified name exists: {name}");
         }
 
         return role.Id!.Value;

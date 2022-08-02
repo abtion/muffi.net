@@ -1,4 +1,4 @@
-﻿namespace MuffiNet.FrontendReact.Authorization;
+﻿namespace MuffiNet.Backend.Services.Authorization;
 
 public class ActiveDirectoryConfig
 {
