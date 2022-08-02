@@ -3,14 +3,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MuffiNet.FrontendReact.Controllers
 {
-    [Authorize("Administrator")]
-    public class RoleAdminController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    [Authorize(Roles = "Administrators")]
+    public class RoleAdminController : ControllerBase
     {
         // TODO build out API controller for Role Administration
 
-        public IActionResult Index()
+        [HttpGet]
+        public ActionResult<string> Index()
         {
-            return View();
+            return "LOL";
         }
     }
 }
