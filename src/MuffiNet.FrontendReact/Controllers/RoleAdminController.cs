@@ -22,6 +22,7 @@ namespace MuffiNet.FrontendReact.Controllers
         public async Task<ActionResult<object>> Index()
         {
             var roles = await userRoleService.ListAppRoles();
+            var users = await userRoleService.ListUsers();
 
             return new
             {
@@ -29,7 +30,8 @@ namespace MuffiNet.FrontendReact.Controllers
                 {
                     id = role.Id,
                     name = role.DisplayName,
-                })
+                }),
+                users = users
             };
         }
     }

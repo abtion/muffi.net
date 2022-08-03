@@ -10,6 +10,11 @@ interface UserRoleData {
   roles: Array<{
     id: number;
     name: string;
+  }>,
+  users: Array<{
+    name: string,
+    userID: string,
+    appRoleIDs : Array<string>
   }>
 }
 
@@ -25,20 +30,42 @@ export default function UserRoleAdmin(): JSX.Element {
       .then(response => { setData(response.data) })
   }, [])
 
+  const userRoles = data?.users.map(u => {
+    return (
+      <tr key={u.userID}>
+        <td>{u.name}</td>
+        <td>{u.appRoleIDs.join()}</td>
+      </tr>
+    )
+  })
+
+  // Fix inline style //
   return (
     <AuthorizedLayout>
-      <div className="container mt-5">
         {data
           ? (
-            <label>
-              Role:
-              <select>
-                {data.roles.map(({ id, name }) => <option key={id} value={id}>{name}</option>)}
-              </select>
-            </label>
+            <div className="container mt-5">
+              <label>
+                Role:
+                <select>
+                  {data.roles.map(({ id, name }) => <option key={id} value={id}>{name}</option>)}
+                </select>
+              </label>
+              <table style={{border: "1px solid black"}}>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Role(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {userRoles}
+                </tbody>
+              </table>
+            </div>
           )
-          : <Loader/>}
-      </div>
+          : <Loader/>
+        }
     </AuthorizedLayout>
   )
 }
