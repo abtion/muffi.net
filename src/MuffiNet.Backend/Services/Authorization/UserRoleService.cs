@@ -1,20 +1,22 @@
 ﻿namespace MuffiNet.Backend.Services.Authorization;
 
 using Azure.Identity;
+using Microsoft.Extensions.Options;
 using Microsoft.Graph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-public class UserRoleService
+public partial class UserRoleService
 {
     private readonly GraphServiceClient client;
-    private readonly ActiveDirectoryConfig config;
+    private readonly IOptions<ActiveDirectoryConfig> options;
+    private ActiveDirectoryConfig config => options.Value;
 
-    public UserRoleService(ActiveDirectoryConfig config)
+    public UserRoleService(IOptions<ActiveDirectoryConfig> options)
     {
-        this.config = config;
+        this.options = options;
 
         string[] scopes = { "https://graph.microsoft.com/.default" };
 
@@ -58,6 +60,27 @@ public class UserRoleService
         return app.AppRoles;
     }
 
+    public async Task<IEnumerable<User>> ListUsers()
+    {
+        var page = await client
+            .ServicePrincipals[config.AppID]
+            .AppRoleAssignedTo
+            .Request()
+            .Top(999) // TODO use pagination to fetch ALL records
+            .GetAsync();
+
+        return page
+            .AsEnumerable()
+            .GroupBy(a => a.PrincipalId)
+            .Select(group => new User(
+                name: group.First().PrincipalDisplayName,
+                userID: group.Key!.Value,
+                appRoleIDs: group
+                    .Where(a => a.AppRoleId != Guid.Empty)
+                    .Select(a => a.AppRoleId!.Value)
+            ));
+    }
+
     public async Task<Guid> GetAppRoleID(string name)
     {
         var roles = await ListAppRoles();
@@ -86,18 +109,6 @@ public class UserRoleService
             .AppRoleAssignedTo
             .Request()
             .AddAsync(assignment);
-    }
-
-    public async Task<IEnumerable<AppRoleAssignment>> ListRoleAssignments()
-    {
-        var page = await client
-            .ServicePrincipals[config.AppID]
-            .AppRoleAssignments
-            .Request()
-            .Top(999)
-            .GetAsync();
-
-        return page.AsEnumerable();
     }
 
     public async Task RevokeUserRoleAssignment(string appRoleAssignmentID)

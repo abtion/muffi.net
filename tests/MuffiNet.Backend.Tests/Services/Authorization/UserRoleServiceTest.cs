@@ -2,12 +2,13 @@
 using System.Threading.Tasks;
 using Xunit;
 using FluentAssertions;
+using Microsoft.Extensions.Options;
 
 namespace MuffiNet.FrontendReact.Tests.Authorization
 {
     public class UserRoleServiceTest
     {
-        private ActiveDirectoryConfig config = new ActiveDirectoryConfig()
+        private IOptions<ActiveDirectoryConfig> options = Options.Create(new ActiveDirectoryConfig()
         {
             AppID = "16c880f4-e984-4ebe-8c4d-ae1a4a935a08",
             AppRegistrationID = "ff9d8859-4cde-408a-ba67-898200137521",
@@ -16,12 +17,12 @@ namespace MuffiNet.FrontendReact.Tests.Authorization
             DirectoryTenantID = "63bdf5ff-bc58-43a9-8a61-1861f19f8e0e",
             AdminRoleID = "d2a3a58e-9abf-4cd3-a2a5-7a60fe1e9f47",
             AdminUserID = "9f1deff1-cf4d-4311-b1b2-0a6201e77361",
-        };
+        });
 
         [Fact]
         public async Task CanListAppRoles()
         {
-            var service = new UserRoleService(config);
+            var service = new UserRoleService(options);
 
             var roles = await service.ListAppRoles();
 
@@ -29,13 +30,13 @@ namespace MuffiNet.FrontendReact.Tests.Authorization
         }
 
         [Fact]
-        public async Task CanListRoleAssignments()
+        public async Task CanListUsers()
         {
-            var service = new UserRoleService(config);
+            var service = new UserRoleService(options);
 
-            var roles = await service.ListRoleAssignments();
+            var users = await service.ListUsers();
 
-            roles.Should().NotBeEmpty();
+            users.Should().NotBeEmpty();
         }
     }
 }

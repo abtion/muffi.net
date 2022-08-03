@@ -8,19 +8,21 @@ using MuffiNet.Backend.HubContracts;
 using MuffiNet.FrontendReact.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
+
 var configuration = builder.Configuration;
 
 // OIDC Authentication
-builder.Services.AddOidcAuthentication(builder.Configuration);
+builder.Services.AddOidcAuthentication(configuration);
 
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 
 builder.Services.AddDomainModel();
+builder.Services.AddUserRoleService(configuration);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
+        configuration.GetConnectionString("DefaultConnection"),
         sqlServerOptions => sqlServerOptions.EnableRetryOnFailure()
     )
 );
@@ -45,7 +47,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
+builder.Services.AddApplicationInsightsTelemetry(configuration["APPINSIGHTS_CONNECTIONSTRING"]);
 builder.Services.AddHttpContextAccessor();
 
 

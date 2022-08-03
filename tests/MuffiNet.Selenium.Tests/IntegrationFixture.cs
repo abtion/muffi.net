@@ -209,7 +209,7 @@ public sealed class IntegrationFixture : IDisposable
         var config = new ConfigurationBuilder();
 
         config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            .AddJsonFile($"appsettings.Test.json", optional: true, reloadOnChange: true)
+            .AddJsonFile("appsettings.Test.json", optional: true, reloadOnChange: true)
             .AddEnvironmentVariables("DOTNET_")
             .AddUserSecrets(System.Reflection.Assembly.GetExecutingAssembly(), optional: true, reloadOnChange: true);
 

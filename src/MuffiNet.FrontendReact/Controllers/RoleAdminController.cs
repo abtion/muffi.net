@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MuffiNet.Backend.Services.Authorization;
 
 namespace MuffiNet.FrontendReact.Controllers
 {
@@ -10,10 +11,26 @@ namespace MuffiNet.FrontendReact.Controllers
     {
         // TODO build out API controller for Role Administration
 
-        [HttpGet]
-        public ActionResult<string> Index()
+        private UserRoleService userRoleService;
+
+        public RoleAdminController(UserRoleService userRoleService)
         {
-            return "LOL";
+            this.userRoleService = userRoleService;
+        }
+
+        [HttpGet("get-data")]
+        public async Task<ActionResult<object>> Index()
+        {
+            var roles = await userRoleService.ListAppRoles();
+
+            return new
+            {
+                roles = roles.Select(role => new
+                {
+                    id = role.Id,
+                    name = role.DisplayName,
+                })
+            };
         }
     }
 }
