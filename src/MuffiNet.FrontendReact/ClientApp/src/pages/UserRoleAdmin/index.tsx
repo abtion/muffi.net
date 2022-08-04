@@ -37,16 +37,6 @@ export default function UserRoleAdmin(): JSX.Element {
     })
   }, [])
 
-  const userRoles = data?.users.map((u) => {
-    return (
-      <tr key={u.userID}>
-        <td>{u.name}</td>
-        <td>{u.appRoleIDs.map((id) => roleNames[id]).join()}</td>
-      </tr>
-    )
-  })
-
-  // Fix inline style //
   return (
     <AuthorizedLayout>
       {data ? (
@@ -61,14 +51,21 @@ export default function UserRoleAdmin(): JSX.Element {
               ))}
             </select>
           </label>
-          <table style={{ border: "1px solid black" }}>
+          <table className="border">
             <thead>
               <tr>
                 <th>Name</th>
                 <th>Role(s)</th>
               </tr>
             </thead>
-            <tbody>{userRoles}</tbody>
+            <tbody>
+              {data.users.map((u) => (
+                <tr key={u.userID}>
+                  <td>{u.name}</td>
+                  <td>{u.appRoleIDs.map((id) => roleNames[id]).join()}</td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       ) : (
