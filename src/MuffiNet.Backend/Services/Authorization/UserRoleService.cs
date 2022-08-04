@@ -66,6 +66,7 @@ public partial class UserRoleService
             .ServicePrincipals[config.AppID]
             .AppRoleAssignedTo
             .Request()
+            .Select(a => new { a.PrincipalId, a.PrincipalDisplayName, a.AppRoleId }) // optimization
             .Top(999) // TODO use pagination to fetch ALL records
             .GetAsync();
 
