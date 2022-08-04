@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@microsoft/signalr": "^6.0.6",
+    "@tanstack/react-table": "^8.5.6",
     "axios": "^1.0.0-alpha.1",
     "bootstrap-icons": "^1.8.3",
     "classnames": "^2.3.1",
