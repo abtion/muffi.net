@@ -1,6 +1,8 @@
+import { ColumnDef, createColumnHelper } from "@tanstack/react-table"
 import React, { useEffect, useContext, useState, useMemo } from "react"
 import AuthorizedLayout from "~/components/AuthorizedLayout"
 import Loader from "~/components/Loader"
+import Pagination from "~/components/Pagination"
 import ApiContext from "~/contexts/ApiContext"
 
 /**
@@ -11,14 +13,18 @@ interface UserRoleData {
     id: number
     name: string
   }>
-  users: Array<{
-    name: string
-    userID: string
-    appRoleIDs: Array<string>
-  }>
+  users: Array<User>
+}
+
+interface User {
+  name: string
+  userID: string
+  appRoleIDs: Array<string>
 }
 
 // TODO add users, build out proper UI
+
+const createColumn = createColumnHelper<User>()
 
 export default function UserRoleAdmin(): JSX.Element {
   const api = useContext(ApiContext)
@@ -37,10 +43,24 @@ export default function UserRoleAdmin(): JSX.Element {
     })
   }, [])
 
+  // TODO fix this?
+  // const columns = useMemo<Array<ColumnDef<User>>>(() => [
+  //   createColumn.accessor("name", { cell: info => info.getValue() })
+  // ], []);
+
+  const [page, setPage] = useState(0)
+
   return (
     <AuthorizedLayout>
       {data ? (
         <div className="container mt-5">
+          <div>Current page: {page}</div>
+          <Pagination
+            currentPage={page}
+            totalPages={30}
+            onPageChange={setPage}
+          />
+
           <label>
             Role:
             <select>
