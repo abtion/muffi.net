@@ -1,8 +1,8 @@
-import { ColumnDef, createColumnHelper } from "@tanstack/react-table"
 import React, { useEffect, useContext, useState, useMemo } from "react"
 import AuthorizedLayout from "~/components/AuthorizedLayout"
 import Loader from "~/components/Loader"
 import Pagination from "~/components/Pagination"
+import Table from "~/components/Table"
 import ApiContext from "~/contexts/ApiContext"
 
 /**
@@ -24,7 +24,6 @@ interface User {
 
 // TODO add users, build out proper UI
 
-const createColumn = createColumnHelper<User>()
 
 export default function UserRoleAdmin(): JSX.Element {
   const api = useContext(ApiContext)
@@ -50,17 +49,13 @@ export default function UserRoleAdmin(): JSX.Element {
 
   const [page, setPage] = useState(0)
 
+  
+
+
   return (
     <AuthorizedLayout>
       {data ? (
         <div className="container mt-5">
-          <div>Current page: {page}</div>
-          <Pagination
-            currentPage={page}
-            totalPages={30}
-            onPageChange={setPage}
-          />
-
           <label>
             Role:
             <select>
@@ -71,7 +66,7 @@ export default function UserRoleAdmin(): JSX.Element {
               ))}
             </select>
           </label>
-          <table className="border">
+          <Table>
             <thead>
               <tr>
                 <th>Name</th>
@@ -86,7 +81,14 @@ export default function UserRoleAdmin(): JSX.Element {
                 </tr>
               ))}
             </tbody>
-          </table>
+            <tfoot>
+              <Pagination
+                currentPage={page}
+                totalPages={30}
+                onPageChange={setPage}
+              />
+            </tfoot>
+          </Table>
         </div>
       ) : (
         <Loader />

@@ -1465,18 +1465,6 @@
   resolved "https://registry.yarnpkg.com/@tailwindcss/aspect-ratio/-/aspect-ratio-0.4.0.tgz#c635dd7331cbcc1b111cebdc2647dd3493ebdd3e"
   integrity sha512-WJu0I4PpqNPuutpaA9zDUq2JXR+lorZ7PbLcKNLmb6GL9/HLfC7w3CRsMhJF4BbYd/lkY6CfXOvkYpuGnZfkpQ==
 
-"@tanstack/react-table@^8.5.6":
-  version "8.5.6"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-table/-/react-table-8.5.6.tgz#d0c4317e66e12b43c72018d873b1508d3747f70a"
-  integrity sha512-czc6Xo4PCjl5XGBp55OQWao9Z5PJ1WcL4FnkcJcVgdargsq/821HQnEgZyjQLcPbTbAuwOMwpD+3TxvSF4MAlQ==
-  dependencies:
-    "@tanstack/table-core" "8.5.6"
-
-"@tanstack/table-core@8.5.6":
-  version "8.5.6"
-  resolved "https://registry.yarnpkg.com/@tanstack/table-core/-/table-core-8.5.6.tgz#309a0296caa4b243a75ad7f1a84044cb5db07954"
-  integrity sha512-Qpgug/RdbLZp9s+BsBVjLwV/B4gEtWNVr95SPfTVBRj5t6o+EagRYT1gAZvzXecjsfc4gOkCq1GgzayqMaAsMw==
-
 "@testing-library/dom@^8.0.0", "@testing-library/dom@^8.11.1", "@testing-library/dom@^8.14.0":
   version "8.14.0"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.14.0.tgz#c9830a21006d87b9ef6e1aae306cf49b0283e28e"
