@@ -1,5 +1,5 @@
 import React from "react"
-import { render as tlRender } from "@testing-library/react"
+import { render } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 
 import ExampleTable from "./"
@@ -7,8 +7,8 @@ import { ExampleEntity } from "~/types/ExampleEntity"
 
 const onRemove = jest.fn()
 
-function render(entityList: ExampleEntity[]) {
-  const context = tlRender(
+function renderTable(entityList: ExampleEntity[]) {
+  const context = render(
     <ExampleTable entities={entityList} onRemove={onRemove} />
   )
 
@@ -17,7 +17,7 @@ function render(entityList: ExampleEntity[]) {
 
 describe(ExampleTable, () => {
   it("renders table", async () => {
-    const { getByRole } = render([])
+    const { getByRole } = renderTable([])
     expect(getByRole("table")).toBeInTheDocument()
   })
 
@@ -29,7 +29,7 @@ describe(ExampleTable, () => {
       email: "an@email.dk",
       phone: "12345678",
     }
-    const { findByText } = render([entity])
+    const { findByText } = renderTable([entity])
     const removeBtn = await findByText("Remove")
     expect(removeBtn).toBeInTheDocument()
 

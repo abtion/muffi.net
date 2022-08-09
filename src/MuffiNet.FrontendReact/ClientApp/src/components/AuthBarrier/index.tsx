@@ -8,10 +8,13 @@ interface AuthBarrierProps {
   children?: ReactNode | undefined
 }
 
-export default function AuthBarrier(props: AuthBarrierProps): JSX.Element {
+export default function AuthBarrier({ children }: AuthBarrierProps): JSX.Element {
   const { isLoading, userData } = useAuth()
+
   const api = useMemo(() => {
-    if (isLoading || !userData?.id_token) return null
+    if (isLoading || !userData?.id_token) {
+      return null
+    }
 
     return axios.create({
       headers: {
@@ -20,7 +23,13 @@ export default function AuthBarrier(props: AuthBarrierProps): JSX.Element {
     })
   }, [isLoading, userData])
 
-  if (!api) return <LoaderFullPage text="Loading..." />
+  if (!api) {
+    return <LoaderFullPage text="Loading..." />
+  }
 
-  return <ApiContext.Provider value={api} {...props} />
+  return (
+    <ApiContext.Provider value={api}>
+      {children}
+    </ApiContext.Provider>
+  )
 }

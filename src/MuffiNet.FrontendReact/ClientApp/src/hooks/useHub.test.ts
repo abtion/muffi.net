@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks"
+import { renderHook } from "@testing-library/react"
 import { waitFor } from "@testing-library/react"
 import { HubConnectionBuilder } from "@microsoft/signalr"
 import connectionMock from "../../__mocks__/@microsoft/signalr/connectionMock"

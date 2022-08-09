@@ -1,13 +1,13 @@
 import React from "react"
-import { render as tlRender } from "@testing-library/react"
+import { render } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { act } from "react-dom/test-utils"
 import { MemoryRouter } from "react-router"
 
 import NavMenu from "."
 
-function render() {
-  const context = tlRender(
+function renderMenu() {
+  const context = render(
     <MemoryRouter>
       <NavMenu />
     </MemoryRouter>
@@ -18,7 +18,7 @@ function render() {
 
 describe(NavMenu, () => {
   it("allows toggling the nav menu for small screens", async () => {
-    const { container } = render()
+    const { container } = renderMenu()
 
     const mobileMenuButton = container.querySelector(".mobile-menu-button")
     const navMenu = container.querySelector("ul")

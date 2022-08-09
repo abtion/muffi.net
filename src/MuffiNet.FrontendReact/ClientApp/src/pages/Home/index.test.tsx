@@ -1,6 +1,6 @@
 import React from "react"
 import { MemoryRouter } from "react-router"
-import { act, render as tlRender, waitFor } from "@testing-library/react"
+import { act, render, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import axios from "axios"
 
@@ -47,8 +47,8 @@ beforeEach(() => {
   mockedAxios.post.mockResolvedValue({})
 })
 
-function render() {
-  const context = tlRender(
+function renderPage() {
+  const context = render(
     <MemoryRouter>
       <Home />
     </MemoryRouter>
@@ -59,12 +59,12 @@ function render() {
 
 describe(Home, () => {
   it("renders header 'Title'", async () => {
-    const { findByText } = render()
+    const { findByText } = renderPage()
     expect(await findByText("Title")).toBeInTheDocument()
   })
 
   it("renders two tables", async () => {
-    const { findAllByRole } = render()
+    const { findAllByRole } = renderPage()
     expect(await findAllByRole("table")).toHaveLength(2)
   })
 
@@ -72,39 +72,49 @@ describe(Home, () => {
     it("posts an exampleEntity to unauthorized endpoint", async () => {
       mockedAxios.put.mockResolvedValue({ data: { Id: "1234" } })
 
-      const { getByLabelText, getByText } = render()
+      const { getByLabelText, getByText, findAllByRole } = renderPage()
 
-      await userEvent.type(getByLabelText("Name"), "Name")
-      await userEvent.type(getByLabelText("Description"), "Description")
-      await userEvent.type(getByLabelText("E-mail"), "Em@a.il")
-      await userEvent.type(getByLabelText("Phone"), "12345678")
-
-      await userEvent.click(getByText("Submit"))
-
-      await waitFor(() =>
-        expect(mockedAxios.put).toHaveBeenCalledWith("/api/example", {
-          Name: "Name",
-          Description: "Description",
-          Email: "Em@a.il",
-          Phone: "12345678",
-        })
-      )
+      await findAllByRole("table") // TODO remove this and everything blows up. I have no idea why.
+  
+      await act(async () => {
+        await userEvent.type(getByLabelText("Name"), "Name")
+        await userEvent.type(getByLabelText("Description"), "Description")
+        await userEvent.type(getByLabelText("E-mail"), "Em@a.il")
+        await userEvent.type(getByLabelText("Phone"), "12345678")
+  
+        await userEvent.click(getByText("Submit"))
+  
+        await waitFor(() =>
+          expect(mockedAxios.put).toHaveBeenCalledWith("/api/example", {
+            Name: "Name",
+            Description: "Description",
+            Email: "Em@a.il",
+            Phone: "12345678",
+          })
+        )
+      })
     })
   })
 
   describe("when clicking remove ", () => {
     it("calls backend to remove", async () => {
-      const { getAllByRole } = render()
+      const { findAllByRole } = renderPage()
 
-      await waitFor(() =>
-        expect(mockedAxios.get).toHaveBeenCalledWith("/api/example/get-all")
-      )
+      await findAllByRole("table") // TODO remove this and everything blows up. I have no idea why.
+  
+      await act(async () => {
+        await waitFor(() =>
+          expect(mockedAxios.get).toHaveBeenCalledWith("/api/example/get-all")
+        )
+      })
 
-      const removeBtn = await getAllByRole("button", {
+      const removeBtn = (await findAllByRole("button", {
         name: /Remove/i,
-      })[0]
+      }))[0]
 
-      await userEvent.click(removeBtn)
+      await act(async () => {
+        await userEvent.click(removeBtn)
+      })
 
       await waitFor(() =>
         expect(mockedAxios.post).toHaveBeenCalledWith("/api/example", {
@@ -116,7 +126,7 @@ describe(Home, () => {
 
   describe("when entering page", () => {
     it("gets all current entities", async () => {
-      const { findByText } = render()
+      const { findByText } = renderPage()
 
       await waitFor(() =>
         expect(mockedAxios.get).toHaveBeenCalledWith("/api/example/get-all")
@@ -132,7 +142,7 @@ describe(Home, () => {
 
   describe("hub connection", () => {
     it("adds new records", async () => {
-      const { findByText } = render()
+      const { findByText } = renderPage()
 
       act(() => {
         mockedUseHub.connectionMock._trigger("SomeEntityCreated", {
@@ -147,7 +157,8 @@ describe(Home, () => {
     })
 
     it("adds & then updates existing records", async () => {
-      const { findByText, queryByText } = render()
+      const { findByText, queryByText } = renderPage()
+
       act(() => {
         mockedUseHub.connectionMock._trigger("SomeEntityCreated", {
           entity,
@@ -165,7 +176,7 @@ describe(Home, () => {
     })
 
     it("adds & then deletes records", async () => {
-      const { findByText } = render()
+      const { findByText } = renderPage()
 
       act(() => {
         mockedUseHub.connectionMock._trigger("SomeEntityCreated", {
