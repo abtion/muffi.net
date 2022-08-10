@@ -1,8 +1,8 @@
 /* eslint-disable default-case */
 import { useReducer, useCallback } from "react"
 
-interface KeyFinder<Record> {
-  (record: Record): string
+interface KeyFinder<TRecord> {
+  (record: TRecord): string
 }
 
 enum Actions {
@@ -12,24 +12,23 @@ enum Actions {
 
 export type RecordMap<Record> = Map<string, Record>
 
-interface UpsertAction<FullRecord> {
+interface UpsertAction<TFullRecord> {
   type: Actions.Upsert
-  records: FullRecord[]
+  records: TFullRecord[]
 }
 
-interface DeleteAction<RecordWithKeyProp> {
+interface DeleteAction<TRecordWithKeyProp> {
   type: Actions.Delete
-  records: RecordWithKeyProp[]
+  records: TRecordWithKeyProp[]
 }
 
-const createReducer =
-  <FullRecord, RecordWithKeyProp>(
-    keyFinder: KeyFinder<FullRecord | RecordWithKeyProp>
-  ) =>
-  (
-    map: RecordMap<FullRecord>,
-    action: UpsertAction<FullRecord> | DeleteAction<RecordWithKeyProp>
-  ): RecordMap<FullRecord> => {
+function createReducer<TFullRecord, TRecordWithKeyProp>(
+  keyFinder: KeyFinder<TFullRecord | TRecordWithKeyProp>
+) {
+  return (
+    map: RecordMap<TFullRecord>,
+    action: UpsertAction<TFullRecord> | DeleteAction<TRecordWithKeyProp>
+  ): RecordMap<TFullRecord> => {
     switch (action.type) {
       case Actions.Upsert: {
         const updatedMap = new Map(map)
@@ -54,6 +53,7 @@ const createReducer =
       }
     }
   }
+}
 
 export interface RecordUpserter<T> {
   (records: T | T[]): void
@@ -64,23 +64,23 @@ export interface RecordDeleter<T> {
 }
 
 export default function useMappedRecords<
-  FullRecord,
-  RecordWithKeyProp = FullRecord
+  TFullRecord,
+  TRecordWithKeyProp = TFullRecord
 >(
-  keyFinder: KeyFinder<FullRecord | RecordWithKeyProp>
+  keyFinder: KeyFinder<TFullRecord | TRecordWithKeyProp>
 ): [
-  RecordMap<FullRecord>,
-  RecordUpserter<FullRecord>,
-  RecordDeleter<RecordWithKeyProp>
+  RecordMap<TFullRecord>,
+  RecordUpserter<TFullRecord>,
+  RecordDeleter<TRecordWithKeyProp>
 ] {
   const [recordMap, dispatch] = useReducer(
-    createReducer<FullRecord, RecordWithKeyProp>(keyFinder),
+    createReducer<TFullRecord, TRecordWithKeyProp>(keyFinder),
     new Map()
   )
 
-  const upsertRecords: RecordUpserter<FullRecord> = useCallback(
+  const upsertRecords: RecordUpserter<TFullRecord> = useCallback(
     (records) => {
-      const recordsArray: FullRecord[] = []
+      const recordsArray: TFullRecord[] = []
 
       return dispatch({
         type: Actions.Upsert,
@@ -89,9 +89,9 @@ export default function useMappedRecords<
     },
     [dispatch]
   )
-  const deleteRecord: RecordDeleter<RecordWithKeyProp> = useCallback(
+  const deleteRecord: RecordDeleter<TRecordWithKeyProp> = useCallback(
     (records) => {
-      const recordsArray: RecordWithKeyProp[] = []
+      const recordsArray: TRecordWithKeyProp[] = []
 
       dispatch({
         type: Actions.Delete,
