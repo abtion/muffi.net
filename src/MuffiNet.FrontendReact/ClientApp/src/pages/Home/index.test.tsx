@@ -74,25 +74,21 @@ describe(Home, () => {
 
       const { getByLabelText, getByText, findAllByRole } = renderPage()
 
-      await findAllByRole("table") // TODO remove this and everything blows up. I have no idea why.
-  
-      await act(async () => {
-        await userEvent.type(getByLabelText("Name"), "Name")
-        await userEvent.type(getByLabelText("Description"), "Description")
-        await userEvent.type(getByLabelText("E-mail"), "Em@a.il")
-        await userEvent.type(getByLabelText("Phone"), "12345678")
-  
-        await userEvent.click(getByText("Submit"))
-  
-        await waitFor(() =>
-          expect(mockedAxios.put).toHaveBeenCalledWith("/api/example", {
-            Name: "Name",
-            Description: "Description",
-            Email: "Em@a.il",
-            Phone: "12345678",
-          })
-        )
-      })
+      await userEvent.type(getByLabelText("Name"), "Name")
+      await userEvent.type(getByLabelText("Description"), "Description")
+      await userEvent.type(getByLabelText("E-mail"), "Em@a.il")
+      await userEvent.type(getByLabelText("Phone"), "12345678")
+
+      await userEvent.click(getByText("Submit"))
+
+      await waitFor(() =>
+        expect(mockedAxios.put).toHaveBeenCalledWith("/api/example", {
+          Name: "Name",
+          Description: "Description",
+          Email: "Em@a.il",
+          Phone: "12345678",
+        })
+      )
     })
   })
 
@@ -100,21 +96,15 @@ describe(Home, () => {
     it("calls backend to remove", async () => {
       const { findAllByRole } = renderPage()
 
-      await findAllByRole("table") // TODO remove this and everything blows up. I have no idea why.
-  
-      await act(async () => {
-        await waitFor(() =>
-          expect(mockedAxios.get).toHaveBeenCalledWith("/api/example/get-all")
-        )
-      })
+      await waitFor(() =>
+        expect(mockedAxios.get).toHaveBeenCalledWith("/api/example/get-all")
+      )
 
       const removeBtn = (await findAllByRole("button", {
         name: /Remove/i,
       }))[0]
 
-      await act(async () => {
-        await userEvent.click(removeBtn)
-      })
+      await userEvent.click(removeBtn)
 
       await waitFor(() =>
         expect(mockedAxios.post).toHaveBeenCalledWith("/api/example", {

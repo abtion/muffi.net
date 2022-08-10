@@ -84,14 +84,10 @@ describe(AuthorizedHome, () => {
 
       const { findByLabelText, findByText } = renderPage()
 
-      await act(async () => {
-        await userEvent.type(await findByLabelText("Description"), "Description")
-        await userEvent.type(await findByLabelText("E-mail"), "Em@a.il")
-        await userEvent.type(await findByLabelText("Phone"), "12345678")
-        await userEvent.click(await findByText("Submit"))
-      })
-
-      await findByText("1234"); // TODO find something we can wait for? 
+      await userEvent.type(await findByLabelText("Description"), "Description")
+      await userEvent.type(await findByLabelText("E-mail"), "Em@a.il")
+      await userEvent.type(await findByLabelText("Phone"), "12345678")
+      await userEvent.click(await findByText("Submit"))
 
       await waitFor(() =>
         expect(mockedAxios.put).toHaveBeenCalledWith("/api/authorizedexample", {
@@ -204,15 +200,14 @@ describe(AuthorizedHome, () => {
     })
 
     it("uses the right access token", async () => {
-      const { findByText } = renderPage()
-
-      // Wait for component to finish loading to prevent "not wrapped in act" error
-      await findByText(entity.name)
+      renderPage()
 
       const useHubParams = mockedUseHub.mock.calls[0]
       const [_path, _onConnected, connectionOptions] = useHubParams
 
-      expect(connectionOptions.accessTokenFactory()).toEqual("1234")
+      waitFor(() => {
+        expect(connectionOptions.accessTokenFactory()).toEqual("1234")
+      })
     })
   })
 })

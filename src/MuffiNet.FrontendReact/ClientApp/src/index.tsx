@@ -1,4 +1,3 @@
-// TODO upgrade react, react-dom, @types/react, @types/react-dom to version 18 (requires upgrade of @testing-library/react - blocked by oidc-react at this time)
 import React from "react"
 import { createRoot } from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
