@@ -11,7 +11,7 @@ export default function AuthOidcProvider({
   const [oidcConfig, setOidcConfig] = useState<AuthProviderProps>()
 
   useEffect(() => {
-    axios.get("api/oidc/frontend-configuration").then(({ data }) => {
+    axios.get("/api/oidc/frontend-configuration").then(({ data }) => {
       setOidcConfig({
         redirectUri: `${location.origin}/admin`, // TODO redirect to the URL the user actually came from
         postLogoutRedirectUri: `${location.origin}/admin`,
