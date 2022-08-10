@@ -4,6 +4,7 @@ import Loader from "~/components/Loader"
 import Pagination from "~/components/Pagination"
 import Table from "~/components/Table"
 import ApiContext from "~/contexts/ApiContext"
+import { usePaging } from "~/hooks/usePaging"
 
 /**
  * Users, Roles and Permissions (provided by the server)
@@ -41,12 +42,18 @@ export default function UserRoleAdmin(): JSX.Element {
     })
   }, [])
 
-  // TODO fix this?
-  // const columns = useMemo<Array<ColumnDef<User>>>(() => [
-  //   createColumn.accessor("name", { cell: info => info.getValue() })
-  // ], []);
+  const { currentPage, totalPages, setCurrentPage, rows } = usePaging(
+    async (page, pageSize) => {
+      const offset = (page - 1) * pageSize;
 
-  const [page, setPage] = useState(0)
+      return {
+        rows: data?.users.slice(offset, offset + pageSize) || [],
+        totalRows: data?.users.length || 0
+      };
+    },
+    10,
+    [data]
+  )
 
   return (
     <AuthorizedLayout>
@@ -70,21 +77,19 @@ export default function UserRoleAdmin(): JSX.Element {
               </tr>
             </thead>
             <tbody>
-              {data.users.map((u) => (
+              {rows.map((u) => (
                 <tr key={u.userID}>
                   <td>{u.name}</td>
                   <td>{u.appRoleIDs.map((id) => roleNames[id]).join()}</td>
                 </tr>
               ))}
             </tbody>
-            <tfoot>
-              <Pagination
-                currentPage={page}
-                totalPages={30}
-                onPageChange={setPage}
-              />
-            </tfoot>
           </Table>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
         </div>
       ) : (
         <Loader />

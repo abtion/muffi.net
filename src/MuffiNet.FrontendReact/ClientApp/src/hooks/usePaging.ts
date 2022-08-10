@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { DependencyList, useEffect, useMemo, useState } from "react"
 
 type OnFetchPage<TRow> = (
   page: number,
@@ -9,7 +9,13 @@ export type PageData<TRow> = { rows: Array<TRow>; totalRows: number }
 
 export function usePaging<TRow>(
   fetch: OnFetchPage<TRow>,
-  initPageSize: number
+  initPageSize: number,
+  /**
+   * Optional list of dependencies - if these change, the page number will reset to 1
+   * and the data will be refreshed. You can use this to trigger table updates from
+   * state changes - for example, if your table has filter options.
+   */
+  deps?: DependencyList
 ) {
   const [currentPage, _setCurrentPage] = useState(1)
   const [pageSize, setPageSize] = useState(initPageSize)
@@ -46,7 +52,7 @@ export function usePaging<TRow>(
 
   useEffect(() => {
     setCurrentPage(1) // load page 1 when the component is first created
-  }, [])
+  }, deps || [])
 
   return {
     rows: data?.rows || [],
