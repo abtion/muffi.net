@@ -2,7 +2,7 @@ import React from "react"
 
 export type OnChangePage = (page: number) => void
 
-const Spacer = Symbol("...")
+export const Spacer = Symbol("...")
 
 interface PaginationProps {
   currentPage: number

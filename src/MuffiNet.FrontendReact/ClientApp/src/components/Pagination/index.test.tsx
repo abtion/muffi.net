@@ -1,4 +1,4 @@
-import { getPages } from "."
+import { getPages, Spacer } from "."
 
 describe(getPages, () => {
   it("produces meaningful page ranges", async () => {
@@ -81,7 +81,7 @@ describe(getPages, () => {
 
       const pager = ranges
         .map((page) =>
-          page === null ? ".." : page === currentPage ? `[${page}]` : page
+          page === Spacer ? ".." : page === currentPage ? `[${page}]` : page
         )
         .join(" ")
 
