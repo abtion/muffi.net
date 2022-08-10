@@ -25,13 +25,13 @@ export default function Pagination({
 
   return (
     <div>
-      {pages.map((page) =>
+      {pages.map((page, index) =>
         page === Spacer ? (
-          <span>...</span>
+          <span key={index}>...</span>
         ) : page === currentPage ? (
-          <span>{page}</span>
+          <span key={index}>{page}</span>
         ) : (
-          <span onClick={() => onPageChange(page)}>{page}</span>
+          <span key={index} onClick={() => onPageChange(page)}>{page}</span>
         )
       )}
     </div>
