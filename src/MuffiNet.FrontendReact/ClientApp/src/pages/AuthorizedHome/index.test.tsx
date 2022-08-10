@@ -102,7 +102,7 @@ describe(AuthorizedHome, () => {
 
   describe("when clicking remove ", () => {
     it("calls backend to remove", async () => {
-      const { getAllByRole } = renderPage()
+      const { findAllByRole } = renderPage()
 
       await waitFor(() =>
         expect(mockedAxios.get).toHaveBeenCalledWith(
@@ -110,9 +110,11 @@ describe(AuthorizedHome, () => {
         )
       )
 
-      const removeBtn = await waitFor(() => getAllByRole("button", {
-        name: /Remove/i,
-      })[0])
+      const removeBtn = (
+        await findAllByRole("button", {
+          name: /Remove/i,
+        })
+      )[0]
 
       await userEvent.click(removeBtn)
 

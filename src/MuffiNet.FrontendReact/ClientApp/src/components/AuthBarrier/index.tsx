@@ -8,7 +8,9 @@ interface AuthBarrierProps {
   children?: ReactNode | undefined
 }
 
-export default function AuthBarrier({ children }: AuthBarrierProps): JSX.Element {
+export default function AuthBarrier({
+  children,
+}: AuthBarrierProps): JSX.Element {
   const { isLoading, userData } = useAuth()
 
   const api = useMemo(() => {
@@ -27,9 +29,5 @@ export default function AuthBarrier({ children }: AuthBarrierProps): JSX.Element
     return <LoaderFullPage text="Loading..." />
   }
 
-  return (
-    <ApiContext.Provider value={api}>
-      {children}
-    </ApiContext.Provider>
-  )
+  return <ApiContext.Provider value={api}>{children}</ApiContext.Provider>
 }

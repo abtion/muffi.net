@@ -72,7 +72,7 @@ describe(Home, () => {
     it("posts an exampleEntity to unauthorized endpoint", async () => {
       mockedAxios.put.mockResolvedValue({ data: { Id: "1234" } })
 
-      const { getByLabelText, getByText, findAllByRole } = renderPage()
+      const { getByLabelText, getByText } = renderPage()
 
       await userEvent.type(getByLabelText("Name"), "Name")
       await userEvent.type(getByLabelText("Description"), "Description")
@@ -100,9 +100,11 @@ describe(Home, () => {
         expect(mockedAxios.get).toHaveBeenCalledWith("/api/example/get-all")
       )
 
-      const removeBtn = (await findAllByRole("button", {
-        name: /Remove/i,
-      }))[0]
+      const removeBtn = (
+        await findAllByRole("button", {
+          name: /Remove/i,
+        })
+      )[0]
 
       await userEvent.click(removeBtn)
 

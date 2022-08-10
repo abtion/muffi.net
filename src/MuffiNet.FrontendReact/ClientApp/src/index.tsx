@@ -10,7 +10,7 @@ import colors from "../../../../colors.json"
 const rootElement = document.getElementById("root")
 
 if (!rootElement) {
-  throw new Error("root element not found");
+  throw new Error("root element not found")
 }
 
 const cssRoot = document.documentElement
@@ -20,7 +20,7 @@ Object.entries(cssVariables).forEach(([name, value]) =>
   cssRoot.style.setProperty(name, value)
 )
 
-const root = createRoot(rootElement);
+const root = createRoot(rootElement)
 
 // TODO remove basename?
 root.render(

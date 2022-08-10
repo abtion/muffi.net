@@ -45,7 +45,7 @@ describe(ExampleForm, () => {
         await userEvent.type(getByLabelText("Phone"), "12345678")
 
         await userEvent.click(getByText("Submit"))
-      });
+      })
 
       expect(onSubmit).toHaveBeenCalledTimes(1)
     })
