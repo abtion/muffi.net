@@ -5,7 +5,7 @@ interface Row {
   name: string
 }
 
-const rows : Row[] = [
+const rows: Row[] = [
   { name: "Bob 1" },
   { name: "Bob 2" },
   { name: "Bob 3" },
@@ -16,13 +16,13 @@ const rows : Row[] = [
 describe(usePaging, () => {
   it("can fetch pages", async () => {
     const callback = jest.fn(async (page: number, pageSize: number) => {
-      const offset = (page - 1) * pageSize;
+      const offset = (page - 1) * pageSize
 
       return {
         rows: rows.slice(offset, offset + pageSize),
-        totalRows: rows.length
-      };
-    });
+        totalRows: rows.length,
+      }
+    })
 
     const initPageSize = 3
 
@@ -40,7 +40,7 @@ describe(usePaging, () => {
 
     expect(result.current.isLoading).toBe(true)
 
-    await waitFor(() => expect(result.current.isLoading).toBe(false));
+    await waitFor(() => expect(result.current.isLoading).toBe(false))
 
     // once the hook reports that loading is done, we should have rows:
 
@@ -58,7 +58,7 @@ describe(usePaging, () => {
 
     expect(result.current.isLoading).toBe(true)
 
-    await waitFor(() => expect(result.current.isLoading).toBe(false));
+    await waitFor(() => expect(result.current.isLoading).toBe(false))
 
     expect(result.current.rows.length).toBe(2) // there are 2 results on page 2
   })

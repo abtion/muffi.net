@@ -24,7 +24,6 @@ interface User {
 
 // TODO add users, build out proper UI
 
-
 export default function UserRoleAdmin(): JSX.Element {
   const api = useContext(ApiContext)
 
@@ -48,9 +47,6 @@ export default function UserRoleAdmin(): JSX.Element {
   // ], []);
 
   const [page, setPage] = useState(0)
-
-  
-
 
   return (
     <AuthorizedLayout>
