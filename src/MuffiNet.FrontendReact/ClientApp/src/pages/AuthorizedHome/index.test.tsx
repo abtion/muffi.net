@@ -1,5 +1,5 @@
 import React from "react"
-import { act, render as tlRender, waitFor } from "@testing-library/react"
+import { act, render, waitFor } from "@testing-library/react"
 import axios from "axios"
 import userEvent from "@testing-library/user-event"
 import { MemoryRouter } from "react-router"
@@ -42,6 +42,7 @@ afterEach(() => {
   mockedAxios._reset()
   mockedUseHub._reset()
 })
+
 beforeEach(() => {
   mockedAxios.get.mockResolvedValue({
     data: { exampleEntities: [entity, unnamedEntity] },
@@ -49,13 +50,13 @@ beforeEach(() => {
   mockedAxios.post.mockResolvedValue({})
 })
 
-function render() {
+function renderPage() {
   const userData = {
     // eslint-disable-next-line camelcase
     id_token: "1234",
   }
 
-  const context = tlRender(
+  const context = render(
     <MemoryRouter initialEntries={[`/admin`]}>
       <ApiContext.Provider value={mockedAxios}>
         <AuthContext.Provider
@@ -73,7 +74,7 @@ function render() {
 
 describe(AuthorizedHome, () => {
   it("renders two tables", async () => {
-    const { findAllByRole } = render()
+    const { findAllByRole } = renderPage()
     expect(await findAllByRole("table")).toHaveLength(2)
   })
 
@@ -81,12 +82,12 @@ describe(AuthorizedHome, () => {
     it("posts an unnamed exampleEntity to authorized endpoint", async () => {
       mockedAxios.put.mockResolvedValue({ data: { Id: "1234" } })
 
-      const { getByLabelText, getByText } = render()
+      const { findByLabelText, findByText } = renderPage()
 
-      await userEvent.type(getByLabelText("Description"), "Description")
-      await userEvent.type(getByLabelText("E-mail"), "Em@a.il")
-      await userEvent.type(getByLabelText("Phone"), "12345678")
-      await userEvent.click(getByText("Submit"))
+      await userEvent.type(await findByLabelText("Description"), "Description")
+      await userEvent.type(await findByLabelText("E-mail"), "Em@a.il")
+      await userEvent.type(await findByLabelText("Phone"), "12345678")
+      await userEvent.click(await findByText("Submit"))
 
       await waitFor(() =>
         expect(mockedAxios.put).toHaveBeenCalledWith("/api/authorizedexample", {
@@ -101,7 +102,7 @@ describe(AuthorizedHome, () => {
 
   describe("when clicking remove ", () => {
     it("calls backend to remove", async () => {
-      const { getAllByRole } = render()
+      const { findAllByRole } = renderPage()
 
       await waitFor(() =>
         expect(mockedAxios.get).toHaveBeenCalledWith(
@@ -109,9 +110,11 @@ describe(AuthorizedHome, () => {
         )
       )
 
-      const removeBtn = await getAllByRole("button", {
-        name: /Remove/i,
-      })[0]
+      const removeBtn = (
+        await findAllByRole("button", {
+          name: /Remove/i,
+        })
+      )[0]
 
       await userEvent.click(removeBtn)
 
@@ -126,7 +129,7 @@ describe(AuthorizedHome, () => {
 
   describe("when entering page", () => {
     it("gets all current entities", async () => {
-      const { findByText } = render()
+      const { findByText } = renderPage()
 
       await waitFor(() =>
         expect(mockedAxios.get).toHaveBeenCalledWith(
@@ -145,7 +148,7 @@ describe(AuthorizedHome, () => {
 
   describe("hub connection", () => {
     it("adds new records", async () => {
-      const { findByText } = render()
+      const { findByText } = renderPage()
 
       act(() => {
         mockedUseHub.connectionMock._trigger("SomeEntityCreated", {
@@ -160,7 +163,7 @@ describe(AuthorizedHome, () => {
     })
 
     it("adds & then updates existing records", async () => {
-      const { findByText, queryByText } = render()
+      const { findByText, queryByText } = renderPage()
       act(() => {
         mockedUseHub.connectionMock._trigger("SomeEntityCreated", {
           entity,
@@ -178,7 +181,7 @@ describe(AuthorizedHome, () => {
     })
 
     it("adds & then deletes records", async () => {
-      const { findByText } = render()
+      const { findByText } = renderPage()
 
       act(() => {
         mockedUseHub.connectionMock._trigger("SomeEntityCreated", {
@@ -199,15 +202,14 @@ describe(AuthorizedHome, () => {
     })
 
     it("uses the right access token", async () => {
-      const { findByText } = render()
-
-      // Wait for component to finish loading to prevent "not wrapped in act" error
-      await findByText(entity.name)
+      renderPage()
 
       const useHubParams = mockedUseHub.mock.calls[0]
       const [_path, _onConnected, connectionOptions] = useHubParams
 
-      expect(connectionOptions.accessTokenFactory()).toEqual("1234")
+      waitFor(() => {
+        expect(connectionOptions.accessTokenFactory()).toEqual("1234")
+      })
     })
   })
 })

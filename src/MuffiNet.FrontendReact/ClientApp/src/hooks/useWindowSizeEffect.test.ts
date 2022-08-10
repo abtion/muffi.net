@@ -1,4 +1,4 @@
-import { renderHook, act } from "@testing-library/react-hooks"
+import { renderHook, act } from "@testing-library/react"
 import useWindowSizeEffect from "./useWindowSizeEffect"
 
 const callback = jest.fn()

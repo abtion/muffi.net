@@ -8,11 +8,15 @@ interface AuthBarrierProps {
   children?: ReactNode | undefined
 }
 
-export default function AuthBarrier(props: AuthBarrierProps): JSX.Element {
+export default function AuthBarrier({
+  children,
+}: AuthBarrierProps): JSX.Element {
   const { isLoading, userData } = useAuth()
 
   const api = useMemo(() => {
-    if (isLoading || !userData?.id_token) return null
+    if (isLoading || !userData?.id_token) {
+      return null
+    }
 
     // TODO allow some means of checking userData.profile.roles? and use different <AuthBarrier/> instances around restricted areas
 
@@ -25,7 +29,9 @@ export default function AuthBarrier(props: AuthBarrierProps): JSX.Element {
 
   // TODO er, this isn't always being used as a full page (top level) component, so..?
 
-  if (!api) return <LoaderFullPage text="Loading..." />
+  if (!api) {
+    return <LoaderFullPage text="Loading..." />
+  }
 
-  return <ApiContext.Provider value={api} {...props} />
+  return <ApiContext.Provider value={api}>{children}</ApiContext.Provider>
 }

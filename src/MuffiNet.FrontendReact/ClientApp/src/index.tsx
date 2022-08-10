@@ -1,6 +1,5 @@
-// TODO upgrade react, react-dom, @types/react, @types/react-dom to version 18 (requires upgrade of @testing-library/react - blocked by oidc-react at this time)
 import React from "react"
-import ReactDOM from "react-dom"
+import { createRoot } from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
 import "~/main.scss"
 import App from "~/App"
@@ -8,21 +7,24 @@ import App from "~/App"
 import prepareColorVariables from "~/utils/prepareColorVariables"
 import colors from "../../../../colors.json"
 
-const baseElement = document.querySelector("base")
-const baseUrl = baseElement?.getAttribute("href") || "/"
-
 const rootElement = document.getElementById("root")
 
-const cssRoot: HTMLElement | null = document.querySelector(":root")
+if (!rootElement) {
+  throw new Error("root element not found")
+}
+
+const cssRoot = document.documentElement
 const cssVariables = prepareColorVariables(colors).cssVariables
 
 Object.entries(cssVariables).forEach(([name, value]) =>
-  cssRoot?.style.setProperty(name, value)
+  cssRoot.style.setProperty(name, value)
 )
 
-ReactDOM.render(
-  <BrowserRouter basename={baseUrl}>
+const root = createRoot(rootElement)
+
+// TODO remove basename?
+root.render(
+  <BrowserRouter basename={"/"}>
     <App />
-  </BrowserRouter>,
-  rootElement
+  </BrowserRouter>
 )
