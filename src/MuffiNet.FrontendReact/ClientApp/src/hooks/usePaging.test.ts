@@ -1,4 +1,4 @@
-import { renderHook, act } from "@testing-library/react-hooks"
+import { renderHook, act, waitFor } from "@testing-library/react"
 import { usePaging } from "./usePaging"
 
 interface Row {
@@ -24,16 +24,42 @@ describe(usePaging, () => {
       };
     });
 
-    const { result, waitFor } = renderHook(() => usePaging(callback, 3))
+    const initPageSize = 3
 
-    await waitFor(() => result.current.rows !== null);
+    const { result } = renderHook(() => usePaging(callback, initPageSize))
 
-    expect(callback).toHaveBeenCalledTimes(1)
+    // we initially have no rows, and a loading indicator:
 
-    // TODO fix these tests
+    expect(result.current.rows).toStrictEqual([])
 
-    // act(() => {
-    // });
+    expect(result.current.totalRows).toBe(0)
 
+    expect(result.current.pageSize).toBe(initPageSize)
+
+    expect(result.current.totalPages).toBe(0)
+
+    expect(result.current.isLoading).toBe(true)
+
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
+
+    // once the hook reports that loading is done, we should have rows:
+
+    expect(result.current.totalPages).toBe(2)
+
+    expect(result.current.rows.length).toBe(3) // there are 3 results on page 1
+
+    expect(result.current.totalRows).toBe(5) // total number of rows (reported by the callback)
+
+    // let's go to page 2:
+
+    act(() => {
+      result.current.setCurrentPage(2)
+    })
+
+    expect(result.current.isLoading).toBe(true)
+
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
+
+    expect(result.current.rows.length).toBe(2) // there are 2 results on page 2
   })
 })
