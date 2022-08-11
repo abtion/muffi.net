@@ -6,13 +6,14 @@ import Table from "~/components/Table"
 import ApiContext from "~/contexts/ApiContext"
 import { usePaging } from "~/hooks/usePaging"
 import SearchIcon from "bootstrap-icons/icons/search.svg"
+import Select from "~/components/Select"
 
 /**
  * Users, Roles and Permissions (provided by the server)
  */
 interface UserRoleData {
   roles: Array<{
-    id: number
+    id: string
     name: string
   }>
   users: Array<User>
@@ -42,6 +43,8 @@ export default function UserRoleAdmin(): JSX.Element {
       setData(response.data)
     })
   }, [])
+
+  const [selectedRole, setSelectedRole] = useState<string>()
 
   const { currentPage, totalPages, setCurrentPage, rows } = usePaging(
     async (page, pageSize) => {
@@ -78,9 +81,10 @@ export default function UserRoleAdmin(): JSX.Element {
                     </div>
                   </div>
                   <div className="flex-initial">
-                    <select className="w-56 h-9 pl-2 border border-neutral-200 rounded text-sm">
-                      <option disabled selected hidden>Filter by role</option>
-                    </select>
+                    <Select value={selectedRole} onChange={e => setSelectedRole(e.target.value)}>
+                      <option selected>Filter by role</option>
+                      {data.roles.map(role => <option value={role.id}>{role.name}</option>)}
+                    </Select>
                   </div>
                   <div className="flex-initial">
                     <button className="text-sm">Add users</button>
