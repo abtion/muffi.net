@@ -46,6 +46,8 @@ export default function UserRoleAdmin(): JSX.Element {
 
   const [selectedRoleID, setSelectedRoleID] = useState<string>()
 
+  const [searchTerms, setSearchTerms] = useState<string>("")
+
   const { currentPage, totalPages, setCurrentPage, rows } = usePaging(
     async (page, pageSize) => {
       const offset = (page - 1) * pageSize;
@@ -55,12 +57,15 @@ export default function UserRoleAdmin(): JSX.Element {
           .filter(row => selectedRoleID
             ? row.appRoleIDs.includes(selectedRoleID)
             : true)
+          .filter(row => searchTerms
+            ? row.name.toLowerCase().includes(searchTerms.toLowerCase())
+            : true)
           .slice(offset, offset + pageSize) || [],
         totalRows: data?.users.length || 0
       };
     },
     10,
-    [data, selectedRoleID]
+    [data, searchTerms, selectedRoleID]
   )
 
   return (
@@ -80,6 +85,8 @@ export default function UserRoleAdmin(): JSX.Element {
                       <input className="w-80 h-9 border border-neutral-200 rounded pl-3 text-neutral-500" 
                              type="text"
                              placeholder="Search"
+                             value={searchTerms}
+                             onChange={e => setSearchTerms(e.target.value)}
                        />
                        <SearchIcon className="absolute top-2 right-3 w-5 h-5" />
                     </div>
