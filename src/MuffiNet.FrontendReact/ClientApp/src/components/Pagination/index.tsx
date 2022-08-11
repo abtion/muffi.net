@@ -1,5 +1,7 @@
 import classNames from "classnames"
 import React from "react"
+import ArrowLeft from "bootstrap-icons/icons/chevron-left.svg"
+import ArrowRight from "bootstrap-icons/icons/chevron-right.svg"
 
 import "./style.scss"
 
@@ -29,16 +31,22 @@ export default function Pagination({
   const pages = getPages(currentPage, totalPages, spread)
 
   return (
-    <div className={classNames("Pagination", className)}>
+    <div className={classNames("Pagination", className)} role="navigation">
+      <button onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1}>
+        <ArrowLeft/>
+      </button>
       {pages.map((page, index) =>
         page === Spacer ? (
-          <span key={index}>...</span>
+          <button key={index}>...</button>
         ) : page === currentPage ? (
-          <span key={index}>{page}</span>
+          <button key={index} aria-selected="true">{page}</button>
         ) : (
-          <span key={index} onClick={() => onPageChange(page)}>{page}</span>
+          <button key={index} onClick={() => onPageChange(page)}>{page}</button>
         )
       )}
+      <button onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+        <ArrowRight/>
+      </button>
     </div>
   )
 }
