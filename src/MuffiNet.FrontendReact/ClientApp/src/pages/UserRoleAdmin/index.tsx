@@ -5,6 +5,7 @@ import Pagination from "~/components/Pagination"
 import Table from "~/components/Table"
 import ApiContext from "~/contexts/ApiContext"
 import { usePaging } from "~/hooks/usePaging"
+import SearchIcon from "bootstrap-icons/icons/search.svg"
 
 /**
  * Users, Roles and Permissions (provided by the server)
@@ -57,43 +58,62 @@ export default function UserRoleAdmin(): JSX.Element {
 
   return (
     <AuthorizedLayout>
-      {data ? (
-        <div className="container mt-5">
-          <label>
-            Role:
-            <select>
-              {data.roles.map(({ id, name }) => (
-                <option key={id} value={id}>
-                  {name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <Table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Role(s)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((u) => (
-                <tr key={u.userID}>
-                  <td>{u.name}</td>
-                  <td>{u.appRoleIDs.map((id) => roleNames[id]).join()}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={setCurrentPage}
-          />
-        </div>
-      ) : (
-        <Loader />
-      )}
+      <div className="container mt-5">
+        {data == null
+          ? (
+            <Loader />
+          )
+          : (
+            <div>
+              <h2 className="text-2xl">Users</h2>
+              <div className="w-full max-w-7xl border border-b-0 border-neutral-200 h-20 rounded-t-lg mt-2">
+                <div className="h-full flex items-center gap-x-2 px-4">
+                  <div className="flex-auto">
+                    <div className="relative w-80">
+                      <input className="w-80 h-9 border border-neutral-200 rounded pl-3 text-neutral-500" 
+                             type="text"
+                             placeholder="Search"
+                       />
+                       <SearchIcon className="absolute top-2 right-3 w-5 h-5" />
+                    </div>
+                  </div>
+                  <div className="flex-initial">
+                    <select className="w-56 h-9 pl-2 border border-neutral-200 rounded text-sm">
+                      <option disabled selected hidden>Filter by role</option>
+                    </select>
+                  </div>
+                  <div className="flex-initial">
+                    <button className="text-sm">Add users</button>
+                  </div>
+                </div>
+              </div>
+              <Table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((u) => (
+                    <tr key={u.userID}>
+                      <td>{u.name}</td>
+                      <td>{u.appRoleIDs.map((id) => roleNames[id]).join()}</td>
+                      <td><button className="float-right">Edit</button></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+              />
+            </div>
+          )
+        }
+      </div>
     </AuthorizedLayout>
   )
 }

@@ -1,18 +1,55 @@
 .Table {
-  @apply w-full;
+  @apply w-full max-w-7xl border border-neutral-200 rounded-b-lg;
+
+  table {
+    @apply w-full
+  }
 
   td,
   th {
-    @apply border-0 text-left px-2;
+    @apply w-1/3
   }
 
   th {
-    @apply border-b-2;
+    @apply uppercase text-neutral-500 text-left text-base
+  }
+
+  td:not(last-child),
+  th:not(last-child) {
+    @apply pl-4
+  }
+  
+  td:last-child,
+  th:last-child {
+    @apply px-4
+  }
+
+  thead {
+    tr {
+      @apply border-b border-neutral-200 border-collapse h-11 bg-neutral-50
+    }
+
+    th {
+      @apply text-xs
+    }
   }
 
   tbody {
     tr {
-      @apply odd:bg-neutral-100;
+      @apply h-14
+    }
+
+    tr:nth-child(even) {
+       @apply bg-neutral-50
+    }
+    
+    tr:not(last-child) {
+      @apply border-neutral-200 border-collapse
+    }
+
+    td {
+      @apply text-sm;
+      font-weight: 500;
     }
   }
 }

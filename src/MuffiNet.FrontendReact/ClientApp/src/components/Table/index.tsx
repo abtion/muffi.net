@@ -9,5 +9,9 @@ export default function Table({
 }: React.TableHTMLAttributes<HTMLTableElement>): JSX.Element {
   const usedClassName = classNames("Table", className)
 
-  return <table className={usedClassName} {...rest} />
+  return (
+    <div className={usedClassName}>
+      <table {...rest} />
+    </div>
+  )
 }
