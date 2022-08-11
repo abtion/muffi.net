@@ -52,16 +52,17 @@ export default function UserRoleAdmin(): JSX.Element {
     async (page, pageSize) => {
       const offset = (page - 1) * pageSize;
 
+      const visibleUsers = data?.users
+        .filter(row => selectedRoleID
+          ? row.appRoleIDs.includes(selectedRoleID)
+          : true)
+        .filter(row => searchTerms
+          ? row.name.toLowerCase().includes(searchTerms.toLowerCase())
+          : true) || []
+
       return {
-        rows: data?.users
-          .filter(row => selectedRoleID
-            ? row.appRoleIDs.includes(selectedRoleID)
-            : true)
-          .filter(row => searchTerms
-            ? row.name.toLowerCase().includes(searchTerms.toLowerCase())
-            : true)
-          .slice(offset, offset + pageSize) || [],
-        totalRows: data?.users.length || 0
+        rows: visibleUsers.slice(offset, offset + pageSize) || [],
+        totalRows: visibleUsers.length
       };
     },
     10,
