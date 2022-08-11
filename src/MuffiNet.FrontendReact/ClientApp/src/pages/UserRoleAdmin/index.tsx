@@ -44,19 +44,23 @@ export default function UserRoleAdmin(): JSX.Element {
     })
   }, [])
 
-  const [selectedRole, setSelectedRole] = useState<string>()
+  const [selectedRoleID, setSelectedRoleID] = useState<string>()
 
   const { currentPage, totalPages, setCurrentPage, rows } = usePaging(
     async (page, pageSize) => {
       const offset = (page - 1) * pageSize;
 
       return {
-        rows: data?.users.slice(offset, offset + pageSize) || [],
+        rows: data?.users
+          .filter(row => selectedRoleID
+            ? row.appRoleIDs.includes(selectedRoleID)
+            : true)
+          .slice(offset, offset + pageSize) || [],
         totalRows: data?.users.length || 0
       };
     },
     10,
-    [data]
+    [data, selectedRoleID]
   )
 
   return (
@@ -81,8 +85,8 @@ export default function UserRoleAdmin(): JSX.Element {
                     </div>
                   </div>
                   <div className="flex-initial">
-                    <Select value={selectedRole} onChange={e => setSelectedRole(e.target.value)}>
-                      <option selected>Filter by role</option>
+                    <Select value={selectedRoleID} onChange={e => setSelectedRoleID(e.target.value)}>
+                      <option value="">Filter by role</option>
                       {data.roles.map(role => <option value={role.id}>{role.name}</option>)}
                     </Select>
                   </div>
