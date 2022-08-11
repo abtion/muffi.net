@@ -1,4 +1,7 @@
+import classNames from "classnames"
 import React from "react"
+
+import "./style.scss"
 
 export type OnChangePage = (page: number) => void
 
@@ -7,12 +10,13 @@ export const Spacer = Symbol("...")
 interface PaginationProps {
   currentPage: number
   totalPages: number
-  onPageChange: OnChangePage
 
   /**
    * Range of page buttons (in both directions) before/after `currentPage`
    */
   spread?: number
+  onPageChange: OnChangePage
+  className? : string
 }
 
 export default function Pagination({
@@ -20,11 +24,12 @@ export default function Pagination({
   totalPages,
   spread = 2,
   onPageChange,
+  className
 }: PaginationProps): JSX.Element {
   const pages = getPages(currentPage, totalPages, spread)
 
   return (
-    <div>
+    <div className={classNames("Pagination", className)}>
       {pages.map((page, index) =>
         page === Spacer ? (
           <span key={index}>...</span>

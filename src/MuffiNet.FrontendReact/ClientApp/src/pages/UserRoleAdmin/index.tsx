@@ -47,8 +47,8 @@ export default function UserRoleAdmin(): JSX.Element {
   const [selectedRoleID, setSelectedRoleID] = useState<string>()
 
   const [searchTerms, setSearchTerms] = useState<string>("")
-
-  const { currentPage, totalPages, setCurrentPage, rows } = usePaging(
+  
+  const { currentPage, totalPages, totalRows, pageSize, setCurrentPage, rows } = usePaging(
     async (page, pageSize) => {
       const offset = (page - 1) * pageSize;
 
@@ -68,6 +68,9 @@ export default function UserRoleAdmin(): JSX.Element {
     10,
     [data, searchTerms, selectedRoleID]
   )
+
+  const rowStart = (currentPage - 1) * pageSize + 1;
+  const rowEnd = Math.min(rowStart + (pageSize - 1), totalRows)
 
   return (
     <AuthorizedLayout>
@@ -99,7 +102,9 @@ export default function UserRoleAdmin(): JSX.Element {
                     </Select>
                   </div>
                   <div className="flex-initial">
-                    <button className="text-sm">Add users</button>
+                    <button className="w-24 h-9 bg-primary-700 text-sm text-light rounded">
+                        Add users
+                    </button>
                   </div>
                 </div>
               </div>
@@ -121,6 +126,14 @@ export default function UserRoleAdmin(): JSX.Element {
                   ))}
                 </tbody>
               </Table>
+              <div className="w-full h-16 max-w-7xl flex px-4 items-center border border-neutral-200 rounded-b">
+                <div className="flex-auto leading-9">
+                  Showing {rowStart} to {rowEnd} of {totalRows}
+                </div>
+                <div className="flex-initial">
+                  
+                </div>
+              </div>
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
