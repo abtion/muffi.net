@@ -29,6 +29,17 @@ export function usePaging<TRow>(
     [data]
   )
 
+  const totalRows = data?.totalRows || 0
+  
+  // TODO: Needs a test and maybe make it prettier? //
+  const [pageFirstRow, pageLastRow] = useMemo(() => {
+    const pageFirstRow = (currentPage - 1) * pageSize + 1
+
+    const pageLastRow = Math.min(pageFirstRow + (pageSize - 1), totalRows)
+
+    return [pageFirstRow, pageLastRow];
+  }, [currentPage, pageSize, totalRows])
+
   function setCurrentPage(page: number) {
     _setCurrentPage(page)
     _setData(null)
@@ -56,12 +67,14 @@ export function usePaging<TRow>(
 
   return {
     rows: data?.rows || [],
-    totalRows: data?.totalRows || 0,
+    totalRows: totalRows,
     currentPage,
     setCurrentPage,
     pageSize,
     setPageSize,
     totalPages,
     isLoading,
+    pageFirstRow,
+    pageLastRow
   }
 }

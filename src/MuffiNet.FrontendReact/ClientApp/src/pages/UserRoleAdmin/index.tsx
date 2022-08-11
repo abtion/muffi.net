@@ -48,7 +48,7 @@ export default function UserRoleAdmin(): JSX.Element {
 
   const [searchTerms, setSearchTerms] = useState<string>("")
 
-  const { currentPage, totalPages, totalRows, pageSize, setCurrentPage, rows } = usePaging(
+  const { currentPage, totalPages, totalRows, pageFirstRow, pageLastRow, setCurrentPage, rows } = usePaging(
     async (page, pageSize) => {
       const offset = (page - 1) * pageSize;
 
@@ -68,9 +68,6 @@ export default function UserRoleAdmin(): JSX.Element {
     10,
     [data, searchTerms, selectedRoleID]
   )
-
-  const rowStart = (currentPage - 1) * pageSize + 1;
-  const rowEnd = Math.min(rowStart + (pageSize - 1), totalRows)
 
   return (
     <AuthorizedLayout>
@@ -128,7 +125,7 @@ export default function UserRoleAdmin(): JSX.Element {
               </Table>
               <div className="w-full h-16 max-w-7xl flex px-4 items-center border border-neutral-200 rounded-b-lg">
                 <div className="flex-auto leading-9 text-sm">
-                  Showing {rowStart} to {rowEnd} of {totalRows}
+                  Showing {pageFirstRow} to {pageLastRow} of {totalRows}
                 </div>
                 <div className="flex-initial">
                   <Pagination
