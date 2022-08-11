@@ -93,8 +93,8 @@ export default function UserRoleAdmin(): JSX.Element {
                   </div>
                   <div className="flex-initial">
                     <Select value={selectedRoleID} onChange={e => setSelectedRoleID(e.target.value)}>
-                      <option value="">Filter by role</option>
-                      {data.roles.map(role => <option value={role.id}>{role.name}</option>)}
+                      <option key={""} value="">Filter by role</option>
+                      {data.roles.map(role => <option key={role.id} value={role.id}>{role.name}</option>)}
                     </Select>
                   </div>
                   <div className="flex-initial">
