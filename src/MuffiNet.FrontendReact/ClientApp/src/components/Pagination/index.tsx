@@ -18,7 +18,7 @@ interface PaginationProps {
    */
   spread?: number
   onPageChange: OnChangePage
-  className? : string
+  className?: string
 }
 
 export default function Pagination({
@@ -26,26 +26,36 @@ export default function Pagination({
   totalPages,
   spread = 2,
   onPageChange,
-  className
+  className,
 }: PaginationProps): JSX.Element {
   const pages = getPages(currentPage, totalPages, spread)
 
   return (
     <div className={classNames("Pagination", className)} role="navigation">
-      <button onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1}>
-        <ArrowLeft/>
+      <button
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+      >
+        <ArrowLeft />
       </button>
       {pages.map((page, index) =>
         page === Spacer ? (
           <button key={index}>...</button>
         ) : page === currentPage ? (
-          <button key={index} aria-selected="true">{page}</button>
+          <button key={index} aria-selected="true">
+            {page}
+          </button>
         ) : (
-          <button key={index} onClick={() => onPageChange(page)}>{page}</button>
+          <button key={index} onClick={() => onPageChange(page)}>
+            {page}
+          </button>
         )
       )}
-      <button onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages}>
-        <ArrowRight/>
+      <button
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+      >
+        <ArrowRight />
       </button>
     </div>
   )

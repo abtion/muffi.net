@@ -2,49 +2,49 @@
   @apply w-full max-w-7xl border border-b-0 border-neutral-200;
 
   table {
-    @apply w-full
+    @apply w-full;
   }
 
   td,
   th {
-    @apply w-1/3
+    @apply w-1/3;
   }
 
   th {
-    @apply uppercase text-neutral-500 text-left text-base
+    @apply uppercase text-neutral-500 text-left text-base;
   }
 
   td:not(last-child),
   th:not(last-child) {
-    @apply pl-4
+    @apply pl-4;
   }
-  
+
   td:last-child,
   th:last-child {
-    @apply px-4
+    @apply px-4;
   }
 
   thead {
     tr {
-      @apply border-b border-neutral-200 border-collapse h-11 bg-neutral-50
+      @apply border-b border-neutral-200 border-collapse h-11 bg-neutral-50;
     }
 
     th {
-      @apply text-xs
+      @apply text-xs;
     }
   }
 
   tbody {
     tr {
-      @apply h-14
+      @apply h-14;
     }
 
     tr:nth-child(even) {
-       @apply bg-neutral-50
+      @apply bg-neutral-50;
     }
-    
+
     tr:not(last-child) {
-      @apply border-neutral-200 border-collapse
+      @apply border-neutral-200 border-collapse;
     }
 
     td {
