@@ -4,6 +4,7 @@ using Xunit;
 using FluentAssertions;
 using Microsoft.Extensions.Options;
 
+[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace MuffiNet.FrontendReact.Tests.Authorization
 {
     public class UserRoleServiceTest
