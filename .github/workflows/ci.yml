@@ -92,6 +92,8 @@ jobs:
 
       - name: Test with the dotnet CLI
         run: dotnet test --blame-hang-timeout 6m
+        env:
+          ActiveDirectoryConfig__AppClientSecret: ${{ secrets.ACTIVEDIRECTORYCONFIG__APPCLIENTSECRET }}
 
   deploy:
     runs-on: ubuntu-latest

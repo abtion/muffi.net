@@ -6,7 +6,8 @@
 		<IsPackable>false</IsPackable>
 		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-	</PropertyGroup>
+	  <UserSecretsId>820260b4-5adb-41a1-973b-640511a4360b</UserSecretsId>
+  </PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="coverlet.msbuild" Version="3.1.2">
@@ -14,6 +15,7 @@
 		  <PrivateAssets>all</PrivateAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.7" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
 		<PackageReference Include="xunit" Version="2.4.2" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
