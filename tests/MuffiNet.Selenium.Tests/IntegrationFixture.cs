@@ -105,17 +105,21 @@ public sealed class IntegrationFixture : IDisposable
     {
         Console.WriteLine("Starting server");
         var process = Process.Start(CreateStartInfo("run --launch-profile \"MuffiNet.FrontendReact Test\""));
-
+        
         string output;
 
         do
         {
             output = process.StandardOutput.ReadLine();
-        }
-        while (!output.Contains("Now listening on", StringComparison.InvariantCultureIgnoreCase));
-        Console.WriteLine("Starting server: Success");
 
-        return process;
+            if (output is not null && output.Contains("Now listening on", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return process; // server ready
+            }
+        }
+        while (!process.StandardOutput.EndOfStream);
+
+        throw new InvalidOperationException($"Error starting server: {process.StandardError.ReadToEnd()}");
     }
 
     private ChromeDriver StartWebDriver()
@@ -150,16 +154,10 @@ public sealed class IntegrationFixture : IDisposable
 
     private string GetWorkingDirectory()
     {
-        var workingDirectory = Path.Join(Directory.GetCurrentDirectory());
-
-        // getting the beginning of the path right
-        // could have been done with a simple replace - but this seems more bullet proof
-        for (int i = 0; i < 5; i++)
-        {
-            workingDirectory = Path.Join(workingDirectory, "..");
-        }
-
-        return Path.Join(workingDirectory, "src", "MuffiNet.FrontendReact");
+        return Path.GetFullPath(
+            "../../../../../src/MuffiNet.FrontendReact",
+            Directory.GetCurrentDirectory()
+        );
     }
 
     public void Dispose()
@@ -209,7 +207,7 @@ public sealed class IntegrationFixture : IDisposable
         var config = new ConfigurationBuilder();
 
         config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            .AddJsonFile($"appsettings.Test.json", optional: true, reloadOnChange: true)
+            .AddJsonFile("appsettings.Test.json", optional: true, reloadOnChange: true)
             .AddEnvironmentVariables("DOTNET_")
             .AddUserSecrets(System.Reflection.Assembly.GetExecutingAssembly(), optional: true, reloadOnChange: true);
 

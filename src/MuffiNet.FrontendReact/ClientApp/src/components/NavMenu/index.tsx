@@ -49,6 +49,9 @@ export default function NavMenu(): JSX.Element {
               <NavItem>
                 <NavLink to="/admin">Overview</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink to="/admin/roles">Roles</NavLink>
+              </NavItem>
             </ul>
           </div>
         </div>

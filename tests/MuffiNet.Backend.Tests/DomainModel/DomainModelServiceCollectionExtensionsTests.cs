@@ -1,7 +1,10 @@
 ﻿using FluentAssertions;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MuffiNet.Backend.DomainModel;
+using MuffiNet.Backend.Services.Authorization;
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace MuffiNet.Backend.Tests.DomainModel;

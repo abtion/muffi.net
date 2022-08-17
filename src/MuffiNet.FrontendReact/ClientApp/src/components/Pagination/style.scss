@@ -1,0 +1,19 @@
+.Pagination {
+  @apply flex;
+
+  button {
+    @apply w-9 h-9 border border-neutral-200;
+
+    svg {
+      @apply inline-block;
+    }
+  }
+
+  button[aria-selected="true"] {
+    @apply border-primary-500 text-primary-500;
+  }
+
+  button:disabled {
+    opacity: 0.3;
+  }
+}

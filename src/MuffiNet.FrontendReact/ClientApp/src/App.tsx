@@ -9,6 +9,7 @@ import Home from "~/pages/Home"
 
 // Authorized pages
 import AuthorizedHome from "~/pages/AuthorizedHome"
+import UserRoleAdmin from "~/pages/UserRoleAdmin"
 
 export default function App(): JSX.Element {
   return (
@@ -16,11 +17,12 @@ export default function App(): JSX.Element {
       <Route index element={<Home />} />
 
       <Route
-        path="/admin"
+        path="/admin/*"
         element={
           <AuthOidcProvider>
             <AuthBarrier>
               <Routes>
+                <Route path="roles" element={<UserRoleAdmin />} />
                 <Route index element={<AuthorizedHome />} />
               </Routes>
             </AuthBarrier>

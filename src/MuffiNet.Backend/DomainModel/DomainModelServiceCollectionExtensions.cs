@@ -1,10 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand;
 using MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand;
 using MuffiNet.Backend.DomainModel.Commands.ExampleUpdateCommand;
 using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
 using MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll;
 using MuffiNet.Backend.Services;
+using MuffiNet.Backend.Services.Authorization;
 
 namespace MuffiNet.Backend.DomainModel;
 
@@ -30,5 +32,14 @@ public static class DomainModelServiceCollectionExtensions
         services.AddTransient<IExampleReverseStringService, ExampleReverseStringService>();
 
         return new DomainModelBuilder(services);
+    }
+
+    public static IServiceCollection AddUserRoleService(this IServiceCollection services, IConfiguration config)
+    {
+        services.AddSingleton<UserRoleService>();
+
+        services.Configure<ActiveDirectoryConfig>(config.GetRequiredSection(nameof (ActiveDirectoryConfig)));
+
+        return services;
     }
 }
