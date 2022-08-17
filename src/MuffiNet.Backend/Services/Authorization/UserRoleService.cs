@@ -8,11 +8,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-public partial class UserRoleService
+public class UserRoleService
 {
     private readonly GraphServiceClient client;
     private readonly IOptions<ActiveDirectoryConfig> options;
     private ActiveDirectoryConfig config => options.Value;
+
+    // TODO extract an interface and add a mock implementation for integration testing
 
     public UserRoleService(IOptions<ActiveDirectoryConfig> options)
     {
@@ -36,7 +38,9 @@ public partial class UserRoleService
             }
             catch (Exception exception)
             {
-                var expected = exception.InnerException is ServiceException innerException
+                var expected = exception.InnerException is not null
+                    && exception.InnerException is ServiceException innerException
+                    && innerException.Error.Details is not null
                     && innerException.Error.Details.First().Code == "InvalidUpdate";
 
                 // NOTE: invalid updates are expected, if the User has already been granted the Administrators Role.

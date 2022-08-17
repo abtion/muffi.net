@@ -36,12 +36,11 @@ You must have the following installed and available on your machine:
 
 Local overrides of configurations/secret must be done through [Secret Manager](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows)
 
-These projects have user secrets:
+These projects have User Secrets:
+
   - MuffiNet.Selenium.Tests
   - MuffiNet.Api
-  - MuffiNet.FrontendReact
-
-
+  - MuffiNet.FrontendReact, MuffiNet.Backend.Tests: `ActiveDirectoryConfig:AppClientSecret` (see "Azure Active Directory" section below)
 
 #### Database connection
 
