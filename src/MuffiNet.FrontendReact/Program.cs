@@ -47,7 +47,10 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddApplicationInsightsTelemetry(configuration["APPINSIGHTS_CONNECTIONSTRING"]);
+builder.Services.AddApplicationInsightsTelemetry((options) => {
+    options.ConnectionString = configuration["APPINSIGHTS_CONNECTIONSTRING"];
+});
+
 builder.Services.AddHttpContextAccessor();
 
 
