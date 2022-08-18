@@ -1,5 +1,5 @@
 using FluentAssertions;
-using OpenQA.Selenium;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace MuffiNet.FrontendReact.Selenium.Tests;
@@ -13,12 +13,14 @@ public class LandingPageTests : SeleniumTestBase
     }
 
     [Fact]
-    public void Given_SystemIsRunning_When_TheLandingPageIsCall_Then_ThePageIsShown()
+    public async Task Given_SystemIsRunning_When_TheLandingPageIsCall_Then_ThePageIsShown()
     {
-        webDriver.Navigate().GoToUrl(siteUrl);
+        var page = await context.NewPageAsync();
 
-        Wait().Until(webDriver => webDriver.FindElement(By.TagName("h1")));
+        await page.GotoAsync(siteUrl);
 
-        webDriver.Url.Should().Be($"{siteUrl}");
+        await page.WaitForSelectorAsync("h1");
+
+        page.Url.Should().Be(siteUrl);
     }
 }

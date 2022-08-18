@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Playwright;
 using MuffiNet.Backend.Data;
-using OpenQA.Selenium.Chrome;
 using System;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -18,7 +18,7 @@ public sealed class IntegrationFixture : IDisposable
 {
     private Process process;
     private IConfigurationRoot Configuration;
-    internal ChromeDriver webDriver { get; private set; }
+    internal IBrowser browser { get; private init; }
 
     public IntegrationFixture()
     {
@@ -31,7 +31,7 @@ public sealed class IntegrationFixture : IDisposable
 
         if (task.Wait(TimeSpan.FromSeconds(80)))
         {
-            webDriver = StartWebDriver();
+            browser = CreateBrowser().Result;
             process = StartServer();
         }
         else
@@ -122,17 +122,11 @@ public sealed class IntegrationFixture : IDisposable
         throw new InvalidOperationException($"Error starting server: {process.StandardError.ReadToEnd()}");
     }
 
-    private ChromeDriver StartWebDriver()
+    private async Task<IBrowser> CreateBrowser()
     {
-        var options = new ChromeOptions();
-        options.AddArguments("--headless");
-        options.AddArguments("ignore-certificate-errors");
+        var playwright = await Playwright.CreateAsync();
 
-        var webDriver = new ChromeDriver(options);
-        webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-        webDriver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(120);
-
-        return webDriver;
+        return await playwright.Chromium.LaunchAsync();
     }
 
     private ProcessStartInfo CreateStartInfo(string arguments)
@@ -164,8 +158,7 @@ public sealed class IntegrationFixture : IDisposable
     {
         GC.SuppressFinalize(this);
 
-        webDriver.Quit();
-        webDriver.Dispose();
+        browser.DisposeAsync().AsTask().Wait();
 
         if (process != null && !process.HasExited)
         {
@@ -175,13 +168,6 @@ public sealed class IntegrationFixture : IDisposable
 
     public void CleanUpBetweenTests()
     {
-        // This is largely inspired by capybara
-        // https://github.com/teamcapybara/capybara/blob/090bebf3a0ed3758220c435566c2716495ba11ae/lib/capybara/selenium/driver.rb#L506
-        webDriver.Manage().Cookies.DeleteAllCookies();
-        webDriver.ExecuteScript("window.sessionStorage.clear()");
-        webDriver.ExecuteScript("window.localStorage.clear()");
-        webDriver.Navigate().GoToUrl("about:blank");
-
         // Truncate data in database
         //SqlCommand command = new SqlCommand("TRUNCATE TABLE [dbo].[SupportTickets]", DbConnection());
         //command.Connection.Open();

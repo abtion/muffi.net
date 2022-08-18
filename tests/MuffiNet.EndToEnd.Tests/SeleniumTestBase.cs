@@ -1,12 +1,11 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
+﻿using Microsoft.Playwright;
 using System;
 
 namespace MuffiNet.FrontendReact.Selenium.Tests;
 
 public class SeleniumTestBase : IDisposable
 {
-    protected IWebDriver webDriver { get; private set; }
+    protected IBrowserContext context { get; private init; }
     private bool isDisposed;
     private readonly IntegrationFixture integrationFixture;
 
@@ -19,12 +18,13 @@ public class SeleniumTestBase : IDisposable
     public SeleniumTestBase(IntegrationFixture integrationFixture)
     {
         this.integrationFixture = integrationFixture;
-        webDriver = integrationFixture.webDriver;
-    }
 
-    protected WebDriverWait Wait()
-    {
-        return new WebDriverWait(webDriver, TimeSpan.FromSeconds(10));
+        var contextOptions = new BrowserNewContextOptions()
+        {
+            IgnoreHTTPSErrors = true,
+        };
+
+        context = integrationFixture.browser.NewContextAsync(contextOptions).Result;
     }
 
     public void Dispose()
@@ -39,7 +39,7 @@ public class SeleniumTestBase : IDisposable
     {
         if (isDisposed) return;
 
-        // free managed resources 
+        // free managed resources
         if (disposing)
         {
             // Truncate tables (except for users)
