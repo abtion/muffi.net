@@ -19,7 +19,12 @@ public class SeleniumTestBase : IDisposable
     {
         this.integrationFixture = integrationFixture;
 
-        context = integrationFixture.browser.NewContextAsync().Result;
+        var contextOptions = new BrowserNewContextOptions()
+        {
+            IgnoreHTTPSErrors = true,
+        };
+
+        context = integrationFixture.browser.NewContextAsync(contextOptions).Result;
     }
 
     public void Dispose()
@@ -34,7 +39,7 @@ public class SeleniumTestBase : IDisposable
     {
         if (isDisposed) return;
 
-        // free managed resources 
+        // free managed resources
         if (disposing)
         {
             // Truncate tables (except for users)

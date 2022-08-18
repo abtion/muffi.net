@@ -62,9 +62,6 @@ jobs:
       - name: Start MSSQL DB
         run: docker-compose up -d
 
-      - name: install latest chrome          
-        uses: browser-actions/setup-chrome@latest
-        
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -76,19 +73,24 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-            
+
       - uses: actions/cache@v3
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
-            
+
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v2
 
       - name: Install dotnet ef
         run: dotnet tool install --global dotnet-ef
+
+      - name: Set up playwright
+        run: |
+          dotnet build tests/MuffiNet.Selenium.Tests/MuffiNet.EndToEnd.Tests.csproj
+          pwsh tests/MuffiNet.Selenium.Tests/bin/Debug/net6.0/playwright.ps1 install
 
       - name: Test with the dotnet CLI
         run: dotnet test
@@ -133,7 +135,7 @@ jobs:
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
-            
+
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v2
 
