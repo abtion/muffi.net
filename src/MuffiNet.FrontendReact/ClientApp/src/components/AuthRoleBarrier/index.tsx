@@ -1,5 +1,5 @@
 import { useAuth } from "oidc-react"
-import React, { ReactNode, useEffect } from "react"
+import React, { ReactNode } from "react"
 
 interface AuthRoleBarrier {
   children: ReactNode
@@ -19,8 +19,7 @@ export default function AuthRoleBarrier({
   const { isLoading, userData } = useAuth()
 
   const visible =
-    !isLoading &&
-    userData?.profile?.roles?.some((role) => allow.includes(role))
+    !isLoading && userData?.profile?.roles?.some((role) => allow.includes(role))
 
   return <>{visible ? children : null}</>
 }
