@@ -38,7 +38,7 @@ Local overrides of configurations/secret must be done through [Secret Manager](h
 
 These projects have User Secrets:
 
-  - MuffiNet.Selenium.Tests
+  - MuffiNet.EndToEnd.Tests: `ConnectionStrings:DefaultConnection` (see "LocalDB" section below)
   - MuffiNet.Api
   - MuffiNet.FrontendReact, MuffiNet.Backend.Tests: `ActiveDirectoryConfig:AppClientSecret` (see "Azure Active Directory" section below)
 
@@ -49,9 +49,9 @@ Start the DB with `docker-compose up`, then no further setup is required.
 
 ##### LocalDB
 
-If you are running Windows with a instance of MS LocalDb, you can avoid using Docker for development and for the Selenium tests by running these commands.
+If you are running Windows with a instance of MS LocalDb, you can avoid using Docker for development and for the end-to-end tests by running these commands.
 
-In the "MuffiNet.Selenium.Tests" project folder:
+In the "MuffiNet.EndToEnd.Tests" project folder:
 `dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Server=(localdb)\mssqllocaldb;Database=MUFFINET-TEST;Trusted_Connection=True;MultipleActiveResultSets=true"`
 
 In the "MuffiNet.FrontendReact" project folder:
@@ -172,6 +172,16 @@ source ~/.zshrc
 
 Adapting the command to bash/fish etc. should be a matter of replacing `.zshrc`, with for instance `.bashrc`.
 
+#### Playwright (for end-to-end tests)
+
+To install Chromium for Playwright, start PowerShell as Administrator. (by right-clicking the PowerShell shortcut in the Start Menu and selecting "Run as Administrator".)
+
+From the root folder of the Muffi.NET project, run the following PowerShell commands:
+
+  Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+  cd tests\MuffiNet.Selenium.Tests
+  .\bin\Debug\net6.0\playwright.ps1 install chromium
+
 ### 3. Ensure that linting and tests pass
 
 Backend
@@ -194,7 +204,7 @@ yarn test
 
 ## Test Naming Convention
 
-### Selenium Tests (end-to-end)
+### EndToEnd Tests
 
 For these tests we use the Gherkin syntax. Examples:
 
@@ -278,9 +288,9 @@ Contains backend unit tests of handlers.
 
 Contains backend unit tests of controllers and SignalR hubs.
 
-### Muffi.Selenium.Tests
+### Muffi.EndToEnd.Tests
 
-Contains end-to-end tests running in a headless browser (Selenium).
+Contains end-to-end tests running in a headless browser (Chromium via [Playwright](https://playwright.dev/dotnet/)).
 
 ## Nuget Packages Used
 
@@ -321,7 +331,7 @@ Contains end-to-end tests running in a headless browser (Selenium).
 - Replace MuffiNet to [ProjectName] in .sln file
 - Replace MuffiNet to [ProjectName] in .yarnrc file
 - Replace the User Secret Keys in these projects (by deleting the existing keys in the project files and running `dotnet user-secrets init` in each of the directories):
-  - MuffiNet.Selenium.Tests
+  - MuffiNet.EndToEnd.Tests
   - MuffiNet.Api
   - MuffiNet.FrontendReact
 - Open Visual Studio/VS Code
