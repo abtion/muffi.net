@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solutions Items", "Solution
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.EndToEnd.Tests", "tests\MuffiNet.Selenium.Tests\MuffiNet.EndToEnd.Tests.csproj", "{0F23A7E8-0BDF-4543-A06F-EBD92ED439FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.EndToEnd.Tests", "tests\MuffiNet.EndToEnd.Tests\MuffiNet.EndToEnd.Tests.csproj", "{0F23A7E8-0BDF-4543-A06F-EBD92ED439FE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.Backend", "src\MuffiNet.Backend\MuffiNet.Backend.csproj", "{FA86EB79-9508-40FF-AF85-9FF9FB30F8B3}"
 EndProject

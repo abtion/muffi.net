@@ -89,8 +89,8 @@ jobs:
 
       - name: Set up playwright
         run: |
-          dotnet build tests/MuffiNet.Selenium.Tests/MuffiNet.EndToEnd.Tests.csproj
-          pwsh tests/MuffiNet.Selenium.Tests/bin/Debug/net6.0/playwright.ps1 install chromium
+          dotnet build tests/MuffiNet.EndToEnd.Tests/MuffiNet.EndToEnd.Tests.csproj
+          pwsh tests/MuffiNet.EndToEnd.Tests/bin/Debug/net6.0/playwright.ps1 install chromium
 
       - name: Test with the dotnet CLI
         run: dotnet test
