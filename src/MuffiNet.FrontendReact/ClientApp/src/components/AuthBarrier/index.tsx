@@ -18,16 +18,12 @@ export default function AuthBarrier({
       return null
     }
 
-    // TODO allow some means of checking userData.profile.roles? and use different <AuthBarrier/> instances around restricted areas
-
     return axios.create({
       headers: {
         authorization: `Bearer ${userData.id_token}`,
       },
     })
   }, [isLoading, userData])
-
-  // TODO er, this isn't always being used as a full page (top level) component, so..?
 
   if (!api) {
     return <LoaderFullPage text="Loading..." />

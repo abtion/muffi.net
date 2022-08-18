@@ -5,12 +5,20 @@ import { act } from "react-dom/test-utils"
 import { MemoryRouter } from "react-router"
 
 import NavMenu from "."
+import { AuthContext, AuthContextProps } from "oidc-react"
 
 function renderMenu() {
+  const mockAuthContext = {
+    userData: null,
+    isLoading: false,
+  } as Partial<AuthContextProps> as AuthContextProps
+
   const context = render(
-    <MemoryRouter>
-      <NavMenu />
-    </MemoryRouter>
+    <AuthContext.Provider value={mockAuthContext}>
+      <MemoryRouter>
+        <NavMenu />
+      </MemoryRouter>
+    </AuthContext.Provider>
   )
 
   return { ...context }

@@ -5,6 +5,7 @@ import classNames from "classnames"
 
 import NavItem from "~/components/NavItem"
 import NavLink from "~/components/NavLink"
+import AuthRoleBarrier from "../AuthRoleBarrier"
 
 export default function NavMenu(): JSX.Element {
   const [isCollapsed, setIsCollapsed] = useState(true)
@@ -49,9 +50,11 @@ export default function NavMenu(): JSX.Element {
               <NavItem>
                 <NavLink to="/admin">Overview</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink to="/admin/roles">Roles</NavLink>
-              </NavItem>
+              <AuthRoleBarrier allow={["Administrators"]}>
+                <NavItem>
+                  <NavLink to="/admin/roles">Roles</NavLink>
+                </NavItem>
+              </AuthRoleBarrier>
             </ul>
           </div>
         </div>
