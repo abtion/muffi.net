@@ -1,15 +1,17 @@
 import React from "react"
 import classNames from "classnames"
-import Variants from "../../const/variants"
-import Sizes from "../../const/sizes"
+import Variant from "../../const/variant"
+import Size from "../../const/size"
 import "./index.scss"
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  size?: Sizes
-  variant?: Variants
+  size?: Size
+  variant?: Variant
   outline?: boolean
 }
+
+// TODO adjust Button options and styles to better match Jacob's design
 
 export default function Button(props: ButtonProps): JSX.Element {
   const { size, variant, outline, className, ...rest } = props

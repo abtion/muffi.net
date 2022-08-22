@@ -1,5 +1,5 @@
 .Button {
-  @apply border-2 border-transparent text-base font-medium rounded-md leading-4;
+  @apply border border-transparent w-24 h-9 bg-primary-700 text-sm text-light rounded-md;
 
   // Sizes
   &--sm {
@@ -14,7 +14,7 @@
     @apply px-6 py-3 text-lg xl:py-4 xl:px-16 xl:text-xl;
   }
 
-  // Colors
+  // Variants
   &:not(&--outline) {
     &.Button--neutral {
       @apply text-neutral-500-contrast bg-neutral-500 hover:bg-neutral-600;

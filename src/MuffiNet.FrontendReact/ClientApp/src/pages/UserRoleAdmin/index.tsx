@@ -7,6 +7,9 @@ import ApiContext from "~/contexts/ApiContext"
 import { usePaging } from "~/hooks/usePaging"
 import SearchIcon from "bootstrap-icons/icons/search.svg"
 import Select from "~/components/Select"
+import Dialog from "~/components/Dialog"
+import Button from "~/components/Button"
+import Variant from "~/const/variant"
 
 /**
  * Users, Roles and Permissions (provided by the server)
@@ -48,6 +51,8 @@ export default function UserRoleAdmin(): JSX.Element {
 
   const [searchTerms, setSearchTerms] = useState<string>("")
 
+  const [editingUser, setEditingUser] = useState<User | null>(null);
+
   const {
     currentPage,
     totalPages,
@@ -80,6 +85,8 @@ export default function UserRoleAdmin(): JSX.Element {
     [data, searchTerms, selectedRoleID]
   )
 
+  // TODO extract Input style
+  
   return (
     <AuthorizedLayout>
       <div className="container mt-5">
@@ -118,9 +125,9 @@ export default function UserRoleAdmin(): JSX.Element {
                   </Select>
                 </div>
                 <div className="flex-initial">
-                  <button className="w-24 h-9 bg-primary-700 text-sm text-light rounded">
+                  <Button>
                     Add users
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -133,12 +140,12 @@ export default function UserRoleAdmin(): JSX.Element {
                 </tr>
               </thead>
               <tbody>
-                {rows.map((u) => (
-                  <tr key={u.userID}>
-                    <td>{u.name}</td>
-                    <td>{u.appRoleIDs.map((id) => roleNames[id]).join()}</td>
+                {rows.map((user) => (
+                  <tr key={user.userID}>
+                    <td>{user.name}</td>
+                    <td>{user.appRoleIDs.map((id) => roleNames[id]).join()}</td>
                     <td>
-                      <button className="float-right">Edit</button>
+                      <button className="float-right" onClick={() => { setEditingUser(user) }}>Edit</button>
                     </td>
                   </tr>
                 ))}
@@ -159,6 +166,20 @@ export default function UserRoleAdmin(): JSX.Element {
           </div>
         )}
       </div>
+
+      <Dialog isOpen={!!editingUser} onClose={() => setEditingUser(null)}>
+        <Dialog.Header title="Edit user profile">
+          Change the basic information and role(s) of the user.
+        </Dialog.Header>
+        <Dialog.Content>
+          TODO editor coming soon...
+        </Dialog.Content>
+        <Dialog.Footer>
+          <Button variant={Variant.Neutral} onClick={() => setEditingUser(null)}>Cancel</Button>
+          <Button variant={Variant.Danger}>Delete user</Button>
+          <Button>Save changes</Button>
+        </Dialog.Footer>
+      </Dialog>
     </AuthorizedLayout>
   )
 }

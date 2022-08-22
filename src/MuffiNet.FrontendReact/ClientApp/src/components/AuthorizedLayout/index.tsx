@@ -1,17 +1,17 @@
 import React from "react"
 import NavMenu from "~/components/NavMenu"
 
+type AuthorizedLayoutProps = React.HTMLAttributes<HTMLDivElement>;
+
 export default function AuthorizedLayout({
+  style,
   children,
 }: AuthorizedLayoutProps): JSX.Element {
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+    // TODO use Tailwind
+    <div style={{ ...style || {}, display: "flex", flexDirection: "column", height: "100%" }}>
       <NavMenu />
       {children}
     </div>
   )
-}
-
-type AuthorizedLayoutProps = {
-  children?: JSX.Element
 }

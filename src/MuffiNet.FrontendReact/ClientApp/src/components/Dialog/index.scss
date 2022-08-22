@@ -1,0 +1,27 @@
+.Dialog {
+  @apply overflow-x-hidden overflow-y-auto max-w-screen-sm sm:w-full p-0 rounded-lg;
+
+  &__Close {
+    @apply absolute top-2 right-2 p-2;
+  }
+
+  &__Header {
+    @apply px-6 pt-6 text-base;
+  }
+
+  &__Title {
+    @apply text-xl font-medium pb-2;
+  }
+
+  &__Content {
+    @apply p-6;
+  }
+
+  &__Footer {
+    @apply p-4 border-t border-neutral-300 bg-neutral-100 flex gap-4;
+
+    & > :first-child {
+      @apply ml-auto;
+    }
+  }
+}

@@ -1,7 +1,7 @@
-enum Sizes {
+enum Size {
   Small = "sm",
   Medium = "md",
   Large = "lg",
 }
 
-export default Sizes
+export default Size
