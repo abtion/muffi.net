@@ -53,7 +53,7 @@ export default function UserRoleAdmin(): JSX.Element {
 
   const [searchTerms, setSearchTerms] = useState<string>("")
 
-  const [editingUser, setEditingUser] = useState<User | null>(null);
+  const [editingUser, setEditingUser] = useState<User | null>(null)
 
   const {
     currentPage,
@@ -88,7 +88,7 @@ export default function UserRoleAdmin(): JSX.Element {
   )
 
   // TODO extract Input style
-  
+
   return (
     <AuthorizedLayout>
       <div className="container mt-5">
@@ -127,9 +127,7 @@ export default function UserRoleAdmin(): JSX.Element {
                   </Select>
                 </div>
                 <div className="flex-initial">
-                  <Button>
-                    Add users
-                  </Button>
+                  <Button>Add users</Button>
                 </div>
               </div>
             </div>
@@ -147,7 +145,14 @@ export default function UserRoleAdmin(): JSX.Element {
                     <td>{user.name}</td>
                     <td>{user.appRoleIDs.map((id) => roleNames[id]).join()}</td>
                     <td>
-                      <button className="float-right" onClick={() => { setEditingUser({...user}) }}>Edit</button>
+                      <button
+                        className="float-right"
+                        onClick={() => {
+                          setEditingUser({ ...user })
+                        }}
+                      >
+                        Edit
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -169,39 +174,52 @@ export default function UserRoleAdmin(): JSX.Element {
         )}
       </div>
 
-      {data && editingUser && <Dialog isOpen={!!editingUser} onClose={() => setEditingUser(null)}>
-        <Dialog.Header title="Edit user profile">
-          Change the basic information and role(s) of the user.
-        </Dialog.Header>
-        <Dialog.Content>
-          <div className="font-bold text-lg mb-3">
-            Info
-          </div>
-          <label className="block mb-5 text-sm">
-            Name
-            <Input className="block w-full" variant={Variant.Neutral}/>
-          </label>
-          <label className="block mb-5 text-sm">
-            Email
-            <Input className="block w-full" variant={Variant.Neutral}/>
-          </label>
-          <div className="font-bold text-lg">
-            Roles
-          </div>
-          {data.roles.map(role => (
-            <label key={role.id}>
-              <input type="checkbox" checked={editingUser.appRoleIDs.includes(role.id)} onChange={e => setEditingUser({...editingUser, appRoleIDs: e.currentTarget.checked ? editingUser.appRoleIDs.concat(role.id) : editingUser.appRoleIDs.filter(id => id !== role.id)})}/>
-              {" "}
-              {role.name}
+      {data && editingUser && (
+        <Dialog isOpen={!!editingUser} onClose={() => setEditingUser(null)}>
+          <Dialog.Header title="Edit user profile">
+            Change the basic information and role(s) of the user.
+          </Dialog.Header>
+          <Dialog.Content>
+            <div className="font-bold text-lg mb-3">Info</div>
+            <label className="block mb-5 text-sm">
+              Name
+              <Input className="block w-full" variant={Variant.Neutral} />
             </label>
-          ))}
-        </Dialog.Content>
-        <Dialog.Footer>
-          <Button variant={Variant.Neutral} onClick={() => setEditingUser(null)}>Cancel</Button>
-          <Button variant={Variant.Danger}>Delete user</Button>
-          <Button>Save changes</Button>
-        </Dialog.Footer>
-      </Dialog>}
+            <label className="block mb-5 text-sm">
+              Email
+              <Input className="block w-full" variant={Variant.Neutral} />
+            </label>
+            <div className="font-bold text-lg">Roles</div>
+            {data.roles.map((role) => (
+              <label key={role.id}>
+                <input
+                  type="checkbox"
+                  checked={editingUser.appRoleIDs.includes(role.id)}
+                  onChange={(e) =>
+                    setEditingUser({
+                      ...editingUser,
+                      appRoleIDs: e.currentTarget.checked
+                        ? editingUser.appRoleIDs.concat(role.id)
+                        : editingUser.appRoleIDs.filter((id) => id !== role.id),
+                    })
+                  }
+                />{" "}
+                {role.name}
+              </label>
+            ))}
+          </Dialog.Content>
+          <Dialog.Footer>
+            <Button
+              variant={Variant.Neutral}
+              onClick={() => setEditingUser(null)}
+            >
+              Cancel
+            </Button>
+            <Button variant={Variant.Danger}>Delete user</Button>
+            <Button>Save changes</Button>
+          </Dialog.Footer>
+        </Dialog>
+      )}
     </AuthorizedLayout>
   )
 }
