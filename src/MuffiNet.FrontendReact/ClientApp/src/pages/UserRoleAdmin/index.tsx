@@ -11,7 +11,6 @@ import Dialog from "~/components/Dialog"
 import Button from "~/components/Button"
 import Variant from "~/const/variant"
 import Input from "~/components/Input"
-import Size from "~/const/size"
 
 /**
  * Users, Roles and Permissions (provided by the server)
