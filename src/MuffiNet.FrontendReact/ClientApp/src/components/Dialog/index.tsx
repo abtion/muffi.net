@@ -48,7 +48,7 @@ function Dialog({ children, isOpen, onClose, className, ...rest }: DialogProps):
     dialog.current!.addEventListener("cancel", onCancel);
 
     return () => {
-      dialog.current!.removeEventListener("cancel", onCancel);
+      dialog.current?.removeEventListener("cancel", onCancel);
     }
   }, [onClose]);
 
