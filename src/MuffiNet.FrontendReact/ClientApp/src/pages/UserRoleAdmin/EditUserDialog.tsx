@@ -30,7 +30,9 @@ export default function UserEditDialog({
 
   useEffect(() => {
     api
-      .get<UserDetails>("/api/roleAdmin/user-details", { params: { userID: _user.userID }})
+      .get<UserDetails>("/api/roleAdmin/user-details", {
+        params: { userID: _user.userID },
+      })
       .then((response) => setDetails(response.data))
   }, [])
 
@@ -46,13 +48,12 @@ export default function UserEditDialog({
     setDetails(undefined)
     setSaving(true)
 
-    await api
-      .post("/api/roleAdmin/update-user", {
-        userID: _user.userID,
-        name,
-        appRoleIDs,
-      })
-    
+    await api.post("/api/roleAdmin/update-user", {
+      userID: _user.userID,
+      name,
+      appRoleIDs,
+    })
+
     onClose()
   }
 
@@ -109,7 +110,9 @@ export default function UserEditDialog({
           </Dialog.Footer>
         </>
       ) : (
-        <Dialog.Content><Loader text={saving ? "Saving..." : "Loading..."} /></Dialog.Content>
+        <Dialog.Content>
+          <Loader text={saving ? "Saving..." : "Loading..."} />
+        </Dialog.Content>
       )}
     </Dialog>
   )
