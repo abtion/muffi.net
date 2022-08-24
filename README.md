@@ -92,6 +92,7 @@ Under "API Permissions", add a new Permission for the "Microsoft Graph" API - se
 
 * `Application.Read.All`
 * `AppRoleAssignment.ReadWrite.All`
+* `User.ReadWrite.All`
 
 Press "Add Permissions", and then click the "Grant admin consent" button to confirm.
 
