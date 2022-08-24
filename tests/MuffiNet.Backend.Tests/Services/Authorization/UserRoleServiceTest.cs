@@ -60,5 +60,16 @@ namespace MuffiNet.FrontendReact.Tests.Authorization
 
             users.Should().NotBeEmpty();
         }
+
+        // TODO add a dummy User to AD for integration testing?
+        //[Fact]
+        //public async Task CanGetUserDetails()
+        //{
+        //    var service = CreateUserRoleService();
+
+        //    var details = await service.GetUserDetails(".......");
+
+        //    details.Should().NotBeNull();
+        //}
     }
 }

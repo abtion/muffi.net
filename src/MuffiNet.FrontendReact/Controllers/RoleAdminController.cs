@@ -19,7 +19,7 @@ namespace MuffiNet.FrontendReact.Controllers
         }
 
         [HttpGet("get-data")]
-        public async Task<ActionResult<object>> Index()
+        public async Task<ActionResult<object>> GetData()
         {
             var roles = await userRoleService.ListAppRoles();
             var users = await userRoleService.ListUsers();
@@ -33,6 +33,20 @@ namespace MuffiNet.FrontendReact.Controllers
                 }),
                 users = users
             };
+        }
+
+        [HttpPost("update-user")]
+        public async Task<ActionResult<object>> UpdateUser([FromBody] User user)
+        {
+            await userRoleService.UpdateUser(user);
+
+            return new OkResult();
+        }
+
+        [HttpGet("user-details")]
+        public async Task<ActionResult<UserDetails>> GetUserDetails([FromQuery] string userID)
+        {
+            return await userRoleService.GetUserDetails(userID);
         }
     }
 }

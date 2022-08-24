@@ -7,27 +7,9 @@ import ApiContext from "~/contexts/ApiContext"
 import { usePaging } from "~/hooks/usePaging"
 import SearchIcon from "bootstrap-icons/icons/search.svg"
 import Select from "~/components/Select"
-import Dialog from "~/components/Dialog"
 import Button from "~/components/Button"
-import Variant from "~/const/variant"
-import Input from "~/components/Input"
-
-/**
- * Users, Roles and Permissions (provided by the server)
- */
-interface UserRoleData {
-  roles: Array<{
-    id: string
-    name: string
-  }>
-  users: Array<User>
-}
-
-interface User {
-  name: string
-  userID: string
-  appRoleIDs: Array<string>
-}
+import { User, UserRoleData } from "./model"
+import EditUserDialog from "./EditUserDialog"
 
 // TODO add users, build out proper UI
 
@@ -43,7 +25,7 @@ export default function UserRoleAdmin(): JSX.Element {
   }, [data])
 
   useEffect(() => {
-    api.get<UserRoleData>("/api/roleAdmin/get-data").then((response) => {
+    api.get<UserRoleData>("/api/roleAdmin/get-data", {}).then((response) => {
       setData(response.data)
     })
   }, [])
@@ -174,50 +156,11 @@ export default function UserRoleAdmin(): JSX.Element {
       </div>
 
       {data && editingUser && (
-        <Dialog isOpen={!!editingUser} onClose={() => setEditingUser(null)}>
-          <Dialog.Header title="Edit user profile">
-            Change the basic information and role(s) of the user.
-          </Dialog.Header>
-          <Dialog.Content>
-            <div className="font-bold text-lg mb-3">Info</div>
-            <label className="block mb-5 text-sm">
-              Name
-              <Input className="block w-full" variant={Variant.Neutral} />
-            </label>
-            <label className="block mb-5 text-sm">
-              Email
-              <Input className="block w-full" variant={Variant.Neutral} />
-            </label>
-            <div className="font-bold text-lg">Roles</div>
-            {data.roles.map((role) => (
-              <label key={role.id}>
-                <input
-                  type="checkbox"
-                  checked={editingUser.appRoleIDs.includes(role.id)}
-                  onChange={(e) =>
-                    setEditingUser({
-                      ...editingUser,
-                      appRoleIDs: e.currentTarget.checked
-                        ? editingUser.appRoleIDs.concat(role.id)
-                        : editingUser.appRoleIDs.filter((id) => id !== role.id),
-                    })
-                  }
-                />{" "}
-                {role.name}
-              </label>
-            ))}
-          </Dialog.Content>
-          <Dialog.Footer>
-            <Button
-              variant={Variant.Neutral}
-              onClick={() => setEditingUser(null)}
-            >
-              Cancel
-            </Button>
-            <Button variant={Variant.Danger}>Delete user</Button>
-            <Button>Save changes</Button>
-          </Dialog.Footer>
-        </Dialog>
+        <EditUserDialog
+          user={editingUser}
+          data={data}
+          onClose={() => setEditingUser(null)}
+        />
       )}
     </AuthorizedLayout>
   )

@@ -124,4 +124,30 @@ public class UserRoleService
             .Request()
             .DeleteAsync();
     }
+
+    public async Task UpdateUser(User user)
+    {
+        var update = new Microsoft.Graph.User
+        {
+            DisplayName = user.Name,
+        };
+
+        await client
+            .Users[user.UserID.ToString()]
+            .Request()
+            .UpdateAsync(update);
+
+        // TODO update User Roles
+    }
+
+    public async Task<UserDetails> GetUserDetails(string userID)
+    {
+        var user = await client
+            .Users[userID]
+            .Request()
+            .Select(u => new { u.Mail }) // optimization
+            .GetAsync();
+
+        return new UserDetails(user.Mail);
+    }
 }
