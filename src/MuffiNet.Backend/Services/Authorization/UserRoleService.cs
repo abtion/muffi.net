@@ -127,6 +127,8 @@ public class UserRoleService
 
     public async Task UpdateUser(User user)
     {
+        // Update User details:
+
         var update = new Microsoft.Graph.User
         {
             DisplayName = user.Name,
@@ -137,7 +139,37 @@ public class UserRoleService
             .Request()
             .UpdateAsync(update);
 
-        // TODO update User Roles
+        // Fetch existing App Role Assignments assigned to this User:
+
+        var currentAssignments = (await client
+            .Users[user.UserID.ToString()]
+            .AppRoleAssignments
+            .Request()
+            .GetAsync())
+
+            .Where(a => a.AppRoleId != Guid.Empty);
+
+        // TODO add test coverage: this area is dangerous and fragile
+
+        // Add any new App Role Assignments not already assigned to this User:
+
+        foreach (var roleID in user.AppRoleIDs)
+        {
+            if (! currentAssignments.Any(a => a.AppRoleId == roleID))
+            {
+                await AssignUserRole(user.UserID.ToString(), roleID.ToString());
+            }
+        }
+
+        // Revoke any old App Role Assignments no longer assigned to this User:
+
+        foreach (var currentAssignment in currentAssignments)
+        {
+            if (! user.AppRoleIDs.Any(id => currentAssignment.AppRoleId == id))
+            {
+                await RevokeUserRoleAssignment(currentAssignment.Id);
+            }
+        }
     }
 
     public async Task<UserDetails> GetUserDetails(string userID)
