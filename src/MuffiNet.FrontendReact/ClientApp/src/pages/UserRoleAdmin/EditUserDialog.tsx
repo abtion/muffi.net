@@ -10,7 +10,7 @@ import Loader from "~/components/Loader"
 interface UserEditDialogProps {
   user: User
   data: UserRoleData
-  onClose: () => void
+  onClose: (saved: boolean) => void
 }
 
 export default function UserEditDialog({
@@ -54,11 +54,11 @@ export default function UserEditDialog({
       appRoleIDs,
     })
 
-    onClose()
+    onClose(true)
   }
 
   function cancel() {
-    onClose()
+    onClose(false)
   }
 
   return (

@@ -16,19 +16,25 @@ import EditUserDialog from "./EditUserDialog"
 export default function UserRoleAdmin(): JSX.Element {
   const api = useContext(ApiContext)
 
-  const [data, setData] = useState<UserRoleData>()
+  const [data, setData] = useState<UserRoleData | null>(null)
+
+  useEffect(() => {
+    loadData()
+  }, [])
+
+  async function loadData() {
+    setData(null)
+
+    const response = await api.get<UserRoleData>("/api/roleAdmin/get-data", {})
+
+    setData(response.data)
+  }
 
   const roleNames = useMemo(() => {
     return data
       ? Object.fromEntries(data.roles.map((role) => [role.id, role.name]))
       : {}
   }, [data])
-
-  useEffect(() => {
-    api.get<UserRoleData>("/api/roleAdmin/get-data", {}).then((response) => {
-      setData(response.data)
-    })
-  }, [])
 
   const [selectedRoleID, setSelectedRoleID] = useState<string>()
 
@@ -67,6 +73,14 @@ export default function UserRoleAdmin(): JSX.Element {
     10,
     [data, searchTerms, selectedRoleID]
   )
+
+  function closeEditUserDialog(saved: boolean) {
+    setEditingUser(null)
+
+    if (saved) {
+      loadData()
+    }
+  }
 
   // TODO extract Input style
 
@@ -159,7 +173,7 @@ export default function UserRoleAdmin(): JSX.Element {
         <EditUserDialog
           user={editingUser}
           data={data}
-          onClose={() => setEditingUser(null)}
+          onClose={closeEditUserDialog}
         />
       )}
     </AuthorizedLayout>
