@@ -1,8 +1,8 @@
 import React from "react"
 import { createRoot } from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
-import "~/main.scss"
 import App from "~/App"
+import "~/main.scss"
 
 import prepareColorVariables from "~/utils/prepareColorVariables"
 import colors from "../../../../colors.json"
