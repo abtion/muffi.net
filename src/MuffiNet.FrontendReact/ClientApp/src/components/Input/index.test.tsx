@@ -42,11 +42,17 @@ describe(Input, () => {
   describe("when variant or size are set to none", () => {
     it("does not add variant or size classes", () => {
       const { getByPlaceholderText } = render(
-        <Input {...defaultProps} variant="none" size="none" className="text-lg" />
+        <Input
+          {...defaultProps}
+          variant="none"
+          size="none"
+          className="text-lg"
+        />
       )
 
       const input = getByPlaceholderText(defaultProps.placeholder as string)
 
+      // eslint-disable-next-line jest-dom/prefer-to-have-class
       expect(input.className).toBe("Input text-lg")
     })
   })

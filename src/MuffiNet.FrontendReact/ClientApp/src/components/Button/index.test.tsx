@@ -18,9 +18,7 @@ describe(Button, () => {
 
   describe("when size is set", () => {
     it("adds size class", () => {
-      const { getByText } = render(
-        <Button {...defaultProps} size="md" />
-      )
+      const { getByText } = render(<Button {...defaultProps} size="md" />)
 
       const button = getByText(defaultProps.children as string)
 
@@ -43,11 +41,17 @@ describe(Button, () => {
   describe("when variant or size are set to none", () => {
     it("does not add variant or size classes", () => {
       const { getByText } = render(
-        <Button {...defaultProps} variant="none" size="none" className="font-lg" />
+        <Button
+          {...defaultProps}
+          variant="none"
+          size="none"
+          className="font-lg"
+        />
       )
 
       const button = getByText(defaultProps.children as string)
 
+      // eslint-disable-next-line jest-dom/prefer-to-have-class
       expect(button.className).toBe("Button font-lg")
     })
   })

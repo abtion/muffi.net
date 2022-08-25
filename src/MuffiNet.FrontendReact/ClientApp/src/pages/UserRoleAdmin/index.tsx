@@ -124,7 +124,9 @@ export default function UserRoleAdmin(): JSX.Element {
                   </Select>
                 </div>
                 <div className="flex-initial">
-                  <Button size="sm" variant="primary">Add users</Button>
+                  <Button size="sm" variant="primary">
+                    Add users
+                  </Button>
                 </div>
               </div>
             </div>
