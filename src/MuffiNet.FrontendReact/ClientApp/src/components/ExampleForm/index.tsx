@@ -2,8 +2,6 @@ import React, { useState } from "react"
 
 import Button from "~/components/Button"
 import Input from "~/components/Input"
-import Size from "~/const/size"
-import Variant from "~/const/variant"
 
 export default function ExampleForm({
   onSubmit,
@@ -40,8 +38,6 @@ export default function ExampleForm({
           Name
         </label>
         <Input
-          size={Size.Medium}
-          variant={Variant.Neutral}
           className="w-full block"
           id="nameInput"
           name="Name"
@@ -55,8 +51,6 @@ export default function ExampleForm({
           Description
         </label>
         <Input
-          size={Size.Medium}
-          variant={Variant.Neutral}
           className="w-full block"
           id="descriptionInput"
           name="Description"
@@ -71,8 +65,6 @@ export default function ExampleForm({
           E-mail
         </label>
         <Input
-          size={Size.Medium}
-          variant={Variant.Neutral}
           className="w-full block"
           id="emailInput"
           name="Email"
@@ -88,8 +80,6 @@ export default function ExampleForm({
           Phone
         </label>
         <Input
-          size={Size.Medium}
-          variant={Variant.Neutral}
           className="w-full block"
           id="phoneInput"
           name="Phone"
@@ -102,7 +92,7 @@ export default function ExampleForm({
         />
       </div>
       <div>
-        <Button variant={Variant.Primary} size={Size.Large}>
+        <Button variant="primary" size="lg">
           Submit
         </Button>
       </div>

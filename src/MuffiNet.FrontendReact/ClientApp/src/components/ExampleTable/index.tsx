@@ -2,7 +2,6 @@ import React from "react"
 import Table from "~/components/Table"
 import Button from "~/components/Button"
 import { ExampleEntity } from "~/types/ExampleEntity"
-import Size from "~/const/size"
 
 export default function ExampleTable({
   entities,
@@ -38,7 +37,7 @@ export default function ExampleTable({
             <td>{entity.phone}</td>
             <td>
               <Button
-                size={Size.Small}
+                size="sm"
                 onClick={(e) => handleClick(e, entity.id)}
               >
                 Remove

@@ -1,7 +1,5 @@
 import React from "react"
 import { render } from "@testing-library/react"
-import Size from "../../const/size"
-import Variant from "../../const/variant"
 
 import Button, { ButtonProps } from "."
 
@@ -18,20 +16,10 @@ describe(Button, () => {
     expect(button).toBeInTheDocument()
   })
 
-  describe("outline = true", () => {
-    it("adds outline class", () => {
-      const { getByText } = render(<Button {...defaultProps} outline />)
-
-      const button = getByText(defaultProps.children as string)
-
-      expect(button).toHaveClass("Button--outline")
-    })
-  })
-
   describe("when size is set", () => {
     it("adds size class", () => {
       const { getByText } = render(
-        <Button {...defaultProps} size={Size.Medium} />
+        <Button {...defaultProps} size="md" />
       )
 
       const button = getByText(defaultProps.children as string)
@@ -43,12 +31,24 @@ describe(Button, () => {
   describe("when variant is set", () => {
     it("adds variant class", () => {
       const { getByText } = render(
-        <Button {...defaultProps} variant={Variant.Primary} />
+        <Button {...defaultProps} variant="danger" />
       )
 
       const button = getByText(defaultProps.children as string)
 
-      expect(button).toHaveClass("Button--primary")
+      expect(button).toHaveClass("Button--danger")
+    })
+  })
+
+  describe("when variant or size are set to none", () => {
+    it("does not add variant or size classes", () => {
+      const { getByText } = render(
+        <Button {...defaultProps} variant="none" size="none" className="font-lg" />
+      )
+
+      const button = getByText(defaultProps.children as string)
+
+      expect(button.className).toBe("Button font-lg")
     })
   })
 })

@@ -1,24 +1,18 @@
 import React from "react"
 import classNames from "classnames"
-import Variant from "../../const/variant"
-import Size from "../../const/size"
 import "./index.scss"
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
-  size?: Size
-  variant?: Variant
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "none";
+  variant?: "default" | "error" | "none";
 }
 
-export default function Input(props: InputProps): JSX.Element {
-  const { size, variant, className, ...rest } = props
-
+export default function Input({ size = "md", variant = "default", className, ...rest }: InputProps): JSX.Element {
   const usedClassName = classNames(
     "Input",
-    {
-      [`Input--${size}`]: size,
-      [`Input--${variant}`]: variant,
-    },
+    size !== "none" && `Input--${size}`,
+    variant !== "none" && `Input--${variant}`,
     className
   )
 

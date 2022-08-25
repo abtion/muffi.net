@@ -10,6 +10,7 @@ import Select from "~/components/Select"
 import Button from "~/components/Button"
 import { User, UserRoleData } from "./model"
 import EditUserDialog from "./EditUserDialog"
+import Input from "~/components/Input"
 
 // TODO add users, build out proper UI
 
@@ -96,8 +97,9 @@ export default function UserRoleAdmin(): JSX.Element {
               <div className="h-full flex items-center gap-x-2 px-4">
                 <div className="flex-auto">
                   <div className="relative w-80">
-                    <input
-                      className="w-80 h-9 border border-neutral-200 rounded pl-3 text-neutral-500"
+                    <Input
+                      className="w-80"
+                      size="md"
                       type="text"
                       placeholder="Search"
                       value={searchTerms}
@@ -122,7 +124,7 @@ export default function UserRoleAdmin(): JSX.Element {
                   </Select>
                 </div>
                 <div className="flex-initial">
-                  <Button>Add users</Button>
+                  <Button size="sm" variant="primary">Add users</Button>
                 </div>
               </div>
             </div>

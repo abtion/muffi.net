@@ -1,5 +1,4 @@
 import Dialog from "~/components/Dialog"
-import Variant from "~/const/variant"
 import Input from "~/components/Input"
 import { User, UserDetails, UserRoleData } from "./model"
 import React, { useContext, useEffect, useState } from "react"
@@ -86,7 +85,6 @@ export default function UserEditDialog({
               Name
               <Input
                 className="block w-full"
-                variant={Variant.Neutral}
                 value={name}
                 onChange={(e) => setName(e.currentTarget.value)}
               />
@@ -94,7 +92,6 @@ export default function UserEditDialog({
             <label className="block mb-5 text-sm">
               Email
               <Input
-                variant={Variant.Neutral}
                 className="block w-full"
                 readOnly
                 value={details?.email}
@@ -114,13 +111,13 @@ export default function UserEditDialog({
           </Dialog.Content>
 
           <Dialog.Footer>
-            <Button variant={Variant.Neutral} onClick={cancel}>
+            <Button onClick={cancel}>
               Cancel
             </Button>
-            <Button variant={Variant.Danger} onClick={revokeAccess}>
+            <Button variant="danger" onClick={revokeAccess}>
               Revoke access
             </Button>
-            <Button onClick={saveUser}>Save changes</Button>
+            <Button variant="primary" onClick={saveUser}>Save changes</Button>
           </Dialog.Footer>
         </>
       ) : (

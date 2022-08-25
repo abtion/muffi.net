@@ -1,8 +1,6 @@
 import React from "react"
 import { render } from "@testing-library/react"
 import Input, { InputProps } from "."
-import Size from "../../const/size"
-import Variant from "../../const/variant"
 
 const defaultProps: InputProps = {
   placeholder: "Input placeholder",
@@ -20,7 +18,7 @@ describe(Input, () => {
   describe("when size is set", () => {
     it("adds size class", () => {
       const { getByPlaceholderText } = render(
-        <Input {...defaultProps} size={Size.Medium} />
+        <Input {...defaultProps} size="md" />
       )
 
       const input = getByPlaceholderText(defaultProps.placeholder as string)
@@ -32,12 +30,24 @@ describe(Input, () => {
   describe("when variant is set", () => {
     it("adds variant class", () => {
       const { getByPlaceholderText } = render(
-        <Input {...defaultProps} variant={Variant.Primary} />
+        <Input {...defaultProps} variant="error" />
       )
 
       const input = getByPlaceholderText(defaultProps.placeholder as string)
 
-      expect(input).toHaveClass("Input--primary")
+      expect(input).toHaveClass("Input--error")
+    })
+  })
+
+  describe("when variant or size are set to none", () => {
+    it("does not add variant or size classes", () => {
+      const { getByPlaceholderText } = render(
+        <Input {...defaultProps} variant="none" size="none" className="text-lg" />
+      )
+
+      const input = getByPlaceholderText(defaultProps.placeholder as string)
+
+      expect(input.className).toBe("Input text-lg")
     })
   })
 })
