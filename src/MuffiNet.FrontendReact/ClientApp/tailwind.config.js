@@ -9,10 +9,7 @@ const tailwindConfig = prepareColorVariables(colors).tailwindConfig
  * @type {import('@types/tailwindcss/tailwind-config').TailwindConfig}
  */
 const config = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx,scss,css}",
-    "./public/index.ejs",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx,scss,css}", "./public/index.ejs"],
   theme: {
     container: {
       center: true,
