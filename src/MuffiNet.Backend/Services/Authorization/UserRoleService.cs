@@ -141,13 +141,9 @@ public class UserRoleService
 
         // Fetch existing App Role Assignments assigned to this User:
 
-        var currentAssignments = (await client
-            .Users[user.UserID.ToString()]
-            .AppRoleAssignments
-            .Request()
-            .GetAsync())
+        var currentAssignments = (await GetAssignments(user.UserID.ToString()))
 
-            .Where(a => a.AppRoleId != Guid.Empty);
+            .Where(a => a.AppRoleId != Guid.Empty); // ignoring the default App Role
 
         // TODO add test coverage: this area is dangerous and fragile
 
@@ -181,5 +177,25 @@ public class UserRoleService
             .GetAsync();
 
         return new UserDetails(user.Mail);
+    }
+
+    public async Task RevokeAccess(string userID)
+    {
+        var allAssignments = await GetAssignments(userID);
+
+        foreach (var assignment in allAssignments)
+        {
+            await RevokeUserRoleAssignment(assignment.Id);
+        }
+    }
+
+    private async Task<IUserAppRoleAssignmentsCollectionPage> GetAssignments(string userID)
+    {
+        return await client
+            .Users[userID]
+            .AppRoleAssignments
+            .Request()
+            .Filter($"resourceId eq {config.AppID}")
+            .GetAsync();
     }
 }

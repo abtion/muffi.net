@@ -48,5 +48,13 @@ namespace MuffiNet.FrontendReact.Controllers
         {
             return await userRoleService.GetUserDetails(userID);
         }
+
+        [HttpPost("revoke-access")]
+        public async Task<ActionResult> RevokeAccess([FromQuery] string userID)
+        {
+            await userRoleService.RevokeAccess(userID);
+
+            return new OkResult();
+        }
     }
 }

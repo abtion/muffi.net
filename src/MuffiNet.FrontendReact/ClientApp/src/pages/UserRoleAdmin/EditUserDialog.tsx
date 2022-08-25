@@ -57,6 +57,15 @@ export default function UserEditDialog({
     onClose(true)
   }
 
+  async function revokeAccess() {
+    setDetails(undefined)
+    setSaving(true)
+
+    await api.post("/api/roleAdmin/revoke-access", "", { params: { userID: _user.userID } })
+
+    onClose(true)
+  }
+
   function cancel() {
     onClose(false)
   }
@@ -106,6 +115,7 @@ export default function UserEditDialog({
             <Button variant={Variant.Neutral} onClick={cancel}>
               Cancel
             </Button>
+            <Button variant={Variant.Danger} onClick={revokeAccess}>Revoke access</Button>
             <Button onClick={saveUser}>Save changes</Button>
           </Dialog.Footer>
         </>
