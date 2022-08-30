@@ -10,7 +10,7 @@ jest.mock("axios", () => ({
   get: jest.fn(),
 }))
 
-jest.mock("oidc-react", () => ({
+jest.mock("react-oidc-context", () => ({
   AuthProvider: ({ children }: { children: JSX.Element[] }) => (
     <div>{children}</div>
   ),

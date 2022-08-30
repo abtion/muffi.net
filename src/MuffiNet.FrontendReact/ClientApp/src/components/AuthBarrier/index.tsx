@@ -1,8 +1,8 @@
-import React, { ReactNode, useMemo } from "react"
-import { useAuth } from "oidc-react"
+import React, { ReactNode, useEffect, useMemo } from "react"
 import axios from "axios"
 import ApiContext from "~/contexts/ApiContext"
 import LoaderFullPage from "../LoaderFullPage"
+import { hasAuthParams, useAuth } from "react-oidc-context"
 
 interface AuthBarrierProps {
   children?: ReactNode | undefined
@@ -11,23 +11,37 @@ interface AuthBarrierProps {
 export default function AuthBarrier({
   children,
 }: AuthBarrierProps): JSX.Element {
-  const { isLoading, userData } = useAuth()
+  const { user, isAuthenticated, error, signinRedirect } = useAuth()
+
+  // Handle automatic sign-in:
+
+  useEffect(() => {
+    if (!hasAuthParams() && !isAuthenticated) {
+      signinRedirect()
+    }
+  }, [])
+
+  // Configure the API client:
 
   const api = useMemo(() => {
-    if (isLoading || !userData?.id_token) {
-      return null
-    }
+    return isAuthenticated && user
+      ? axios.create({
+          headers: {
+            authorization: `Bearer ${user.id_token}`,
+          },
+        })
+      : null
+  }, [isAuthenticated, user])
 
-    return axios.create({
-      headers: {
-        authorization: `Bearer ${userData.id_token}`,
-      },
-    })
-  }, [isLoading, userData])
+  // Render:
 
-  if (!api) {
-    return <LoaderFullPage text="Loading..." />
+  if (error) {
+    return <div>ERROR: {error.message}</div>
   }
 
-  return <ApiContext.Provider value={api}>{children}</ApiContext.Provider>
+  if (isAuthenticated && api) {
+    return <ApiContext.Provider value={api}>{children}</ApiContext.Provider>
+  }
+
+  return <LoaderFullPage text="Loading..." />
 }

@@ -7,11 +7,14 @@ import { HubConnection } from "@microsoft/signalr"
 import useIdMap from "~/hooks/useIdMap"
 import useHub from "~/hooks/useHub"
 import { ExampleEntity } from "~/types/ExampleEntity"
-import { useAuth } from "oidc-react"
 import ApiContext from "~/contexts/ApiContext"
+import { useAuth } from "react-oidc-context"
 
 export default function AuthorizedHome(): JSX.Element {
-  const idToken = useAuth().userData?.id_token || ""
+  const { user } = useAuth()
+
+  const idToken = user?.id_token || ""
+
   const api = useContext(ApiContext)
 
   const connectionOptions = useMemo(

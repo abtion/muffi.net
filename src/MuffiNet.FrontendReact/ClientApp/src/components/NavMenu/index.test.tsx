@@ -5,7 +5,7 @@ import { act } from "react-dom/test-utils"
 import { MemoryRouter } from "react-router"
 
 import NavMenu from "."
-import { AuthContext, AuthContextProps } from "oidc-react"
+import { AuthContext, AuthContextProps } from "react-oidc-context"
 
 function renderMenu() {
   const mockAuthContext = {

@@ -10,7 +10,7 @@ import useHub from "~/hooks/useHub"
 import AxiosMock from "../../../__mocks__/axios"
 import { UseHubMock } from "~/hooks/__mocks__/useHub"
 import ApiContext from "~/contexts/ApiContext"
-import { AuthContext } from "oidc-react"
+import { AuthContext } from "react-oidc-context"
 
 const mockedAxios = axios as AxiosMock
 const mockedUseHub = useHub as UseHubMock

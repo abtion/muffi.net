@@ -6,6 +6,8 @@ import classNames from "classnames"
 import NavItem from "~/components/NavItem"
 import NavLink from "~/components/NavLink"
 import AuthRoleBarrier from "../AuthRoleBarrier"
+import Button from "../Button"
+import { useAuth } from "react-oidc-context"
 
 export default function NavMenu(): JSX.Element {
   const [isCollapsed, setIsCollapsed] = useState(true)
@@ -21,20 +23,30 @@ export default function NavMenu(): JSX.Element {
     "w-full md:w-auto md:flex items-center"
   )
 
+  const { user, signoutRedirect } = useAuth()
+
   return (
     <header>
       <nav className="bg-white shadow-md sticky inset-x-0">
         <div className="container">
           <div className="flex justify-between flex-wrap -mx-2">
-            <div className="flex">
-              <div>
-                <Link
-                  className="flex items-center py-4 px-2 text-gray-700 hover:text-gray-900"
-                  to="/admin"
-                >
-                  <span className="font-bold">MuffiNet</span>
-                </Link>
-              </div>
+            <div className="flex items-center">
+              <Link
+                to="/admin"
+                className="font-bold px-2 text-gray-700 hover:text-gray-900"
+              >
+                <span className="font-bold">MuffiNet</span>
+              </Link>
+              <span className="text-sm px-6">
+                {user?.profile.preferred_username}
+              </span>
+              <Button
+                variant="standard"
+                size="xs"
+                onClick={() => signoutRedirect()}
+              >
+                Log out
+              </Button>
             </div>
 
             <div className="md:hidden flex items-center">

@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { AuthContext } from "oidc-react"
+import { AuthContext, AuthContextProps } from "react-oidc-context"
 import AuthBarrier from "."
 import { render } from "@testing-library/react"
 import ApiContext from "~/contexts/ApiContext"
@@ -7,20 +7,18 @@ import ApiContext from "~/contexts/ApiContext"
 jest.unmock("axios")
 
 const emptyAuthContext = {
-  signIn: jest.fn(),
-  signInPopup: jest.fn(),
-  signOut: jest.fn(),
-  signOutRedirect: jest.fn(),
+  signinRedirect: jest.fn(),
+  removeUser: jest.fn(),
   // eslint-disable-next-line camelcase
-  userData: null,
+  user: null,
   isLoading: false,
-}
+  isAuthenticated: false,
+} as Partial<AuthContextProps> as AuthContextProps
 
 describe(AuthBarrier, () => {
   describe("when not logged in", () => {
     it("renders a loader", () => {
       const { queryByText } = render(
-        // @ts-expect-error: No need to implement the whole auth context
         <AuthContext.Provider value={emptyAuthContext}>
           <AuthBarrier>
             <div>Child component text</div>
@@ -38,12 +36,12 @@ describe(AuthBarrier, () => {
       const loggedInContext = {
         ...emptyAuthContext,
         isLoading: false,
+        isAuthenticated: true,
         // eslint-disable-next-line camelcase
-        userData: { id_token: "abcd1234" },
-      }
+        user: { id_token: "abcd1234" },
+      } as Partial<AuthContextProps> as AuthContextProps
 
       const { queryByText } = render(
-        // @ts-expect-error: No need to implement the whole auth context
         <AuthContext.Provider value={loggedInContext}>
           <AuthBarrier>
             <div>Child component text</div>
@@ -59,9 +57,10 @@ describe(AuthBarrier, () => {
       const loggedInContext = {
         ...emptyAuthContext,
         isLoading: false,
+        isAuthenticated: true,
         // eslint-disable-next-line camelcase
-        userData: { id_token: "abcd1234" },
-      }
+        user: { id_token: "abcd1234" },
+      } as Partial<AuthContextProps> as AuthContextProps
 
       const InnerComponent = () => {
         const api = useContext(ApiContext)
@@ -72,7 +71,6 @@ describe(AuthBarrier, () => {
       }
 
       render(
-        // @ts-expect-error: No need to implement the whole auth context
         <AuthContext.Provider value={loggedInContext}>
           <AuthBarrier>
             <InnerComponent />

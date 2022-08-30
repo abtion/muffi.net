@@ -1,7 +1,8 @@
 import React from "react"
-import { AuthContext, AuthContextProps, User } from "oidc-react"
+import { AuthContext, AuthContextProps } from "react-oidc-context"
 import AuthRoleBarrier from "."
 import { render } from "@testing-library/react"
+import { User } from "oidc-client-ts"
 
 jest.unmock("axios")
 
@@ -13,12 +14,10 @@ function setup({
   userRoles?: string[]
 }) {
   const mockAuthContext = {
-    signIn: jest.fn(),
-    signInPopup: jest.fn(),
-    signOut: jest.fn(),
-    signOutRedirect: jest.fn(),
+    signinRedirect: jest.fn(),
+    removeUser: jest.fn(),
     isLoading: false,
-    userData: userRoles
+    user: userRoles
       ? ({
           profile: {
             roles: userRoles,
