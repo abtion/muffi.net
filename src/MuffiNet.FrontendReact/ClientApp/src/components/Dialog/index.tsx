@@ -38,19 +38,20 @@ function Dialog({
 }: DialogProps): JSX.Element {
   // Handle `cancel` event: (allows pressing ESC to close)
   useEffect(() => {
-    function onCancel(event: KeyboardEvent) {
+    function onEscape(event: KeyboardEvent) {
       if (event.key == "Escape") {
+        document.removeEventListener("keydown", onEscape)
         event.preventDefault()
         onClose()
       }
     }
 
-    document.addEventListener("keydown", onCancel)
+    document.addEventListener("keydown", onEscape)
 
     return () => {
-      document.removeEventListener("keydown", onCancel)
+      document.removeEventListener("keydown", onEscape)
     }
-  }, [onClose])
+  })
 
   return (
     <div className="Dialog-Container">

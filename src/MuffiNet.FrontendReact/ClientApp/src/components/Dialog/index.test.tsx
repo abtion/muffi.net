@@ -16,7 +16,7 @@ describe(Dialog, () => {
 
     await act(async () => {
       await userEvent.keyboard("{Escape}")
-      //await userEvent.keyboard("{Escape}") // TODO: Check that it unsubscribes event //
+      await userEvent.keyboard("{Escape}")
     })
 
     expect(onCloseMock).toHaveBeenCalledTimes(1)
@@ -33,7 +33,6 @@ describe(Dialog, () => {
 
     await act(async () => {
       await userEvent.click(getByTitle("Close"))
-      //await userEvent.click(getByTitle("Close")) // TODO: Check that it unsubscribes event //
     })
 
     expect(onCloseMock).toHaveBeenCalledTimes(1)
