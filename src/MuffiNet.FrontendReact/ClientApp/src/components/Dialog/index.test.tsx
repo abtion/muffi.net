@@ -1,51 +1,84 @@
-// import React, { useCallback, useState } from "react"
-// import { render } from "@testing-library/react"
-// import userEvent from "@testing-library/user-event"
-// import Dialog from "."
+import React from "react"
+import { render } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
+import Dialog, { DialogProps } from "."
+import { act } from "react-dom/test-utils"
 
-// function DialogTest() {
-//   const [isOpen, setOpen] = useState(false)
+describe(Dialog, () => {
+  it("can close modal Dialog using ESC button", async () => {
+    const onCloseMock = jest.fn()
+    
+    const props : DialogProps = {
+      onClose: onCloseMock
+    }
 
-//   function open() {
-//     setOpen(true)
-//   }
+    render(<Dialog {...props} />)
 
-//   function close() {
-//     setOpen(false)
-//   }
+    await act(async () => {
+      await userEvent.keyboard("{Escape}")
+      //await userEvent.keyboard("{Escape}") // TODO: Check that it unsubscribes event //
+    })
 
-//   return (
-//     <>
-//       <input type="text" value="my input" autoFocus />
-//       <button onClick={close}>Show dialog</button>
-//       <Dialog isOpen={isOpen} onClose={close}>
-//         <Dialog.Header title="my title">my header</Dialog.Header>
-//         <Dialog.Content>my content</Dialog.Content>
-//         <Dialog.Footer>
-//           my footer
-//           <button onClick={close}>Cancel</button>
-//         </Dialog.Footer>
-//       </Dialog>
-//     </>
-//   )
-// }
+    expect(onCloseMock).toHaveBeenCalledTimes(1)
+  })
+  
+  it("can close modal Dialog using 'x' icon", async () => {
+    const onCloseMock = jest.fn()
+    
+    const props : DialogProps = {
+      onClose: onCloseMock
+    }
 
-// function setup() {
-//   return render(<DialogTest />)
-// }
+    const { getByTitle } = render(<Dialog {...props} />)
 
-// TODO figure out how to implement these tests (or drop them)
-//      `jest` and/or `js-dom` do not implement proper <modal> element behavior, so this can't be tested at the moment
+    await act(async () => {
+      await userEvent.click(getByTitle("Close"))
+      //await userEvent.click(getByTitle("Close")) // TODO: Check that it unsubscribes event //
+    })
 
-test(`a closed Dialog is initially hidden`, () => {
-  // const { getByRole } = setup();
-  // expect(getByRole(HTMLDialogElement)).toBeInTheDocument();
+    expect(onCloseMock).toHaveBeenCalledTimes(1)
+  })
 })
 
-// test(`can close modal Dialog using the isOpen prop`, () => {})
+it("renders children", () => {
+    const childrenMock = (<p>Some Text</p>)
 
-// test(`can close modal Dialog using "x" icon`, () => {})
+    const props : DialogProps = {
+      onClose: jest.fn(),
+      children: childrenMock
+    }
 
-// test(`can close modal Dialog using ESC button (on keyboard)`, () => {})
+    const { getByText } = render(<Dialog {...props} />)
 
-// test(`can restore focus to last active element after closing Dialog`, () => {})
+    expect(getByText("Some Text")).toBeInTheDocument()
+})
+
+it("joins classnames on dialog", () => {
+  const props : DialogProps = {
+    onClose: jest.fn(),
+    className: "john bob"
+  }
+
+  const { container } = render(<Dialog {...props} />)
+
+  const dialog = container.firstElementChild?.children[1]
+
+  expect(dialog).toHaveClass("john")
+  expect(dialog).toHaveClass("bob")
+  expect(dialog).toHaveClass("Dialog")
+})
+
+it("applies attributes to dialog", () => {
+  const props : DialogProps = {
+    onClose: jest.fn(),
+    title: "SomeTitle",
+    id: "SomeId"
+  }
+
+  const { container } = render(<Dialog {...props} />)
+
+  const dialog = container.firstElementChild?.children[1]
+
+  expect(dialog).toHaveAttribute("title", "SomeTitle")
+  expect(dialog).toHaveAttribute("id", "SomeId")
+})

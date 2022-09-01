@@ -72,7 +72,7 @@ export default function UserEditDialog({
   }
 
   return (
-    <Dialog isOpen={true} onClose={cancel}>
+    <Dialog onClose={cancel}>
       {details ? (
         <>
           <Dialog.Header title="Edit user profile">
