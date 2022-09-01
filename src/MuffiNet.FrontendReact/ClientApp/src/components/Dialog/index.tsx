@@ -23,7 +23,10 @@ const closeIcon = (
   </svg>
 )
 
-export type DialogProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onClick"> & {
+export type DialogProps = Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  "onClick"
+> & {
   onClose: () => void
 }
 
@@ -33,21 +36,19 @@ function Dialog({
   className,
   ...rest
 }: DialogProps): JSX.Element {
-
   // Handle `cancel` event: (allows pressing ESC to close)
   useEffect(() => {
-    function onCancel(event : KeyboardEvent) {
-      if (event.key == "Escape")
-      {
+    function onCancel(event: KeyboardEvent) {
+      if (event.key == "Escape") {
         event.preventDefault()
-        onClose() 
+        onClose()
       }
     }
 
-    document.addEventListener("keydown", onCancel);
+    document.addEventListener("keydown", onCancel)
 
     return () => {
-      document.removeEventListener("keydown", onCancel);
+      document.removeEventListener("keydown", onCancel)
     }
   }, [onClose])
 

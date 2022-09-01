@@ -7,9 +7,9 @@ import { act } from "react-dom/test-utils"
 describe(Dialog, () => {
   it("can close modal Dialog using ESC button", async () => {
     const onCloseMock = jest.fn()
-    
-    const props : DialogProps = {
-      onClose: onCloseMock
+
+    const props: DialogProps = {
+      onClose: onCloseMock,
     }
 
     render(<Dialog {...props} />)
@@ -21,12 +21,12 @@ describe(Dialog, () => {
 
     expect(onCloseMock).toHaveBeenCalledTimes(1)
   })
-  
+
   it("can close modal Dialog using 'x' icon", async () => {
     const onCloseMock = jest.fn()
-    
-    const props : DialogProps = {
-      onClose: onCloseMock
+
+    const props: DialogProps = {
+      onClose: onCloseMock,
     }
 
     const { getByTitle } = render(<Dialog {...props} />)
@@ -41,22 +41,22 @@ describe(Dialog, () => {
 })
 
 it("renders children", () => {
-    const childrenMock = (<p>Some Text</p>)
+  const childrenMock = <p>Some Text</p>
 
-    const props : DialogProps = {
-      onClose: jest.fn(),
-      children: childrenMock
-    }
+  const props: DialogProps = {
+    onClose: jest.fn(),
+    children: childrenMock,
+  }
 
-    const { getByText } = render(<Dialog {...props} />)
+  const { getByText } = render(<Dialog {...props} />)
 
-    expect(getByText("Some Text")).toBeInTheDocument()
+  expect(getByText("Some Text")).toBeInTheDocument()
 })
 
 it("joins classnames on dialog", () => {
-  const props : DialogProps = {
+  const props: DialogProps = {
     onClose: jest.fn(),
-    className: "john bob"
+    className: "john bob",
   }
 
   const { container } = render(<Dialog {...props} />)
@@ -69,10 +69,10 @@ it("joins classnames on dialog", () => {
 })
 
 it("applies attributes to dialog", () => {
-  const props : DialogProps = {
+  const props: DialogProps = {
     onClose: jest.fn(),
     title: "SomeTitle",
-    id: "SomeId"
+    id: "SomeId",
   }
 
   const { container } = render(<Dialog {...props} />)
