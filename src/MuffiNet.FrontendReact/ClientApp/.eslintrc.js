@@ -38,7 +38,11 @@ const options = {
 
     "react/prop-types": "off",
   },
-  ignorePatterns: ["coverage/**/*", "build/**/*"],
+  ignorePatterns: [
+    "coverage/**/*",
+    "build/**/*",
+    "src/components/AuthOidcProvider/index.tsx",
+  ],
 }
 
 module.exports = options

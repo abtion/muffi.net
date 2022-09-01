@@ -1,5 +1,5 @@
 import classNames from "classnames"
-import React, { useEffect, useRef } from "react"
+import React, { useEffect } from "react"
 import "./index.scss"
 import Header from "./Header"
 import Footer from "./Footer"

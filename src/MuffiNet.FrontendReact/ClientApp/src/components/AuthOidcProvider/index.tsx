@@ -3,6 +3,9 @@ import { AuthProvider, AuthProviderProps } from "react-oidc-context"
 import axios from "axios"
 import LoaderFullPage from "~/components/LoaderFullPage"
 
+// NOTE: This file is ignored in 'eslintrc.js' because of the non-camelcase
+// properties from 'react-oidc-context'
+
 // NOTE: uncomment these lines to enable diagnostic logging
 // import { Log } from "oidc-client-ts";
 // Log.setLogger(console)
@@ -29,14 +32,6 @@ export default function AuthOidcProvider({
           /* istanbul ignore next */
           history.replaceState(null, "", "/admin")
         },
-        // TODO figure out how to fully log out.
-        //      neither `post_logout_redirect_uri` or `onRemoveUser` have the intended effect.
-        //      you're going to end up on `/admin` again, and get silently logged back in -
-        //      which should not be possible, at all, after explicitly logging out.
-        //      https://github.com/authts/react-oidc-context/issues/485#issuecomment-1231384126
-        // onRemoveUser() {
-        //   history.replaceState(null, "", "/")
-        // }
       })
     })
   }, [])
