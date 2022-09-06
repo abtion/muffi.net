@@ -16,6 +16,8 @@ public class ActiveDirectoryConfig
 
     public string DirectoryTenantID { get; set; }
 
+    public string BaseRoleID { get; set; }
+
     public string AdminRoleID { get; set; }
 
     #nullable enable

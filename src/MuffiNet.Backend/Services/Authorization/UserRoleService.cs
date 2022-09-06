@@ -32,24 +32,8 @@ public class UserRoleService
 
         if (config.AdminUserID is not null)
         {
-            try
-            {
-                AssignUserRole(config.AdminUserID, config.AdminRoleID).Wait();
-            }
-            catch (Exception exception)
-            {
-                var expected = exception.InnerException is not null
-                    && exception.InnerException is ServiceException innerException
-                    && innerException.Error.Details is not null
-                    && innerException.Error.Details.First().Code == "InvalidUpdate";
-
-                // NOTE: invalid updates are expected, if the User has already been granted the Administrators Role.
-
-                if (! expected)
-                {
-                    throw new InvalidOperationException("Unexpected Service Error", exception);
-                }
-            }
+            TryAssignUserRole(config.AdminUserID, config.BaseRoleID);
+            TryAssignUserRole(config.AdminUserID, config.AdminRoleID);
         }
     }
 
@@ -197,5 +181,28 @@ public class UserRoleService
             .Request()
             .Filter($"resourceId eq {config.AppID}")
             .GetAsync();
+    }
+
+    // If we make this async and await AssingUserRole, and then call this with .Wait(), //
+    // the AssignUserRole throws an unhandled exception.. //
+    private void TryAssignUserRole(string userID, string roleID)
+    {
+        try
+        {
+            AssignUserRole(userID, roleID).Wait();
+        }
+        catch (Exception exception)
+        {
+            var expected = exception.InnerException is not null
+                && exception.InnerException is ServiceException innerException
+                && innerException.Error.Details is not null
+                && innerException.Error.Details.First().Code == "InvalidUpdate";
+
+            // NOTE: invalid updates are expected, if the User has already been granted the Administrators Role.
+            if (!expected)
+            {
+                throw new InvalidOperationException("Unexpected Service Error", exception);
+            }
+        }
     }
 }
