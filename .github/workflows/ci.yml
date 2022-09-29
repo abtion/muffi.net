@@ -111,7 +111,7 @@ jobs:
 
       - name: Attempt connection to unpause Azure serverless sql db
         continue-on-error: true
-        uses: azure/sql-action@v1
+        uses: azure/sql-action@v2
         with:
           server-name: muffi-net-sql-server
           connection-string: ${{ secrets.MSSQL_CONNECTION_STRING }}
