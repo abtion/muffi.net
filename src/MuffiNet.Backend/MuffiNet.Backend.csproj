@@ -9,7 +9,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Azure.Identity" Version="1.7.0" />
-		<PackageReference Include="MediatR" Version="10.0.1" />
+		<PackageReference Include="MediatR" Version="11.0.0" />
 		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="6.0.10" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.10" />
