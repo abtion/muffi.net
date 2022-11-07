@@ -50,7 +50,7 @@
     "jest-environment-jsdom": "^28.1.2",
     "mini-css-extract-plugin": "^2.6.1",
     "postcss": "^8.4.17",
-    "postcss-loader": "^7.0.0",
+    "postcss-loader": "^7.0.1",
     "prettier": "^2.7.1",
     "react-hot-loader": "^4.13.0",
     "sass": "^1.55.0",
