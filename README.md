@@ -21,7 +21,7 @@
 
 You must have the following installed and available on your machine:
 
-- **Microsoft .NET 5**
+- **Microsoft .NET 7**
 - **Microsoft SQL Server Compact running locally on in Docker**
 - **Node JS >12.x** (16.11.0)
 - **Yarn 1.x**
@@ -181,7 +181,7 @@ From the root folder of the Muffi.NET project, run the following PowerShell comm
 
   Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
   cd tests\MuffiNet.EndToEnd.Tests
-  .\bin\Debug\net6.0\playwright.ps1 install chromium
+  .\bin\Debug\net7.0\playwright.ps1 install chromium
 
 ### 3. Ensure that linting and tests pass
 

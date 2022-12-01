@@ -5,7 +5,7 @@ namespace MuffiNet.FrontendReact;
 
 public class ConfigureJwtBearerOptions : IPostConfigureOptions<JwtBearerOptions>
 {
-    public void PostConfigure(string name, JwtBearerOptions options)
+    public void PostConfigure(string? name, JwtBearerOptions options)
     {
         var originalOnMessageReceived = options.Events.OnMessageReceived;
         options.Events.OnMessageReceived = async context =>

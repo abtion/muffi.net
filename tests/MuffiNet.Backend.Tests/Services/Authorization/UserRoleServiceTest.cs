@@ -22,7 +22,7 @@ namespace MuffiNet.FrontendReact.Tests.Authorization
                 { "ActiveDirectoryConfig:AppID", "16c880f4-e984-4ebe-8c4d-ae1a4a935a08" },
                 { "ActiveDirectoryConfig:AppRegistrationID", "ff9d8859-4cde-408a-ba67-898200137521" },
                 { "ActiveDirectoryConfig:AppClientID", "a507680f-bc92-4a58-aa69-917d9d33ea45" },
-                // { "ActiveDirectoryConfig:AppClientSecret", "___" }, // supplied by User Secret in dev, environment var (from Github Secrets) in CI
+                //{ "ActiveDirectoryConfig:AppClientSecret", "___" }, // supplied by User Secret in dev, environment var (from Github Secrets) in CI
                 { "ActiveDirectoryConfig:DirectoryTenantID", "63bdf5ff-bc58-43a9-8a61-1861f19f8e0e" },
                 { "ActiveDirectoryConfig:BaseRoleID", "cc72dd23-ec9e-437b-a9b4-026f90558cae" },
                 { "ActiveDirectoryConfig:AdminRoleID", "08fed2ce-47c6-42b9-97d6-7680e00e9677" },

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MuffiNet.Authentication.OpenIdConnect;
 
 namespace MuffiNet.FrontendReact.Controllers;
 
@@ -9,20 +10,15 @@ public class OidcController : ControllerBase
     [HttpGet("frontend-configuration")]
     public ActionResult<OpenIdConnectFrontend> FrontendConfiguration([FromServices] IConfiguration configuration, CancellationToken cancellationToken)
     {
-        return new OpenIdConnectFrontend()
-        {
-            Authority = configuration.GetValue<string>("Authentication:Authority"),
-            ClientId = configuration.GetValue<string>("Authentication:ClientId"),
-            Scopes = configuration.GetValue<string>("Authentication:FrontendScopes"),
-        };
+        return new OpenIdConnectFrontend(
+            configuration.GetValue<string>("Authentication:Authority") 
+                ?? throw new OidcConfigurationInvalidException($"Missing configuration for Authentication:Authority"),
+            configuration.GetValue<string>("Authentication:ClientId") 
+                ?? throw new OidcConfigurationInvalidException($"Missing configuration for Authentication:ClientId"),
+            configuration.GetValue<string>("Authentication:FrontendScopes") 
+                ?? throw new OidcConfigurationInvalidException($"Missing configuration for Authentication:FrontendScopes")
+            );
     }
 
-    public record OpenIdConnectFrontend
-    {
-        public string Authority { get; set; } = default!;
-
-        public string ClientId { get; set; } = default!;
-
-        public string Scopes { get; set; } = default!;
-    }
+    public record OpenIdConnectFrontend(string Authority, string ClientId, string Scopes);
 }
