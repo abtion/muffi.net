@@ -22,22 +22,23 @@ public sealed class IntegrationFixture : IDisposable
 
     public IntegrationFixture()
     {
-        var task = Task.Run(() =>
-        {
-            DropDatabase();
-            CreateDatabase();
-            SeedDatabase();
-        });
+        // The database in currently not in use - no need to drop, create and reseed
+        //var task = Task.Run(() =>
+        //{
+        //    DropDatabase();
+        //    CreateDatabase();
+        //    SeedDatabase();
+        //});
 
-        if (task.Wait(TimeSpan.FromSeconds(80)))
-        {
+        //if (task.Wait(TimeSpan.FromSeconds(80)))
+        //{
             browser = CreateBrowser().Result;
             process = StartServer();
-        }
-        else
-        {
-            throw new TimeoutException("Database setup timed out");
-        }
+        //}
+        //else
+        //{
+        //    throw new TimeoutException("Database setup timed out");
+        //}
     }
 
     private void DropDatabase()
