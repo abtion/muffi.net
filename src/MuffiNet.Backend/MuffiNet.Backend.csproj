@@ -14,7 +14,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="7.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
-		<PackageReference Include="Microsoft.Graph" Version="4.48.0" />
+		<PackageReference Include="Microsoft.Graph" Version="4.49.0" />
 	</ItemGroup>
 
 </Project>
