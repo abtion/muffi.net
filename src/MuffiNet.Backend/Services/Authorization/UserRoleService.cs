@@ -126,8 +126,7 @@ public class UserRoleService
         // Fetch existing App Role Assignments assigned to this User:
 
         var currentAssignments = (await GetAssignments(user.UserID.ToString()))
-
-            .Where(a => a.AppRoleId != Guid.Empty); // ignoring the default App Role
+            .Where(a => a.AppRoleId != Guid.Empty).ToArray(); // ignoring the default App Role
 
         // TODO add test coverage: this area is dangerous and fragile
 
@@ -135,7 +134,7 @@ public class UserRoleService
 
         foreach (var roleID in user.AppRoleIDs)
         {
-            if (! currentAssignments.Any(a => a.AppRoleId == roleID))
+            if (!currentAssignments.Any(a => a.AppRoleId == roleID))
             {
                 await AssignUserRole(user.UserID.ToString(), roleID.ToString());
             }
@@ -145,7 +144,7 @@ public class UserRoleService
 
         foreach (var currentAssignment in currentAssignments)
         {
-            if (! user.AppRoleIDs.Any(id => currentAssignment.AppRoleId == id))
+            if (!user.AppRoleIDs.Any(id => currentAssignment.AppRoleId == id))
             {
                 await RevokeUserRoleAssignment(currentAssignment.Id);
             }
