@@ -6963,10 +6963,10 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-oidc-context@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/react-oidc-context/-/react-oidc-context-2.2.0.tgz#c0b08e3dc01dfd30dfe395aa44ebe14645064b5b"
-  integrity sha512-CsmRLN/eSvh5fvFeyzT3Ppb++StdGap8nnYahwLoaHS5Jvg8NQWweDNLaaq8WKQTq2onRDtkQTQ4WY4JroAJ/Q==
+react-oidc-context@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/react-oidc-context/-/react-oidc-context-2.2.2.tgz#aa9b66596b63f1373d312007099c32b112646396"
+  integrity sha512-rke8goKuxxQhSAR11h8wVn56m7kEa1mcAfYDlIycsIgmbZOFzKA0Un0y0RodHZ/M/CG6u0JD1I8RKZHqRJjWnA==
 
 react-router-dom@^6.4.0:
   version "6.4.0"
