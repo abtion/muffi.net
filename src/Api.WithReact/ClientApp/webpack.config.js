@@ -96,12 +96,8 @@ module.exports = (env, { mode }) => {
       server: {
         type: "https",
         options: {
-          key: readFileSync(
-            resolve(certificateDir, "Api.WithReact.key")
-          ),
-          cert: readFileSync(
-            resolve(certificateDir, "Api.WithReact.pem")
-          ),
+          key: readFileSync(resolve(certificateDir, "Api.WithReact.key")),
+          cert: readFileSync(resolve(certificateDir, "Api.WithReact.pem")),
         },
       },
       allowedHosts: "all",
