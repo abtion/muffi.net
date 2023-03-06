@@ -6,7 +6,7 @@ using DomainModel.Commands.ExampleDeleteCommand;
 using DomainModel.Queries.ExampleQuery;
 using DomainModel.Queries.ExampleQueryAll;
 using DomainModel.Services;
-using MuffiNet.FrontendReact.Controllers;
+using Api.WithReact.Controllers;
 using MuffiNet.Test.Shared.Mocks;
 using MuffiNet.Test.Shared.TestData;
 using System.Threading;

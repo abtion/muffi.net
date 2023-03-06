@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using DomainModel.HubContracts;
-using MuffiNet.FrontendReact.Hubs;
+using Api.WithReact.Hubs;
 using System.Threading.Tasks;
 using Xunit;
 

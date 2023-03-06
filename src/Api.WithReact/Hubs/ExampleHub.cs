@@ -2,7 +2,7 @@
 using DomainModel.HubContracts;
 using System.Diagnostics.CodeAnalysis;
 
-namespace MuffiNet.FrontendReact.Hubs;
+namespace Api.WithReact.Hubs;
 
 [ExcludeFromCodeCoverage]
 public class ExampleHub : Hub, IExampleHubContract {

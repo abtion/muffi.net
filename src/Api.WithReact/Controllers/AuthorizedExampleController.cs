@@ -5,7 +5,7 @@ using DomainModel.Commands.ExampleDeleteCommand;
 using DomainModel.Queries.ExampleQuery;
 using DomainModel.Queries.ExampleQueryAll;
 
-namespace MuffiNet.FrontendReact.Controllers;
+namespace Api.WithReact.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

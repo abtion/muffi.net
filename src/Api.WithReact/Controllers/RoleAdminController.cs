@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using DomainModel.Services.Authorization;
 
-namespace MuffiNet.FrontendReact.Controllers {
+namespace Api.WithReact.Controllers {
     [ApiController]
     [Route("api/[controller]")]
     [Authorize(Roles = "Administrators")]

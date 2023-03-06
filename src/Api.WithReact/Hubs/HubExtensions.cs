@@ -1,6 +1,6 @@
 ﻿using DomainModel.HubContracts;
 
-namespace MuffiNet.FrontendReact.Hubs;
+namespace Api.WithReact.Hubs;
 
 public static class HubExtensions {
     private const string SignalRHubPolicyName = "SignalRHubsPolicy";
