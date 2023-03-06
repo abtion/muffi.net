@@ -1,10 +1,9 @@
 ﻿namespace MuffiNet.Backend.Services.Authorization;
 
-public class ActiveDirectoryConfig
-{
+public class ActiveDirectoryConfig {
     // See the README.md file in the project root for details about this configuration.
 
-    #nullable disable
+#nullable disable
 
     public string AppID { get; set; }
 
@@ -20,7 +19,7 @@ public class ActiveDirectoryConfig
 
     public string AdminRoleID { get; set; }
 
-    #nullable enable
+#nullable enable
 
     public string? AdminUserID { get; set; }
 }

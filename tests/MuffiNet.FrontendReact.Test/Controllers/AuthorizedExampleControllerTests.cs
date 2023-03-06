@@ -16,12 +16,10 @@ using Xunit;
 namespace MuffiNet.FrontendReact.Test.Controllers;
 
 [Collection("Controller")]
-public class AuthorizedExampleControllerTests : ControllerTest
-{
+public class AuthorizedExampleControllerTests : ControllerTest {
 
     [Fact]
-    public async Task Given_RequestIsValid_When_ExampleQueryIsCalled_Then_ReturnTypeIsCorrect()
-    {
+    public async Task Given_RequestIsValid_When_ExampleQueryIsCalled_Then_ReturnTypeIsCorrect() {
         // Arrange
         var transaction = ServiceProvider.GetService<DomainModelTransaction>();
         transaction.ResetExampleEntities();
@@ -42,8 +40,7 @@ public class AuthorizedExampleControllerTests : ControllerTest
     }
 
     [Fact]
-    public async Task Given_RequestIsValid_When_ExampleQueryAllIsCalled_Then_ReturnTypeIsCorrect()
-    {
+    public async Task Given_RequestIsValid_When_ExampleQueryAllIsCalled_Then_ReturnTypeIsCorrect() {
         // Arrange
         var transaction = ServiceProvider.GetService<DomainModelTransaction>();
         transaction.ResetExampleEntities();
@@ -62,8 +59,7 @@ public class AuthorizedExampleControllerTests : ControllerTest
     }
 
     [Fact]
-    public async Task Given_RequestIsValid_When_ExampleCreateCommandIsCalled_Then_ReturnTypeIsCorrect()
-    {
+    public async Task Given_RequestIsValid_When_ExampleCreateCommandIsCalled_Then_ReturnTypeIsCorrect() {
         // Arrange
         var transaction = ServiceProvider.GetService<DomainModelTransaction>();
         transaction.ResetExampleEntities();
@@ -73,8 +69,7 @@ public class AuthorizedExampleControllerTests : ControllerTest
         var controller = new AuthorizedExampleController();
         var handler = new ExampleCreateCommandHandler(transaction, exampleHubMock);
 
-        var request = new ExampleCreateCommandRequest()
-        {
+        var request = new ExampleCreateCommandRequest() {
             Name = "Integration",
             Description = "Test",
             Email = "integration@test.net",
@@ -91,8 +86,7 @@ public class AuthorizedExampleControllerTests : ControllerTest
     }
 
     [Fact]
-    public async Task Given_RequestIsValid_When_ExampleDeleteCommandIsCalled_Then_ReturnTypeIsCorrect()
-    {
+    public async Task Given_RequestIsValid_When_ExampleDeleteCommandIsCalled_Then_ReturnTypeIsCorrect() {
         // Arrange
         var transaction = ServiceProvider.GetService<DomainModelTransaction>();
         transaction.ResetExampleEntities();
@@ -103,8 +97,7 @@ public class AuthorizedExampleControllerTests : ControllerTest
         var controller = new AuthorizedExampleController();
         var handler = new ExampleDeleteCommandHandler(transaction, new ExampleHubMock());
 
-        var request = new ExampleDeleteCommandRequest()
-        {
+        var request = new ExampleDeleteCommandRequest() {
             Id = 3
         };
 

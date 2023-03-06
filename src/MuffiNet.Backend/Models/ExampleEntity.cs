@@ -2,8 +2,7 @@
 
 namespace MuffiNet.Backend.Models;
 
-public class ExampleEntity
-{
+public class ExampleEntity {
     [Required]
     public int Id { get; set; }
 

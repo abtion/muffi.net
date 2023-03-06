@@ -10,10 +10,8 @@ using MuffiNet.Test.Shared.TestData;
 
 namespace MuffiNet.Test.Shared;
 
-public class DomainModelBuilderForTest
-{
-    public void ConfigureServices(IServiceCollection services, string databaseName)
-    {
+public class DomainModelBuilderForTest {
+    public void ConfigureServices(IServiceCollection services, string databaseName) {
         services.AddSingleton(Options.Create<OperationalStoreOptions>(new OperationalStoreOptions()));
 
         services.AddDbContext<ApplicationDbContext>(options =>

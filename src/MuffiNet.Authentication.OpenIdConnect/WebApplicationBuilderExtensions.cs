@@ -2,25 +2,15 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MuffiNet.Authentication.OpenIdConnect
-{
-    public static class ServiceCollectionExtensions
-    {
-        public static IServiceCollection AddOidcAuthentication(this IServiceCollection services, ConfigurationManager configuration)
-        {
+namespace MuffiNet.Authentication.OpenIdConnect {
+    public static class ServiceCollectionExtensions {
+        public static IServiceCollection AddOidcAuthentication(this IServiceCollection services, ConfigurationManager configuration) {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
+                .AddJwtBearer(options => {
                     options.Authority = configuration.GetValue<string>("Authentication:Authority");
                     options.ClaimsIssuer = configuration.GetValue<string>("Authentication:ClaimsIssuer");
-                    options.TokenValidationParameters = new TokenValidationParameters()
-                    {
+                    options.TokenValidationParameters = new TokenValidationParameters() {
                         ValidateIssuer = configuration.GetValue<bool>("Authentication:TokenValidationParameters:ValidateIssuer"),
                         ValidateAudience = configuration.GetValue<bool>("Authentication:TokenValidationParameters:ValidateAudience"),
                         ValidateLifetime = configuration.GetValue<bool>("Authentication:TokenValidationParameters:ValidateLifetime"),

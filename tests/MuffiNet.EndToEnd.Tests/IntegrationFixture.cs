@@ -14,14 +14,12 @@ namespace MuffiNet.FrontendReact.Selenium.Tests;
 /// <remarks>
 /// https://xunit.net/docs/shared-context
 /// </remarks>
-public sealed class IntegrationFixture : IDisposable
-{
+public sealed class IntegrationFixture : IDisposable {
     private Process process;
     private IConfigurationRoot Configuration;
     internal IBrowser browser { get; private init; }
 
-    public IntegrationFixture()
-    {
+    public IntegrationFixture() {
         // The database in currently not in use - no need to drop, create and reseed
         //var task = Task.Run(() =>
         //{
@@ -32,8 +30,8 @@ public sealed class IntegrationFixture : IDisposable
 
         //if (task.Wait(TimeSpan.FromSeconds(80)))
         //{
-            browser = CreateBrowser().Result;
-            process = StartServer();
+        browser = CreateBrowser().Result;
+        process = StartServer();
         //}
         //else
         //{
@@ -41,12 +39,10 @@ public sealed class IntegrationFixture : IDisposable
         //}
     }
 
-    private void DropDatabase()
-    {
+    private void DropDatabase() {
         var config = GetConfiguration();
 
-        try
-        {
+        try {
             var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
             builder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
 
@@ -55,8 +51,7 @@ public sealed class IntegrationFixture : IDisposable
 
             Console.WriteLine("Dropping test database: success");
         }
-        catch (Exception ex)
-        {
+        catch (Exception ex) {
             Console.WriteLine("Dropping test database: failure");
             Console.WriteLine(ex.ToString());
 
@@ -64,8 +59,7 @@ public sealed class IntegrationFixture : IDisposable
         }
     }
 
-    private void SeedDatabase()
-    {
+    private void SeedDatabase() {
         Console.WriteLine("Seeding database");
 
         //var queryString = File.ReadAllText(Path.Join(GetWorkingDirectory(), "..", "..", "sql", "create-user.sql"));
@@ -79,12 +73,10 @@ public sealed class IntegrationFixture : IDisposable
         Console.WriteLine("Seeding database: success");
     }
 
-    private void CreateDatabase()
-    {
+    private void CreateDatabase() {
         var config = GetConfiguration();
 
-        try
-        {
+        try {
             var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
             builder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
 
@@ -93,8 +85,7 @@ public sealed class IntegrationFixture : IDisposable
 
             Console.WriteLine("Creating/updating test database: success");
         }
-        catch (Exception ex)
-        {
+        catch (Exception ex) {
             Console.WriteLine("Creating/updating test database: failure");
             Console.WriteLine(ex.ToString());
 
@@ -102,19 +93,16 @@ public sealed class IntegrationFixture : IDisposable
         }
     }
 
-    private Process StartServer()
-    {
+    private Process StartServer() {
         Console.WriteLine("Starting server");
         var process = Process.Start(CreateStartInfo("run --launch-profile \"MuffiNet.FrontendReact Test\""));
-        
+
         string output;
 
-        do
-        {
+        do {
             output = process.StandardOutput.ReadLine();
 
-            if (output is not null && output.Contains("Now listening on", StringComparison.InvariantCultureIgnoreCase))
-            {
+            if (output is not null && output.Contains("Now listening on", StringComparison.InvariantCultureIgnoreCase)) {
                 return process; // server ready
             }
         }
@@ -123,17 +111,14 @@ public sealed class IntegrationFixture : IDisposable
         throw new InvalidOperationException($"Error starting server: {process.StandardError.ReadToEnd()}");
     }
 
-    private async Task<IBrowser> CreateBrowser()
-    {
+    private async Task<IBrowser> CreateBrowser() {
         var playwright = await Playwright.CreateAsync();
 
         return await playwright.Chromium.LaunchAsync();
     }
 
-    private ProcessStartInfo CreateStartInfo(string arguments)
-    {
-        var startInfo = new ProcessStartInfo()
-        {
+    private ProcessStartInfo CreateStartInfo(string arguments) {
+        var startInfo = new ProcessStartInfo() {
             FileName = "dotnet",
             Arguments = arguments,
             UseShellExecute = false,
@@ -147,36 +132,31 @@ public sealed class IntegrationFixture : IDisposable
         return startInfo;
     }
 
-    private string GetWorkingDirectory()
-    {
+    private string GetWorkingDirectory() {
         return Path.GetFullPath(
             "../../../../../src/MuffiNet.FrontendReact",
             Directory.GetCurrentDirectory()
         );
     }
 
-    public void Dispose()
-    {
+    public void Dispose() {
         GC.SuppressFinalize(this);
 
         browser.DisposeAsync().AsTask().Wait();
 
-        if (process != null && !process.HasExited)
-        {
+        if (process != null && !process.HasExited) {
             process.Kill(entireProcessTree: true);
         }
     }
 
-    public void CleanUpBetweenTests()
-    {
+    public void CleanUpBetweenTests() {
         // Truncate data in database
         //SqlCommand command = new SqlCommand("TRUNCATE TABLE [dbo].[SupportTickets]", DbConnection());
         //command.Connection.Open();
         //command.ExecuteNonQuery();
     }
 
-    public SqlConnection DbConnection()
-    {
+    public SqlConnection DbConnection() {
         var config = GetConfiguration();
         return new SqlConnection(config["ConnectionStrings:DefaultConnection"]);
     }
@@ -186,8 +166,7 @@ public sealed class IntegrationFixture : IDisposable
     //
     // And code from our own host builder
     // https://github.com/abtion/care1-vci/blob/a34d975fb9178517370206bfaf4ce626a8302558/src/InfarePortal.FrontendReact/Program.cs#L22
-    public IConfigurationRoot GetConfiguration()
-    {
+    public IConfigurationRoot GetConfiguration() {
         if (Configuration != null) return Configuration;
 
         // From dotnet
@@ -199,8 +178,7 @@ public sealed class IntegrationFixture : IDisposable
             .AddUserSecrets(System.Reflection.Assembly.GetExecutingAssembly(), optional: true, reloadOnChange: true);
 
         var args = Environment.GetCommandLineArgs();
-        if (args != null)
-        {
+        if (args != null) {
             config.AddCommandLine(args);
         }
 
@@ -215,8 +193,7 @@ public sealed class IntegrationFixture : IDisposable
 }
 
 [CollectionDefinition("Selenium")]
-public class IntegrationCollectionFixture : ICollectionFixture<IntegrationFixture>
-{
+public class IntegrationCollectionFixture : ICollectionFixture<IntegrationFixture> {
     // This class has no code, and is never created. Its purpose is simply
     // to be the place to apply [CollectionDefinition] and all the
     // ICollectionFixture<> interfaces.

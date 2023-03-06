@@ -8,21 +8,17 @@ using System.Threading.Tasks;
 
 namespace MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand;
 
-public class ExampleCreateCommandHandler : IRequestHandler<ExampleCreateCommandRequest, ExampleCreateCommandResponse>
-{
+public class ExampleCreateCommandHandler : IRequestHandler<ExampleCreateCommandRequest, ExampleCreateCommandResponse> {
     private readonly DomainModelTransaction domainModelTransaction;
     private readonly IExampleHubContract exampleHub;
 
-    public ExampleCreateCommandHandler(DomainModelTransaction domainModelTransaction, IExampleHubContract exampleHub)
-    {
+    public ExampleCreateCommandHandler(DomainModelTransaction domainModelTransaction, IExampleHubContract exampleHub) {
         this.domainModelTransaction = domainModelTransaction ?? throw new ArgumentNullException(nameof(domainModelTransaction));
         this.exampleHub = exampleHub ?? throw new ArgumentNullException(nameof(exampleHub));
     }
 
-    public async Task<ExampleCreateCommandResponse> Handle(ExampleCreateCommandRequest request, CancellationToken cancellationToken)
-    {
-        if (request is null)
-        {
+    public async Task<ExampleCreateCommandResponse> Handle(ExampleCreateCommandRequest request, CancellationToken cancellationToken) {
+        if (request is null) {
             throw new ArgumentNullException(nameof(request));
         }
 

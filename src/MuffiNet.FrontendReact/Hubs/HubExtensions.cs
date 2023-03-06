@@ -12,10 +12,8 @@ public static class HubExtensions {
 
         builder.Services.AddSignalR();
 
-        builder.Services.AddCors(options =>
-        {
-            options.AddPolicy(SignalRHubPolicyName, policy =>
-            {
+        builder.Services.AddCors(options => {
+            options.AddPolicy(SignalRHubPolicyName, policy => {
                 policy.AllowAnyHeader()
                     .AllowAnyMethod()
                     .WithOrigins("https://localhost:5001", "https://localhost:44337");

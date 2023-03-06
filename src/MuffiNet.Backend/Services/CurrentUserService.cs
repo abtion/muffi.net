@@ -4,8 +4,7 @@ using System.Threading.Tasks;
 
 namespace MuffiNet.Backend.Services;
 
-public interface ICurrentUserService
-{
+public interface ICurrentUserService {
     Task<IdentityUser> CurrentUser();
 }
 [ExcludeFromCodeCoverage]

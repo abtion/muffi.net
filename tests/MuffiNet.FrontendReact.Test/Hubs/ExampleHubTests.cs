@@ -12,10 +12,8 @@ using Xunit;
 namespace MuffiNet.FrontendReact.Tests.Hubs;
 
 [Collection("Hubs")]
-public class ExampleHubTests
-{
-    private static HubConnection SetupHubConnection(TestServer server)
-    {
+public class ExampleHubTests {
+    private static HubConnection SetupHubConnection(TestServer server) {
         var connection = new HubConnectionBuilder()
             .WithUrl(
                 "http://localhost/hubs/example",
@@ -25,18 +23,14 @@ public class ExampleHubTests
         return connection;
     }
 
-    private static TestServer CreateServer()
-    {
+    private static TestServer CreateServer() {
         var webHostBuilder = new WebHostBuilder()
-            .ConfigureServices(services =>
-            {
+            .ConfigureServices(services => {
                 services.AddSignalR();
             })
-            .Configure(app =>
-            {
+            .Configure(app => {
                 app.UseRouting();
-                app.UseEndpoints(endpoints =>
-                {
+                app.UseEndpoints(endpoints => {
                     // Setup SignalR Hubs
                     endpoints.MapHub<ExampleHub>("/hubs/example");
                 });
@@ -47,15 +41,11 @@ public class ExampleHubTests
     }
 
     [Fact]
-    public async Task ShouldSendEntityCreatedMessage()
-    {
-        using (var server = CreateServer())
-        {
-            await using (var connection = SetupHubConnection(server))
-            {
+    public async Task ShouldSendEntityCreatedMessage() {
+        using (var server = CreateServer()) {
+            await using (var connection = SetupHubConnection(server)) {
 
-                connection.On<SomeEntityUpdatedMessage>("SomeEntityCreated", msg =>
-                {
+                connection.On<SomeEntityUpdatedMessage>("SomeEntityCreated", msg => {
                     msg.Should().NotBeNull();
                 });
 
@@ -68,14 +58,10 @@ public class ExampleHubTests
     }
 
     [Fact]
-    public async Task ShouldSendEntityDeletedMessage()
-    {
-        using (var server = CreateServer())
-        {
-            await using (var connection = SetupHubConnection(server))
-            {
-                connection.On<SomeEntityUpdatedMessage>("SomeEntityDeleted", msg =>
-                {
+    public async Task ShouldSendEntityDeletedMessage() {
+        using (var server = CreateServer()) {
+            await using (var connection = SetupHubConnection(server)) {
+                connection.On<SomeEntityUpdatedMessage>("SomeEntityDeleted", msg => {
                     msg.Should().Be(123);
                 });
 
@@ -88,15 +74,11 @@ public class ExampleHubTests
     }
 
     [Fact]
-    public async Task ShouldSendEntityUpdatedMessage()
-    {
-        using (var server = CreateServer())
-        {
-            await using (var connection = SetupHubConnection(server))
-            {
+    public async Task ShouldSendEntityUpdatedMessage() {
+        using (var server = CreateServer()) {
+            await using (var connection = SetupHubConnection(server)) {
 
-                connection.On<SomeEntityUpdatedMessage>("SomeEntityUpdated", msg =>
-                {
+                connection.On<SomeEntityUpdatedMessage>("SomeEntityUpdated", msg => {
                     msg.Should().NotBeNull();
                 });
 

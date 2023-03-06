@@ -1,20 +1,16 @@
-﻿using MuffiNet.Backend.Services.Authorization;
+﻿using FluentAssertions;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using MuffiNet.Backend.DomainModel;
+using MuffiNet.Backend.Services.Authorization;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
-using FluentAssertions;
-using Microsoft.Extensions.Options;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using MuffiNet.Backend.DomainModel;
-using System.Collections.Generic;
 
 [assembly: CollectionBehavior(DisableTestParallelization = true)]
-namespace MuffiNet.FrontendReact.Tests.Authorization
-{
-    public class UserRoleServiceTest
-    {
-        private static UserRoleService CreateUserRoleService()
-        {
+namespace MuffiNet.FrontendReact.Tests.Authorization {
+    public class UserRoleServiceTest {
+        private static UserRoleService CreateUserRoleService() {
             var services = new ServiceCollection();
 
             var configMap = new Dictionary<string, string>()
@@ -43,8 +39,7 @@ namespace MuffiNet.FrontendReact.Tests.Authorization
         }
 
         [Fact]
-        public async Task CanListAppRoles()
-        {
+        public async Task CanListAppRoles() {
             var service = CreateUserRoleService();
 
             var roles = await service.ListAppRoles();
@@ -53,8 +48,7 @@ namespace MuffiNet.FrontendReact.Tests.Authorization
         }
 
         [Fact]
-        public async Task CanListUsers()
-        {
+        public async Task CanListUsers() {
             var service = CreateUserRoleService();
 
             var users = await service.ListUsers();
