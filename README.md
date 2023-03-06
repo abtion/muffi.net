@@ -232,7 +232,7 @@ Backend code coverage requires Coverlet & ReportGenerator:
 Backend report: (note slash/backslash use differs on different cmd shells)
 
 - `dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov ./tests/MuffiNet.Backend.Tests`
-- `dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov ./tests/MuffiNet.FrontendReact.Test`
+- `dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov ./tests/Api.WithReact.Tests`
 - `reportgenerator "-reports:./tests/**/*.info" "-targetdir:coverage"`
 
 Frontend report:

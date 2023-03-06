@@ -1,14 +1,14 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using DomainModel;
 using DomainModel.Services.Authorization;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
+using DomainModel;
 
 [assembly: CollectionBehavior(DisableTestParallelization = true)]
-namespace MuffiNet.FrontendReact.Tests.Authorization {
+namespace Api.WithReact.Tests.Authorization {
     public class UserRoleServiceTest {
         private static UserRoleService CreateUserRoleService() {
             var services = new ServiceCollection();

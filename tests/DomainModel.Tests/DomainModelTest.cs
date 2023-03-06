@@ -2,18 +2,20 @@
 using DomainModel.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using MuffiNet.Test.Shared;
+using Test.Shared;
 using System;
 using System.Threading.Tasks;
 
-namespace DomainModel.Tests.DomainModel;
+namespace DomainModel.Tests;
 
-public abstract class DomainModelTest<T> {
-    protected DomainModelTest() {
+public abstract class DomainModelTest<T>
+{
+    protected DomainModelTest()
+    {
         var servicesBuilder = new DomainModelBuilderForTest();
         var serviceCollection = new ServiceCollection();
 
-        servicesBuilder.ConfigureServices(serviceCollection, this.GetType().Name);
+        servicesBuilder.ConfigureServices(serviceCollection, GetType().Name);
 
         ServiceProvider = serviceCollection.BuildServiceProvider();
 

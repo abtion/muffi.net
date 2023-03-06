@@ -7,13 +7,13 @@ using DomainModel.Queries.ExampleQuery;
 using DomainModel.Queries.ExampleQueryAll;
 using DomainModel.Services;
 using Api.WithReact.Controllers;
-using MuffiNet.Test.Shared.Mocks;
-using MuffiNet.Test.Shared.TestData;
+using Test.Shared.Mocks;
+using Test.Shared.TestData;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MuffiNet.FrontendReact.Test.Controllers;
+namespace Api.WithReact.Tests.Controllers;
 
 [Collection("Controller")]
 public class AuthorizedExampleControllerTests : ControllerTest {

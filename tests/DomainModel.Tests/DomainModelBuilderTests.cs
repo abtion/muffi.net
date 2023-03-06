@@ -1,15 +1,17 @@
 ﻿using FluentAssertions;
-using DomainModel;
 using System;
 using Xunit;
 
-namespace MuffiNet.Backend.Tests.DomainModel;
+namespace DomainModel.Tests;
 
 [Collection("DomainModelTests")]
-public class DomainModelBuilderTests {
+public class DomainModelBuilderTests
+{
     [Fact]
-    public void Given_ServicesIsNull_When_CtorIsCalled_Then_ExceptionIsThrown() {
-        Action act = () => {
+    public void Given_ServicesIsNull_When_CtorIsCalled_Then_ExceptionIsThrown()
+    {
+        Action act = () =>
+        {
             var x = new DomainModelBuilder(null);
         };
 

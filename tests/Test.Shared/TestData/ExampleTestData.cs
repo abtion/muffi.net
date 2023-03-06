@@ -3,7 +3,7 @@ using DomainModel.Models;
 using System;
 using System.Threading.Tasks;
 
-namespace MuffiNet.Test.Shared.TestData;
+namespace Test.Shared.TestData;
 
 public class ExampleTestData {
     private readonly DomainModelTransaction domainModelTransaction;

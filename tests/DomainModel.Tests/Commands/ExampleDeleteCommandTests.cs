@@ -1,28 +1,29 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using DomainModel;
 using DomainModel.Commands.ExampleDeleteCommand;
 using DomainModel.Models;
-using MuffiNet.Test.Shared.Mocks;
+using Test.Shared.Mocks;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
-using DomainModel.Tests.DomainModel;
 
-namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleDeleteCommand;
+namespace DomainModel.Tests.Commands;
 
 [Collection("ExampleCollection")]
-public class ExampleDeleteCommandTests : DomainModelTest<ExampleDeleteCommandHandler> {
+public class ExampleDeleteCommandTests : DomainModelTest<ExampleDeleteCommandHandler>
+{
     private ExampleHubMock exampleHub;
     private DomainModelTransaction domainModelTransaction;
 
-    protected internal override async Task<ExampleDeleteCommandHandler> CreateSut() {
+    protected internal override async Task<ExampleDeleteCommandHandler> CreateSut()
+    {
         domainModelTransaction = ServiceProvider.GetService<DomainModelTransaction>();
 
         // uses static member as database - that needs to be flushed with every test
         domainModelTransaction.ResetExampleEntities();
-        domainModelTransaction.AddExampleEntity(new ExampleEntity() {
+        domainModelTransaction.AddExampleEntity(new ExampleEntity()
+        {
             Id = 10,
             Name = "Muffi",
             Description = "Head of People"
@@ -33,8 +34,10 @@ public class ExampleDeleteCommandTests : DomainModelTest<ExampleDeleteCommandHan
         return await Task.FromResult(new ExampleDeleteCommandHandler(domainModelTransaction, exampleHub));
     }
 
-    private ExampleDeleteCommandRequest CreateValidRequest() {
-        var request = new ExampleDeleteCommandRequest() {
+    private ExampleDeleteCommandRequest CreateValidRequest()
+    {
+        var request = new ExampleDeleteCommandRequest()
+        {
             Id = 10,
         };
 
@@ -43,7 +46,8 @@ public class ExampleDeleteCommandTests : DomainModelTest<ExampleDeleteCommandHan
 
     #region "Guard Tests"
     [Fact]
-    public async void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown() {
+    public async void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
+    {
         await CreateSut();
         Func<ExampleDeleteCommandHandler> f = () => new ExampleDeleteCommandHandler(null, exampleHub);
 
@@ -51,7 +55,8 @@ public class ExampleDeleteCommandTests : DomainModelTest<ExampleDeleteCommandHan
     }
 
     [Fact]
-    public async void Given_ExampleHubIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown() {
+    public async void Given_ExampleHubIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
+    {
         await CreateSut();
         Func<ExampleDeleteCommandHandler> f = () => new ExampleDeleteCommandHandler(domainModelTransaction, null);
 
@@ -59,7 +64,8 @@ public class ExampleDeleteCommandTests : DomainModelTest<ExampleDeleteCommandHan
     }
 
     [Fact]
-    public async Task Given_RequestIsNull_When_HandleIsCalled_Then_AnArgumentNullExceptionIsThrown() {
+    public async Task Given_RequestIsNull_When_HandleIsCalled_Then_AnArgumentNullExceptionIsThrown()
+    {
         var sut = await CreateSut();
 
         Task result() => sut.Handle(null, new CancellationToken());
@@ -70,7 +76,8 @@ public class ExampleDeleteCommandTests : DomainModelTest<ExampleDeleteCommandHan
 
     #region "Happy Path Tests"
     [Fact]
-    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_TheEntityIsRemoved() {
+    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_TheEntityIsRemoved()
+    {
         var request = CreateValidRequest();
         var cancellationToken = new CancellationToken();
         var sut = await CreateSut();
@@ -81,7 +88,8 @@ public class ExampleDeleteCommandTests : DomainModelTest<ExampleDeleteCommandHan
     }
 
     [Fact]
-    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_TheEntityCountIsReduced() {
+    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_TheEntityCountIsReduced()
+    {
         var request = CreateValidRequest();
         var cancellationToken = new CancellationToken();
         var sut = await CreateSut();
@@ -92,7 +100,8 @@ public class ExampleDeleteCommandTests : DomainModelTest<ExampleDeleteCommandHan
     }
 
     [Fact]
-    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_TheReturnTypeIsNotNull() {
+    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_TheReturnTypeIsNotNull()
+    {
         var request = CreateValidRequest();
         var cancellationToken = new CancellationToken();
         var sut = await CreateSut();

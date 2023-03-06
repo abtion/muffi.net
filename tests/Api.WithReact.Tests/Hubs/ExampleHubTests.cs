@@ -9,7 +9,7 @@ using Api.WithReact.Hubs;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MuffiNet.FrontendReact.Tests.Hubs;
+namespace Api.WithReact.Tests.Hubs;
 
 [Collection("Hubs")]
 public class ExampleHubTests {
