@@ -12,7 +12,6 @@ var configuration = builder.Configuration;
 builder.Services.AddOidcAuthentication(configuration);
 
 builder.Services.AddControllers();
-builder.Services.AddRazorPages();
 
 builder.Services.AddDomainModel();
 builder.Services.AddUserRoleService(configuration);
