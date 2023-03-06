@@ -89,8 +89,8 @@ jobs:
 
       - name: Set up playwright
         run: |
-          dotnet build tests/MuffiNet.EndToEnd.Tests/MuffiNet.EndToEnd.Tests.csproj
-          pwsh tests/MuffiNet.EndToEnd.Tests/bin/Debug/net7.0/playwright.ps1 install chromium
+          dotnet build tests/EndToEnd.Tests/EndToEnd.Tests.csproj
+          pwsh tests/EndToEnd.Tests/bin/Debug/net7.0/playwright.ps1 install chromium
 
       - name: Test with the dotnet CLI
         run: dotnet test
@@ -140,7 +140,7 @@ jobs:
         uses: actions/setup-dotnet@v3
 
       - name: Publish
-        run: dotnet publish src/MuffiNet.FrontendReact/MuffiNet.FrontendReact.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish src/Api.WithReact/Api.WithReact.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Run Azure webapp deploy action using publish profile credentials
         uses: azure/webapps-deploy@v2
@@ -153,7 +153,7 @@ jobs:
       - name: Run database migrations
         run: |
           dotnet tool install --global dotnet-ef
-          dotnet ef database update --project src/MuffiNet.FrontendReact
+          dotnet ef database update --project src/Api.WithReact
         env:
           ASPNETCORE_ENVIRONMENT: Development
           ConnectionStrings__DefaultConnection: ${{ secrets.MSSQL_CONNECTION_STRING }}

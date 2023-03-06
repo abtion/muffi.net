@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+
+		<IsPackable>false</IsPackable>
+		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	  <UserSecretsId>820260b4-5adb-41a1-973b-640511a4360b</UserSecretsId>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="coverlet.msbuild" Version="3.2.0">
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		  <PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
+		<PackageReference Include="xunit" Version="2.4.2" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="coverlet.collector" Version="3.2.0">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="FluentAssertions" Version="6.9.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\DomainModel\DomainModel.csproj" />
+		<ProjectReference Include="..\..\src\Api.WithReact\Api.WithReact.csproj" />
+		<ProjectReference Include="..\Test.Shared\Test.Shared.csproj" />
+	</ItemGroup>
+
+</Project>
