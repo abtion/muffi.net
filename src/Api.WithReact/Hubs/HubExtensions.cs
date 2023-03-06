@@ -1,4 +1,4 @@
-﻿using MuffiNet.Backend.HubContracts;
+﻿using DomainModel.HubContracts;
 
 namespace MuffiNet.FrontendReact.Hubs;
 

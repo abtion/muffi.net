@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using MuffiNet.Backend.Data;
-using MuffiNet.Backend.DomainModel;
-using MuffiNet.Backend.Models;
+using DomainModel.Data;
+using DomainModel;
+using DomainModel.Models;
 using MuffiNet.Test.Shared.TestData;
 
 namespace MuffiNet.Test.Shared;

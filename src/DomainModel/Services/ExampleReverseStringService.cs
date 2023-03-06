@@ -1,6 +1,6 @@
 using System;
 
-namespace MuffiNet.Backend.Services;
+namespace DomainModel.Services;
 
 public interface IExampleReverseStringService {
     string ReverseString(string inputStr);

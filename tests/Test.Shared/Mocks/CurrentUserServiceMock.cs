@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using MuffiNet.Backend.Services;
+using DomainModel.Services;
 using System.Threading.Tasks;
 
 namespace MuffiNet.Test.Shared.Mocks;

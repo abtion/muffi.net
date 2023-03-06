@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using DomainModel.Data;
+using DomainModel.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using MuffiNet.Backend.Data;
-using MuffiNet.Backend.DomainModel;
-using MuffiNet.Backend.Models;
 using MuffiNet.Test.Shared;
 using System;
 using System.Threading.Tasks;
 
-namespace MuffiNet.Backend.Tests.DomainModel;
+namespace DomainModel.Tests.DomainModel;
 
 public abstract class DomainModelTest<T> {
     protected DomainModelTest() {

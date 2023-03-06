@@ -1,4 +1,4 @@
-﻿using MuffiNet.Backend.HubContracts;
+﻿using DomainModel.HubContracts;
 using System.Threading.Tasks;
 
 namespace MuffiNet.Test.Shared.Mocks;

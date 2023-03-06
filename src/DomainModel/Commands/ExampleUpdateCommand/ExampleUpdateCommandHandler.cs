@@ -1,25 +1,29 @@
 ﻿using MediatR;
-using MuffiNet.Backend.Exceptions;
-using MuffiNet.Backend.HubContracts;
-using MuffiNet.Backend.Models;
+using DomainModel.Exceptions;
+using DomainModel.HubContracts;
+using DomainModel.Models;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MuffiNet.Backend.DomainModel.Commands.ExampleUpdateCommand;
+namespace DomainModel.Commands.ExampleUpdateCommand;
 
-public class ExampleUpdateCommandHandler : IRequestHandler<ExampleUpdateCommandRequest, ExampleUpdateCommandResponse> {
+public class ExampleUpdateCommandHandler : IRequestHandler<ExampleUpdateCommandRequest, ExampleUpdateCommandResponse>
+{
     private readonly DomainModelTransaction domainModelTransaction;
     private readonly IExampleHubContract exampleHub;
 
-    public ExampleUpdateCommandHandler(DomainModelTransaction domainModelTransaction, IExampleHubContract exampleHub) {
+    public ExampleUpdateCommandHandler(DomainModelTransaction domainModelTransaction, IExampleHubContract exampleHub)
+    {
         this.domainModelTransaction = domainModelTransaction ?? throw new ArgumentNullException(nameof(domainModelTransaction));
         this.exampleHub = exampleHub ?? throw new ArgumentNullException(nameof(exampleHub));
     }
 
-    public async Task<ExampleUpdateCommandResponse> Handle(ExampleUpdateCommandRequest request, CancellationToken cancellationToken) {
-        if (request is null) {
+    public async Task<ExampleUpdateCommandResponse> Handle(ExampleUpdateCommandRequest request, CancellationToken cancellationToken)
+    {
+        if (request is null)
+        {
             throw new ArgumentNullException(nameof(request));
         }
 

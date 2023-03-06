@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MuffiNet.Backend.Services.Authorization;
+using DomainModel.Services.Authorization;
 
 namespace MuffiNet.FrontendReact.Controllers {
     [ApiController]

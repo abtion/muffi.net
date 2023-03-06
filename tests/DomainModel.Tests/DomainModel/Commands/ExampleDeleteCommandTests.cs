@@ -1,13 +1,14 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using MuffiNet.Backend.DomainModel;
-using MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand;
-using MuffiNet.Backend.Models;
+using DomainModel;
+using DomainModel.Commands.ExampleDeleteCommand;
+using DomainModel.Models;
 using MuffiNet.Test.Shared.Mocks;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
+using DomainModel.Tests.DomainModel;
 
 namespace MuffiNet.Backend.Tests.DomainModel.Commands.ExampleDeleteCommand;
 

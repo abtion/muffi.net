@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using MuffiNet.Backend.DomainModel;
+using DomainModel;
 using System;
 using Xunit;
 

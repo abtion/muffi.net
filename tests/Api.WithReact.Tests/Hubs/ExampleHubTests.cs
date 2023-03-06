@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
-using MuffiNet.Backend.HubContracts;
+using DomainModel.HubContracts;
 using MuffiNet.FrontendReact.Hubs;
 using System.Threading.Tasks;
 using Xunit;
@@ -49,7 +49,7 @@ public class ExampleHubTests {
                     msg.Should().NotBeNull();
                 });
 
-                var message = new SomeEntityCreatedMessage(new Backend.Models.ExampleEntityRecord(123, "My Name", "MyDescription", "My Email", "My Phone"));
+                var message = new SomeEntityCreatedMessage(new DomainModel.Models.ExampleEntityRecord(123, "My Name", "MyDescription", "My Email", "My Phone"));
 
                 await connection.StartAsync();
                 await connection.InvokeAsync("SomeEntityCreated", message);
@@ -82,7 +82,7 @@ public class ExampleHubTests {
                     msg.Should().NotBeNull();
                 });
 
-                var message = new SomeEntityUpdatedMessage(new Backend.Models.ExampleEntityRecord(123, "My Name", "MyDescription", "My Email", "My Phone"));
+                var message = new SomeEntityUpdatedMessage(new DomainModel.Models.ExampleEntityRecord(123, "My Name", "MyDescription", "My Email", "My Phone"));
 
                 await connection.StartAsync();
                 await connection.InvokeAsync("SomeEntityUpdated", message);

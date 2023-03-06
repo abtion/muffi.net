@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand;
-using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
-using MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll;
+using DomainModel.Commands.ExampleDeleteCommand;
+using DomainModel.Queries.ExampleQuery;
+using DomainModel.Queries.ExampleQueryAll;
 
 public static class EndpointMappingExtensions {
     // endpoints with complex names must use all lower case and hyphens to separate words

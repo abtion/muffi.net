@@ -1,7 +1,7 @@
-﻿using MuffiNet.Backend.Models;
+﻿using DomainModel.Models;
 using System.Threading.Tasks;
 
-namespace MuffiNet.Backend.HubContracts;
+namespace DomainModel.HubContracts;
 
 public interface IExampleHubContract {
     Task SomeEntityUpdated(SomeEntityUpdatedMessage message);

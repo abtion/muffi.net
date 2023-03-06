@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using MuffiNet.Backend.Data;
+using DomainModel.Data;
 using MuffiNet.Test.Shared;
 using MuffiNet.Test.Shared.TestData;
 using System;

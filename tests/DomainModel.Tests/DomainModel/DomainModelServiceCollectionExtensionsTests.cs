@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using MuffiNet.Backend.DomainModel;
+using DomainModel;
 using System;
 using Xunit;
 

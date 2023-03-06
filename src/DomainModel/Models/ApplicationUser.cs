@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace MuffiNet.Backend.Models;
+namespace DomainModel.Models;
 
 public class ApplicationUser : IdentityUser {
 

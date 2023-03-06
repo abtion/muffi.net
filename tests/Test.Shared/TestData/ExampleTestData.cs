@@ -1,5 +1,5 @@
-﻿using MuffiNet.Backend.DomainModel;
-using MuffiNet.Backend.Models;
+﻿using DomainModel;
+using DomainModel.Models;
 using System;
 using System.Threading.Tasks;
 

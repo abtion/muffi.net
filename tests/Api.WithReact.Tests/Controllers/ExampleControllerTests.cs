@@ -1,11 +1,11 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using MuffiNet.Backend.DomainModel;
-using MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand;
-using MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand;
-using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
-using MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll;
-using MuffiNet.Backend.Services;
+using DomainModel;
+using DomainModel.Commands.ExampleCreateCommand;
+using DomainModel.Commands.ExampleDeleteCommand;
+using DomainModel.Queries.ExampleQuery;
+using DomainModel.Queries.ExampleQueryAll;
+using DomainModel.Services;
 using MuffiNet.FrontendReact.Controllers;
 using MuffiNet.Test.Shared.Mocks;
 using MuffiNet.Test.Shared.TestData;

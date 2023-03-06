@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
-namespace MuffiNet.Backend.Services;
+namespace DomainModel.Services;
 
 public interface ICurrentUserService {
     Task<IdentityUser> CurrentUser();

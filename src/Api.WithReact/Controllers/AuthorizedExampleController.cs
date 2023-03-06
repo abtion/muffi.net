@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MuffiNet.Backend.DomainModel.Commands.ExampleCreateCommand;
-using MuffiNet.Backend.DomainModel.Commands.ExampleDeleteCommand;
-using MuffiNet.Backend.DomainModel.Queries.ExampleQuery;
-using MuffiNet.Backend.DomainModel.Queries.ExampleQueryAll;
+using DomainModel.Commands.ExampleCreateCommand;
+using DomainModel.Commands.ExampleDeleteCommand;
+using DomainModel.Queries.ExampleQuery;
+using DomainModel.Queries.ExampleQueryAll;
 
 namespace MuffiNet.FrontendReact.Controllers;
 

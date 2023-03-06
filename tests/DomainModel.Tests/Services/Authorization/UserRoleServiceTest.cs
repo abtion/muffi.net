@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MuffiNet.Backend.DomainModel;
-using MuffiNet.Backend.Services.Authorization;
+using DomainModel;
+using DomainModel.Services.Authorization;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
