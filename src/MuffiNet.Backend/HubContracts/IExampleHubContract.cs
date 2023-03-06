@@ -3,37 +3,30 @@ using System.Threading.Tasks;
 
 namespace MuffiNet.Backend.HubContracts;
 
-public interface IExampleHubContract
-{
+public interface IExampleHubContract {
     Task SomeEntityUpdated(SomeEntityUpdatedMessage message);
     Task SomeEntityCreated(SomeEntityCreatedMessage message);
     Task SomeEntityDeleted(SomeEntityDeletedMessage message);
 }
 
-public class SomeEntityCreatedMessage
-{
-    public SomeEntityCreatedMessage(ExampleEntityRecord entity)
-    {
+public class SomeEntityCreatedMessage {
+    public SomeEntityCreatedMessage(ExampleEntityRecord entity) {
         Entity = entity;
     }
 
     public ExampleEntityRecord Entity { get; private set; }
 }
 
-public class SomeEntityUpdatedMessage
-{
-    public SomeEntityUpdatedMessage(ExampleEntityRecord entity)
-    {
+public class SomeEntityUpdatedMessage {
+    public SomeEntityUpdatedMessage(ExampleEntityRecord entity) {
         Entity = entity;
     }
 
     public ExampleEntityRecord Entity { get; private set; }
 }
 
-public class SomeEntityDeletedMessage
-{
-    public SomeEntityDeletedMessage(int entityId)
-    {
+public class SomeEntityDeletedMessage {
+    public SomeEntityDeletedMessage(int entityId) {
         EntityId = entityId;
     }
 

@@ -11,30 +11,25 @@ using Xunit;
 namespace MuffiNet.Backend.Tests.DomainModel.Queries.ExampleQuery;
 
 [Collection("ExampleCollection")]
-public class ExampleQueryTests : DomainModelTest<ExampleQueryHandler>
-{
+public class ExampleQueryTests : DomainModelTest<ExampleQueryHandler> {
     private ExampleTestData exampleTestData;
     private ExampleReverseStringService exampleReverseStringService;
-    public ExampleQueryTests()
-    {
+    public ExampleQueryTests() {
         // uses static member as database - that needs to be flushed with every test
         Transaction.ResetExampleEntities();
 
         exampleTestData = new ExampleTestData(Transaction);
     }
 
-    protected async internal override Task<ExampleQueryHandler> CreateSut()
-    {
+    protected async internal override Task<ExampleQueryHandler> CreateSut() {
         exampleReverseStringService = new ExampleReverseStringService();
         var sut = new ExampleQueryHandler(Transaction, exampleReverseStringService);
 
         return await Task.FromResult(sut);
     }
 
-    private ExampleQueryRequest CreateValidRequest()
-    {
-        var request = new ExampleQueryRequest()
-        {
+    private ExampleQueryRequest CreateValidRequest() {
+        var request = new ExampleQueryRequest() {
             Id = 3
         };
 
@@ -43,8 +38,7 @@ public class ExampleQueryTests : DomainModelTest<ExampleQueryHandler>
 
     #region "Guard Tests"
     [Fact]
-    public async void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
-    {
+    public async void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown() {
         await CreateSut();
         Func<ExampleQueryHandler> f = () => new ExampleQueryHandler(null, exampleReverseStringService);
 
@@ -52,8 +46,7 @@ public class ExampleQueryTests : DomainModelTest<ExampleQueryHandler>
     }
 
     [Fact]
-    public async void Given_ExampleReverseStringServiceIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
-    {
+    public async void Given_ExampleReverseStringServiceIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown() {
         await CreateSut();
         Func<ExampleQueryHandler> f = () => new ExampleQueryHandler(Transaction, null);
 
@@ -61,8 +54,7 @@ public class ExampleQueryTests : DomainModelTest<ExampleQueryHandler>
     }
 
     [Fact]
-    public async Task Given_RequestIsNull_When_HandleIsCalled_Then_AnArgumentNullExceptionIsThrown()
-    {
+    public async Task Given_RequestIsNull_When_HandleIsCalled_Then_AnArgumentNullExceptionIsThrown() {
         var sut = await CreateSut();
 
         Task result() => sut.Handle(null, new CancellationToken());
@@ -73,8 +65,7 @@ public class ExampleQueryTests : DomainModelTest<ExampleQueryHandler>
 
     #region "Happy Path Tests"
     [Fact]
-    public async Task Given_EntityWithTheGivenIdIsInTheDatabase_When_HandlerIsCalled_Then_EntityIsReturned()
-    {
+    public async Task Given_EntityWithTheGivenIdIsInTheDatabase_When_HandlerIsCalled_Then_EntityIsReturned() {
         await exampleTestData.AddExampleEntitiesToDatabase(5);
 
         var sut = await CreateSut();
@@ -85,8 +76,7 @@ public class ExampleQueryTests : DomainModelTest<ExampleQueryHandler>
     }
 
     [Fact]
-    public async Task Given_EntityWithTheGivenIdIsNotInTheDatabase_When_HandlerIsCalled_Then_AnExceptionIsThrown()
-    {
+    public async Task Given_EntityWithTheGivenIdIsNotInTheDatabase_When_HandlerIsCalled_Then_AnExceptionIsThrown() {
         await exampleTestData.AddExampleEntitiesToDatabase(1);
 
         var sut = await CreateSut();

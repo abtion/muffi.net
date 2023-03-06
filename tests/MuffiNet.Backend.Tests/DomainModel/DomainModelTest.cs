@@ -9,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace MuffiNet.Backend.Tests.DomainModel;
 
-public abstract class DomainModelTest<T>
-{
-    protected DomainModelTest()
-    {
+public abstract class DomainModelTest<T> {
+    protected DomainModelTest() {
         var servicesBuilder = new DomainModelBuilderForTest();
         var serviceCollection = new ServiceCollection();
 

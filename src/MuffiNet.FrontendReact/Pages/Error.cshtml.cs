@@ -2,15 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Diagnostics;
 
-namespace MuffiNet.FrontendReact.Pages
-{
+namespace MuffiNet.FrontendReact.Pages {
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public class ErrorModel : PageModel
-    {
+    public class ErrorModel : PageModel {
         private readonly ILogger<ErrorModel> _logger;
 
-        public ErrorModel(ILogger<ErrorModel> logger)
-        {
+        public ErrorModel(ILogger<ErrorModel> logger) {
             _logger = logger;
         }
 
@@ -18,8 +15,7 @@ namespace MuffiNet.FrontendReact.Pages
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
-        public void OnGet()
-        {
+        public void OnGet() {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
         }
     }

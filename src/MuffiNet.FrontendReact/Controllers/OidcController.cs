@@ -5,17 +5,15 @@ namespace MuffiNet.FrontendReact.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class OidcController : ControllerBase
-{
+public class OidcController : ControllerBase {
     [HttpGet("frontend-configuration")]
-    public ActionResult<OpenIdConnectFrontend> FrontendConfiguration([FromServices] IConfiguration configuration, CancellationToken cancellationToken)
-    {
+    public ActionResult<OpenIdConnectFrontend> FrontendConfiguration([FromServices] IConfiguration configuration, CancellationToken cancellationToken) {
         return new OpenIdConnectFrontend(
-            configuration.GetValue<string>("Authentication:Authority") 
+            configuration.GetValue<string>("Authentication:Authority")
                 ?? throw new OidcConfigurationInvalidException($"Missing configuration for Authentication:Authority"),
-            configuration.GetValue<string>("Authentication:ClientId") 
+            configuration.GetValue<string>("Authentication:ClientId")
                 ?? throw new OidcConfigurationInvalidException($"Missing configuration for Authentication:ClientId"),
-            configuration.GetValue<string>("Authentication:FrontendScopes") 
+            configuration.GetValue<string>("Authentication:FrontendScopes")
                 ?? throw new OidcConfigurationInvalidException($"Missing configuration for Authentication:FrontendScopes")
             );
     }

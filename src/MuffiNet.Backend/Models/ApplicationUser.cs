@@ -2,7 +2,6 @@
 
 namespace MuffiNet.Backend.Models;
 
-public class ApplicationUser : IdentityUser
-{
+public class ApplicationUser : IdentityUser {
 
 }

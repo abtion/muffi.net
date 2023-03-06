@@ -10,10 +10,8 @@ using MuffiNet.Backend.Services.Authorization;
 
 namespace MuffiNet.Backend.DomainModel;
 
-public static class DomainModelServiceCollectionExtensions
-{
-    public static IDomainModelBuilder AddDomainModel(this IServiceCollection services)
-    {
+public static class DomainModelServiceCollectionExtensions {
+    public static IDomainModelBuilder AddDomainModel(this IServiceCollection services) {
         // Setup
         services.AddScoped<DomainModelTransaction>();
 
@@ -34,11 +32,10 @@ public static class DomainModelServiceCollectionExtensions
         return new DomainModelBuilder(services);
     }
 
-    public static IServiceCollection AddUserRoleService(this IServiceCollection services, IConfiguration config)
-    {
+    public static IServiceCollection AddUserRoleService(this IServiceCollection services, IConfiguration config) {
         services.AddSingleton<UserRoleService>();
 
-        services.Configure<ActiveDirectoryConfig>(config.GetRequiredSection(nameof (ActiveDirectoryConfig)));
+        services.Configure<ActiveDirectoryConfig>(config.GetRequiredSection(nameof(ActiveDirectoryConfig)));
 
         return services;
     }
