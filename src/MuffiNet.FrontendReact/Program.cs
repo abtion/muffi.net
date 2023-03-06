@@ -1,10 +1,7 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using MuffiNet.Authentication.OpenIdConnect;
 using MuffiNet.Backend.Data;
 using MuffiNet.Backend.DomainModel;
-using MuffiNet.Backend.HubContracts;
 using MuffiNet.FrontendReact.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,21 +28,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-// Add SignalR Hubs here
-builder.Services.AddTransient<IExampleHubContract, ExampleHub>();
-
-// SignalR setup + enable CORS for SignalR
-builder.Services.AddSignalR();
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("ClientPermission", policy =>
-    {
-        policy.AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowAnyOrigin();
-    });
-});
+builder.AddSignalRHubs(configuration);
 
 builder.Services.AddApplicationInsightsTelemetry((options) => {
     options.ConnectionString = configuration["APPINSIGHTS_CONNECTIONSTRING"];
@@ -54,17 +37,12 @@ builder.Services.AddApplicationInsightsTelemetry((options) => {
 builder.Services.AddHttpContextAccessor();
 
 
-
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Test"))
-{
+if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Test")) {
     app.UseSwagger();
-    app.UseSwaggerUI(options => 
-    {
+    app.UseSwaggerUI(options => {
         options.EnableTryItOutByDefault();
     });
 
@@ -75,8 +53,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Test"))
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-// SignalR CORS
-app.UseCors("ClientPermission");
+app.UseSignalRCors();
 
 app.UseRouting();
 
@@ -85,14 +62,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapControllerRoute(
-//        name: "default",
-//        pattern: "{controller}/{action=Index}/{id?}");
-//    endpoints.MapRazorPages();
-//});
-
-app.MapHub<ExampleHub>("/hubs/example");
+app.UseSignalRHubs();
 
 app.Run();
