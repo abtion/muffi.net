@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "/src/MuffiNet.FrontendReact/ClientApp/"
+    directory: "/src/Api.WithReact/ClientApp/"
     schedule:
       interval: "weekly"
     allow:

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31423.177
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.FrontendReact", "src\MuffiNet.FrontendReact\MuffiNet.FrontendReact.csproj", "{B43AE794-A202-4276-8D69-A2A969FEE523}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.WithReact", "src\Api.WithReact\Api.WithReact.csproj", "{B43AE794-A202-4276-8D69-A2A969FEE523}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.FrontendReact.Tests", "tests\MuffiNet.FrontendReact.Test\MuffiNet.FrontendReact.Tests.csproj", "{15066F15-59C8-4708-AA56-061EE9294780}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.WithReact.Tests", "tests\Api.WithReact.Tests\Api.WithReact.Tests.csproj", "{15066F15-59C8-4708-AA56-061EE9294780}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solutions Items", "Solutions Items", "{B7E6E4AA-435A-490D-83E7-3BDD83089EAB}"
 	ProjectSection(SolutionItems) = preProject
@@ -17,19 +17,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solutions Items", "Solution
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.EndToEnd.Tests", "tests\MuffiNet.EndToEnd.Tests\MuffiNet.EndToEnd.Tests.csproj", "{0F23A7E8-0BDF-4543-A06F-EBD92ED439FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndToEnd.Tests", "tests\EndToEnd.Tests\EndToEnd.Tests.csproj", "{0F23A7E8-0BDF-4543-A06F-EBD92ED439FE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.Backend", "src\MuffiNet.Backend\MuffiNet.Backend.csproj", "{FA86EB79-9508-40FF-AF85-9FF9FB30F8B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModel", "src\DomainModel\DomainModel.csproj", "{FA86EB79-9508-40FF-AF85-9FF9FB30F8B3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.Backend.Tests", "tests\MuffiNet.Backend.Tests\MuffiNet.Backend.Tests.csproj", "{8E153A9A-42A8-4CC0-A320-4F6334068A8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModel.Tests", "tests\DomainModel.Tests\DomainModel.Tests.csproj", "{8E153A9A-42A8-4CC0-A320-4F6334068A8D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.Test.Shared", "tests\MuffiNet.Test.Shared\MuffiNet.Test.Shared.csproj", "{2DBB65C5-5458-4991-954A-8C33A667F3E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Shared", "tests\Test.Shared\Test.Shared.csproj", "{2DBB65C5-5458-4991-954A-8C33A667F3E9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{854E07AA-80CE-46F9-8DE5-44C650E8F4DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.Api", "src\MuffiNet.Api\MuffiNet.Api.csproj", "{DE367751-3BE0-49E5-8302-F4B0630D85F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Standalone", "src\Api.Standalone\Api.Standalone.csproj", "{DE367751-3BE0-49E5-8302-F4B0630D85F9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuffiNet.Authentication.OpenIdConnect", "src\MuffiNet.Authentication.OpenIdConnect\MuffiNet.Authentication.OpenIdConnect.csproj", "{3E48AEF0-5ABF-4928-8C01-D396FB7703A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Standalone.Tests", "tests\Api.Standalone.Tests\Api.Standalone.Tests.csproj", "{E95E41AA-7F0E-4DE0-B003-33F1804ED783}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Shared", "src\Api.Shared\Api.Shared.csproj", "{F563D607-5A83-4272-842F-16347B04CA18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +67,14 @@ Global
 		{DE367751-3BE0-49E5-8302-F4B0630D85F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE367751-3BE0-49E5-8302-F4B0630D85F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE367751-3BE0-49E5-8302-F4B0630D85F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3E48AEF0-5ABF-4928-8C01-D396FB7703A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E48AEF0-5ABF-4928-8C01-D396FB7703A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E48AEF0-5ABF-4928-8C01-D396FB7703A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E48AEF0-5ABF-4928-8C01-D396FB7703A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E95E41AA-7F0E-4DE0-B003-33F1804ED783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E95E41AA-7F0E-4DE0-B003-33F1804ED783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E95E41AA-7F0E-4DE0-B003-33F1804ED783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E95E41AA-7F0E-4DE0-B003-33F1804ED783}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F563D607-5A83-4272-842F-16347B04CA18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F563D607-5A83-4272-842F-16347B04CA18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F563D607-5A83-4272-842F-16347B04CA18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F563D607-5A83-4272-842F-16347B04CA18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{0F23A7E8-0BDF-4543-A06F-EBD92ED439FE} = {854E07AA-80CE-46F9-8DE5-44C650E8F4DE}
 		{8E153A9A-42A8-4CC0-A320-4F6334068A8D} = {854E07AA-80CE-46F9-8DE5-44C650E8F4DE}
 		{2DBB65C5-5458-4991-954A-8C33A667F3E9} = {854E07AA-80CE-46F9-8DE5-44C650E8F4DE}
+		{E95E41AA-7F0E-4DE0-B003-33F1804ED783} = {854E07AA-80CE-46F9-8DE5-44C650E8F4DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AC61DEE4-E637-4588-AC38-790199F05131}
