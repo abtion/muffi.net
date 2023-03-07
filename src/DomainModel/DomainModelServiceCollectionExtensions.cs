@@ -38,7 +38,10 @@ public static class DomainModelServiceCollectionExtensions
     {
         services.AddSingleton<UserRoleService>();
 
-        services.Configure<ActiveDirectoryConfig>(config.GetRequiredSection(nameof(ActiveDirectoryConfig)));
+        services.AddOptions<ActiveDirectoryConfig>()
+            .Configure<IConfiguration>((options, configuration) => {
+                configuration.GetRequiredSection(nameof(ActiveDirectoryConfig)).Bind(options);
+            });
 
         return services;
     }

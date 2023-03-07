@@ -24,7 +24,7 @@ public abstract class DomainModelTest<T>
         context.Database.EnsureCreated();
 
         Transaction = ServiceProvider.GetService<DomainModelTransaction>();
-        UserManager = ServiceProvider.GetService<UserManager<ApplicationUser>>();
+        //UserManager = ServiceProvider.GetService<UserManager<ApplicationUser>>();
 
         // create a test user
         //UserManager.CreateAsync(ApplicationUserTestData.CreateApplicationUser());
@@ -36,5 +36,5 @@ public abstract class DomainModelTest<T>
 
     protected internal DomainModelTransaction Transaction { get; private set; }
 
-    protected internal UserManager<ApplicationUser> UserManager { get; private set; }
+    //protected internal UserManager<ApplicationUser> UserManager { get; private set; }
 }
