@@ -1,4 +1,4 @@
-namespace MuffiNet.Backend.Models;
+namespace DomainModel.Models;
 
 public record ExampleEntityRecord(
     int Id,

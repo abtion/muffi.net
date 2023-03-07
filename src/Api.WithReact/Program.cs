@@ -1,8 +1,8 @@
 using Api.Shared.Authentication.OpenIdConnect;
 using Microsoft.EntityFrameworkCore;
-using MuffiNet.Backend.Data;
-using MuffiNet.Backend.DomainModel;
-using MuffiNet.FrontendReact.Hubs;
+using DomainModel.Data;
+using DomainModel;
+using Api.WithReact.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +12,6 @@ var configuration = builder.Configuration;
 builder.Services.AddOidcAuthentication(configuration);
 
 builder.Services.AddControllers();
-builder.Services.AddRazorPages();
 
 builder.Services.AddDomainModel();
 builder.Services.AddUserRoleService(configuration);

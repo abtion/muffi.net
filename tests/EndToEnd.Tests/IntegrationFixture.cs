@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Xunit;
-using MuffiNet.Backend.Data;
+using DomainModel.Data;
 
 namespace EndToEnd.Tests;
 

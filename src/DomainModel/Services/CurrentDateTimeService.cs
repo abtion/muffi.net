@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace MuffiNet.Backend.Services;
+namespace DomainModel.Services;
 
 public interface ICurrentDateTimeService {
     DateTime CurrentDateTime();

@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using MuffiNet.Backend.Data;
-using MuffiNet.Test.Shared;
-using MuffiNet.Test.Shared.TestData;
+using DomainModel.Data;
+using Test.Shared;
+using Test.Shared.TestData;
 using System;
 
-namespace MuffiNet.FrontendReact.Test.Controllers;
+namespace Api.WithReact.Tests.Controllers;
 
 public abstract class ControllerTest {
     protected ControllerTest() {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MuffiNet.Backend.Models;
+namespace DomainModel.Models;
 
 public class ExampleEntity {
     [Required]

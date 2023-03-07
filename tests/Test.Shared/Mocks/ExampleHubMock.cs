@@ -1,7 +1,7 @@
-﻿using MuffiNet.Backend.HubContracts;
+﻿using DomainModel.HubContracts;
 using System.Threading.Tasks;
 
-namespace MuffiNet.Test.Shared.Mocks;
+namespace Test.Shared.Mocks;
 
 public class ExampleHubMock : IExampleHubContract {
 

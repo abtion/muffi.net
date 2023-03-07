@@ -1,12 +1,12 @@
-﻿namespace MuffiNet.Backend.Services.Authorization;
-
-using Azure.Identity;
+﻿using Azure.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.Graph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+namespace DomainModel.Services.Authorization;
 
 public class UserRoleService {
     private readonly GraphServiceClient client;

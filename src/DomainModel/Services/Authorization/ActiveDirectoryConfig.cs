@@ -1,4 +1,4 @@
-﻿namespace MuffiNet.Backend.Services.Authorization;
+﻿namespace DomainModel.Services.Authorization;
 
 public class ActiveDirectoryConfig {
     // See the README.md file in the project root for details about this configuration.

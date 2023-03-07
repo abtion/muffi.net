@@ -1,8 +1,8 @@
 ﻿using Moq;
-using MuffiNet.Backend.Services;
+using DomainModel.Services;
 using System;
 
-namespace MuffiNet.Test.Shared.Mocks;
+namespace Test.Shared.Mocks;
 
 public static class CurrentDateTimeServiceMock {
     public static ICurrentDateTimeService MockCurrentDateTimeService() {

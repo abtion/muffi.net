@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 
-namespace MuffiNet.FrontendReact.Hubs;
+namespace Api.WithReact.Hubs;
 
 public class ConfigureJwtBearerOptions : IPostConfigureOptions<JwtBearerOptions> {
     public void PostConfigure(string? name, JwtBearerOptions options) {

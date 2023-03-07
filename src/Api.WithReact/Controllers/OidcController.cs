@@ -1,7 +1,7 @@
 ﻿using Api.Shared.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MuffiNet.FrontendReact.Controllers;
+namespace Api.WithReact.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace MuffiNet.Backend.Data;
+namespace DomainModel.Data;
 
 /// <summary>
 /// Never use this class for database access - always use DomainModelTransaction

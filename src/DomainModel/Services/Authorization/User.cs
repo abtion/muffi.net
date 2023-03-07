@@ -1,4 +1,4 @@
-﻿namespace MuffiNet.Backend.Services.Authorization;
+﻿namespace DomainModel.Services.Authorization;
 
 using System;
 using System.Collections.Generic;

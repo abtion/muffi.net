@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MuffiNet.Backend.Exceptions;
+namespace DomainModel.Exceptions;
 
 public class ExampleEntityNotFoundException : Exception {
 

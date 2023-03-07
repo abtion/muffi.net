@@ -1,4 +1,4 @@
-﻿namespace MuffiNet.Backend.Services.Authorization {
+﻿namespace DomainModel.Services.Authorization {
     public class UserDetails {
         public string Email { get; init; }
 

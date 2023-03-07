@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MuffiNet.FrontendReact.Controllers {
+namespace Api.WithReact.Controllers {
     [Route("api/[controller]")]
     [Authorize]
     [ApiController]
