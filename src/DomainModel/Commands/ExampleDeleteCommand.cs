@@ -1,7 +1,7 @@
-﻿using MediatR;
+﻿using DomainModel.Shared;
 
 namespace DomainModel.Commands;
 
-public record ExampleDeleteCommand : IRequest<ExampleDeleteResponse> {
+public record ExampleDeleteCommand : ICommand<ExampleDeleteResponse> {
     public int Id { get; set; }
 }

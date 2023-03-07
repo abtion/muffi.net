@@ -1,8 +1,8 @@
-﻿using MediatR;
+﻿using DomainModel.Shared;
 
 namespace DomainModel.Commands;
 
-public record ExampleUpdateCommand : IRequest<ExampleUpdateResponse> {
+public record ExampleUpdateCommand : ICommand<ExampleUpdateResponse> {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;

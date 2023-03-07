@@ -1,8 +1,8 @@
-﻿using MediatR;
+﻿using DomainModel.Shared;
 
 namespace DomainModel.Queries;
 
-public record ExampleLoadSingleQuery : IRequest<ExampleLoadSingleResponse>
+public record ExampleLoadSingleQuery : IQuery<ExampleLoadSingleResponse>
 {
     public int Id { get; set; }
 }

@@ -1,6 +1,6 @@
-﻿using MediatR;
+﻿using DomainModel.Shared;
 
 namespace DomainModel.Queries;
 
-public record ExampleLoadAllQuery : IRequest<ExampleLoadAllResponse> {
+public record ExampleLoadAllQuery : IQuery<ExampleLoadAllResponse> {
 }
