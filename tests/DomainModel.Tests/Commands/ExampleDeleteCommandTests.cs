@@ -1,12 +1,12 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using DomainModel.Commands.ExampleDeleteCommand;
 using DomainModel.Models;
 using Test.Shared.Mocks;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
+using DomainModel.Commands;
 
 namespace DomainModel.Tests.Commands;
 
@@ -34,9 +34,9 @@ public class ExampleDeleteCommandTests : DomainModelTest<ExampleDeleteCommandHan
         return await Task.FromResult(new ExampleDeleteCommandHandler(domainModelTransaction, exampleHub));
     }
 
-    private ExampleDeleteCommandRequest CreateValidRequest()
+    private ExampleDeleteCommand CreateValidRequest()
     {
-        var request = new ExampleDeleteCommandRequest()
+        var request = new ExampleDeleteCommand()
         {
             Id = 10,
         };

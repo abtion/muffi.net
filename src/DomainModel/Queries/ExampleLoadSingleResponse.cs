@@ -1,8 +1,7 @@
 ﻿using DomainModel.Models;
 
-namespace DomainModel.Queries.ExampleQuery;
+namespace DomainModel.Queries;
 
-public class ExampleQueryResponse
-{
+public record ExampleLoadSingleResponse {
     public ExampleEntityRecord? ExampleEntity { get; set; }
 }

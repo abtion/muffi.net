@@ -1,17 +1,12 @@
-﻿using FluentAssertions;
-using Microsoft.Extensions.DependencyInjection;
-using DomainModel;
-using DomainModel.Commands.ExampleCreateCommand;
-using DomainModel.Commands.ExampleDeleteCommand;
-using DomainModel.Queries.ExampleQuery;
-using DomainModel.Queries.ExampleQueryAll;
+﻿using DomainModel;
+using DomainModel.Commands;
+using DomainModel.Queries;
 using DomainModel.Services;
-using Api.WithReact.Controllers;
-using Test.Shared.Mocks;
-using Test.Shared.TestData;
+using Microsoft.Extensions.DependencyInjection;
 using System.Threading;
 using System.Threading.Tasks;
-using Xunit;
+using Test.Shared.Mocks;
+using Test.Shared.TestData;
 
 namespace Api.WithReact.Tests.Controllers;
 
@@ -28,7 +23,7 @@ public class ExampleControllerTests : ControllerTest {
         await testData.AddExampleEntitiesToDatabase(5);
 
         var controller = new ExampleController();
-        var handler = new ExampleQueryHandler(transaction, new ExampleReverseStringService());
+        var handler = new ExampleLoadSingleQueryHandler(transaction, new ExampleReverseStringService());
 
         int exampleEntityId = 3;
 
@@ -36,7 +31,7 @@ public class ExampleControllerTests : ControllerTest {
         var response = await controller.ExampleQuery(handler, exampleEntityId, new CancellationToken());
 
         // Assert
-        response.Value.Should().BeOfType<ExampleQueryResponse>();
+        response.Value.Should().BeOfType<ExampleLoadSingleResponse>();
     }
 
     [Fact]
@@ -49,13 +44,13 @@ public class ExampleControllerTests : ControllerTest {
         await testData.AddExampleEntitiesToDatabase(5);
 
         var controller = new ExampleController();
-        var handler = new ExampleQueryAllHandler(transaction);
+        var handler = new ExampleLoadAllQueryHandler(transaction);
 
         // Act
         var response = await controller.ExampleQueryAll(handler, new CancellationToken());
 
         // Assert
-        response.Value.Should().BeOfType<ExampleQueryAllResponse>();
+        response.Value.Should().BeOfType<ExampleLoadAllResponse>();
     }
 
     [Fact]
@@ -69,7 +64,7 @@ public class ExampleControllerTests : ControllerTest {
         var controller = new ExampleController();
         var handler = new ExampleCreateCommandHandler(transaction, exampleHubMock);
 
-        var request = new ExampleCreateCommandRequest() {
+        var request = new ExampleCreateCommand() {
             Name = "Integration",
             Description = "Test",
             Email = "integration@test.net",
@@ -82,7 +77,7 @@ public class ExampleControllerTests : ControllerTest {
         var response = await controller.ExampleCreateCommand(handler, request, cancellationToken);
 
         // Assert
-        response.Value.Should().BeOfType<ExampleCreateCommandResponse>();
+        response.Value.Should().BeOfType<ExampleCreateResponse>();
     }
 
     [Fact]
@@ -97,7 +92,7 @@ public class ExampleControllerTests : ControllerTest {
         var controller = new ExampleController();
         var handler = new ExampleDeleteCommandHandler(transaction, new ExampleHubMock());
 
-        var request = new ExampleDeleteCommandRequest() {
+        var request = new ExampleDeleteCommand() {
             Id = 3
         };
 
@@ -105,6 +100,6 @@ public class ExampleControllerTests : ControllerTest {
         var response = await controller.ExampleDeleteCommand(handler, request, new CancellationToken());
 
         // Assert
-        response.Value.Should().BeOfType<ExampleDeleteCommandResponse>();
+        response.Value.Should().BeOfType<ExampleDeleteResponse>();
     }
 }

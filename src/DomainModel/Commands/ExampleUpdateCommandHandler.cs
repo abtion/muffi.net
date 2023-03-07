@@ -1,49 +1,46 @@
 ﻿using MediatR;
+using DomainModel.Exceptions;
 using DomainModel.HubContracts;
 using DomainModel.Models;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DomainModel;
 
-namespace DomainModel.Commands.ExampleCreateCommand;
+namespace DomainModel.Commands;
 
-public class ExampleCreateCommandHandler : IRequestHandler<ExampleCreateCommandRequest, ExampleCreateCommandResponse>
+public class ExampleUpdateCommandHandler : IRequestHandler<ExampleUpdateCommand, ExampleUpdateResponse>
 {
     private readonly DomainModelTransaction domainModelTransaction;
     private readonly IExampleHubContract exampleHub;
 
-    public ExampleCreateCommandHandler(DomainModelTransaction domainModelTransaction, IExampleHubContract exampleHub)
+    public ExampleUpdateCommandHandler(DomainModelTransaction domainModelTransaction, IExampleHubContract exampleHub)
     {
         this.domainModelTransaction = domainModelTransaction ?? throw new ArgumentNullException(nameof(domainModelTransaction));
         this.exampleHub = exampleHub ?? throw new ArgumentNullException(nameof(exampleHub));
     }
 
-    public async Task<ExampleCreateCommandResponse> Handle(ExampleCreateCommandRequest request, CancellationToken cancellationToken)
+    public async Task<ExampleUpdateResponse> Handle(ExampleUpdateCommand request, CancellationToken cancellationToken)
     {
         if (request is null)
         {
             throw new ArgumentNullException(nameof(request));
         }
 
-        var entity = new ExampleEntity();
+        var entity = domainModelTransaction.ExampleEntities().WithId(request.Id).SingleOrDefault();
 
-        // setting the Id since there is no database to do it
-        if (domainModelTransaction.ExampleEntities().Any())
-            entity.Id = domainModelTransaction.ExampleEntities().Max(p => p.Id) + 1;
-        else
-            entity.Id = 1;
+        if (entity == null)
+            throw new ExampleEntityNotFoundException(request.Id);
 
         entity.Name = request.Name;
         entity.Description = request.Description;
         entity.Email = request.Email;
         entity.Phone = request.Phone;
 
-        domainModelTransaction.AddExampleEntity(entity);
-
         await domainModelTransaction.SaveChangesAsync();
 
-        await exampleHub.SomeEntityCreated(new SomeEntityCreatedMessage(new ExampleEntityRecord(
+        await exampleHub.SomeEntityUpdated(new SomeEntityUpdatedMessage(new ExampleEntityRecord(
             entity.Id,
             entity.Name,
             entity.Description,
@@ -51,6 +48,6 @@ public class ExampleCreateCommandHandler : IRequestHandler<ExampleCreateCommandR
             entity.Phone
         )));
 
-        return new ExampleCreateCommandResponse() { ExampleEntity = entity };
+        return new ExampleUpdateResponse() { ExampleEntity = entity };
     }
 }

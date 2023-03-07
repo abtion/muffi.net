@@ -5,18 +5,18 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DomainModel.Queries.ExampleQueryAll;
+namespace DomainModel.Queries;
 
-public class ExampleQueryAllHandler : IRequestHandler<ExampleQueryAllRequest, ExampleQueryAllResponse>
+public class ExampleLoadAllQueryHandler : IRequestHandler<ExampleLoadAllQuery, ExampleLoadAllResponse>
 {
     private readonly DomainModelTransaction domainModelTransaction;
 
-    public ExampleQueryAllHandler(DomainModelTransaction domainModelTransaction)
+    public ExampleLoadAllQueryHandler(DomainModelTransaction domainModelTransaction)
     {
         this.domainModelTransaction = domainModelTransaction ?? throw new ArgumentNullException(nameof(domainModelTransaction));
     }
 
-    public async Task<ExampleQueryAllResponse> Handle(ExampleQueryAllRequest request, CancellationToken cancellationToken)
+    public async Task<ExampleLoadAllResponse> Handle(ExampleLoadAllQuery request, CancellationToken cancellationToken)
     {
         if (request is null)
         {
@@ -31,6 +31,6 @@ public class ExampleQueryAllHandler : IRequestHandler<ExampleQueryAllRequest, Ex
                         exampleEntity.Phone
                     );
 
-        return await Task.FromResult(new ExampleQueryAllResponse(query.ToList()));
+        return await Task.FromResult(new ExampleLoadAllResponse(query.ToList()));
     }
 }

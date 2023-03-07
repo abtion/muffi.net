@@ -1,13 +1,11 @@
-﻿using FluentAssertions;
+﻿using Api.WithReact.Hubs;
+using DomainModel.HubContracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
-using DomainModel.HubContracts;
-using Api.WithReact.Hubs;
 using System.Threading.Tasks;
-using Xunit;
 
 namespace Api.WithReact.Tests.Hubs;
 

@@ -4,9 +4,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DomainModel.Commands.ExampleDeleteCommand;
+namespace DomainModel.Commands;
 
-public class ExampleDeleteCommandHandler : IRequestHandler<ExampleDeleteCommandRequest, ExampleDeleteCommandResponse>
+public class ExampleDeleteCommandHandler : IRequestHandler<ExampleDeleteCommand, ExampleDeleteResponse>
 {
     private readonly DomainModelTransaction domainModelTransaction;
     private readonly IExampleHubContract exampleHub;
@@ -17,7 +17,7 @@ public class ExampleDeleteCommandHandler : IRequestHandler<ExampleDeleteCommandR
         this.exampleHub = exampleHub ?? throw new ArgumentNullException(nameof(exampleHub));
     }
 
-    public async Task<ExampleDeleteCommandResponse> Handle(ExampleDeleteCommandRequest request, CancellationToken cancellationToken)
+    public async Task<ExampleDeleteResponse> Handle(ExampleDeleteCommand request, CancellationToken cancellationToken)
     {
         if (request is null)
             throw new ArgumentNullException(nameof(request));
@@ -27,6 +27,6 @@ public class ExampleDeleteCommandHandler : IRequestHandler<ExampleDeleteCommandR
 
         await exampleHub.SomeEntityDeleted(new SomeEntityDeletedMessage(request.Id));
 
-        return new ExampleDeleteCommandResponse();
+        return new ExampleDeleteResponse();
     }
 }

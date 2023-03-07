@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using DomainModel.Queries.ExampleQuery;
 using DomainModel.Exceptions;
 using DomainModel.Services;
 using Test.Shared.TestData;
@@ -7,11 +6,12 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
+using DomainModel.Queries;
 
 namespace DomainModel.Tests.Queries;
 
 [Collection("ExampleCollection")]
-public class ExampleQueryTests : DomainModelTest<ExampleQueryHandler>
+public class ExampleQueryTests : DomainModelTest<ExampleLoadSingleQueryHandler>
 {
     private ExampleTestData exampleTestData;
     private ExampleReverseStringService exampleReverseStringService;
@@ -23,17 +23,17 @@ public class ExampleQueryTests : DomainModelTest<ExampleQueryHandler>
         exampleTestData = new ExampleTestData(Transaction);
     }
 
-    protected async internal override Task<ExampleQueryHandler> CreateSut()
+    protected async internal override Task<ExampleLoadSingleQueryHandler> CreateSut()
     {
         exampleReverseStringService = new ExampleReverseStringService();
-        var sut = new ExampleQueryHandler(Transaction, exampleReverseStringService);
+        var sut = new ExampleLoadSingleQueryHandler(Transaction, exampleReverseStringService);
 
         return await Task.FromResult(sut);
     }
 
-    private ExampleQueryRequest CreateValidRequest()
+    private ExampleLoadSingleQuery CreateValidRequest()
     {
-        var request = new ExampleQueryRequest()
+        var request = new ExampleLoadSingleQuery()
         {
             Id = 3
         };
@@ -46,7 +46,7 @@ public class ExampleQueryTests : DomainModelTest<ExampleQueryHandler>
     public async void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
     {
         await CreateSut();
-        Func<ExampleQueryHandler> f = () => new ExampleQueryHandler(null, exampleReverseStringService);
+        Func<ExampleLoadSingleQueryHandler> f = () => new ExampleLoadSingleQueryHandler(null, exampleReverseStringService);
 
         f.Should().Throw<ArgumentNullException>();
     }
@@ -55,7 +55,7 @@ public class ExampleQueryTests : DomainModelTest<ExampleQueryHandler>
     public async void Given_ExampleReverseStringServiceIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
     {
         await CreateSut();
-        Func<ExampleQueryHandler> f = () => new ExampleQueryHandler(Transaction, null);
+        Func<ExampleLoadSingleQueryHandler> f = () => new ExampleLoadSingleQueryHandler(Transaction, null);
 
         f.Should().Throw<ArgumentNullException>();
     }

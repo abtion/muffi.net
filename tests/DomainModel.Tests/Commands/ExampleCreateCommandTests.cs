@@ -1,11 +1,11 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using DomainModel.Commands.ExampleCreateCommand;
 using Test.Shared.Mocks;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
+using DomainModel.Commands;
 
 namespace DomainModel.Tests.Commands;
 
@@ -27,9 +27,9 @@ public class ExampleCreateCommandTests : DomainModelTest<ExampleCreateCommandHan
         return await Task.FromResult(new ExampleCreateCommandHandler(domainModelTransaction, exampleHub));
     }
 
-    private ExampleCreateCommandRequest CreateValidRequest()
+    private ExampleCreateCommand CreateValidRequest()
     {
-        var request = new ExampleCreateCommandRequest()
+        var request = new ExampleCreateCommand()
         {
             Name = "Muffi",
             Description = "Head of People"

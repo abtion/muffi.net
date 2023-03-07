@@ -2,11 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using DomainModel.Services;
 using DomainModel.Services.Authorization;
-using DomainModel.Queries.ExampleQuery;
-using DomainModel.Queries.ExampleQueryAll;
-using DomainModel.Commands.ExampleCreateCommand;
-using DomainModel.Commands.ExampleDeleteCommand;
-using DomainModel.Commands.ExampleUpdateCommand;
+using DomainModel.Commands;
+using DomainModel.Queries;
 
 namespace DomainModel;
 
@@ -23,8 +20,8 @@ public static class DomainModelServiceCollectionExtensions
         services.AddScoped<ExampleDeleteCommandHandler>();
 
         // Query Handlers
-        services.AddScoped<ExampleQueryHandler>();
-        services.AddScoped<ExampleQueryAllHandler>();
+        services.AddScoped<ExampleLoadSingleQueryHandler>();
+        services.AddScoped<ExampleLoadAllQueryHandler>();
 
         // Services
         //services.AddScoped<ICurrentUserService, CurrentUserService>();

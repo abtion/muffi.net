@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace DomainModel.Commands.ExampleUpdateCommand;
+namespace DomainModel.Commands;
 
-public class ExampleUpdateCommandRequest : IRequest<ExampleUpdateCommandResponse>
-{
+public record ExampleUpdateCommand : IRequest<ExampleUpdateResponse> {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;

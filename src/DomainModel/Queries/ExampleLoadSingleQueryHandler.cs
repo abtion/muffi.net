@@ -7,20 +7,20 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DomainModel.Queries.ExampleQuery;
+namespace DomainModel.Queries;
 
-public class ExampleQueryHandler : IRequestHandler<ExampleQueryRequest, ExampleQueryResponse>
+public class ExampleLoadSingleQueryHandler : IRequestHandler<ExampleLoadSingleQuery, ExampleLoadSingleResponse>
 {
     private readonly DomainModelTransaction domainModelTransaction;
     private readonly IExampleReverseStringService exampleService;
 
-    public ExampleQueryHandler(DomainModelTransaction domainModelTransaction, IExampleReverseStringService exampleService)
+    public ExampleLoadSingleQueryHandler(DomainModelTransaction domainModelTransaction, IExampleReverseStringService exampleService)
     {
         this.domainModelTransaction = domainModelTransaction ?? throw new ArgumentNullException(nameof(domainModelTransaction));
         this.exampleService = exampleService ?? throw new ArgumentNullException(nameof(exampleService));
     }
 
-    public async Task<ExampleQueryResponse> Handle(ExampleQueryRequest request, CancellationToken cancellationToken)
+    public async Task<ExampleLoadSingleResponse> Handle(ExampleLoadSingleQuery request, CancellationToken cancellationToken)
     {
         if (request is null)
         {
@@ -39,7 +39,7 @@ public class ExampleQueryHandler : IRequestHandler<ExampleQueryRequest, ExampleQ
         if (!query.Any())
             throw new ExampleEntityNotFoundException(request.Id);
 
-        return await Task.FromResult(new ExampleQueryResponse()
+        return await Task.FromResult(new ExampleLoadSingleResponse()
         {
             ExampleEntity = query.Single()
         });

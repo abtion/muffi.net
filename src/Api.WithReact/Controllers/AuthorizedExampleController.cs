@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using DomainModel.Commands.ExampleCreateCommand;
-using DomainModel.Commands.ExampleDeleteCommand;
-using DomainModel.Queries.ExampleQuery;
-using DomainModel.Queries.ExampleQueryAll;
+using DomainModel.Queries;
+using DomainModel.Commands;
 
 namespace Api.WithReact.Controllers;
 
@@ -12,23 +10,23 @@ namespace Api.WithReact.Controllers;
 [Authorize]
 public class AuthorizedExampleController : ControllerBase {
     [HttpGet("{idOfExampleEntity}")]
-    public async Task<ActionResult<ExampleQueryResponse>> ExampleQuery([FromServices] ExampleQueryHandler handler, [FromRoute] int idOfExampleEntity, CancellationToken cancellationToken) {
-        return await handler.Handle(new ExampleQueryRequest() { Id = idOfExampleEntity }, cancellationToken);
+    public async Task<ActionResult<ExampleLoadSingleResponse>> ExampleQuery([FromServices] ExampleLoadSingleQueryHandler handler, [FromRoute] int idOfExampleEntity, CancellationToken cancellationToken) {
+        return await handler.Handle(new ExampleLoadSingleQuery() { Id = idOfExampleEntity }, cancellationToken);
     }
 
     // endpoints with complex names must use all lower case and hyphens to separate words
     [HttpGet("get-all")]
-    public async Task<ActionResult<ExampleQueryAllResponse>> ExampleQueryAll([FromServices] ExampleQueryAllHandler handler, CancellationToken cancellationToken) {
-        return await handler.Handle(new ExampleQueryAllRequest(), cancellationToken);
+    public async Task<ActionResult<ExampleLoadAllResponse>> ExampleQueryAll([FromServices] ExampleLoadAllQueryHandler handler, CancellationToken cancellationToken) {
+        return await handler.Handle(new ExampleLoadAllQuery(), cancellationToken);
     }
 
     [HttpPut]
-    public async Task<ActionResult<ExampleCreateCommandResponse>> ExampleCreateCommand([FromServices] ExampleCreateCommandHandler handler, ExampleCreateCommandRequest request, CancellationToken cancellationToken) {
+    public async Task<ActionResult<ExampleCreateResponse>> ExampleCreateCommand([FromServices] ExampleCreateCommandHandler handler, ExampleCreateCommand request, CancellationToken cancellationToken) {
         return await handler.Handle(request, cancellationToken);
     }
 
     [HttpPost]
-    public async Task<ActionResult<ExampleDeleteCommandResponse>> ExampleDeleteCommand([FromServices] ExampleDeleteCommandHandler handler, ExampleDeleteCommandRequest request, CancellationToken cancellationToken) {
+    public async Task<ActionResult<ExampleDeleteResponse>> ExampleDeleteCommand([FromServices] ExampleDeleteCommandHandler handler, ExampleDeleteCommand request, CancellationToken cancellationToken) {
         return await handler.Handle(request, cancellationToken);
     }
 }

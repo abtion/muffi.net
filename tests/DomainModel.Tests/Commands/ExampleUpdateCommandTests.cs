@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using DomainModel.Commands.ExampleUpdateCommand;
 using DomainModel.Exceptions;
 using DomainModel.Models;
 using Test.Shared.Mocks;
@@ -8,6 +7,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
+using DomainModel.Commands;
 
 namespace DomainModel.Tests.Commands;
 
@@ -36,9 +36,9 @@ public class ExampleUpdateCommandTests : DomainModelTest<ExampleUpdateCommandHan
         return await Task.FromResult(new ExampleUpdateCommandHandler(domainModelTransaction, exampleHub));
     }
 
-    private ExampleUpdateCommandRequest CreateValidRequest()
+    private ExampleUpdateCommand CreateValidRequest()
     {
-        var request = new ExampleUpdateCommandRequest()
+        var request = new ExampleUpdateCommand()
         {
             Id = 10,
             Name = "MuffiNew",

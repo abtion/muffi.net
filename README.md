@@ -38,9 +38,9 @@ Local overrides of configurations/secret must be done through [Secret Manager](h
 
 These projects have User Secrets:
 
-  - MuffiNet.EndToEnd.Tests: `ConnectionStrings:DefaultConnection` (see "LocalDB" section below)
-  - MuffiNet.Api
-  - MuffiNet.FrontendReact, MuffiNet.Backend.Tests: `ActiveDirectoryConfig:AppClientSecret` (see "Azure Active Directory" section below)
+  - EndToEnd.Tests: `ConnectionStrings:DefaultConnection` (see "LocalDB" section below)
+  - Api.Standalone
+  - Api.WithReact, Api.WithReact.Tests: `ActiveDirectoryConfig:AppClientSecret` (see "Azure Active Directory" section below)
 
 #### Database connection
 
@@ -51,13 +51,13 @@ Start the DB with `docker-compose up`, then no further setup is required.
 
 If you are running Windows with a instance of MS LocalDb, you can avoid using Docker for development and for the end-to-end tests by running these commands.
 
-In the "MuffiNet.EndToEnd.Tests" project folder:
+In the "EndToEnd.Tests" project folder:
 `dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Server=(localdb)\mssqllocaldb;Database=MUFFINET-TEST;Trusted_Connection=True;MultipleActiveResultSets=true"`
 
-In the "MuffiNet.FrontendReact" project folder:
+In the "Api.WithReact" project folder:
 `dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Server=(localdb)\mssqllocaldb;Database=MUFFINET;Trusted_Connection=True;MultipleActiveResultSets=true"`
 
-In the "MuffiNet.Api" project folder:
+In the "Api.Standalone" project folder:
 `dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Server=(localdb)\mssqllocaldb;Database=MUFFINET;Trusted_Connection=True;MultipleActiveResultSets=true"`
 
 #### Azure Active Directory
@@ -159,7 +159,7 @@ dotnet tool install --global dotnet-ef
 Then run the migrations:
 
 ```sh
-dotnet ef database update --project src/MuffiNet.FrontendReact
+dotnet ef database update --project src/Api.WithReact
 ```
 
 You might get an error because the dotnet tools directory is not in your path.
@@ -180,7 +180,7 @@ To install Chromium for Playwright, start PowerShell as Administrator. (by right
 From the root folder of the Muffi.NET project, run the following PowerShell commands:
 
   Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
-  cd tests\MuffiNet.EndToEnd.Tests
+  cd tests\EndToEnd.Tests
   .\bin\Debug\net7.0\playwright.ps1 install chromium
 
 ### 3. Ensure that linting and tests pass
@@ -199,7 +199,7 @@ yarn test
 
 ## Day-to-day
 
-- Run the server: `dotnet run --project src/MuffiNet.FrontendReact`
+- Run the server: `dotnet run --project src/Api.WithReact`
 - Run backend tests: `dotnet test`
 - Run frontend tests: `yarn test`
 
@@ -231,7 +231,7 @@ Backend code coverage requires Coverlet & ReportGenerator:
 
 Backend report: (note slash/backslash use differs on different cmd shells)
 
-- `dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov ./tests/MuffiNet.Backend.Tests`
+- `dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov ./tests/DomainModel.Tests`
 - `dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov ./tests/Api.WithReact.Tests`
 - `reportgenerator "-reports:./tests/**/*.info" "-targetdir:coverage"`
 
@@ -266,32 +266,42 @@ The template can be developed and debugged on all platforms supported by Microso
 
 ## Projects
 
-### Muffi.API
+### Api.Standalone
 
 Contains a Minimal API setup for pure backend API projects.
 
-### Muffi.Backend
+### DomainModel
 
 Contains handlers (services) and the domain model (ORM etc)
-For seperation of queries (fast) and commands (slower) the pattern Command and Query Responsibility Segregation (CQRS) is used.
+For separation of queries (fast) and commands (slower) the pattern Command and Query Responsibility Segregation (CQRS) is used.
 
-### Muffi.FrontendReact
+### DomainModel.Shared
+
+### Api.WithReact
 
 Contains API controllers and the frontend applications in the folder "ClientApp". The frontend uses Jest for tests and the tests are located along side the React components.
 
 ## Test projects
 
-### Muffi.Backend.Tests
+### DomainModel.Tests
 
 Contains backend unit tests of handlers.
 
-### Muffi.Frontend.Tests
+### Api.Standalone.Tests
+
+TBA
+
+### Api.WithReact.Tests
 
 Contains backend unit tests of controllers and SignalR hubs.
 
-### Muffi.EndToEnd.Tests
+### EndToEnd.Tests
 
 Contains end-to-end tests running in a headless browser (Chromium via [Playwright](https://playwright.dev/dotnet/)).
+
+### Test.Shared
+
+TBA
 
 ## Nuget Packages Used
 

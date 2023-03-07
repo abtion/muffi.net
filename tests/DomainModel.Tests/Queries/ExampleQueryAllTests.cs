@@ -1,15 +1,15 @@
 ﻿using FluentAssertions;
-using DomainModel.Queries.ExampleQueryAll;
 using Test.Shared.TestData;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
+using DomainModel.Queries;
 
 namespace DomainModel.Tests.Queries;
 
 [Collection("ExampleCollection")]
-public class ExampleQueryAllTests : DomainModelTest<ExampleQueryAllHandler>
+public class ExampleQueryAllTests : DomainModelTest<ExampleLoadAllQueryHandler>
 {
     private ExampleTestData exampleTestData;
 
@@ -21,16 +21,16 @@ public class ExampleQueryAllTests : DomainModelTest<ExampleQueryAllHandler>
         exampleTestData = new ExampleTestData(Transaction);
     }
 
-    protected async internal override Task<ExampleQueryAllHandler> CreateSut()
+    protected async internal override Task<ExampleLoadAllQueryHandler> CreateSut()
     {
-        var sut = new ExampleQueryAllHandler(Transaction);
+        var sut = new ExampleLoadAllQueryHandler(Transaction);
 
         return await Task.FromResult(sut);
     }
 
-    private ExampleQueryAllRequest CreateValidRequest()
+    private ExampleLoadAllQuery CreateValidRequest()
     {
-        return new ExampleQueryAllRequest();
+        return new ExampleLoadAllQuery();
     }
 
     #region "Guard Tests"
@@ -38,7 +38,7 @@ public class ExampleQueryAllTests : DomainModelTest<ExampleQueryAllHandler>
     public async void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
     {
         await CreateSut();
-        Func<ExampleQueryAllHandler> f = () => new ExampleQueryAllHandler(null);
+        Func<ExampleLoadAllQueryHandler> f = () => new ExampleLoadAllQueryHandler(null);
 
         f.Should().Throw<ArgumentNullException>();
     }

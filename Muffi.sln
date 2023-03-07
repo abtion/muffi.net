@@ -29,9 +29,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{854E07AA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Standalone", "src\Api.Standalone\Api.Standalone.csproj", "{DE367751-3BE0-49E5-8302-F4B0630D85F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Standalone.Tests", "tests\Api.Standalone.Tests\Api.Standalone.Tests.csproj", "{E95E41AA-7F0E-4DE0-B003-33F1804ED783}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Standalone.Tests", "tests\Api.Standalone.Tests\Api.Standalone.Tests.csproj", "{E95E41AA-7F0E-4DE0-B003-33F1804ED783}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Shared", "src\Api.Shared\Api.Shared.csproj", "{F563D607-5A83-4272-842F-16347B04CA18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Shared", "src\Api.Shared\Api.Shared.csproj", "{F563D607-5A83-4272-842F-16347B04CA18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel.Shared", "src\DomainModel.Shared\DomainModel.Shared.csproj", "{F9E8EA8E-5484-4D73-BA85-7C590A962509}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{F563D607-5A83-4272-842F-16347B04CA18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F563D607-5A83-4272-842F-16347B04CA18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F563D607-5A83-4272-842F-16347B04CA18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9E8EA8E-5484-4D73-BA85-7C590A962509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9E8EA8E-5484-4D73-BA85-7C590A962509}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9E8EA8E-5484-4D73-BA85-7C590A962509}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9E8EA8E-5484-4D73-BA85-7C590A962509}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
