@@ -13,6 +13,7 @@ namespace Api.WithReact.Tests.Authorization {
         private static UserRoleService CreateUserRoleService() {
             var services = new ServiceCollection();
 
+
             var configMap = new Dictionary<string, string>()
             {
                 { "ActiveDirectoryConfig:AppID", "16c880f4-e984-4ebe-8c4d-ae1a4a935a08" },
@@ -30,6 +31,8 @@ namespace Api.WithReact.Tests.Authorization {
                 .AddUserSecrets(typeof(UserRoleServiceTest).Assembly) // for running tests locally
                 .AddEnvironmentVariables()                            // for running tests in CI
                 .Build();
+
+            services.AddSingleton<IConfiguration>(config);
 
             services.AddUserRoleService(config);
 
