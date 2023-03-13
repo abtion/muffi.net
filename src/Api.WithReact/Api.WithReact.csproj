@@ -31,7 +31,7 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.Graph" Version="4.54.0" />
 		<PackageReference Include="Microsoft.Identity.Client" Version="4.50.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 	</ItemGroup>
 
