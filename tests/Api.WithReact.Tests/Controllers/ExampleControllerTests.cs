@@ -31,7 +31,7 @@ public class ExampleControllerTests : ControllerTest {
         var response = await controller.ExampleQuery(handler, exampleEntityId, new CancellationToken());
 
         // Assert
-        response.Value.Should().BeOfType<ExampleLoadSingleResponse>();
+        response.Should().BeOfType<ExampleLoadSingleResponse>();
     }
 
     [Fact]
@@ -50,7 +50,7 @@ public class ExampleControllerTests : ControllerTest {
         var response = await controller.ExampleQueryAll(handler, new CancellationToken());
 
         // Assert
-        response.Value.Should().BeOfType<ExampleLoadAllResponse>();
+        response.Should().BeOfType<ExampleLoadAllResponse>();
     }
 
     [Fact]
@@ -62,7 +62,7 @@ public class ExampleControllerTests : ControllerTest {
         var exampleHubMock = new ExampleHubMock();
 
         var controller = new ExampleController();
-        var handler = new ExampleCreateCommandHandler(transaction, exampleHubMock);
+        var handler = new ExampleCreateCommandHandler(transaction);
 
         var request = new ExampleCreateCommand() {
             Name = "Integration",
@@ -74,10 +74,10 @@ public class ExampleControllerTests : ControllerTest {
         var cancellationToken = new CancellationToken();
 
         // Act
-        var response = await controller.ExampleCreateCommand(handler, request, cancellationToken);
+        var response = await controller.ExampleCreateCommand(handler, new ExampleHubMock(), request, cancellationToken);
 
         // Assert
-        response.Value.Should().BeOfType<ExampleCreateResponse>();
+        response.Should().BeOfType<ExampleCreateResponse>();
     }
 
     [Fact]
@@ -90,16 +90,16 @@ public class ExampleControllerTests : ControllerTest {
         await testData.AddExampleEntitiesToDatabase(5);
 
         var controller = new ExampleController();
-        var handler = new ExampleDeleteCommandHandler(transaction, new ExampleHubMock());
+        var handler = new ExampleDeleteCommandHandler(transaction);
 
         var request = new ExampleDeleteCommand() {
             Id = 3
         };
 
         // Act
-        var response = await controller.ExampleDeleteCommand(handler, request, new CancellationToken());
+        var response = await controller.ExampleDeleteCommand(handler, new ExampleHubMock(), request, new CancellationToken());
 
         // Assert
-        response.Value.Should().BeOfType<ExampleDeleteResponse>();
+        response.Should().BeOfType<ExampleDeleteResponse>();
     }
 }

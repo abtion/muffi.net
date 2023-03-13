@@ -1,5 +1,4 @@
 ﻿using Api.WithReact.Hubs;
-using DomainModel.HubContracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SignalR.Client;

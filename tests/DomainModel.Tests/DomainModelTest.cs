@@ -1,17 +1,13 @@
 ﻿using DomainModel.Data;
-using DomainModel.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using Test.Shared;
 using System;
 using System.Threading.Tasks;
+using Test.Shared;
 
 namespace DomainModel.Tests;
 
-public abstract class DomainModelTest<T>
-{
-    protected DomainModelTest()
-    {
+public abstract class DomainModelTest<T> {
+    protected DomainModelTest() {
         var servicesBuilder = new DomainModelBuilderForTest();
         var serviceCollection = new ServiceCollection();
 

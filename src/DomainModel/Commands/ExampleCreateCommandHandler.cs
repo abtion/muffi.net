@@ -1,6 +1,5 @@
-﻿using MediatR;
-using DomainModel.HubContracts;
-using DomainModel.Models;
+﻿using DomainModel.Models;
+using MediatR;
 using System;
 using System.Linq;
 using System.Threading;
@@ -8,21 +7,15 @@ using System.Threading.Tasks;
 
 namespace DomainModel.Commands;
 
-public class ExampleCreateCommandHandler : IRequestHandler<ExampleCreateCommand, ExampleCreateResponse>
-{
+public class ExampleCreateCommandHandler : IRequestHandler<ExampleCreateCommand, ExampleCreateResponse> {
     private readonly DomainModelTransaction domainModelTransaction;
-    private readonly IExampleHubContract exampleHub;
 
-    public ExampleCreateCommandHandler(DomainModelTransaction domainModelTransaction, IExampleHubContract exampleHub)
-    {
+    public ExampleCreateCommandHandler(DomainModelTransaction domainModelTransaction) {
         this.domainModelTransaction = domainModelTransaction ?? throw new ArgumentNullException(nameof(domainModelTransaction));
-        this.exampleHub = exampleHub ?? throw new ArgumentNullException(nameof(exampleHub));
     }
 
-    public async Task<ExampleCreateResponse> Handle(ExampleCreateCommand request, CancellationToken cancellationToken)
-    {
-        if (request is null)
-        {
+    public async Task<ExampleCreateResponse> Handle(ExampleCreateCommand request, CancellationToken cancellationToken) {
+        if (request is null) {
             throw new ArgumentNullException(nameof(request));
         }
 
@@ -42,14 +35,6 @@ public class ExampleCreateCommandHandler : IRequestHandler<ExampleCreateCommand,
         domainModelTransaction.AddExampleEntity(entity);
 
         await domainModelTransaction.SaveChangesAsync();
-
-        await exampleHub.SomeEntityCreated(new SomeEntityCreatedMessage(new ExampleEntityRecord(
-            entity.Id,
-            entity.Name,
-            entity.Description,
-            entity.Email,
-            entity.Phone
-        )));
 
         return new ExampleCreateResponse() { ExampleEntity = entity };
     }

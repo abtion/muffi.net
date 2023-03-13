@@ -1,42 +1,37 @@
-﻿using FluentAssertions;
-using Test.Shared.TestData;
+﻿using DomainModel.Queries;
+using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Test.Shared.TestData;
 using Xunit;
-using DomainModel.Queries;
 
 namespace DomainModel.Tests.Queries;
 
 [Collection("ExampleCollection")]
-public class ExampleQueryAllTests : DomainModelTest<ExampleLoadAllQueryHandler>
-{
+public class ExampleLoadAllQueryHandlerTests : DomainModelTest<ExampleLoadAllQueryHandler> {
     private ExampleTestData exampleTestData;
 
-    public ExampleQueryAllTests()
-    {
+    public ExampleLoadAllQueryHandlerTests() {
         // uses static member as database - that needs to be flushed with every test
         Transaction.ResetExampleEntities();
 
         exampleTestData = new ExampleTestData(Transaction);
     }
 
-    protected async internal override Task<ExampleLoadAllQueryHandler> CreateSut()
-    {
+    protected async internal override Task<ExampleLoadAllQueryHandler> CreateSut() {
         var sut = new ExampleLoadAllQueryHandler(Transaction);
 
         return await Task.FromResult(sut);
     }
 
-    private ExampleLoadAllQuery CreateValidRequest()
-    {
+    private ExampleLoadAllQuery CreateValidRequest() {
         return new ExampleLoadAllQuery();
     }
 
     #region "Guard Tests"
     [Fact]
-    public async void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
-    {
+    public async void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown() {
         await CreateSut();
         Func<ExampleLoadAllQueryHandler> f = () => new ExampleLoadAllQueryHandler(null);
 
@@ -44,8 +39,7 @@ public class ExampleQueryAllTests : DomainModelTest<ExampleLoadAllQueryHandler>
     }
 
     [Fact]
-    public async Task Given_RequestIsNull_When_HandleIsCalled_Then_AnArgumentNullExceptionIsThrown()
-    {
+    public async Task Given_RequestIsNull_When_HandleIsCalled_Then_AnArgumentNullExceptionIsThrown() {
         var sut = await CreateSut();
 
         Task result() => sut.Handle(null, new CancellationToken());
@@ -56,8 +50,7 @@ public class ExampleQueryAllTests : DomainModelTest<ExampleLoadAllQueryHandler>
 
     #region "Happy Path Tests"
     [Fact]
-    public async Task Given_DatabaseIsEmpty_When_HandlerIsCalled_Then_EmptyListIsReturned()
-    {
+    public async Task Given_DatabaseIsEmpty_When_HandlerIsCalled_Then_EmptyListIsReturned() {
         var sut = await CreateSut();
 
         var response = await sut.Handle(CreateValidRequest(), new CancellationToken());
@@ -67,8 +60,7 @@ public class ExampleQueryAllTests : DomainModelTest<ExampleLoadAllQueryHandler>
     }
 
     [Fact]
-    public async Task Given_EntitiesInTheDatabase_When_HandlerIsCalled_Then_TheyAreReturned()
-    {
+    public async Task Given_EntitiesInTheDatabase_When_HandlerIsCalled_Then_TheyAreReturned() {
         await exampleTestData.AddExampleEntitiesToDatabase(3);
         var sut = await CreateSut();
 

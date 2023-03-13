@@ -1,7 +1,7 @@
-﻿using MediatR;
-using DomainModel.Exceptions;
-using DomainModel.Models;
+﻿using DomainModel.Models;
 using DomainModel.Services;
+using DomainModel.Shared.Exceptions;
+using MediatR;
 using System;
 using System.Linq;
 using System.Threading;
@@ -9,21 +9,17 @@ using System.Threading.Tasks;
 
 namespace DomainModel.Queries;
 
-public class ExampleLoadSingleQueryHandler : IRequestHandler<ExampleLoadSingleQuery, ExampleLoadSingleResponse>
-{
+public class ExampleLoadSingleQueryHandler : IRequestHandler<ExampleLoadSingleQuery, ExampleLoadSingleResponse> {
     private readonly DomainModelTransaction domainModelTransaction;
     private readonly IExampleReverseStringService exampleService;
 
-    public ExampleLoadSingleQueryHandler(DomainModelTransaction domainModelTransaction, IExampleReverseStringService exampleService)
-    {
+    public ExampleLoadSingleQueryHandler(DomainModelTransaction domainModelTransaction, IExampleReverseStringService exampleService) {
         this.domainModelTransaction = domainModelTransaction ?? throw new ArgumentNullException(nameof(domainModelTransaction));
         this.exampleService = exampleService ?? throw new ArgumentNullException(nameof(exampleService));
     }
 
-    public async Task<ExampleLoadSingleResponse> Handle(ExampleLoadSingleQuery request, CancellationToken cancellationToken)
-    {
-        if (request is null)
-        {
+    public async Task<ExampleLoadSingleResponse> Handle(ExampleLoadSingleQuery request, CancellationToken cancellationToken) {
+        if (request is null) {
             throw new ArgumentNullException(nameof(request));
         }
 
@@ -37,10 +33,9 @@ public class ExampleLoadSingleQueryHandler : IRequestHandler<ExampleLoadSingleQu
                     );
 
         if (!query.Any())
-            throw new ExampleEntityNotFoundException(request.Id);
+            throw new EntityNotFoundException(request.Id);
 
-        return await Task.FromResult(new ExampleLoadSingleResponse()
-        {
+        return await Task.FromResult(new ExampleLoadSingleResponse() {
             ExampleEntity = query.Single()
         });
     }

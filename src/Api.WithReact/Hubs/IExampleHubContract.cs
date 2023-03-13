@@ -1,7 +1,6 @@
 ﻿using DomainModel.Models;
-using System.Threading.Tasks;
 
-namespace DomainModel.HubContracts;
+namespace Api.WithReact.Hubs;
 
 public interface IExampleHubContract {
     Task SomeEntityUpdated(SomeEntityUpdatedMessage message);

@@ -1,45 +1,38 @@
-﻿using FluentAssertions;
-using Microsoft.Extensions.DependencyInjection;
-using DomainModel.Exceptions;
+﻿using DomainModel.Commands;
 using DomainModel.Models;
-using Test.Shared.Mocks;
+using DomainModel.Shared.Exceptions;
+using FluentAssertions;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Test.Shared.Mocks;
 using Xunit;
-using DomainModel.Commands;
 
 namespace DomainModel.Tests.Commands;
 
 [Collection("ExampleCollection")]
-public class ExampleUpdateCommandTests : DomainModelTest<ExampleUpdateCommandHandler>
-{
-    private ExampleHubMock exampleHub;
+public class ExampleUpdateCommandHandlerTests : DomainModelTest<ExampleUpdateCommandHandler> {
     private DomainModelTransaction domainModelTransaction;
 
-    protected internal override async Task<ExampleUpdateCommandHandler> CreateSut()
-    {
+    protected internal override async Task<ExampleUpdateCommandHandler> CreateSut() {
         domainModelTransaction = ServiceProvider.GetService<DomainModelTransaction>();
 
         // uses static member as database - that needs to be flushed with every test
         domainModelTransaction.ResetExampleEntities();
-        domainModelTransaction.AddExampleEntity(new ExampleEntity()
-        {
+        domainModelTransaction.AddExampleEntity(new ExampleEntity() {
             Id = 10,
             Name = "Muffi",
             Description = "Head of People",
             Phone = "12348765",
             Email = "muffi@abtion.com"
         });
-        exampleHub = new ExampleHubMock();
 
-        return await Task.FromResult(new ExampleUpdateCommandHandler(domainModelTransaction, exampleHub));
+        return await Task.FromResult(new ExampleUpdateCommandHandler(domainModelTransaction));
     }
 
-    private ExampleUpdateCommand CreateValidRequest()
-    {
-        var request = new ExampleUpdateCommand()
-        {
+    private ExampleUpdateCommand CreateValidRequest() {
+        var request = new ExampleUpdateCommand() {
             Id = 10,
             Name = "MuffiNew",
             Description = "Head of Dogs",
@@ -52,26 +45,15 @@ public class ExampleUpdateCommandTests : DomainModelTest<ExampleUpdateCommandHan
 
     #region "Guard Tests"
     [Fact]
-    public async void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
-    {
+    public async void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown() {
         await CreateSut();
-        Func<ExampleUpdateCommandHandler> f = () => new ExampleUpdateCommandHandler(null, exampleHub);
+        Func<ExampleUpdateCommandHandler> f = () => new ExampleUpdateCommandHandler(null);
 
         f.Should().Throw<ArgumentNullException>();
     }
 
     [Fact]
-    public async void Given_ExampleHubIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
-    {
-        await CreateSut();
-        Func<ExampleUpdateCommandHandler> f = () => new ExampleUpdateCommandHandler(domainModelTransaction, null);
-
-        f.Should().Throw<ArgumentNullException>();
-    }
-
-    [Fact]
-    public async Task Given_RequestIsNull_When_HandleIsCalled_Then_AnArgumentNullExceptionIsThrown()
-    {
+    public async Task Given_RequestIsNull_When_HandleIsCalled_Then_AnArgumentNullExceptionIsThrown() {
         var sut = await CreateSut();
 
         Task result() => sut.Handle(null, new CancellationToken());
@@ -82,8 +64,7 @@ public class ExampleUpdateCommandTests : DomainModelTest<ExampleUpdateCommandHan
 
     #region "Happy Path Tests"
     [Fact]
-    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_TheEntityIsUpdatedAndReturned()
-    {
+    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_TheEntityIsUpdatedAndReturned() {
         var request = CreateValidRequest();
         var cancellationToken = new CancellationToken();
         var sut = await CreateSut();
@@ -96,19 +77,17 @@ public class ExampleUpdateCommandTests : DomainModelTest<ExampleUpdateCommandHan
         result.ExampleEntity.Description.Should().Be("Head of Dogs");
         result.ExampleEntity.Phone.Should().Be("56784321");
         result.ExampleEntity.Email.Should().Be("iffum@abtion.com");
-        exampleHub.EntityUpdatedMessageCounter.Should().Be(1);
     }
     #endregion "Happy Path Tests"
 
     [Fact]
-    public async void Given_EntityDoesNotExist_When_HandlerIsCalled_Then_AnExceptionIsThrown()
-    {
+    public async void Given_EntityDoesNotExist_When_HandlerIsCalled_Then_AnExceptionIsThrown() {
         var request = CreateValidRequest();
         var sut = await CreateSut();
         request.Id = 1234;
         Task result() => sut.Handle(request, new CancellationToken());
 
-        await Assert.ThrowsAsync<ExampleEntityNotFoundException>(result);
+        await Assert.ThrowsAsync<EntityNotFoundException>(result);
 
     }
 

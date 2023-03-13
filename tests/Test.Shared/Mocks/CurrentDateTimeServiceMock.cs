@@ -1,5 +1,5 @@
-﻿using Moq;
-using DomainModel.Services;
+﻿using DomainModel.Services;
+using Moq;
 using System;
 
 namespace Test.Shared.Mocks;

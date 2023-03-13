@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using DomainModel.Data;
+﻿using DomainModel.Data;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using Test.Shared;
 using Test.Shared.TestData;
-using System;
 
 namespace Api.WithReact.Tests.Controllers;
 

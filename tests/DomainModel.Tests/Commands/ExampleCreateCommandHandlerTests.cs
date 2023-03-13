@@ -1,38 +1,33 @@
-﻿using FluentAssertions;
+﻿using DomainModel.Commands;
+using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using Test.Shared.Mocks;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Test.Shared.Mocks;
 using Xunit;
-using DomainModel.Commands;
 
 namespace DomainModel.Tests.Commands;
 
 [Collection("ExampleCollection")]
-public class ExampleCreateCommandTests : DomainModelTest<ExampleCreateCommandHandler>
-{
-    private ExampleHubMock exampleHub;
+public class ExampleCreateCommandHandlerTests : DomainModelTest<ExampleCreateCommandHandler> {
     private DomainModelTransaction domainModelTransaction;
 
-    protected internal override async Task<ExampleCreateCommandHandler> CreateSut()
-    {
+    protected internal override async Task<ExampleCreateCommandHandler> CreateSut() {
         domainModelTransaction = ServiceProvider.GetService<DomainModelTransaction>();
 
         // uses static member as database - that needs to be flushed with every test
         domainModelTransaction.ResetExampleEntities();
 
-        exampleHub = new ExampleHubMock();
-
-        return await Task.FromResult(new ExampleCreateCommandHandler(domainModelTransaction, exampleHub));
+        return await Task.FromResult(new ExampleCreateCommandHandler(domainModelTransaction));
     }
 
-    private ExampleCreateCommand CreateValidRequest()
-    {
-        var request = new ExampleCreateCommand()
-        {
+    private ExampleCreateCommand CreateValidCommand() {
+        var request = new ExampleCreateCommand() {
             Name = "Muffi",
-            Description = "Head of People"
+            Description = "Head of People",
+            Email = "a@b.c",
+            Phone = "89898989"
         };
 
         return request;
@@ -40,26 +35,15 @@ public class ExampleCreateCommandTests : DomainModelTest<ExampleCreateCommandHan
 
     #region "Guard Tests"
     [Fact]
-    public async void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
-    {
+    public async void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown() {
         await CreateSut();
-        Func<ExampleCreateCommandHandler> f = () => new ExampleCreateCommandHandler(null, exampleHub);
+        Func<ExampleCreateCommandHandler> f = () => new ExampleCreateCommandHandler(null);
 
         f.Should().Throw<ArgumentNullException>();
     }
 
     [Fact]
-    public async void Given_ExampleHubIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
-    {
-        await CreateSut();
-        Func<ExampleCreateCommandHandler> f = () => new ExampleCreateCommandHandler(domainModelTransaction, null);
-
-        f.Should().Throw<ArgumentNullException>();
-    }
-
-    [Fact]
-    public async Task Given_RequestIsNull_When_HandleIsCalled_Then_AnArgumentNullExceptionIsThrown()
-    {
+    public async Task Given_RequestIsNull_When_HandleIsCalled_Then_AnArgumentNullExceptionIsThrown() {
         var sut = await CreateSut();
 
         Task result() => sut.Handle(null, new CancellationToken());
@@ -70,22 +54,19 @@ public class ExampleCreateCommandTests : DomainModelTest<ExampleCreateCommandHan
 
     #region "Happy Path Tests"
     [Fact]
-    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_TheEntityIsReturned()
-    {
-        var request = CreateValidRequest();
+    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_TheEntityIsReturned() {
+        var request = CreateValidCommand();
         var cancellationToken = new CancellationToken();
         var sut = await CreateSut();
 
         var result = await sut.Handle(request, cancellationToken);
 
         result.ExampleEntity.Should().NotBeNull();
-        exampleHub.EntityCreatedMessageCounter.Should().Be(1);
     }
 
     [Fact]
-    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_TheEntityIsStored()
-    {
-        var request = CreateValidRequest();
+    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_TheEntityIsStored() {
+        var request = CreateValidCommand();
         var cancellationToken = new CancellationToken();
         var sut = await CreateSut();
 
@@ -95,9 +76,8 @@ public class ExampleCreateCommandTests : DomainModelTest<ExampleCreateCommandHan
     }
 
     [Fact]
-    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_NameMatches()
-    {
-        var request = CreateValidRequest();
+    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_NameMatches() {
+        var request = CreateValidCommand();
         var cancellationToken = new CancellationToken();
         var sut = await CreateSut();
 
@@ -107,9 +87,8 @@ public class ExampleCreateCommandTests : DomainModelTest<ExampleCreateCommandHan
     }
 
     [Fact]
-    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_DescriptionMatches()
-    {
-        var request = CreateValidRequest();
+    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_DescriptionMatches() {
+        var request = CreateValidCommand();
         var cancellationToken = new CancellationToken();
         var sut = await CreateSut();
 
@@ -119,9 +98,8 @@ public class ExampleCreateCommandTests : DomainModelTest<ExampleCreateCommandHan
     }
 
     [Fact]
-    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_IdHasAPositiveValue()
-    {
-        var request = CreateValidRequest();
+    public async void Given_RequestIsValid_When_HandlerIsCalled_Then_IdHasAPositiveValue() {
+        var request = CreateValidCommand();
         var cancellationToken = new CancellationToken();
         var sut = await CreateSut();
 
@@ -131,11 +109,10 @@ public class ExampleCreateCommandTests : DomainModelTest<ExampleCreateCommandHan
     }
 
     [Fact]
-    public async void Given_TwoRequestsAreSent_Then_BothAreStored()
-    {
+    public async void Given_TwoRequestsAreSent_Then_BothAreStored() {
         var cancellationToken = new CancellationToken();
         var sut = await CreateSut();
-        var request = CreateValidRequest();
+        var request = CreateValidCommand();
 
         await sut.Handle(request, cancellationToken);
         await sut.Handle(request, cancellationToken);

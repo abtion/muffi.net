@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using DomainModel.Commands;
+﻿using DomainModel.Commands;
 using DomainModel.Queries;
+using Microsoft.AspNetCore.Mvc;
 
 public static class EndpointMappingExtensions {
     // endpoints with complex names must use all lower case and hyphens to separate words

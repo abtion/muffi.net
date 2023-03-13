@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DomainModel.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Playwright;
 using System;
@@ -7,7 +8,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Xunit;
-using DomainModel.Data;
 
 namespace EndToEnd.Tests;
 

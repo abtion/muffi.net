@@ -1,40 +1,35 @@
-﻿using FluentAssertions;
-using DomainModel.Exceptions;
+﻿using DomainModel.Queries;
 using DomainModel.Services;
-using Test.Shared.TestData;
+using DomainModel.Shared.Exceptions;
+using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Test.Shared.TestData;
 using Xunit;
-using DomainModel.Queries;
 
 namespace DomainModel.Tests.Queries;
 
 [Collection("ExampleCollection")]
-public class ExampleQueryTests : DomainModelTest<ExampleLoadSingleQueryHandler>
-{
+public class ExampleLoadSingleQueryHandlerTests : DomainModelTest<ExampleLoadSingleQueryHandler> {
     private ExampleTestData exampleTestData;
     private ExampleReverseStringService exampleReverseStringService;
-    public ExampleQueryTests()
-    {
+    public ExampleLoadSingleQueryHandlerTests() {
         // uses static member as database - that needs to be flushed with every test
         Transaction.ResetExampleEntities();
 
         exampleTestData = new ExampleTestData(Transaction);
     }
 
-    protected async internal override Task<ExampleLoadSingleQueryHandler> CreateSut()
-    {
+    protected async internal override Task<ExampleLoadSingleQueryHandler> CreateSut() {
         exampleReverseStringService = new ExampleReverseStringService();
         var sut = new ExampleLoadSingleQueryHandler(Transaction, exampleReverseStringService);
 
         return await Task.FromResult(sut);
     }
 
-    private ExampleLoadSingleQuery CreateValidRequest()
-    {
-        var request = new ExampleLoadSingleQuery()
-        {
+    private ExampleLoadSingleQuery CreateValidRequest() {
+        var request = new ExampleLoadSingleQuery() {
             Id = 3
         };
 
@@ -43,8 +38,7 @@ public class ExampleQueryTests : DomainModelTest<ExampleLoadSingleQueryHandler>
 
     #region "Guard Tests"
     [Fact]
-    public async void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
-    {
+    public async void Given_DomainModelTransactionIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown() {
         await CreateSut();
         Func<ExampleLoadSingleQueryHandler> f = () => new ExampleLoadSingleQueryHandler(null, exampleReverseStringService);
 
@@ -52,8 +46,7 @@ public class ExampleQueryTests : DomainModelTest<ExampleLoadSingleQueryHandler>
     }
 
     [Fact]
-    public async void Given_ExampleReverseStringServiceIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown()
-    {
+    public async void Given_ExampleReverseStringServiceIsNull_When_HandlerIsConstructed_Then_AnArgumentNullExceptionIsThrown() {
         await CreateSut();
         Func<ExampleLoadSingleQueryHandler> f = () => new ExampleLoadSingleQueryHandler(Transaction, null);
 
@@ -61,8 +54,7 @@ public class ExampleQueryTests : DomainModelTest<ExampleLoadSingleQueryHandler>
     }
 
     [Fact]
-    public async Task Given_RequestIsNull_When_HandleIsCalled_Then_AnArgumentNullExceptionIsThrown()
-    {
+    public async Task Given_RequestIsNull_When_HandleIsCalled_Then_AnArgumentNullExceptionIsThrown() {
         var sut = await CreateSut();
 
         Task result() => sut.Handle(null, new CancellationToken());
@@ -73,8 +65,7 @@ public class ExampleQueryTests : DomainModelTest<ExampleLoadSingleQueryHandler>
 
     #region "Happy Path Tests"
     [Fact]
-    public async Task Given_EntityWithTheGivenIdIsInTheDatabase_When_HandlerIsCalled_Then_EntityIsReturned()
-    {
+    public async Task Given_EntityWithTheGivenIdIsInTheDatabase_When_HandlerIsCalled_Then_EntityIsReturned() {
         await exampleTestData.AddExampleEntitiesToDatabase(5);
 
         var sut = await CreateSut();
@@ -85,15 +76,14 @@ public class ExampleQueryTests : DomainModelTest<ExampleLoadSingleQueryHandler>
     }
 
     [Fact]
-    public async Task Given_EntityWithTheGivenIdIsNotInTheDatabase_When_HandlerIsCalled_Then_AnExceptionIsThrown()
-    {
+    public async Task Given_EntityWithTheGivenIdIsNotInTheDatabase_When_HandlerIsCalled_Then_AnExceptionIsThrown() {
         await exampleTestData.AddExampleEntitiesToDatabase(1);
 
         var sut = await CreateSut();
 
         Func<Task> act = async () => await sut.Handle(CreateValidRequest(), new CancellationToken());
 
-        await act.Should().ThrowAsync<ExampleEntityNotFoundException>();
+        await act.Should().ThrowAsync<EntityNotFoundException>();
     }
     #endregion "Happy Path Tests"
 }

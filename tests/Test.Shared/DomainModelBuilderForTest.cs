@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using DomainModel;
+using DomainModel.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using DomainModel.Data;
-using DomainModel;
-using DomainModel.Models;
 using Test.Shared.TestData;
 
 namespace Test.Shared;
