@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using DomainModel.HubContracts;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Api.WithReact.Hubs;

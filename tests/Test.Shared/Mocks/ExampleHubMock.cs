@@ -1,4 +1,4 @@
-﻿using DomainModel.HubContracts;
+﻿using Api.WithReact.Hubs;
 using System.Threading.Tasks;
 
 namespace Test.Shared.Mocks;

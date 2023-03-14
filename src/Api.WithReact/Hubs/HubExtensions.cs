@@ -1,6 +1,4 @@
-﻿using DomainModel.HubContracts;
-
-namespace Api.WithReact.Hubs;
+﻿namespace Api.WithReact.Hubs;
 
 public static class HubExtensions {
     private const string SignalRHubPolicyName = "SignalRHubsPolicy";

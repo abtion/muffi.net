@@ -1,51 +1,51 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using DomainModel.Services.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using DomainModel.Services.Authorization;
 
-namespace Api.WithReact.Controllers {
-    [ApiController]
-    [Route("api/[controller]")]
-    [Authorize(Roles = "Administrators")]
-    public class RoleAdminController : ControllerBase {
-        // TODO build out API controller for Role Administration
+namespace Api.WithReact.Controllers;
 
-        private UserRoleService userRoleService;
+[ApiController]
+[Route("api/[controller]")]
+[Authorize(Roles = "Administrators")]
+public class RoleAdminController : ControllerBase {
+    // TODO build out API controller for Role Administration
 
-        public RoleAdminController(UserRoleService userRoleService) {
-            this.userRoleService = userRoleService;
-        }
+    private UserRoleService userRoleService;
 
-        [HttpGet("get-data")]
-        public async Task<ActionResult<object>> GetData() {
-            var roles = await userRoleService.ListAppRoles();
-            var users = await userRoleService.ListUsers();
+    public RoleAdminController(UserRoleService userRoleService) {
+        this.userRoleService = userRoleService;
+    }
 
-            return new {
-                roles = roles.Select(role => new {
-                    id = role.Id,
-                    name = role.DisplayName,
-                }),
-                users = users
-            };
-        }
+    [HttpGet("get-data")]
+    public async Task<ActionResult<object>> GetData() {
+        var roles = await userRoleService.ListAppRoles();
+        var users = await userRoleService.ListUsers();
 
-        [HttpPost("update-user")]
-        public async Task<ActionResult<object>> UpdateUser([FromBody] User user) {
-            await userRoleService.UpdateUser(user);
+        return new {
+            roles = roles.Select(role => new {
+                id = role.Id,
+                name = role.DisplayName,
+            }),
+            users = users
+        };
+    }
 
-            return new OkResult();
-        }
+    [HttpPost("update-user")]
+    public async Task<ActionResult<object>> UpdateUser([FromBody] User user) {
+        await userRoleService.UpdateUser(user);
 
-        [HttpGet("user-details")]
-        public async Task<ActionResult<UserDetails>> GetUserDetails([FromQuery] string userID) {
-            return await userRoleService.GetUserDetails(userID);
-        }
+        return new OkResult();
+    }
 
-        [HttpPost("revoke-access")]
-        public async Task<ActionResult> RevokeAccess([FromQuery] string userID) {
-            await userRoleService.RevokeAccess(userID);
+    [HttpGet("user-details")]
+    public async Task<ActionResult<UserDetails>> GetUserDetails([FromQuery] string userID) {
+        return await userRoleService.GetUserDetails(userID);
+    }
 
-            return new OkResult();
-        }
+    [HttpPost("revoke-access")]
+    public async Task<ActionResult> RevokeAccess([FromQuery] string userID) {
+        await userRoleService.RevokeAccess(userID);
+
+        return new OkResult();
     }
 }

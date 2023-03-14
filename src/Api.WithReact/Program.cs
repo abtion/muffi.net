@@ -1,8 +1,8 @@
 using Api.Shared.Authentication.OpenIdConnect;
-using Microsoft.EntityFrameworkCore;
-using DomainModel.Data;
-using DomainModel;
 using Api.WithReact.Hubs;
+using DomainModel;
+using DomainModel.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 

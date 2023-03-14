@@ -1,11 +1,11 @@
-﻿using FluentAssertions;
+﻿using DomainModel;
+using DomainModel.Services.Authorization;
+using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using DomainModel.Services.Authorization;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
-using DomainModel;
 
 [assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace Api.WithReact.Tests.Authorization {

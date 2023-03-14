@@ -1,6 +1,6 @@
-﻿using FluentAssertions;
+﻿using DomainModel.Data;
+using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using DomainModel.Data;
 using Xunit;
 
 namespace MuffiNet.Backend.Tests.Data;
