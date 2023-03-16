@@ -1,8 +1,7 @@
 using Api.Shared.Authentication.OpenIdConnect;
+using Api.WithReact;
 using Api.WithReact.Hubs;
 using DomainModel;
-using DomainModel.Data;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,17 +10,11 @@ var configuration = builder.Configuration;
 // OIDC Authentication
 builder.Services.AddOidcAuthentication(configuration);
 
-builder.Services.AddControllers();
-
+builder.Services.AddDatabase(configuration);
 builder.Services.AddDomainModel();
-builder.Services.AddUserRoleService(configuration);
+builder.Services.AddApi();
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(
-        configuration.GetConnectionString("DefaultConnection"),
-        sqlServerOptions => sqlServerOptions.EnableRetryOnFailure()
-    )
-);
+builder.Services.AddUserRoleService(configuration);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -29,7 +22,8 @@ builder.Services.AddSwaggerGen();
 
 builder.AddSignalRHubs(configuration);
 
-builder.Services.AddApplicationInsightsTelemetry((options) => {
+builder.Services.AddApplicationInsightsTelemetry((options) =>
+{
     options.ConnectionString = configuration["APPINSIGHTS_CONNECTIONSTRING"];
 });
 
@@ -39,9 +33,11 @@ builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Test")) {
+if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Test"))
+{
     app.UseSwagger();
-    app.UseSwaggerUI(options => {
+    app.UseSwaggerUI(options =>
+    {
         options.EnableTryItOutByDefault();
     });
 

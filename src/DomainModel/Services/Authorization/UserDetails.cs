@@ -1,8 +1,11 @@
-﻿namespace DomainModel.Services.Authorization {
-    public class UserDetails {
+﻿namespace DomainModel.Services.Authorization
+{
+    public class UserDetails
+    {
         public string Email { get; init; }
 
-        public UserDetails(string email) {
+        public UserDetails(string email)
+        {
             Email = email;
         }
     }

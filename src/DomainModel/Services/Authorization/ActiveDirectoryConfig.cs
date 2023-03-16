@@ -1,6 +1,7 @@
 ﻿namespace DomainModel.Services.Authorization;
 
-public class ActiveDirectoryConfig {
+public class ActiveDirectoryConfig
+{
     // See the README.md file in the project root for details about this configuration.
 
 #nullable disable

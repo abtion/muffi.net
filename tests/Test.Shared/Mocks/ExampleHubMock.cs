@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 
 namespace Test.Shared.Mocks;
 
-public class ExampleHubMock : IExampleHubContract {
+public class ExampleHubMock : IExampleHubContract
+{
 
     public int EntityDeletedMessageCounter { get; private set; }
     public SomeEntityDeletedMessage? LatestEntityDeletedMessage { get; private set; }
@@ -14,18 +15,21 @@ public class ExampleHubMock : IExampleHubContract {
     public int EntityUpdatedMessageCounter { get; private set; }
     public SomeEntityUpdatedMessage? LatestEntityUpdatedMessage { get; private set; }
 
-    public Task SomeEntityCreated(SomeEntityCreatedMessage message) {
+    public Task SomeEntityCreated(SomeEntityCreatedMessage message)
+    {
         EntityCreatedMessageCounter++;
         LatestEntityCreatedMessage = message;
         return Task.CompletedTask;
     }
 
-    public Task SomeEntityDeleted(SomeEntityDeletedMessage message) {
+    public Task SomeEntityDeleted(SomeEntityDeletedMessage message)
+    {
         EntityDeletedMessageCounter++;
         LatestEntityDeletedMessage = message;
         return Task.CompletedTask;
     }
-    public Task SomeEntityUpdated(SomeEntityUpdatedMessage message) {
+    public Task SomeEntityUpdated(SomeEntityUpdatedMessage message)
+    {
         EntityUpdatedMessageCounter++;
         LatestEntityUpdatedMessage = message;
         return Task.CompletedTask;

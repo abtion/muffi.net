@@ -1,5 +1,5 @@
 ﻿using DomainModel.Data;
-using DomainModel.Models;
+using DomainModel.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Collections.Generic;
@@ -11,8 +11,10 @@ namespace DomainModel;
 /// <summary>
 /// This class is used to wrap the DBContext from EntityFramework - always use this class when accessing the database
 /// </summary>
-public class DomainModelTransaction {
-    public DomainModelTransaction(ApplicationDbContext applicationDbContext) {
+public class DomainModelTransaction
+{
+    public DomainModelTransaction(ApplicationDbContext applicationDbContext)
+    {
         DbContext = applicationDbContext;
     }
 
@@ -20,25 +22,29 @@ public class DomainModelTransaction {
 
     // Remove this section -->
     private static List<ExampleEntity>? exampleEntities;
-    public IQueryable<ExampleEntity> ExampleEntities() {
+    public IQueryable<ExampleEntity> ExampleEntities()
+    {
         if (exampleEntities is null)
             exampleEntities = new List<ExampleEntity>();
 
         return exampleEntities.AsQueryable();
     }
 
-    public void ResetExampleEntities() {
+    public void ResetExampleEntities()
+    {
         exampleEntities = null;
     }
 
-    public void AddExampleEntity(ExampleEntity entity) {
+    public void AddExampleEntity(ExampleEntity entity)
+    {
         if (exampleEntities is null)
             exampleEntities = new List<ExampleEntity>();
 
         exampleEntities.Add(entity);
     }
 
-    public void RemoveExampleEntity(int entityId) {
+    public void RemoveExampleEntity(int entityId)
+    {
         exampleEntities?.Remove(exampleEntities.Where(e => e.Id == entityId).First());
     }
     // <-- Remove this section
@@ -48,7 +54,8 @@ public class DomainModelTransaction {
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public IQueryable<T> Entities<T>() where T : class {
+    public IQueryable<T> Entities<T>() where T : class
+    {
         return DbContext.Set<T>();
     }
 
@@ -58,31 +65,38 @@ public class DomainModelTransaction {
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public IQueryable<T> EntitiesNoTracking<T>() where T : class {
+    public IQueryable<T> EntitiesNoTracking<T>() where T : class
+    {
         return DbContext.Set<T>().AsNoTracking();
     }
 
-    public async Task AddAsync<T>(T entity) where T : class {
+    public async Task AddAsync<T>(T entity) where T : class
+    {
         await DbContext.AddAsync(entity);
     }
 
-    public void Remove<T>(T entity) where T : class {
+    public void Remove<T>(T entity) where T : class
+    {
         DbContext.Remove(entity);
     }
 
-    public async Task<IDbContextTransaction> BeginTransactionAsync() {
+    public async Task<IDbContextTransaction> BeginTransactionAsync()
+    {
         return await DbContext.Database.BeginTransactionAsync();
     }
 
-    public async Task CommitTransactionAsync() {
+    public async Task CommitTransactionAsync()
+    {
         await DbContext.Database.CommitTransactionAsync();
     }
 
-    public async Task RollbackTransactionAsync() {
+    public async Task RollbackTransactionAsync()
+    {
         await DbContext.Database.RollbackTransactionAsync();
     }
 
-    public async Task<int> SaveChangesAsync() {
+    public async Task<int> SaveChangesAsync()
+    {
         return await DbContext.SaveChangesAsync();
     }
 }

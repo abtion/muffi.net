@@ -1,36 +1,23 @@
-﻿using DomainModel.Data;
+﻿using Api.WithReact.Hubs;
+using DomainModel.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Threading.Tasks;
 using Test.Shared;
+using Test.Shared.Mocks;
+using Test.Shared.TestData;
 
 namespace DomainModel.Tests;
 
-public abstract class DomainModelTest<T> {
-    protected DomainModelTest() {
-        var servicesBuilder = new DomainModelBuilderForTest();
-        var serviceCollection = new ServiceCollection();
+public abstract class DomainModelTest<TSystemUnderTest> : TestBase<TSystemUnderTest>
+{
+    protected override void AddServices(IServiceCollection services)
+    {
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseInMemoryDatabase(GetType().Name));
 
-        servicesBuilder.ConfigureServices(serviceCollection, GetType().Name);
+        services.AddDomainModel();
+        services.AddScoped<IExampleHubContract, ExampleHubMock>();
 
-        ServiceProvider = serviceCollection.BuildServiceProvider();
-
-        var context = ServiceProvider.GetService<ApplicationDbContext>();
-        context.Database.EnsureDeleted();
-        context.Database.EnsureCreated();
-
-        Transaction = ServiceProvider.GetService<DomainModelTransaction>();
-        //UserManager = ServiceProvider.GetService<UserManager<ApplicationUser>>();
-
-        // create a test user
-        //UserManager.CreateAsync(ApplicationUserTestData.CreateApplicationUser());
+        services.AddScoped<ExampleTestData>();
     }
-
-    protected internal IServiceProvider ServiceProvider { get; private set; }
-
-    protected internal abstract Task<T> CreateSut();
-
-    protected internal DomainModelTransaction Transaction { get; private set; }
-
-    //protected internal UserManager<ApplicationUser> UserManager { get; private set; }
 }

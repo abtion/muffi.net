@@ -1,104 +1,103 @@
 ﻿using DomainModel;
-using DomainModel.Commands;
-using DomainModel.Queries;
-using DomainModel.Services;
-using Microsoft.AspNetCore.Mvc;
+using DomainModel.Example.Commands;
+using DomainModel.Example.Queries;
 using Microsoft.Extensions.DependencyInjection;
-using System.Threading;
 using System.Threading.Tasks;
-using Test.Shared.Mocks;
 using Test.Shared.TestData;
 
 namespace Api.WithReact.Tests.Controllers;
 
 [Collection("Controller")]
-public class AuthorizedExampleControllerTests : ControllerTest {
-
-    [Fact]
-    public async Task Given_RequestIsValid_When_ExampleQueryIsCalled_Then_ReturnTypeIsCorrect() {
-        // Arrange
-        var transaction = ServiceProvider.GetService<DomainModelTransaction>();
+public class AuthorizedExampleControllerTests : ControllerTest<AuthorizedExampleController>
+{
+    public AuthorizedExampleControllerTests()
+    {
+        transaction = ServiceProvider.GetRequiredService<DomainModelTransaction>();
         transaction.ResetExampleEntities();
 
-        var testData = new ExampleTestData(transaction);
+        testData = ServiceProvider.GetRequiredService<ExampleTestData>();
+    }
+
+    private readonly DomainModelTransaction transaction;
+    private readonly ExampleTestData testData;
+
+    protected override AuthorizedExampleController GetSystemUnderTest()
+    {
+        return new AuthorizedExampleController();
+    }
+
+    [Fact]
+    public async Task Given_RequestIsValid_When_ExampleQueryIsCalled_Then_ReturnTypeIsCorrect()
+    {
+        // Arrange
         await testData.AddExampleEntitiesToDatabase(5);
 
-        var controller = new AuthorizedExampleController();
-        var handler = new ExampleLoadSingleQueryHandler(transaction, new ExampleReverseStringService());
+        var controller = GetSystemUnderTest();
+        var handler = ServiceProvider.GetRequiredService<ExampleLoadSingleQueryHandler>();
 
         int exampleEntityId = 3;
 
         // Act
-        var response = await controller.ExampleQuery(handler, exampleEntityId, new CancellationToken());
+        var response = await controller.ExampleQuery(handler, exampleEntityId, new());
 
         // Assert
         response.Should().BeOfType<ExampleLoadSingleResponse>();
     }
 
     [Fact]
-    public async Task Given_RequestIsValid_When_ExampleQueryAllIsCalled_Then_ReturnTypeIsCorrect() {
+    public async Task Given_RequestIsValid_When_ExampleQueryAllIsCalled_Then_ReturnTypeIsCorrect()
+    {
         // Arrange
-        var transaction = ServiceProvider.GetService<DomainModelTransaction>();
-        transaction.ResetExampleEntities();
-
-        var testData = new ExampleTestData(transaction);
         await testData.AddExampleEntitiesToDatabase(5);
 
-        var controller = new AuthorizedExampleController();
-        var handler = new ExampleLoadAllQueryHandler(transaction);
+        var controller = GetSystemUnderTest();
+        var handler = ServiceProvider.GetRequiredService<ExampleLoadAllQueryHandler>();
 
         // Act
-        var response = await controller.ExampleQueryAll(handler, new CancellationToken());
+        var response = await controller.ExampleQueryAll(handler, new());
 
         // Assert
         response.Should().BeOfType<ExampleLoadAllResponse>();
     }
 
     [Fact]
-    public async Task Given_RequestIsValid_When_ExampleCreateCommandIsCalled_Then_ReturnTypeIsCorrect() {
+    public async Task Given_RequestIsValid_When_ExampleCreateCommandIsCalled_Then_ReturnTypeIsCorrect()
+    {
         // Arrange
-        var transaction = ServiceProvider.GetService<DomainModelTransaction>();
-        transaction.ResetExampleEntities();
+        var controller = GetSystemUnderTest();
+        var handler = ServiceProvider.GetRequiredService<ExampleCreateCommandHandler>();
 
-        var exampleHubMock = new ExampleHubMock();
-
-        var controller = new AuthorizedExampleController();
-        var handler = new ExampleCreateCommandHandler(transaction);
-
-        var request = new ExampleCreateCommand() {
+        var request = new ExampleCreateCommand()
+        {
             Name = "Integration",
             Description = "Test",
             Email = "integration@test.net",
             Phone = "+45 70 70 70 70"
         };
 
-        var cancellationToken = new CancellationToken();
-
         // Act
-        var response = await controller.ExampleCreateCommand(handler, exampleHubMock, request, cancellationToken);
+        var response = await controller.ExampleCreateCommand(handler, request, new());
 
         // Assert
         response.Should().BeOfType<ExampleCreateResponse>();
     }
 
     [Fact]
-    public async Task Given_RequestIsValid_When_ExampleDeleteCommandIsCalled_Then_ReturnTypeIsCorrect() {
+    public async Task Given_RequestIsValid_When_ExampleDeleteCommandIsCalled_Then_ReturnTypeIsCorrect()
+    {
         // Arrange
-        var transaction = ServiceProvider.GetService<DomainModelTransaction>();
-        transaction.ResetExampleEntities();
-
-        var testData = new ExampleTestData(transaction);
         await testData.AddExampleEntitiesToDatabase(5);
 
-        var controller = new AuthorizedExampleController();
-        var handler = new ExampleDeleteCommandHandler(transaction);
+        var controller = GetSystemUnderTest();
+        var handler = ServiceProvider.GetRequiredService<ExampleDeleteCommandHandler>();
 
-        var request = new ExampleDeleteCommand() {
+        var request = new ExampleDeleteCommand()
+        {
             Id = 3
         };
 
         // Act
-        var response = await controller.ExampleDeleteCommand(handler, new ExampleHubMock(), request, new CancellationToken());
+        var response = await controller.ExampleDeleteCommand(handler, request, new());
 
         // Assert
         response.Should().BeOfType<ExampleDeleteResponse>();

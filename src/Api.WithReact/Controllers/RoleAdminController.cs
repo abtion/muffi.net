@@ -7,22 +7,27 @@ namespace Api.WithReact.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Authorize(Roles = "Administrators")]
-public class RoleAdminController : ControllerBase {
+public class RoleAdminController : ControllerBase
+{
     // TODO build out API controller for Role Administration
 
     private UserRoleService userRoleService;
 
-    public RoleAdminController(UserRoleService userRoleService) {
+    public RoleAdminController(UserRoleService userRoleService)
+    {
         this.userRoleService = userRoleService;
     }
 
     [HttpGet("get-data")]
-    public async Task<ActionResult<object>> GetData() {
+    public async Task<ActionResult<object>> GetData()
+    {
         var roles = await userRoleService.ListAppRoles();
         var users = await userRoleService.ListUsers();
 
-        return new {
-            roles = roles.Select(role => new {
+        return new
+        {
+            roles = roles.Select(role => new
+            {
                 id = role.Id,
                 name = role.DisplayName,
             }),
@@ -31,19 +36,22 @@ public class RoleAdminController : ControllerBase {
     }
 
     [HttpPost("update-user")]
-    public async Task<ActionResult<object>> UpdateUser([FromBody] User user) {
+    public async Task<ActionResult<object>> UpdateUser([FromBody] User user)
+    {
         await userRoleService.UpdateUser(user);
 
         return new OkResult();
     }
 
     [HttpGet("user-details")]
-    public async Task<ActionResult<UserDetails>> GetUserDetails([FromQuery] string userID) {
+    public async Task<ActionResult<UserDetails>> GetUserDetails([FromQuery] string userID)
+    {
         return await userRoleService.GetUserDetails(userID);
     }
 
     [HttpPost("revoke-access")]
-    public async Task<ActionResult> RevokeAccess([FromQuery] string userID) {
+    public async Task<ActionResult> RevokeAccess([FromQuery] string userID)
+    {
         await userRoleService.RevokeAccess(userID);
 
         return new OkResult();

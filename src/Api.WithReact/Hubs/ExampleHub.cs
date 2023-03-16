@@ -4,22 +4,27 @@ using System.Diagnostics.CodeAnalysis;
 namespace Api.WithReact.Hubs;
 
 [ExcludeFromCodeCoverage]
-public class ExampleHub : Hub, IExampleHubContract {
+public class ExampleHub : Hub, IExampleHubContract
+{
     private readonly IHubContext<ExampleHub> context;
 
-    public ExampleHub(IHubContext<ExampleHub> context) {
+    public ExampleHub(IHubContext<ExampleHub> context)
+    {
         this.context = context;
     }
 
-    public async virtual Task SomeEntityUpdated(SomeEntityUpdatedMessage message) {
+    public async virtual Task SomeEntityUpdated(SomeEntityUpdatedMessage message)
+    {
         await context.Clients.All.SendAsync(nameof(SomeEntityUpdated), message);
     }
 
-    public async virtual Task SomeEntityCreated(SomeEntityCreatedMessage message) {
+    public async virtual Task SomeEntityCreated(SomeEntityCreatedMessage message)
+    {
         await context.Clients.All.SendAsync(nameof(SomeEntityCreated), message);
     }
 
-    public async virtual Task SomeEntityDeleted(SomeEntityDeletedMessage message) {
+    public async virtual Task SomeEntityDeleted(SomeEntityDeletedMessage message)
+    {
         await context.Clients.All.SendAsync(nameof(SomeEntityDeleted), message);
     }
 }

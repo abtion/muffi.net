@@ -19,9 +19,11 @@ builder.Services.AddHttpClient();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsEnvironment("Local") || app.Environment.IsStaging() || app.Environment.IsDevelopment()) {
+if (app.Environment.IsEnvironment("Local") || app.Environment.IsStaging() || app.Environment.IsDevelopment())
+{
     app.UseSwagger();
-    app.UseSwaggerUI(options => {
+    app.UseSwaggerUI(options =>
+    {
         options.EnableTryItOutByDefault();
     });
 }
