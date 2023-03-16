@@ -16,7 +16,7 @@ public abstract class DomainModelTest<TSystemUnderTest> : TestBase<TSystemUnderT
             options.UseInMemoryDatabase(GetType().Name));
 
         services.AddDomainModel();
-        services.AddScoped<IExampleHubContract, ExampleHubMock>();
+        //services.AddScoped<IExampleHubContract, ExampleHubMock>();
 
         services.AddScoped<ExampleTestData>();
     }

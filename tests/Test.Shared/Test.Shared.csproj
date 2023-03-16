@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\DomainModel\DomainModel.csproj" />
-    <ProjectReference Include="..\..\src\Api.WithReact\Api.WithReact.csproj" />
   </ItemGroup>
 
 </Project>

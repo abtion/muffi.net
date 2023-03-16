@@ -7,13 +7,13 @@ public class ExampleHubMock : IExampleHubContract
 {
 
     public int EntityDeletedMessageCounter { get; private set; }
-    public SomeEntityDeletedMessage? LatestEntityDeletedMessage { get; private set; }
+    public SomeEntityDeletedMessage LatestEntityDeletedMessage { get; private set; }
 
     public int EntityCreatedMessageCounter { get; private set; }
-    public SomeEntityCreatedMessage? LatestEntityCreatedMessage { get; private set; }
+    public SomeEntityCreatedMessage LatestEntityCreatedMessage { get; private set; }
 
     public int EntityUpdatedMessageCounter { get; private set; }
-    public SomeEntityUpdatedMessage? LatestEntityUpdatedMessage { get; private set; }
+    public SomeEntityUpdatedMessage LatestEntityUpdatedMessage { get; private set; }
 
     public Task SomeEntityCreated(SomeEntityCreatedMessage message)
     {

@@ -3,7 +3,6 @@ using DomainModel;
 using DomainModel.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
 using Test.Shared;
 using Test.Shared.Mocks;
 using Test.Shared.TestData;
@@ -20,9 +19,9 @@ public abstract class ControllerTest<TSystemUnderTest> : TestBase<TSystemUnderTe
         services.AddDomainModel();
         services.AddApi();
 
-        // replace ExampleHub with mock implementation
-        var serviceDescriptor = services.FirstOrDefault(descriptor => descriptor.ServiceType == typeof(IExampleHubContract));
-        services.Remove(serviceDescriptor);
+        //// replace ExampleHub with mock implementation
+        //var serviceDescriptor = services.FirstOrDefault(descriptor => descriptor.ServiceType == typeof(IExampleHubContract));
+        //services.Remove(serviceDescriptor);
         services.AddScoped<IExampleHubContract, ExampleHubMock>();
 
         services.AddScoped<ExampleTestData>();
