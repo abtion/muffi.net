@@ -8,13 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Moq" Version="4.18.4" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.3" />
+		<PackageReference Include="Moq" Version="4.18.4" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\DomainModel.Shared\DomainModel.Shared.csproj" />
     <ProjectReference Include="..\..\src\DomainModel\DomainModel.csproj" />
-    <ProjectReference Include="..\..\src\Api.WithReact\Api.WithReact.csproj" />
   </ItemGroup>
 
 </Project>
