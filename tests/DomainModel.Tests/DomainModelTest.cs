@@ -2,6 +2,7 @@
 using DomainModel.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using Test.Shared;
 using Test.Shared.Mocks;
 using Test.Shared.TestData;
@@ -14,6 +15,10 @@ public abstract class DomainModelTest<TSystemUnderTest> : TestBase<TSystemUnderT
     {
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseInMemoryDatabase(GetType().Name));
+
+        //var context = services.GetRequiredService<ApplicationDbContext>();
+        //context.Database.EnsureDeleted();
+        //context.Database.EnsureCreated();
 
         services.AddDomainModel();
         //services.AddScoped<IExampleHubContract, ExampleHubMock>();

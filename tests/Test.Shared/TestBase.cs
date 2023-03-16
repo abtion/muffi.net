@@ -1,5 +1,4 @@
-﻿using DomainModel.Data;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace Test.Shared;
@@ -14,19 +13,11 @@ public abstract class TestBase<TSystemUnderTest> where TSystemUnderTest : notnul
         {
             if (serviceProvider == null)
             {
-
-                var servicesBuilder = new DomainModelBuilderForTest();
                 var serviceCollection = new ServiceCollection();
 
                 AddServices(serviceCollection);
 
-                servicesBuilder.ConfigureServices(serviceCollection, GetType().Name);
-
                 serviceProvider = serviceCollection.BuildServiceProvider();
-
-                var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
             }
 
             return serviceProvider!;

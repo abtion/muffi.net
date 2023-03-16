@@ -3,10 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace DomainModel.Services;
 
-public interface ICurrentDateTimeService
-{
-    DateTime CurrentDateTime();
-}
 [ExcludeFromCodeCoverage]
 public class CurrentDateTimeService : ICurrentDateTimeService
 {
