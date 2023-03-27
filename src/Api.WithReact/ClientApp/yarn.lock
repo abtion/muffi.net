@@ -5489,15 +5489,15 @@ jest-docblock@^29.4.3:
     detect-newline "^3.0.0"
 
 jest-each@^29.4.3:
-  version "29.4.3"
-  resolved "https://registry.yarnpkg.com/jest-each/-/jest-each-29.4.3.tgz#a434c199a2f6151c5e3dc80b2d54586bdaa72819"
-  integrity sha512-1ElHNAnKcbJb/b+L+7j0/w7bDvljw4gTv1wL9fYOczeJrbTbkMGQ5iQPFJ3eFQH19VPTx1IyfePdqSpePKss7Q==
+  version "29.5.0"
+  resolved "https://registry.yarnpkg.com/jest-each/-/jest-each-29.5.0.tgz#fc6e7014f83eac68e22b7195598de8554c2e5c06"
+  integrity sha512-HM5kIJ1BTnVt+DQZ2ALp3rzXEl+g726csObrW/jpEGl+CDSSQpOJJX2KE/vEg8cxcMXdyEPu6U4QX5eruQv5hA==
   dependencies:
-    "@jest/types" "^29.4.3"
+    "@jest/types" "^29.5.0"
     chalk "^4.0.0"
     jest-get-type "^29.4.3"
-    jest-util "^29.4.3"
-    pretty-format "^29.4.3"
+    jest-util "^29.5.0"
+    pretty-format "^29.5.0"
 
 jest-environment-jsdom@^29.3.1:
   version "29.3.1"
