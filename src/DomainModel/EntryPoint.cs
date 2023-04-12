@@ -2,17 +2,23 @@
 using DomainModel.Example.Queries;
 using DomainModel.Services;
 using DomainModel.Shared;
+using DomainModel.UserAdministration;
+using DomainModel.UserAdministration.Commands;
+using DomainModel.UserAdministration.Queries;
+using DomainModel.UserAdministration.Services;
 using FluentValidation;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Threading.Tasks;
 
 namespace DomainModel;
 
 public static class EntryPoint
 {
-    public static IServiceCollection AddDomainModel(this IServiceCollection services)
+    public static IServiceCollection AddDomainModel(this IServiceCollection services, IConfiguration configuration)
     {
-
         services.AddScoped<DomainModelTransaction>();
         services.AddTransient<ICurrentDateTimeService, CurrentDateTimeService>();
         services.AddTransient<IExampleReverseStringService, ExampleReverseStringService>();
@@ -31,6 +37,25 @@ public static class EntryPoint
         services.AddScoped<ExampleUpdateCommandHandler>();
         services.AddScoped<ExampleDeleteCommandHandler>();
 
+
+        services.AddScoped<RevokeAllAccessCommandHandler>();
+        services.AddScoped<UpdateUserCommandHandler>();
+        services.AddScoped<LoadUserQueryHandler>();
+        services.AddScoped<LoadUsersAndRolesQueryHandler>();
+        services.AddScoped<AdministratorAppRoleAssignmentCommandHandler>();
+        
+        services.AddTransient<IConfiguredGraphServiceClient, ConfiguredGraphServiceClient>();
+        services.AddScoped<IGetAppRolesFromAzureIdentity, GetAppRolesFromAzureIdentity>();
+        services.AddScoped<IGetAppRoleAssignmentsFromAzureIdentity, GetAppRoleAssignmentsFromAzureIdentity>();
+        services.AddScoped<IGetUserAppRoleAssignmentsFromAzureIdentity, GetUserAppRoleAssignmentsFromAzureIdentity>();
+        services.AddScoped<IGetUserFromAzureIdentity, GetUserFromAzureIdentity>();
+        services.AddScoped<IAddUserAppRoleAssignmentToAzureIdentity, AddUserAppRoleAssignmentToAzureIdentity>();
+        services.AddScoped<IDeleteUserAppRoleAssignmentFromAzureIdentity, DeleteUserAppRoleAssignmentFromAzureIdentity>();
+        services.AddScoped<IUpdateUserInAzureIdentity, UpdateUserInAzureIdentity>();
+
+
+
+
         services.AddScoped<AbstractValidator<ExampleCreateCommand>, ExampleCreateCommandValidator>();
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
@@ -38,6 +63,12 @@ public static class EntryPoint
 
         // https://code-maze.com/cqrs-mediatr-fluentvalidation/
         // services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+        services.AddOptions<AzureIdentityAdministrationOptions>()
+            .Configure<IConfiguration>((options, configuration) =>
+            {
+                configuration.GetRequiredSection(AzureIdentityAdministrationOptions.OptionsName).Bind(options);
+            });
 
         return services;
     }

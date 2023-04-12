@@ -1,4 +1,5 @@
-﻿using DomainModel.Services.Authorization;
+﻿using DomainModel.UserAdministration.Commands;
+using DomainModel.UserAdministration.Queries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,51 +10,38 @@ namespace Api.WithReact.Controllers;
 [Authorize(Roles = "Administrators")]
 public class RoleAdminController : ControllerBase
 {
-    // TODO build out API controller for Role Administration
-
-    private UserRoleService userRoleService;
-
-    public RoleAdminController(UserRoleService userRoleService)
+    [HttpGet("roles-and-users")]
+    public async Task<ActionResult<LoadUsersAndRolesResponse>> LoadRolesAndUsers(
+        [FromServices] LoadUsersAndRolesQueryHandler handler,
+        CancellationToken cancellationToken)
     {
-        this.userRoleService = userRoleService;
-    }
-
-    [HttpGet("get-data")]
-    public async Task<ActionResult<object>> GetData()
-    {
-        var roles = await userRoleService.ListAppRoles();
-        var users = await userRoleService.ListUsers();
-
-        return new
-        {
-            roles = roles.Select(role => new
-            {
-                id = role.Id,
-                name = role.DisplayName,
-            }),
-            users = users
-        };
+        return await handler.Handle(new(), cancellationToken);
     }
 
     [HttpPost("update-user")]
-    public async Task<ActionResult<object>> UpdateUser([FromBody] User user)
+    public async Task<ActionResult<UpdateUserResponse>> UpdateUser(
+        [FromServices] UpdateUserCommandHandler handler, 
+        [FromBody] UpdateUserCommand request,
+        CancellationToken cancellationToken)
     {
-        await userRoleService.UpdateUser(user);
-
-        return new OkResult();
+        return await handler.Handle(request, cancellationToken);
     }
 
     [HttpGet("user-details")]
-    public async Task<ActionResult<UserDetails>> GetUserDetails([FromQuery] string userID)
+    public async Task<ActionResult<LoadUserResponse>> GetUserDetails(
+        [FromServices]LoadUserQueryHandler handler,
+        [FromQuery] string userId,
+        CancellationToken cancellationToken)
     {
-        return await userRoleService.GetUserDetails(userID);
+        return await handler.Handle(new(userId), cancellationToken);
     }
 
     [HttpPost("revoke-access")]
-    public async Task<ActionResult> RevokeAccess([FromQuery] string userID)
+    public async Task<ActionResult<RevokeAllAccessResponse>> RevokeAccess(
+        [FromServices] RevokeAllAccessCommandHandler handler,
+        [FromQuery] string userId,
+        CancellationToken cancellationToken)
     {
-        await userRoleService.RevokeAccess(userID);
-
-        return new OkResult();
+        return await handler.Handle(new(userId), cancellationToken);
     }
 }

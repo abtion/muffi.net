@@ -23,23 +23,23 @@ export default function UserEditDialog({
 
   const [name, setName] = useState(_user.name)
 
-  const [appRoleIDs, setAppRoleIDs] = useState(_user.appRoleIDs)
+  const [appRoleIds, setAppRoleIds] = useState(_user.appRoleIds)
 
   const [saving, setSaving] = useState(false)
 
   useEffect(() => {
     api
       .get<UserDetails>("/api/roleAdmin/user-details", {
-        params: { userID: _user.userID },
+        params: { userID: _user.userId },
       })
       .then((response) => setDetails(response.data))
   }, [])
 
-  function toggleRole(roleID: string, enabled: boolean) {
-    setAppRoleIDs(
+  function toggleRole(roleId: string, enabled: boolean) {
+    setAppRoleIds(
       enabled
-        ? appRoleIDs.concat(roleID)
-        : appRoleIDs.filter((id) => id !== roleID)
+        ? appRoleIds.concat(roleId)
+        : appRoleIds.filter((id) => id !== roleId)
     )
   }
 
@@ -48,9 +48,9 @@ export default function UserEditDialog({
     setSaving(true)
 
     await api.post("/api/roleAdmin/update-user", {
-      userID: _user.userID,
+      userID: _user.userId,
       name,
-      appRoleIDs,
+      appRoleIds,
     })
 
     onClose(true)
@@ -61,7 +61,7 @@ export default function UserEditDialog({
     setSaving(true)
 
     await api.post("/api/roleAdmin/revoke-access", "", {
-      params: { userID: _user.userID },
+      params: { userId: _user.userId },
     })
 
     onClose(true)
@@ -98,7 +98,7 @@ export default function UserEditDialog({
               <label key={role.id}>
                 <input
                   type="checkbox"
-                  checked={appRoleIDs.includes(role.id)}
+                  checked={appRoleIds.includes(role.id)}
                   onChange={(e) => toggleRole(role.id, e.currentTarget.checked)}
                 />{" "}
                 {role.name}

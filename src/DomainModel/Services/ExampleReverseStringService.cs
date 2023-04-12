@@ -6,6 +6,7 @@ public interface IExampleReverseStringService
 {
     string ReverseString(string inputStr);
 }
+
 public class ExampleReverseStringService : IExampleReverseStringService
 {
     public string ReverseString(string inputStr)

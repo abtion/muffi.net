@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 
 namespace Test.Shared;
 
@@ -13,9 +15,19 @@ public abstract class TestBase<TSystemUnderTest> where TSystemUnderTest : notnul
         {
             if (serviceProvider == null)
             {
-                var serviceCollection = new ServiceCollection();
+                var myConfiguration = new Dictionary<string, string>
+                {
+                    {"Key1", "Value1"},
+                    {"Nested:Key1", "NestedValue1"},
+                    {"Nested:Key2", "NestedValue2"}
+                };
 
-                AddServices(serviceCollection);
+                var configuration = new ConfigurationBuilder()
+                    .AddInMemoryCollection(myConfiguration!)
+                    .Build();
+
+                var serviceCollection = new ServiceCollection();
+                AddServices(serviceCollection, configuration);
 
                 serviceProvider = serviceCollection.BuildServiceProvider();
             }
@@ -29,5 +41,5 @@ public abstract class TestBase<TSystemUnderTest> where TSystemUnderTest : notnul
         return ServiceProvider.GetRequiredService<TSystemUnderTest>();
     }
 
-    protected abstract void AddServices(IServiceCollection services);
+    protected abstract void AddServices(IServiceCollection services, IConfiguration configuration);
 }

@@ -35,4 +35,9 @@
 		<ProjectReference Include="..\Test.Shared\Test.Shared.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="UserAdministration\Commands\" />
+	  <Folder Include="UserAdministration\Queries\" />
+	</ItemGroup>
+
 </Project>
