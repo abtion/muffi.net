@@ -2,6 +2,8 @@ using Api.Shared.Authentication.OpenIdConnect;
 using Api.WithReact;
 using Api.WithReact.Hubs;
 using DomainModel;
+using DomainModel.UserAdministration.Commands;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +13,9 @@ var configuration = builder.Configuration;
 builder.Services.AddOidcAuthentication(configuration);
 
 builder.Services.AddDatabase(configuration);
-builder.Services.AddDomainModel();
+builder.Services.AddDomainModel(configuration);
 builder.Services.AddApi();
 
-builder.Services.AddUserRoleService(configuration);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -28,7 +29,6 @@ builder.Services.AddApplicationInsightsTelemetry((options) =>
 });
 
 builder.Services.AddHttpContextAccessor();
-
 
 var app = builder.Build();
 
@@ -58,5 +58,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.UseSignalRHubs();
-
 app.Run();

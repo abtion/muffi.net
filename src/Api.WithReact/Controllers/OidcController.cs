@@ -1,4 +1,5 @@
 ﻿using Api.Shared.Authentication.OpenIdConnect;
+using DomainModel.UserAdministration.Commands;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.WithReact.Controllers;
@@ -7,6 +8,32 @@ namespace Api.WithReact.Controllers;
 [ApiController]
 public class OidcController : ControllerBase
 {
+    private static bool AdministratorAppRoleRun = false;
+
+    /// <summary>
+    /// This constructor is called once per application start.
+    /// It is used to ensure that the administrator app role is created.
+    /// </summary>
+    /// <remarks>
+    /// Should be moved to another location, but the current location 
+    /// is the only one that is called once per application start.
+    /// </remarks>
+    public OidcController([FromServices] AdministratorAppRoleAssignmentCommandHandler handler)
+    {
+        if (!AdministratorAppRoleRun)
+        {
+            try
+            {
+                handler.Handle(new(), CancellationToken.None).Wait();
+                AdministratorAppRoleRun = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+    }
+
     [HttpGet("frontend-configuration")]
     public ActionResult<OpenIdConnectFrontend> FrontendConfiguration([FromServices] IConfiguration configuration, CancellationToken cancellationToken)
     {

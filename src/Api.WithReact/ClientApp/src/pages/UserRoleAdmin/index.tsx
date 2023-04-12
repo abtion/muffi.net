@@ -25,7 +25,7 @@ export default function UserRoleAdmin(): JSX.Element {
   async function loadData() {
     setData(null)
 
-    const response = await api.get<UserRoleData>("/api/roleAdmin/get-data", {})
+    const response = await api.get<UserRoleData>("/api/roleAdmin/roles-and-users", {})
 
     setData(response.data)
   }
@@ -36,7 +36,7 @@ export default function UserRoleAdmin(): JSX.Element {
       : {}
   }, [data])
 
-  const [selectedRoleID, setSelectedRoleID] = useState<string>()
+  const [selectedRoleId, setSelectedRoleId] = useState<string>()
 
   const [searchTerms, setSearchTerms] = useState<string>("")
 
@@ -57,7 +57,7 @@ export default function UserRoleAdmin(): JSX.Element {
       const visibleUsers =
         data?.users
           .filter((row) =>
-            selectedRoleID ? row.appRoleIDs.includes(selectedRoleID) : true
+            selectedRoleId ? row.appRoleIds.includes(selectedRoleId) : true
           )
           .filter((row) =>
             searchTerms
@@ -71,7 +71,7 @@ export default function UserRoleAdmin(): JSX.Element {
       }
     },
     10,
-    [data, searchTerms, selectedRoleID]
+    [data, searchTerms, selectedRoleId]
   )
 
   function closeEditUserDialog(saved: boolean) {
@@ -109,8 +109,8 @@ export default function UserRoleAdmin(): JSX.Element {
                 </div>
                 <div className="flex-initial">
                   <Select
-                    value={selectedRoleID}
-                    onChange={(e) => setSelectedRoleID(e.target.value)}
+                    value={selectedRoleId}
+                    onChange={(e) => setSelectedRoleId(e.target.value)}
                   >
                     <option key={""} value="">
                       Filter by role
@@ -139,9 +139,9 @@ export default function UserRoleAdmin(): JSX.Element {
               </thead>
               <tbody>
                 {rows.map((user) => (
-                  <tr key={user.userID}>
+                  <tr key={user.userId}>
                     <td>{user.name}</td>
-                    <td>{user.appRoleIDs.map((id) => roleNames[id]).join()}</td>
+                    <td>{user.appRoleIds.map((id) => roleNames[id]).join()}</td>
                     <td>
                       <button
                         className="float-right"

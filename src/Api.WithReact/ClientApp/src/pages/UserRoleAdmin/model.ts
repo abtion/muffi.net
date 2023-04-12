@@ -11,8 +11,8 @@ export interface UserRoleData {
 
 export interface User {
   name: string
-  userID: string
-  appRoleIDs: Array<string>
+  userId: string
+  appRoleIds: Array<string>
 }
 
 export interface UserDetails {
