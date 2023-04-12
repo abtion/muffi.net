@@ -25,7 +25,10 @@ export default function UserRoleAdmin(): JSX.Element {
   async function loadData() {
     setData(null)
 
-    const response = await api.get<UserRoleData>("/api/roleAdmin/roles-and-users", {})
+    const response = await api.get<UserRoleData>(
+      "/api/roleAdmin/roles-and-users",
+      {}
+    )
 
     setData(response.data)
   }
