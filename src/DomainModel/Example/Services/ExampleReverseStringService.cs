@@ -1,6 +1,6 @@
 using System;
 
-namespace DomainModel.Services;
+namespace DomainModel.Example.Services;
 
 public interface IExampleReverseStringService
 {

@@ -1,6 +1,6 @@
 ﻿using DomainModel.Example.Commands;
 using DomainModel.Example.Queries;
-using DomainModel.Services;
+using DomainModel.Example.Services;
 using DomainModel.Shared;
 using DomainModel.UserAdministration;
 using DomainModel.UserAdministration.Commands;

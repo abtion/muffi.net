@@ -1,6 +1,6 @@
-﻿using DomainModel.Services;
+﻿using DomainModel.Example.Services;
+using DomainModel.Example.ViewModels;
 using DomainModel.Shared.Exceptions;
-using DomainModel.ViewModels;
 using MediatR;
 using System;
 using System.Linq;

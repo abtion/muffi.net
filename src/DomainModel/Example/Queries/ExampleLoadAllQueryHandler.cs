@@ -1,4 +1,4 @@
-﻿using DomainModel.ViewModels;
+﻿using DomainModel.Example.ViewModels;
 using MediatR;
 using System;
 using System.Linq;

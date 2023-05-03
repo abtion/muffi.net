@@ -1,6 +1,6 @@
 using DomainModel.Example;
 
-namespace DomainModel.ViewModels;
+namespace DomainModel.Example.ViewModels;
 
 public record ExampleEntityRecord : IExampleModel
 {

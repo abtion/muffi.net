@@ -1,4 +1,4 @@
-﻿using DomainModel.ViewModels;
+﻿using DomainModel.Example.ViewModels;
 
 namespace DomainModel.Example.Queries;
 
