@@ -38,6 +38,8 @@ export default function ExampleForm({
           Name
         </label>
         <Input
+          size="md"
+          variant="default"
           className="w-full block"
           id="nameInput"
           name="Name"
@@ -51,6 +53,8 @@ export default function ExampleForm({
           Description
         </label>
         <Input
+          size="md"
+          variant="default"
           className="w-full block"
           id="descriptionInput"
           name="Description"
@@ -65,6 +69,8 @@ export default function ExampleForm({
           E-mail
         </label>
         <Input
+          size="md"
+          variant="default"
           className="w-full block"
           id="emailInput"
           name="Email"
@@ -80,6 +86,8 @@ export default function ExampleForm({
           Phone
         </label>
         <Input
+          size="md"
+          variant="default"
           className="w-full block"
           id="phoneInput"
           name="Phone"
@@ -91,7 +99,7 @@ export default function ExampleForm({
           pattern="^[+]?[0-9]{7,15}$"
         />
       </div>
-      <div>
+      <div className="mb-10">
         <Button variant="primary" size="lg">
           Submit
         </Button>

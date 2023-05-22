@@ -1,14 +1,28 @@
+import classNames from "classnames"
 import React from "react"
-import LoaderIcon from "./icon.svg"
 import "./style.scss"
 
-export default function Loader({ text }: { text?: string }): JSX.Element {
+export interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
+  text?: string
+  spinnerClassName?: string
+  textClassName?: string
+}
+
+export default function Loader({
+  text,
+  className,
+  spinnerClassName,
+  textClassName,
+  ...rest
+}: LoaderProps): JSX.Element {
+  const usedClassName = classNames("Loader", className)
+  const usedSpinnerClassName = classNames("Loader__spinner", spinnerClassName)
+  const usedTextClassName = classNames("Loader__text", textClassName)
+
   return (
-    <div className="Loader">
-      <div className="Loader__icon">
-        <LoaderIcon />
-      </div>
-      <div className="Loader__text">{text}</div>
+    <div className={usedClassName} {...rest}>
+      <div className={usedSpinnerClassName} />
+      <div className={usedTextClassName}>{text}</div>
     </div>
   )
 }
