@@ -10,10 +10,15 @@ describe(Loader, () => {
     expect(text).toBeInTheDocument()
   })
 
-  it("renders the loader icon", () => {
-    const { container } = render(<Loader />)
+  it("adds spinnerClassName and textClassName to the correct elements", () => {
+    const { container } = render(
+      <Loader spinnerClassName="the-spinner" textClassName="the-text" />
+    )
 
-    const icon = container.querySelector(".Loader__icon")
-    expect(icon).toContainHTML("Mocked SVG Icon")
+    const spinnerElement = container.querySelector(".Loader__spinner")
+    const textElement = container.querySelector(".Loader__text")
+
+    expect(spinnerElement).toHaveClass("the-spinner")
+    expect(textElement).toHaveClass("the-text")
   })
 })

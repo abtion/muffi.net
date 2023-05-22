@@ -41,7 +41,7 @@ export default function NavMenu(): JSX.Element {
                 {user?.profile.preferred_username}
               </span>
               <Button
-                variant="standard"
+                variant="secondary"
                 size="xs"
                 onClick={() => signoutRedirect()}
               >

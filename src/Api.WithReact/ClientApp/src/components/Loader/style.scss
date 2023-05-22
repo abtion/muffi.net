@@ -1,8 +1,12 @@
 .Loader {
   @apply text-center;
-  min-width: 112px;
-  &__icon {
-    @apply w-min;
+
+  &__spinner {
+    @apply border-2;
+    @apply border-current;
+    @apply rounded-full;
+    @apply border-l-transparent;
+    @apply w-10 h-10;
     @apply animate-spin;
     @apply mx-auto;
   }

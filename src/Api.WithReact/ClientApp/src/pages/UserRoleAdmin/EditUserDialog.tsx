@@ -84,6 +84,8 @@ export default function UserEditDialog({
             <label className="block mb-5 text-sm">
               Name
               <Input
+                size="md"
+                variant="default"
                 className="block w-full"
                 value={name}
                 onChange={(e) => setName(e.currentTarget.value)}
@@ -91,7 +93,13 @@ export default function UserEditDialog({
             </label>
             <label className="block mb-5 text-sm">
               Email
-              <Input className="block w-full" readOnly value={details?.email} />
+              <Input
+                size="md"
+                variant="default"
+                className="block w-full"
+                readOnly
+                value={details?.email}
+              />
             </label>
             <div className="font-bold text-lg">Roles</div>
             {data.roles.map((role) => (
@@ -107,7 +115,9 @@ export default function UserEditDialog({
           </Dialog.Content>
 
           <Dialog.Footer>
-            <Button onClick={cancel}>Cancel</Button>
+            <Button variant="secondary" onClick={cancel}>
+              Cancel
+            </Button>
             <Button variant="danger" onClick={revokeAccess}>
               Revoke access
             </Button>
