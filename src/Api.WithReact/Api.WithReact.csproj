@@ -19,7 +19,7 @@
 		<PackageReference Include="Azure.Identity" Version="1.10.0" />
 		<PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.8" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
-		<PackageReference Include="MediatR" Version="12.0.1" />
+		<PackageReference Include="MediatR" Version="12.1.1" />
 		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.21.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.9" />
 		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.5" />
