@@ -1,5 +1,4 @@
 ﻿using Microsoft.Graph;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,18 +15,28 @@ public class GetAppRoleAssignmentsFromAzureIdentity : IGetAppRoleAssignmentsFrom
 {
     private readonly IConfiguredGraphServiceClient client;
 
-    public GetAppRoleAssignmentsFromAzureIdentity(IConfiguredGraphServiceClient configuredGraphServiceClient)
+    public GetAppRoleAssignmentsFromAzureIdentity(
+        IConfiguredGraphServiceClient configuredGraphServiceClient
+    )
     {
         this.client = configuredGraphServiceClient;
     }
 
     public async Task<IQueryable<AppRoleAssignment>> GetAppRoleAssignments()
     {
-        var roleAssignments = await client.Client
-            .ServicePrincipals[client.Options.EnterpriseApplicationObjectId]
-            .AppRoleAssignedTo
+        var roleAssignments = await client.Client.ServicePrincipals[
+            client.Options.EnterpriseApplicationObjectId
+        ].AppRoleAssignedTo
             .Request()
-            .Select(a => new { a.PrincipalId, a.PrincipalDisplayName, a.AppRoleId })
+            .Select(
+                a =>
+                    new
+                    {
+                        a.PrincipalId,
+                        a.PrincipalDisplayName,
+                        a.AppRoleId
+                    }
+            )
             .Top(999) // TODO use pagination to fetch ALL records
             .GetAsync();
 
@@ -36,9 +45,7 @@ public class GetAppRoleAssignmentsFromAzureIdentity : IGetAppRoleAssignmentsFrom
 
     public async Task<IQueryable<AppRoleAssignment>> GetAppRoleAssignmentsForUser(string userId)
     {
-        var roleAssignments = await client.Client
-            .Users[userId]
-            .AppRoleAssignments
+        var roleAssignments = await client.Client.Users[userId].AppRoleAssignments
             .Request()
             .Filter($"resourceId eq {client.Options.EnterpriseApplicationObjectId}")
             .GetAsync();

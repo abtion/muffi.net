@@ -1,4 +1,4 @@
-﻿using DomainModel.ViewModels;
+﻿using DomainModel.Example.ViewModels;
 using System.Collections.Generic;
 
 namespace DomainModel.Example.Queries;

@@ -2,7 +2,5 @@
 
 namespace DomainModel.UserAdministration.Commands;
 
-public class AdministratorAppRoleAssignmentCommand 
-    : ICommand<AdministratorAppRoleAssignmentResponse>
-{
-}
+public class AdministratorAppRoleAssignmentCommand
+    : ICommand<AdministratorAppRoleAssignmentResponse> { }

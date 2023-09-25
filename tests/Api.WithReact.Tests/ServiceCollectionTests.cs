@@ -25,15 +25,16 @@ public class ServiceConfigurationTests
         var msServiceCount = builder.Services.Count;
 
         // add application services
-        builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseInMemoryDatabase(GetType().Name));
+        builder.Services.AddDbContext<ApplicationDbContext>(
+            options => options.UseInMemoryDatabase(GetType().Name)
+        );
 
         var myConfiguration = new Dictionary<string, string>
-                {
-                    {"Key1", "Value1"},
-                    {"Nested:Key1", "NestedValue1"},
-                    {"Nested:Key2", "NestedValue2"}
-                };
+        {
+            { "Key1", "Value1" },
+            { "Nested:Key1", "NestedValue1" },
+            { "Nested:Key2", "NestedValue2" }
+        };
 
         var configuration = new ConfigurationBuilder()
             .AddInMemoryCollection(myConfiguration!)
@@ -45,20 +46,42 @@ public class ServiceConfigurationTests
         ReplaceServiceWithMock<IExampleHubContract, ExampleHubMock>(builder.Services);
 
         // replace the classes that communicate with Azure Identity with mocks that return test data
-        ReplaceServiceWithMock<IConfiguredGraphServiceClient, ConfiguredGraphServiceClientMock>(builder.Services);
-        ReplaceServiceWithMock<IGetAppRoleAssignmentsFromAzureIdentity, GetAppRoleAssignmentsFromAzureIdentityMock>(builder.Services);
-        ReplaceServiceWithMock<IGetAppRolesFromAzureIdentity, GetAppRolesFromAzureIdentityMock>(builder.Services);
-        ReplaceServiceWithMock<IGetUserAppRoleAssignmentsFromAzureIdentity, GetUserAppRoleAssignmentsFromAzureIdentityMock>(builder.Services);
-        ReplaceServiceWithMock<IAddUserAppRoleAssignmentToAzureIdentity, AddUserAppRoleAssignmentToAzureIdentityMock>(builder.Services);
-        ReplaceServiceWithMock<IDeleteUserAppRoleAssignmentFromAzureIdentity, DeleteUserAppRoleAssignmentFromAzureIdentityMock>(builder.Services);
-        ReplaceServiceWithMock<IUpdateUserInAzureIdentity, UpdateUserInAzureIdentityMock>(builder.Services);
-        ReplaceServiceWithMock<IGetUserFromAzureIdentity, GetUserFromAzureIdentityMock>(builder.Services);
-        
+        ReplaceServiceWithMock<IConfiguredGraphServiceClient, ConfiguredGraphServiceClientMock>(
+            builder.Services
+        );
+        ReplaceServiceWithMock<
+            IGetAppRoleAssignmentsFromAzureIdentity,
+            GetAppRoleAssignmentsFromAzureIdentityMock
+        >(builder.Services);
+        ReplaceServiceWithMock<IGetAppRolesFromAzureIdentity, GetAppRolesFromAzureIdentityMock>(
+            builder.Services
+        );
+        ReplaceServiceWithMock<
+            IGetUserAppRoleAssignmentsFromAzureIdentity,
+            GetUserAppRoleAssignmentsFromAzureIdentityMock
+        >(builder.Services);
+        ReplaceServiceWithMock<
+            IAddUserAppRoleAssignmentToAzureIdentity,
+            AddUserAppRoleAssignmentToAzureIdentityMock
+        >(builder.Services);
+        ReplaceServiceWithMock<
+            IDeleteUserAppRoleAssignmentFromAzureIdentity,
+            DeleteUserAppRoleAssignmentFromAzureIdentityMock
+        >(builder.Services);
+        ReplaceServiceWithMock<IUpdateUserInAzureIdentity, UpdateUserInAzureIdentityMock>(
+            builder.Services
+        );
+        ReplaceServiceWithMock<IGetUserFromAzureIdentity, GetUserFromAzureIdentityMock>(
+            builder.Services
+        );
+
         var app = builder.Build();
 
         var test = () =>
         {
-            var customServices = builder.Services.Skip(msServiceCount).Where(p => !SkipList.Contains(p.ServiceType.FullName));
+            var customServices = builder.Services
+                .Skip(msServiceCount)
+                .Where(p => !SkipList.Contains(p.ServiceType.FullName));
 
             foreach (var descriptor in customServices)
             {
@@ -79,12 +102,13 @@ public class ServiceConfigurationTests
         test.Should().NotThrow();
     }
 
-    private void ReplaceServiceWithMock<TContract, TMockImplementation>(
-        IServiceCollection services) 
-        where TContract: class
-        where TMockImplementation : class, TContract 
+    private void ReplaceServiceWithMock<TContract, TMockImplementation>(IServiceCollection services)
+        where TContract : class
+        where TMockImplementation : class, TContract
     {
-        var serviceDescriptor = services.FirstOrDefault(descriptor => descriptor.ServiceType == typeof(TContract));
+        var serviceDescriptor = services.FirstOrDefault(
+            descriptor => descriptor.ServiceType == typeof(TContract)
+        );
 
         services.Remove(serviceDescriptor);
         services.AddScoped<TContract, TMockImplementation>();

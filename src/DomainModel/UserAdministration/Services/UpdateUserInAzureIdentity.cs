@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace DomainModel.UserAdministration.Services;
 
-public interface IUpdateUserInAzureIdentity 
+public interface IUpdateUserInAzureIdentity
 {
     public Task UpdateUser(User user);
 }
@@ -19,9 +19,6 @@ public class UpdateUserInAzureIdentity : IUpdateUserInAzureIdentity
 
     public async Task UpdateUser(User user)
     {
-        await client.Client
-            .Users[user.Id]
-            .Request()
-            .UpdateAsync(user);
+        await client.Client.Users[user.Id].Request().UpdateAsync(user);
     }
 }

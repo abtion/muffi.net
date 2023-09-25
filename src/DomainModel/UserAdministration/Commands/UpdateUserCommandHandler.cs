@@ -18,15 +18,20 @@ public class UpdateUserCommandHandler : ICommandHandler<UpdateUserCommand, Updat
         IAddUserAppRoleAssignmentToAzureIdentity addUserAppRoleAssignmentToAzureIdentity,
         IDeleteUserAppRoleAssignmentFromAzureIdentity deleteUserAppRoleAssignmentFromAzureIdentity,
         IGetAppRoleAssignmentsFromAzureIdentity getAppRoleAssignmentsFromAzureIdentity,
-        IUpdateUserInAzureIdentity updateUserInAzureIdentity)
+        IUpdateUserInAzureIdentity updateUserInAzureIdentity
+    )
     {
         this.addUserAppRoleAssignmentToAzureIdentity = addUserAppRoleAssignmentToAzureIdentity;
-        this.deleteUserAppRoleAssignmentFromAzureIdentity = deleteUserAppRoleAssignmentFromAzureIdentity;
+        this.deleteUserAppRoleAssignmentFromAzureIdentity =
+            deleteUserAppRoleAssignmentFromAzureIdentity;
         this.getAppRoleAssignmentsFromAzureIdentity = getAppRoleAssignmentsFromAzureIdentity;
         this.updateUserInAzureIdentity = updateUserInAzureIdentity;
     }
 
-    public async Task<UpdateUserResponse> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+    public async Task<UpdateUserResponse> Handle(
+        UpdateUserCommand request,
+        CancellationToken cancellationToken
+    )
     {
         // Update User details:
         var update = new Microsoft.Graph.User
@@ -38,11 +43,13 @@ public class UpdateUserCommandHandler : ICommandHandler<UpdateUserCommand, Updat
         await updateUserInAzureIdentity.UpdateUser(update);
 
         // Fetch existing App Role Assignments assigned to this User:
-        var allCurrentAssignments = await getAppRoleAssignmentsFromAzureIdentity.GetAppRoleAssignmentsForUser(request.UserId.ToString());
+        var allCurrentAssignments =
+            await getAppRoleAssignmentsFromAzureIdentity.GetAppRoleAssignmentsForUser(
+                request.UserId.ToString()
+            );
 
         // ignoring the default App Role
-        var currentAssignments = allCurrentAssignments
-            .Where(a => a.AppRoleId != Guid.Empty);
+        var currentAssignments = allCurrentAssignments.Where(a => a.AppRoleId != Guid.Empty);
 
         // Add any new App Role Assignments not already assigned to this User:
         if (currentAssignments is not null)
@@ -51,8 +58,9 @@ public class UpdateUserCommandHandler : ICommandHandler<UpdateUserCommand, Updat
             {
                 if (!currentAssignments.Any(a => a.AppRoleId == roleID))
                     await addUserAppRoleAssignmentToAzureIdentity.AddUserAppRoleAssignment(
-                        request.UserId.ToString(), 
-                        roleID.ToString());
+                        request.UserId.ToString(),
+                        roleID.ToString()
+                    );
             }
 
             // Revoke any old App Role Assignments no longer assigned to this User:
@@ -60,7 +68,8 @@ public class UpdateUserCommandHandler : ICommandHandler<UpdateUserCommand, Updat
             {
                 if (!request.AppRoleIds.Any(id => currentAssignment.AppRoleId == id))
                     await deleteUserAppRoleAssignmentFromAzureIdentity.DeleteAppRoleAssignment(
-                        currentAssignment.Id);
+                        currentAssignment.Id
+                    );
             }
         }
 

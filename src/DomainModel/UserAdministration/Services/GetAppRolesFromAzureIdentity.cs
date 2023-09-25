@@ -1,11 +1,10 @@
 ﻿using Microsoft.Graph;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace DomainModel.UserAdministration.Services;
 
-public interface IGetAppRolesFromAzureIdentity 
+public interface IGetAppRolesFromAzureIdentity
 {
     public Task<IQueryable<AppRole>> GetAppRoles();
 }
@@ -21,8 +20,7 @@ public class GetAppRolesFromAzureIdentity : IGetAppRolesFromAzureIdentity
 
     public async Task<IQueryable<AppRole>> GetAppRoles()
     {
-        var app = await client.Client
-            .Applications[client.Options.AppRegistrationObjectId]
+        var app = await client.Client.Applications[client.Options.AppRegistrationObjectId]
             .Request()
             .Select(c => new { c.AppRoles }) // optimization
             .GetAsync();

@@ -1,6 +1,6 @@
 ﻿using DomainModel.Shared;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 
 namespace DomainModel.UserAdministration.Commands;
 
