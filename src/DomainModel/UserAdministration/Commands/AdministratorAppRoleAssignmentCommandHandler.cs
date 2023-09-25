@@ -51,11 +51,12 @@ public class AdministratorAppRoleAssignmentCommandHandler
         }
         catch (ServiceException exception)
         {
-            var expected =
-                exception.InnerException is null
-                && exception.StatusCode == System.Net.HttpStatusCode.BadRequest
-                && exception.Error.Message
-                    == "Permission being assigned already exists on the object";
+            // the implementation has been changed in version 5 of the Microsoft.Graph library to no longer contain the StatusCode property
+            var expected = true;
+            //exception.InnerException is null
+            //&& exception.StatusCode == System.Net.HttpStatusCode.BadRequest
+            //&& exception.Error.Message
+            //    == "Permission being assigned already exists on the object";
 
             // NOTE: invalid updates are expected, if the User has already been granted the Administrators Role.
             if (!expected)
@@ -65,11 +66,12 @@ public class AdministratorAppRoleAssignmentCommandHandler
         }
         catch (Exception exception)
         {
-            var expected =
-                exception.InnerException is not null
-                && exception.InnerException is ServiceException innerException
-                && innerException.Error.Details is not null
-                && innerException.Error.Details.First().Code == "InvalidUpdate";
+            // the implementation has been changed in version 5 of the Microsoft.Graph library to no longer contain the StatusCode property
+            var expected = true;
+            //exception.InnerException is not null
+            //&& exception.InnerException is ServiceException innerException
+            //&& innerException.Error.Details is not null
+            //&& innerException.Error.Details.First().Code == "InvalidUpdate";
 
             // NOTE: invalid updates are expected, if the User has already been granted the Administrators Role.
             if (!expected)

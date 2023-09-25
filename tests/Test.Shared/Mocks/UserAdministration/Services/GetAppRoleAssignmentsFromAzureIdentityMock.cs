@@ -1,5 +1,5 @@
 ﻿using DomainModel.UserAdministration.Services;
-using Microsoft.Graph;
+using Microsoft.Graph.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +13,9 @@ public class GetAppRoleAssignmentsFromAzureIdentityMock : IGetAppRoleAssignments
         throw new NotImplementedException();
     }
 
-    Task<IQueryable<AppRoleAssignment>> IGetAppRoleAssignmentsFromAzureIdentity.GetAppRoleAssignments()
+    Task<
+        IQueryable<AppRoleAssignment>
+    > IGetAppRoleAssignmentsFromAzureIdentity.GetAppRoleAssignments()
     {
         throw new NotImplementedException();
     }

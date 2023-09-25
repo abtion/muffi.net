@@ -1,5 +1,5 @@
 ﻿using DomainModel.UserAdministration.Services;
-using Microsoft.Graph;
+using Microsoft.Graph.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;

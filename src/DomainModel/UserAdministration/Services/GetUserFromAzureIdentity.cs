@@ -1,4 +1,5 @@
-﻿using Microsoft.Graph;
+﻿using DomainModel.UserAdministration.Exceptions;
+using Microsoft.Graph.Models;
 using System.Threading.Tasks;
 
 namespace DomainModel.UserAdministration.Services;
@@ -19,10 +20,14 @@ public class GetUserFromAzureIdentity : IGetUserFromAzureIdentity
 
     public async Task<User> GetUser(string userId)
     {
-        return await client.Client
-            .Users[userId]
-            .Request()
-            .Select(u => new { u.Mail }) // optimization
-            .GetAsync();
+        var azureUser = await client.Client.Users[userId].GetAsync(requestConfiguration =>
+        {
+            requestConfiguration.QueryParameters.Select = new string[] { "mail" };
+        });
+
+        if (azureUser is null)
+            throw new AzureUserNotFoundException(userId);
+
+        return azureUser;
     }
 }

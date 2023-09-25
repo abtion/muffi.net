@@ -5,26 +5,39 @@ using System.Threading.Tasks;
 
 namespace DomainModel.UserAdministration.Commands;
 
-public class RevokeAllAccessCommandHandler : ICommandHandler<RevokeAllAccessCommand, RevokeAllAccessResponse>
+public class RevokeAllAccessCommandHandler
+    : ICommandHandler<RevokeAllAccessCommand, RevokeAllAccessResponse>
 {
     private readonly IGetUserAppRoleAssignmentsFromAzureIdentity getUserAppRoleAssignmentsFromAzureIdentity;
     private readonly IDeleteUserAppRoleAssignmentFromAzureIdentity deleteUserAppRoleAssignmentFromAzureIdentity;
 
     public RevokeAllAccessCommandHandler(
         IGetUserAppRoleAssignmentsFromAzureIdentity getUserAppRoleAssignmentsFromAzureIdentity,
-        IDeleteUserAppRoleAssignmentFromAzureIdentity deleteUserAppRoleAssignmentFromAzureIdentity)
+        IDeleteUserAppRoleAssignmentFromAzureIdentity deleteUserAppRoleAssignmentFromAzureIdentity
+    )
     {
-        this.getUserAppRoleAssignmentsFromAzureIdentity = getUserAppRoleAssignmentsFromAzureIdentity;
-        this.deleteUserAppRoleAssignmentFromAzureIdentity = deleteUserAppRoleAssignmentFromAzureIdentity;
+        this.getUserAppRoleAssignmentsFromAzureIdentity =
+            getUserAppRoleAssignmentsFromAzureIdentity;
+        this.deleteUserAppRoleAssignmentFromAzureIdentity =
+            deleteUserAppRoleAssignmentFromAzureIdentity;
     }
 
-    public async Task<RevokeAllAccessResponse> Handle(RevokeAllAccessCommand request, CancellationToken cancellationToken)
+    public async Task<RevokeAllAccessResponse> Handle(
+        RevokeAllAccessCommand request,
+        CancellationToken cancellationToken
+    )
     {
-        var allAssignments = await getUserAppRoleAssignmentsFromAzureIdentity.GetUserAppRoleAssignments(request.UserId);
+        var allAssignments =
+            await getUserAppRoleAssignmentsFromAzureIdentity.GetUserAppRoleAssignments(
+                request.UserId
+            );
 
         foreach (var assignment in allAssignments)
         {
-            await deleteUserAppRoleAssignmentFromAzureIdentity.DeleteAppRoleAssignment(assignment.Id);
+            if (assignment.Id is not null)
+                await deleteUserAppRoleAssignmentFromAzureIdentity.DeleteAppRoleAssignment(
+                    assignment.Id
+                );
         }
 
         return new();

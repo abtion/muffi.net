@@ -14,10 +14,16 @@ public class LoadUserQueryHandler : IQueryHandler<LoadUserQuery, LoadUserRespons
         this.getUserFromAzureIdentity = getUserFromAzureIdentity;
     }
 
-    public async Task<LoadUserResponse> Handle(LoadUserQuery request, CancellationToken cancellationToken)
+    public async Task<LoadUserResponse> Handle(
+        LoadUserQuery request,
+        CancellationToken cancellationToken
+    )
     {
         var user = await getUserFromAzureIdentity.GetUser(request.UserId);
 
-        return new LoadUserResponse(user.Mail);
+        if (user.Mail is not null)
+            return new LoadUserResponse(user.Mail);
+
+        return new LoadUserResponse(string.Empty);
     }
 }

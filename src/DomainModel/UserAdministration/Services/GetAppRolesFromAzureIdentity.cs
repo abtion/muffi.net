@@ -1,4 +1,6 @@
-﻿using Microsoft.Graph;
+﻿using DomainModel.UserAdministration.Exceptions;
+using Microsoft.Graph.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,11 +22,20 @@ public class GetAppRolesFromAzureIdentity : IGetAppRolesFromAzureIdentity
 
     public async Task<IQueryable<AppRole>> GetAppRoles()
     {
-        var app = await client.Client.Applications[client.Options.AppRegistrationObjectId]
-            .Request()
-            .Select(c => new { c.AppRoles }) // optimization
-            .GetAsync();
+        var azureApp = await client.Client.Applications[
+            client.Options.AppRegistrationObjectId
+        ].GetAsync(requestConfiguration =>
+        {
+            requestConfiguration.QueryParameters.Select = new string[] { "appRoles" };
+        });
 
-        return app.AppRoles.AsQueryable();
+        if (azureApp is null)
+            throw new AzureApplicationNotFoundException();
+
+        if (azureApp.AppRoles is not null)
+            return azureApp.AppRoles.AsQueryable();
+
+        var result = new List<AppRole>();
+        return result.AsQueryable();
     }
 }

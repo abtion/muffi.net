@@ -1,4 +1,4 @@
-﻿using Microsoft.Graph;
+﻿using Microsoft.Graph.Models;
 using System;
 using System.Threading.Tasks;
 
@@ -31,8 +31,6 @@ public class AddUserAppRoleAssignmentToAzureIdentity : IAddUserAppRoleAssignment
 
         await client.Client.ServicePrincipals[
             client.Options.EnterpriseApplicationObjectId
-        ].AppRoleAssignedTo
-            .Request()
-            .AddAsync(assignment);
+        ].AppRoleAssignedTo.PostAsync(assignment);
     }
 }

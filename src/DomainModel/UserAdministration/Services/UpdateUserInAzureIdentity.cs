@@ -1,4 +1,4 @@
-﻿using Microsoft.Graph;
+﻿using Microsoft.Graph.Models;
 using System.Threading.Tasks;
 
 namespace DomainModel.UserAdministration.Services;
@@ -19,6 +19,6 @@ public class UpdateUserInAzureIdentity : IUpdateUserInAzureIdentity
 
     public async Task UpdateUser(User user)
     {
-        await client.Client.Users[user.Id].Request().UpdateAsync(user);
+        await client.Client.Users[user.Id].PatchAsync(user);
     }
 }

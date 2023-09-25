@@ -34,7 +34,7 @@ public class UpdateUserCommandHandler : ICommandHandler<UpdateUserCommand, Updat
     )
     {
         // Update User details:
-        var update = new Microsoft.Graph.User
+        var update = new Microsoft.Graph.Models.User
         {
             Id = request.UserId.ToString(),
             DisplayName = request.Name,
@@ -66,10 +66,11 @@ public class UpdateUserCommandHandler : ICommandHandler<UpdateUserCommand, Updat
             // Revoke any old App Role Assignments no longer assigned to this User:
             foreach (var currentAssignment in currentAssignments)
             {
-                if (!request.AppRoleIds.Any(id => currentAssignment.AppRoleId == id))
-                    await deleteUserAppRoleAssignmentFromAzureIdentity.DeleteAppRoleAssignment(
-                        currentAssignment.Id
-                    );
+                if (currentAssignment is not null && currentAssignment.Id is not null)
+                    if (!request.AppRoleIds.Any(id => currentAssignment.AppRoleId == id))
+                        await deleteUserAppRoleAssignmentFromAzureIdentity.DeleteAppRoleAssignment(
+                            currentAssignment.Id
+                        );
             }
         }
 

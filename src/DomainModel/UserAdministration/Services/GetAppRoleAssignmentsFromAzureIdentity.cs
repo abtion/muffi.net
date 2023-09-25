@@ -1,4 +1,5 @@
-﻿using Microsoft.Graph;
+﻿using Microsoft.Graph.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,32 +25,41 @@ public class GetAppRoleAssignmentsFromAzureIdentity : IGetAppRoleAssignmentsFrom
 
     public async Task<IQueryable<AppRoleAssignment>> GetAppRoleAssignments()
     {
-        var roleAssignments = await client.Client.ServicePrincipals[
+        var azureRoleAssignments = await client.Client.ServicePrincipals[
             client.Options.EnterpriseApplicationObjectId
-        ].AppRoleAssignedTo
-            .Request()
-            .Select(
-                a =>
-                    new
-                    {
-                        a.PrincipalId,
-                        a.PrincipalDisplayName,
-                        a.AppRoleId
-                    }
-            )
-            .Top(999) // TODO use pagination to fetch ALL records
-            .GetAsync();
+        ].AppRoleAssignedTo.GetAsync(requestConfiguration =>
+        {
+            requestConfiguration.QueryParameters.Top = 999;
+            requestConfiguration.QueryParameters.Select = new string[]
+            {
+                "principalId",
+                "principalDisplayName",
+                "appRoleId"
+            };
+        });
 
-        return roleAssignments.AsQueryable();
+        if (azureRoleAssignments is not null && azureRoleAssignments.Value is not null)
+            return azureRoleAssignments.Value.AsQueryable();
+
+        var result = new List<AppRoleAssignment>();
+        return result.AsQueryable();
     }
 
     public async Task<IQueryable<AppRoleAssignment>> GetAppRoleAssignmentsForUser(string userId)
     {
-        var roleAssignments = await client.Client.Users[userId].AppRoleAssignments
-            .Request()
-            .Filter($"resourceId eq {client.Options.EnterpriseApplicationObjectId}")
-            .GetAsync();
+        var roleAssignments = await client.Client.Users[
+            userId
+        ].AppRoleAssignments.GetAsync(requestConfiguration =>
+        {
+            requestConfiguration.QueryParameters.Top = 999;
+            requestConfiguration.QueryParameters.Filter =
+                $"resourceId eq {client.Options.EnterpriseApplicationObjectId}";
+        });
 
-        return roleAssignments.AsQueryable();
+        if (roleAssignments is not null && roleAssignments.Value is not null)
+            return roleAssignments.Value.AsQueryable();
+
+        var result = new List<AppRoleAssignment>();
+        return result.AsQueryable();
     }
 }
