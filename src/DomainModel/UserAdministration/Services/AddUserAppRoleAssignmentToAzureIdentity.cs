@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace DomainModel.UserAdministration.Services;
 
-public interface IAddUserAppRoleAssignmentToAzureIdentity 
+public interface IAddUserAppRoleAssignmentToAzureIdentity
 {
     public Task AddUserAppRoleAssignment(string userId, string appRoleId);
 }
@@ -13,12 +13,14 @@ public class AddUserAppRoleAssignmentToAzureIdentity : IAddUserAppRoleAssignment
 {
     private readonly IConfiguredGraphServiceClient client;
 
-    public AddUserAppRoleAssignmentToAzureIdentity(IConfiguredGraphServiceClient configuredGraphServiceClient)
+    public AddUserAppRoleAssignmentToAzureIdentity(
+        IConfiguredGraphServiceClient configuredGraphServiceClient
+    )
     {
         this.client = configuredGraphServiceClient;
     }
 
-    public async Task AddUserAppRoleAssignment(string userId, string appRoleId) 
+    public async Task AddUserAppRoleAssignment(string userId, string appRoleId)
     {
         var assignment = new AppRoleAssignment
         {
@@ -27,9 +29,9 @@ public class AddUserAppRoleAssignmentToAzureIdentity : IAddUserAppRoleAssignment
             AppRoleId = Guid.Parse(appRoleId),
         };
 
-        await client.Client
-            .ServicePrincipals[client.Options.EnterpriseApplicationObjectId]
-            .AppRoleAssignedTo
+        await client.Client.ServicePrincipals[
+            client.Options.EnterpriseApplicationObjectId
+        ].AppRoleAssignedTo
             .Request()
             .AddAsync(assignment);
     }

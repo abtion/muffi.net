@@ -1,15 +1,8 @@
-using DomainModel.Example;
-
 namespace DomainModel.Example.ViewModels;
 
 public record ExampleEntityRecord : IExampleModel
 {
-    public ExampleEntityRecord(
-        int id,
-        string name,
-        string description,
-        string email,
-        string phone)
+    public ExampleEntityRecord(int id, string name, string description, string email, string phone)
     {
         Id = id;
         Name = name;

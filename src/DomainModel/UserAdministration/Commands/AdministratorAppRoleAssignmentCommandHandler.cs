@@ -8,27 +8,36 @@ using System.Threading.Tasks;
 
 namespace DomainModel.UserAdministration.Commands;
 
-public class AdministratorAppRoleAssignmentCommandHandler : ICommandHandler<AdministratorAppRoleAssignmentCommand, AdministratorAppRoleAssignmentResponse>
+public class AdministratorAppRoleAssignmentCommandHandler
+    : ICommandHandler<AdministratorAppRoleAssignmentCommand, AdministratorAppRoleAssignmentResponse>
 {
     private readonly IConfiguredGraphServiceClient configuredGraphServiceClient;
     private readonly IAddUserAppRoleAssignmentToAzureIdentity addUserAppRoleAssignmentToAzureIdentity;
 
     public AdministratorAppRoleAssignmentCommandHandler(
         IConfiguredGraphServiceClient configuredGraphServiceClient,
-        IAddUserAppRoleAssignmentToAzureIdentity addUserAppRoleAssignmentToAzureIdentity)
+        IAddUserAppRoleAssignmentToAzureIdentity addUserAppRoleAssignmentToAzureIdentity
+    )
     {
         this.configuredGraphServiceClient = configuredGraphServiceClient;
         this.addUserAppRoleAssignmentToAzureIdentity = addUserAppRoleAssignmentToAzureIdentity;
     }
 
     public async Task<AdministratorAppRoleAssignmentResponse> Handle(
-        AdministratorAppRoleAssignmentCommand request, 
-        CancellationToken cancellationToken)
+        AdministratorAppRoleAssignmentCommand request,
+        CancellationToken cancellationToken
+    )
     {
         if (configuredGraphServiceClient.Options.AdministratorUserId is not null)
         {
-            await TryAssignUserRole(configuredGraphServiceClient.Options.AdministratorUserId, configuredGraphServiceClient.Options.AllUsersAppRoleId);
-            await TryAssignUserRole(configuredGraphServiceClient.Options.AdministratorUserId, configuredGraphServiceClient.Options.AdministratorsAppRoleId);
+            await TryAssignUserRole(
+                configuredGraphServiceClient.Options.AdministratorUserId,
+                configuredGraphServiceClient.Options.AllUsersAppRoleId
+            );
+            await TryAssignUserRole(
+                configuredGraphServiceClient.Options.AdministratorUserId,
+                configuredGraphServiceClient.Options.AdministratorsAppRoleId
+            );
         }
 
         return new();
@@ -42,9 +51,11 @@ public class AdministratorAppRoleAssignmentCommandHandler : ICommandHandler<Admi
         }
         catch (ServiceException exception)
         {
-            var expected = exception.InnerException is null
+            var expected =
+                exception.InnerException is null
                 && exception.StatusCode == System.Net.HttpStatusCode.BadRequest
-                && exception.Error.Message == "Permission being assigned already exists on the object";
+                && exception.Error.Message
+                    == "Permission being assigned already exists on the object";
 
             // NOTE: invalid updates are expected, if the User has already been granted the Administrators Role.
             if (!expected)
@@ -54,7 +65,8 @@ public class AdministratorAppRoleAssignmentCommandHandler : ICommandHandler<Admi
         }
         catch (Exception exception)
         {
-            var expected = exception.InnerException is not null
+            var expected =
+                exception.InnerException is not null
                 && exception.InnerException is ServiceException innerException
                 && innerException.Error.Details is not null
                 && innerException.Error.Details.First().Code == "InvalidUpdate";
