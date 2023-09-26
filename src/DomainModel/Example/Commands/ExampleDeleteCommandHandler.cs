@@ -1,18 +1,21 @@
 ﻿using DomainModel.Example.Notifications;
+using DomainModel.Shared;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace DomainModel.Example.Commands;
 
-public class ExampleDeleteCommandHandler : IRequestHandler<ExampleDeleteCommand, ExampleDeleteResponse>
+public class ExampleDeleteCommandHandler
+    : ICommandHandler<ExampleDeleteCommand, ExampleDeleteResponse>
 {
     private readonly DomainModelTransaction domainModelTransaction;
     private readonly IMediator mediator;
 
     public ExampleDeleteCommandHandler(
         DomainModelTransaction domainModelTransaction,
-        IMediator mediator)
+        IMediator mediator
+    )
     {
         this.domainModelTransaction = domainModelTransaction;
         this.mediator = mediator;
@@ -20,7 +23,8 @@ public class ExampleDeleteCommandHandler : IRequestHandler<ExampleDeleteCommand,
 
     public async Task<ExampleDeleteResponse> Handle(
         ExampleDeleteCommand request,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken
+    )
     {
         domainModelTransaction.RemoveExampleEntity(request.Id);
 

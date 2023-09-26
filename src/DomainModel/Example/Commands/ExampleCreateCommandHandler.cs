@@ -1,5 +1,6 @@
 ﻿using DomainModel.Data.Models;
 using DomainModel.Example.Notifications;
+using DomainModel.Shared;
 using MediatR;
 using System.Linq;
 using System.Threading;
@@ -7,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace DomainModel.Example.Commands;
 
-public class ExampleCreateCommandHandler : IRequestHandler<ExampleCreateCommand, ExampleCreateResponse>
+public class ExampleCreateCommandHandler
+    : ICommandHandler<ExampleCreateCommand, ExampleCreateResponse>
 {
     private readonly DomainModelTransaction domainModelTransaction;
     private readonly IMediator mediator;
 
     public ExampleCreateCommandHandler(
         DomainModelTransaction domainModelTransaction,
-        IMediator mediator)
+        IMediator mediator
+    )
     {
         this.domainModelTransaction = domainModelTransaction;
         this.mediator = mediator;
@@ -22,7 +25,8 @@ public class ExampleCreateCommandHandler : IRequestHandler<ExampleCreateCommand,
 
     public async Task<ExampleCreateResponse> Handle(
         ExampleCreateCommand request,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken
+    )
     {
         var entity = new ExampleEntity();
 

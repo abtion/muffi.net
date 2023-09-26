@@ -1,4 +1,5 @@
 # MuffiNet
+Please go to the [Wiki](https://github.com/abtion/muffi.net/wiki) to find the technical documentation
 
 1. [Requirements](#requirements)
 2. [Developing](#developing)
@@ -22,7 +23,7 @@
 You must have the following installed and available on your machine:
 
 - **Microsoft .NET 7**
-- **Microsoft SQL Server Compact running locally on in Docker**
+- **Microsoft SQL Server Compact running locally or in Docker**
 - **Node JS >12.x** (16.11.0)
 - **Yarn 1.x**
 - https://github.com/coreybutler/nvm-windows
