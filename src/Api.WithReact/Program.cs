@@ -59,4 +59,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.UseSignalRHubs();
+
+app.MapFallbackToFile("index.html");
+
 app.Run();
