@@ -17,7 +17,7 @@ const cssRoot = document.documentElement
 const cssVariables = prepareColorVariables(colors).cssVariables
 
 Object.entries(cssVariables).forEach(([name, value]) =>
-  cssRoot.style.setProperty(name, value)
+  cssRoot.style.setProperty(name, value),
 )
 
 const root = createRoot(rootElement)
@@ -26,5 +26,5 @@ const root = createRoot(rootElement)
 root.render(
   <BrowserRouter basename={"/"}>
     <App />
-  </BrowserRouter>
+  </BrowserRouter>,
 )

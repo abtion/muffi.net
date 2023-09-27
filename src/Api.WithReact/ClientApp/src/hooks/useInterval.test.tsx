@@ -81,7 +81,7 @@ describe(useInterval, () => {
 
       // Initial render
       const { rerender } = render(
-        <Component dependency="untouched" nonDependency="before" />
+        <Component dependency="untouched" nonDependency="before" />,
       )
 
       expect(callback).toHaveBeenCalledTimes(1)
@@ -114,7 +114,7 @@ describe(useInterval, () => {
         useInterval(
           () => callback(dependency), // Using an arrow function lets us check the callback argument
           delay,
-          [dependency]
+          [dependency],
         )
         return null
       }

@@ -23,11 +23,11 @@ interface DeleteAction<TRecordWithKeyProp> {
 }
 
 function createReducer<TFullRecord, TRecordWithKeyProp>(
-  keyFinder: KeyFinder<TFullRecord | TRecordWithKeyProp>
+  keyFinder: KeyFinder<TFullRecord | TRecordWithKeyProp>,
 ) {
   return (
     map: RecordMap<TFullRecord>,
-    action: UpsertAction<TFullRecord> | DeleteAction<TRecordWithKeyProp>
+    action: UpsertAction<TFullRecord> | DeleteAction<TRecordWithKeyProp>,
   ): RecordMap<TFullRecord> => {
     switch (action.type) {
       case Actions.Upsert: {
@@ -65,17 +65,17 @@ export interface RecordDeleter<T> {
 
 export default function useMappedRecords<
   TFullRecord,
-  TRecordWithKeyProp = TFullRecord
+  TRecordWithKeyProp = TFullRecord,
 >(
-  keyFinder: KeyFinder<TFullRecord | TRecordWithKeyProp>
+  keyFinder: KeyFinder<TFullRecord | TRecordWithKeyProp>,
 ): [
   RecordMap<TFullRecord>,
   RecordUpserter<TFullRecord>,
-  RecordDeleter<TRecordWithKeyProp>
+  RecordDeleter<TRecordWithKeyProp>,
 ] {
   const [recordMap, dispatch] = useReducer(
     createReducer<TFullRecord, TRecordWithKeyProp>(keyFinder),
-    new Map()
+    new Map(),
   )
 
   const upsertRecords: RecordUpserter<TFullRecord> = useCallback(
@@ -87,7 +87,7 @@ export default function useMappedRecords<
         records: recordsArray.concat(records),
       })
     },
-    [dispatch]
+    [dispatch],
   )
   const deleteRecord: RecordDeleter<TRecordWithKeyProp> = useCallback(
     (records) => {
@@ -98,7 +98,7 @@ export default function useMappedRecords<
         records: recordsArray.concat(records),
       })
     },
-    [dispatch]
+    [dispatch],
   )
 
   return [recordMap, upsertRecords, deleteRecord]

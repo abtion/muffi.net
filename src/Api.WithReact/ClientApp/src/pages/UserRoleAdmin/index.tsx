@@ -27,7 +27,7 @@ export default function UserRoleAdmin(): JSX.Element {
 
     const response = await api.get<UserRoleData>(
       "/api/roleAdmin/roles-and-users",
-      {}
+      {},
     )
 
     setData(response.data)
@@ -60,12 +60,12 @@ export default function UserRoleAdmin(): JSX.Element {
       const visibleUsers =
         data?.users
           .filter((row) =>
-            selectedRoleId ? row.appRoleIds.includes(selectedRoleId) : true
+            selectedRoleId ? row.appRoleIds.includes(selectedRoleId) : true,
           )
           .filter((row) =>
             searchTerms
               ? row.name.toLowerCase().includes(searchTerms.toLowerCase())
-              : true
+              : true,
           ) || []
 
       return {
@@ -74,7 +74,7 @@ export default function UserRoleAdmin(): JSX.Element {
       }
     },
     10,
-    [data, searchTerms, selectedRoleId]
+    [data, searchTerms, selectedRoleId],
   )
 
   function closeEditUserDialog(saved: boolean) {

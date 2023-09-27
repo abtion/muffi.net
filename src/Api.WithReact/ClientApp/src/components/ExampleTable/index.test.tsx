@@ -9,7 +9,7 @@ const onRemove = jest.fn()
 
 function renderTable(entityList: ExampleEntity[]) {
   const context = render(
-    <ExampleTable entities={entityList} onRemove={onRemove} />
+    <ExampleTable entities={entityList} onRemove={onRemove} />,
   )
 
   return { ...context }

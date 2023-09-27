@@ -29,7 +29,7 @@ function setup({
   return render(
     <AuthContext.Provider value={mockAuthContext}>
       <AuthRoleBarrier allow={allow}>Contents of Role Barrier</AuthRoleBarrier>
-    </AuthContext.Provider>
+    </AuthContext.Provider>,
   )
 }
 

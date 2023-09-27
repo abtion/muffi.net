@@ -11,7 +11,7 @@ export interface onHubConnected {
 export default function useHub(
   path: string,
   onHubConnected: onHubConnected,
-  connectionOptions?: IHttpConnectionOptions
+  connectionOptions?: IHttpConnectionOptions,
 ): void {
   const [connection, setConnection] = useState<HubConnection | undefined>()
 

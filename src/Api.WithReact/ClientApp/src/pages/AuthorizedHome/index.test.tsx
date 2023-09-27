@@ -66,7 +66,7 @@ function renderPage() {
           <AuthorizedHome />
         </AuthContext.Provider>
       </ApiContext.Provider>
-    </MemoryRouter>
+    </MemoryRouter>,
   )
 
   return { ...context }
@@ -95,7 +95,7 @@ describe(AuthorizedHome, () => {
           Description: "Description",
           Email: "Em@a.il",
           Phone: "12345678",
-        })
+        }),
       )
     })
   })
@@ -106,8 +106,8 @@ describe(AuthorizedHome, () => {
 
       await waitFor(() =>
         expect(mockedAxios.get).toHaveBeenCalledWith(
-          "/api/authorizedexample/get-all"
-        )
+          "/api/authorizedexample/get-all",
+        ),
       )
 
       const removeBtn = (
@@ -121,8 +121,8 @@ describe(AuthorizedHome, () => {
       await waitFor(() =>
         expect(mockedAxios.post).toHaveBeenCalledWith(
           "/api/authorizedexample",
-          { id: "1" }
-        )
+          { id: "1" },
+        ),
       )
     })
   })
@@ -133,8 +133,8 @@ describe(AuthorizedHome, () => {
 
       await waitFor(() =>
         expect(mockedAxios.get).toHaveBeenCalledWith(
-          "/api/authorizedexample/get-all"
-        )
+          "/api/authorizedexample/get-all",
+        ),
       )
 
       expect(await findByText(entity.name)).toBeInTheDocument()

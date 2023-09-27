@@ -12,7 +12,7 @@ describe(Loader, () => {
 
   it("adds spinnerClassName and textClassName to the correct elements", () => {
     const { container } = render(
-      <Loader spinnerClassName="the-spinner" textClassName="the-text" />
+      <Loader spinnerClassName="the-spinner" textClassName="the-text" />,
     )
 
     const spinnerElement = container.querySelector(".Loader__spinner")

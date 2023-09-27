@@ -49,7 +49,7 @@ export default function Pagination({
           <button key={index} onClick={() => onPageChange(page)}>
             {page}
           </button>
-        )
+        ),
       )}
       <button
         onClick={() => onPageChange(currentPage + 1)}
@@ -64,7 +64,7 @@ export default function Pagination({
 export function getPages(
   currentPage: number,
   totalPages: number,
-  spread: number
+  spread: number,
 ): Array<number | typeof Spacer> {
   if (totalPages === 0) {
     return []

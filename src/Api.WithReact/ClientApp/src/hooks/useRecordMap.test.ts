@@ -9,7 +9,7 @@ interface Record {
 describe(useMappedRecords, () => {
   it("manages records", () => {
     const { result } = renderHook(() =>
-      useMappedRecords<Record, Pick<Record, "ID">>((record) => record.ID)
+      useMappedRecords<Record, Pick<Record, "ID">>((record) => record.ID),
     )
     let currentRecordMap: RecordMap<Record>
 
@@ -29,8 +29,8 @@ describe(useMappedRecords, () => {
         Object.entries({
           1: { ID: "1", name: "first record" },
           2: { ID: "2", name: "second record" },
-        })
-      )
+        }),
+      ),
     )
 
     // Update records
@@ -46,8 +46,8 @@ describe(useMappedRecords, () => {
         Object.entries({
           1: { ID: "1", name: "first record" },
           2: { ID: "2", name: "second record - updated" },
-        })
-      )
+        }),
+      ),
     )
 
     // Delete records
@@ -62,8 +62,8 @@ describe(useMappedRecords, () => {
       new Map(
         Object.entries({
           1: { ID: "1", name: "first record" },
-        })
-      )
+        }),
+      ),
     )
   })
 })

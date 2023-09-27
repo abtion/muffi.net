@@ -39,10 +39,10 @@ useHubMock._reset = () => {
     (
       _path: string,
       onHubConnected: (connection: ConnectionMock) => void,
-      _connectionOptions?: IHttpConnectionOptions
+      _connectionOptions?: IHttpConnectionOptions,
     ) => {
       onHubConnected(connectionMock)
-    }
+    },
   )
 }
 

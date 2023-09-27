@@ -39,7 +39,7 @@ export default function UserEditDialog({
     setAppRoleIds(
       enabled
         ? appRoleIds.concat(roleId)
-        : appRoleIds.filter((id) => id !== roleId)
+        : appRoleIds.filter((id) => id !== roleId),
     )
   }
 

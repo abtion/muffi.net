@@ -19,7 +19,7 @@ export default function AuthorizedHome(): JSX.Element {
 
   const connectionOptions = useMemo(
     () => ({ accessTokenFactory: () => idToken }),
-    [idToken]
+    [idToken],
   )
 
   const [exampleEntityMap, upsertExampleEntity, deleteExampleEntity] =
@@ -52,19 +52,19 @@ export default function AuthorizedHome(): JSX.Element {
         "SomeEntityCreated",
         (message: { entity: ExampleEntity }) => {
           upsertExampleEntity(message.entity)
-        }
+        },
       )
       connection.on(
         "SomeEntityUpdated",
         (message: { entity: ExampleEntity }) => {
           upsertExampleEntity(message.entity)
-        }
+        },
       )
       connection.on("SomeEntityDeleted", (message: { entityId: number }) => {
         deleteExampleEntity({ id: message.entityId })
       })
     },
-    [upsertExampleEntity, deleteExampleEntity]
+    [upsertExampleEntity, deleteExampleEntity],
   )
   useHub("/hubs/example", onHubConnected, connectionOptions)
 

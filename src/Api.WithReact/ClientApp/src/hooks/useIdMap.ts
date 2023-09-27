@@ -11,9 +11,9 @@ interface RecordWithJustId {
 export default function useRecordsById<FullRecord extends RecordWithJustId>(): [
   RecordMap<FullRecord>,
   RecordUpserter<FullRecord>,
-  RecordDeleter<RecordWithJustId>
+  RecordDeleter<RecordWithJustId>,
 ] {
   return useRecordMap<FullRecord, RecordWithJustId>(
-    (entity: RecordWithJustId) => entity.id.toString()
+    (entity: RecordWithJustId) => entity.id.toString(),
   )
 }

@@ -3,7 +3,7 @@ import { useEffect } from "react"
 export default (
   callback: () => void,
   delay: number,
-  dependencies?: React.DependencyList
+  dependencies?: React.DependencyList,
 ): void => {
   useEffect(() => {
     callback()

@@ -15,7 +15,7 @@ const axiosMock = {
           ].join("\n")
 
           throw new Error(message)
-        }))
+        })),
     )
   },
 }

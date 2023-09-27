@@ -7,7 +7,7 @@ export default function NavLink(props: NavLinkProps): JSX.Element {
     ...props,
     className: classNames(
       "py-2 px-2 md:py-4 text-gray-700 hover:text-gray-900 block",
-      props.className
+      props.className,
     ),
   }
   return <Link {...usedProps} />

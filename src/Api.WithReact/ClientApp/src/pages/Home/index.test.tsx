@@ -51,7 +51,7 @@ function renderPage() {
   const context = render(
     <MemoryRouter>
       <Home />
-    </MemoryRouter>
+    </MemoryRouter>,
   )
 
   return { ...context }
@@ -87,7 +87,7 @@ describe(Home, () => {
           Description: "Description",
           Email: "Em@a.il",
           Phone: "12345678",
-        })
+        }),
       )
     })
   })
@@ -97,7 +97,7 @@ describe(Home, () => {
       const { findAllByRole } = renderPage()
 
       await waitFor(() =>
-        expect(mockedAxios.get).toHaveBeenCalledWith("/api/example/get-all")
+        expect(mockedAxios.get).toHaveBeenCalledWith("/api/example/get-all"),
       )
 
       const removeBtn = (
@@ -111,7 +111,7 @@ describe(Home, () => {
       await waitFor(() =>
         expect(mockedAxios.post).toHaveBeenCalledWith("/api/example", {
           id: "1",
-        })
+        }),
       )
     })
   })
@@ -121,7 +121,7 @@ describe(Home, () => {
       const { findByText } = renderPage()
 
       await waitFor(() =>
-        expect(mockedAxios.get).toHaveBeenCalledWith("/api/example/get-all")
+        expect(mockedAxios.get).toHaveBeenCalledWith("/api/example/get-all"),
       )
 
       expect(await findByText(entity.name)).toBeInTheDocument()

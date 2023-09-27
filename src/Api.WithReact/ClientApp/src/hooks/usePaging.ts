@@ -2,7 +2,7 @@ import { DependencyList, useEffect, useMemo, useState } from "react"
 
 type OnFetchPage<TRow> = (
   page: number,
-  pageSize: number
+  pageSize: number,
 ) => Promise<PageData<TRow>>
 
 export type PageData<TRow> = { rows: Array<TRow>; totalRows: number }
@@ -15,7 +15,7 @@ export function usePaging<TRow>(
    * and the data will be refreshed. You can use this to trigger table updates from
    * state changes - for example, if your table has filter options.
    */
-  deps?: DependencyList
+  deps?: DependencyList,
 ) {
   const [currentPage, _setCurrentPage] = useState(1)
   const [pageSize, setPageSize] = useState(initPageSize)
@@ -26,7 +26,7 @@ export function usePaging<TRow>(
 
   const totalPages = useMemo(
     () => (data === null ? 0 : Math.ceil(data.totalRows / pageSize)),
-    [data]
+    [data],
   )
 
   const totalRows = data?.totalRows || 0

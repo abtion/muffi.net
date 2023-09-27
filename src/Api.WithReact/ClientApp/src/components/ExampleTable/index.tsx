@@ -9,7 +9,7 @@ export default function ExampleTable({
 }: ExampleTableProps): JSX.Element {
   const handleClick = (
     event: React.MouseEvent<HTMLElement>,
-    id: string | number
+    id: string | number,
   ) => {
     event.preventDefault()
     onRemove(id)

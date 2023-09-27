@@ -10,7 +10,7 @@ export default function Select({
     <select
       className={classNames(
         "w-56 h-9 pl-2 border border-neutral-200 rounded text-sm",
-        className
+        className,
       )}
       {...otherProps}
     >

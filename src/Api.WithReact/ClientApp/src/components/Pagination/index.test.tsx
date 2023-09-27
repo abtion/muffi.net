@@ -75,13 +75,13 @@ describe(getPages, () => {
       currentPage: number,
       totalPages: number,
       spread: number,
-      expected: string
+      expected: string,
     ) {
       const ranges = getPages(currentPage, totalPages, spread)
 
       const pager = ranges
         .map((page) =>
-          page === Spacer ? ".." : page === currentPage ? `[${page}]` : page
+          page === Spacer ? ".." : page === currentPage ? `[${page}]` : page,
         )
         .join(" ")
 

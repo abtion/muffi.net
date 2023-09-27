@@ -25,7 +25,7 @@ describe(AuthOidcProvider, () => {
     const { queryByText } = render(
       <AuthOidcProvider>
         <div>Content</div>
-      </AuthOidcProvider>
+      </AuthOidcProvider>,
     )
 
     expect(queryByText("Content")).not.toBeInTheDocument()

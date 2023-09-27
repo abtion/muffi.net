@@ -16,10 +16,10 @@ describe(useHub, () => {
 
     expect(HubConnectionBuilder.prototype.withUrl).toHaveBeenCalledWith(
       path,
-      connectionOptions
+      connectionOptions,
     )
     expect(
-      HubConnectionBuilder.prototype.withAutomaticReconnect
+      HubConnectionBuilder.prototype.withAutomaticReconnect,
     ).toHaveBeenCalled()
     expect(HubConnectionBuilder.prototype.build).toHaveBeenCalled()
     expect(connectionMock.start).toHaveBeenCalled()

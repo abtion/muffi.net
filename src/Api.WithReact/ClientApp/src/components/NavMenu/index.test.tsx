@@ -18,7 +18,7 @@ function renderMenu() {
       <MemoryRouter>
         <NavMenu />
       </MemoryRouter>
-    </AuthContext.Provider>
+    </AuthContext.Provider>,
   )
 
   return { ...context }

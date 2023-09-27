@@ -20,7 +20,7 @@ export default function NavMenu(): JSX.Element {
     {
       hidden: isCollapsed,
     },
-    "w-full md:w-auto md:flex items-center"
+    "w-full md:w-auto md:flex items-center",
   )
 
   const { user, signoutRedirect } = useAuth()

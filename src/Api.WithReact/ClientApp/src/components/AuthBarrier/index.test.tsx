@@ -23,7 +23,7 @@ describe(AuthBarrier, () => {
           <AuthBarrier>
             <div>Child component text</div>
           </AuthBarrier>
-        </AuthContext.Provider>
+        </AuthContext.Provider>,
       )
 
       expect(queryByText("Child component text")).not.toBeInTheDocument()
@@ -46,7 +46,7 @@ describe(AuthBarrier, () => {
           <AuthBarrier>
             <div>Child component text</div>
           </AuthBarrier>
-        </AuthContext.Provider>
+        </AuthContext.Provider>,
       )
 
       expect(queryByText("Loading...")).not.toBeInTheDocument()
@@ -75,7 +75,7 @@ describe(AuthBarrier, () => {
           <AuthBarrier>
             <InnerComponent />
           </AuthBarrier>
-        </AuthContext.Provider>
+        </AuthContext.Provider>,
       )
     })
   })
