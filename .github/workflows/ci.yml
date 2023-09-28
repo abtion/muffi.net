@@ -9,11 +9,6 @@ jobs:
   yarn-lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-
       - name: Checkout repository
         uses: actions/checkout@v4.1.0
 
