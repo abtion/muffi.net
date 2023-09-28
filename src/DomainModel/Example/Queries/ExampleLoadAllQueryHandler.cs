@@ -1,6 +1,5 @@
 ﻿using DomainModel.Example.ViewModels;
 using DomainModel.Shared;
-using MediatR;
 using System;
 using System.Linq;
 using System.Threading;

@@ -2,7 +2,6 @@
 using DomainModel.Example.ViewModels;
 using DomainModel.Shared;
 using DomainModel.Shared.Exceptions;
-using MediatR;
 using System;
 using System.Linq;
 using System.Threading;
