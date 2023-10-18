@@ -16,7 +16,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Azure.Identity" Version="1.10.1" />
+		<PackageReference Include="Azure.Identity" Version="1.10.2" />
 		<PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.12" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
 		<PackageReference Include="MediatR" Version="12.1.1" />
