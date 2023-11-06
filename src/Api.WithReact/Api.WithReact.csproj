@@ -30,7 +30,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.Graph" Version="5.29.0" />
-		<PackageReference Include="Microsoft.Identity.Client" Version="4.56.0" />
+		<PackageReference Include="Microsoft.Identity.Client" Version="4.57.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 	</ItemGroup>
