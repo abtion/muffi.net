@@ -15,11 +15,13 @@ jobs:
       - id: cache
         name: Yarn Cache Dir
         run: echo "value=$(yarn cache dir)" >> $GITHUB_OUTPUT
+        
       - name: Restore Lockfile
         uses: actions/cache@v3
         with:
           path: yarn.lock
           key: yarn-lock-${{ github.sha }}
+          
       - name: Restore Cache
         uses: actions/cache@v3
         with:
@@ -37,17 +39,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.1.1
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
+      - id: cache
+        name: Yarn Cache Dir
         run: echo "value=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        
+      - name: Restore Lockfile
+        uses: actions/cache@v3
+        with:
+          path: yarn.lock
+          key: yarn-lock-${{ github.sha }}
+          
+      - name: Restore Cache
+        uses: actions/cache@v3
         with:
           path: ${{ steps.cache.outputs.value }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          key: yarn-cache-${{ github.sha }}-node-16
 
       - name: Install JS dependencies
         run: yarn install
@@ -64,17 +70,21 @@ jobs:
       - name: Start MSSQL DB
         run: docker-compose up -d
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
+      - id: cache
+        name: Yarn Cache Dir
         run: echo "value=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        
+      - name: Restore Lockfile
+        uses: actions/cache@v3
+        with:
+          path: yarn.lock
+          key: yarn-lock-${{ github.sha }}
+          
+      - name: Restore Cache
+        uses: actions/cache@v3
         with:
           path: ${{ steps.cache.outputs.value }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          key: yarn-cache-${{ github.sha }}-node-16
 
       - uses: actions/cache@v3
         with:
@@ -119,17 +129,21 @@ jobs:
           connection-string: ${{ secrets.MSSQL_CONNECTION_STRING }}
           sql-file: './sql/create-user.sql'
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
+      - id: cache
+        name: Yarn Cache Dir
         run: echo "value=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        
+      - name: Restore Lockfile
+        uses: actions/cache@v3
+        with:
+          path: yarn.lock
+          key: yarn-lock-${{ github.sha }}
+          
+      - name: Restore Cache
+        uses: actions/cache@v3
         with:
           path: ${{ steps.cache.outputs.value }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          key: yarn-cache-${{ github.sha }}-node-16
 
       - uses: actions/cache@v3
         with:
