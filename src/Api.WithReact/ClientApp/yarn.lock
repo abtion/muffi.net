@@ -3501,7 +3501,7 @@ cross-spawn@^7.0.2, cross-spawn@^7.0.3:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-crypto-js@^4.1.1:
+crypto-js@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.2.0.tgz#4d931639ecdfd12ff80e8186dba6af2c2e856631"
   integrity sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==
@@ -6550,11 +6550,11 @@ obuf@^1.0.0, obuf@^1.1.2:
   integrity sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==
 
 oidc-client-ts@^2.2.1:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/oidc-client-ts/-/oidc-client-ts-2.2.5.tgz#ca0a9f791d8d9d00a1720226d3e96b50065ce015"
-  integrity sha512-omAHoLdFcylnwZeHJahOnJBwd0r78JzhmVAmsQjLGrexAnQKiHW9Ilr9FlRD5qjMikmabvaucI4k49AbQLXhmQ==
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/oidc-client-ts/-/oidc-client-ts-2.4.0.tgz#764c8a33de542026e2798de9849ce8049047d7e5"
+  integrity sha512-WijhkTrlXK2VvgGoakWJiBdfIsVGz6CFzgjNNqZU1hPKV2kyeEaJgLs7RwuiSp2WhLfWBQuLvr2SxVlZnk3N1w==
   dependencies:
-    crypto-js "^4.1.1"
+    crypto-js "^4.2.0"
     jwt-decode "^3.1.2"
 
 on-finished@2.4.1:
@@ -7268,9 +7268,9 @@ react-lifecycles-compat@^3.0.4:
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
 react-oidc-context@^2.2.2:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/react-oidc-context/-/react-oidc-context-2.3.0.tgz#9154d9d2532fe8838e9de1a81efb193607c51cd1"
-  integrity sha512-xT8HOliaQ3H2Q+1+nppAyOX9TlhC+ZXWkR5UDHPEfIZU+yJou1JGypUWPn1SMeFhhzovT+K7IP71/9ahVCL0+g==
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/react-oidc-context/-/react-oidc-context-2.3.1.tgz#04eea5aaea972af1a49de6b8d5ff103b9daa0e73"
+  integrity sha512-WdhmEU6odNzMk9pvOScxUkf6/1aduiI/nQryr7+iCl2VDnYLASDTIV/zy58KuK4VXG3fBaRKukc/mRpMjF9a3Q==
 
 react-router-dom@^6.4.0:
   version "6.20.1"

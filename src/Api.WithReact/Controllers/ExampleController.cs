@@ -13,19 +13,22 @@ public class ExampleController : ControllerBase
     public async Task<ExampleLoadSingleResponse> ExampleQuery(
         [FromServices] ExampleLoadSingleQueryHandler handler,
         [FromRoute] int exampleEntityId,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken
+    )
     {
-
-        return await handler.Handle(new ExampleLoadSingleQuery() { Id = exampleEntityId }, cancellationToken);
+        return await handler.Handle(
+            new ExampleLoadSingleQuery() { Id = exampleEntityId },
+            cancellationToken
+        );
     }
 
     // endpoints with complex names must use all lower case and hyphens to separate words
     [HttpGet("get-all")]
     public async Task<ExampleLoadAllResponse> ExampleQueryAll(
         [FromServices] ExampleLoadAllQueryHandler handler,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken
+    )
     {
-
         return await handler.Handle(new ExampleLoadAllQuery(), cancellationToken);
     }
 
@@ -33,30 +36,29 @@ public class ExampleController : ControllerBase
     public async Task<ExampleCreateResponse> ExampleCreateCommand(
         [FromServices] ExampleCreateCommandHandler handler,
         ExampleCreateCommand request,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken
+    )
     {
-
         return await handler.Handle(request, cancellationToken);
     }
 
-    [HttpPost()]
+    [HttpDelete()]
     public async Task<ExampleDeleteResponse> ExampleDeleteCommand(
         [FromServices] ExampleDeleteCommandHandler handler,
         ExampleDeleteCommand request,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken
+    )
     {
-
         return await handler.Handle(request, cancellationToken);
     }
 
     [HttpPost()]
     public async Task<ExampleUpdateResponse> ExampleUpdateCommand(
-    [FromServices] ExampleUpdateCommandHandler handler,
-    [FromServices] IExampleHubContract exampleHub,
-    ExampleUpdateCommand request,
-    CancellationToken cancellationToken)
+        [FromServices] ExampleUpdateCommandHandler handler,
+        ExampleUpdateCommand request,
+        CancellationToken cancellationToken
+    )
     {
-
         return await handler.Handle(request, cancellationToken);
     }
 }
