@@ -12,7 +12,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
 		<ProjectReference Include="..\Api.Shared\Api.Shared.csproj" />
 	  <ProjectReference Include="..\DomainModel\DomainModel.csproj" />
 	</ItemGroup>
