@@ -23,10 +23,8 @@ public class ExampleLoadAllQueryHandler : IQueryHandler<ExampleLoadAllQuery, Exa
         CancellationToken cancellationToken
     )
     {
-        if (request is null)
-        {
-            throw new ArgumentNullException(nameof(request));
-        }
+        ArgumentNullException.ThrowIfNull(request);
+
         var query =
             from exampleEntity in domainModelTransaction.ExampleEntities().All()
             select new ExampleEntityRecord(

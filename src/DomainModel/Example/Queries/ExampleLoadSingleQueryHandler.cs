@@ -32,10 +32,7 @@ public class ExampleLoadSingleQueryHandler
         CancellationToken cancellationToken
     )
     {
-        if (request is null)
-        {
-            throw new ArgumentNullException(nameof(request));
-        }
+        ArgumentNullException.ThrowIfNull(request);
 
         var query =
             from exampleEntity in domainModelTransaction.ExampleEntities().WithId(request.Id)

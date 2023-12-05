@@ -22,7 +22,7 @@ public class GetUserFromAzureIdentity : IGetUserFromAzureIdentity
     {
         var azureUser = await client.Client.Users[userId].GetAsync(requestConfiguration =>
         {
-            requestConfiguration.QueryParameters.Select = new string[] { "mail" };
+            requestConfiguration.QueryParameters.Select = ["mail"];
         });
 
         if (azureUser is null)

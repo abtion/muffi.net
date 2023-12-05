@@ -30,12 +30,12 @@ public class GetAppRoleAssignmentsFromAzureIdentity : IGetAppRoleAssignmentsFrom
         ].AppRoleAssignedTo.GetAsync(requestConfiguration =>
         {
             requestConfiguration.QueryParameters.Top = 999;
-            requestConfiguration.QueryParameters.Select = new string[]
-            {
+            requestConfiguration.QueryParameters.Select =
+            [
                 "principalId",
                 "principalDisplayName",
                 "appRoleId"
-            };
+            ];
         });
 
         if (azureRoleAssignments is not null && azureRoleAssignments.Value is not null)

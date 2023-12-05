@@ -26,7 +26,7 @@ public class GetAppRolesFromAzureIdentity : IGetAppRolesFromAzureIdentity
             client.Options.AppRegistrationObjectId
         ].GetAsync(requestConfiguration =>
         {
-            requestConfiguration.QueryParameters.Select = new string[] { "appRoles" };
+            requestConfiguration.QueryParameters.Select = ["appRoles"];
         });
 
         if (azureApp is null)
