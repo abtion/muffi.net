@@ -90,7 +90,7 @@ jobs:
       - name: Set up playwright
         run: |
           dotnet build tests/EndToEnd.Tests/EndToEnd.Tests.csproj
-          pwsh tests/EndToEnd.Tests/bin/Debug/net7.0/playwright.ps1 install chromium
+          pwsh tests/EndToEnd.Tests/bin/Debug/net8.0/playwright.ps1 install chromium
 
       - name: Test with the dotnet CLI
         run: dotnet test
