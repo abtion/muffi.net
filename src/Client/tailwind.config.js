@@ -1,4 +1,4 @@
-const colors = require("../../../colors.json")
+const colors = require("./colors.json")
 
 const prepareColorVariables = require("./src/utils/prepareColorVariables")
 

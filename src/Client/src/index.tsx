@@ -5,7 +5,7 @@ import App from "~/App"
 import "~/main.scss"
 
 import prepareColorVariables from "~/utils/prepareColorVariables"
-import colors from "../../../../colors.json"
+import colors from "../colors.json"
 
 const rootElement = document.getElementById("root")
 

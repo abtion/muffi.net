@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "/src/Api.WithReact/ClientApp/"
+    directory: "/src/Client"
     schedule:
       interval: "weekly"
     allow:
@@ -13,6 +13,6 @@ updates:
       interval: "daily"
 
   - package-ecosystem: "nuget"
-    directory: "/" 
+    directory: "/"
     schedule:
       interval: "weekly"
