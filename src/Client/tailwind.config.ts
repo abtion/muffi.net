@@ -1,14 +1,10 @@
-const colors = require("./colors.json")
-
-const prepareColorVariables = require("./src/utils/prepareColorVariables")
+import type { Config } from "tailwindcss"
+import colors from "./colors.json"
+import prepareColorVariables from "./src/utils/prepareColorVariables"
 
 const tailwindConfig = prepareColorVariables(colors).tailwindConfig
 
-/**
- * @link https://tailwindcss.com/docs/configuration
- * @type {import('@types/tailwindcss/tailwind-config').TailwindConfig}
- */
-const config = {
+export default {
   content: ["./src/**/*.{js,jsx,ts,tsx,scss,css}", "./public/index.ejs"],
   theme: {
     container: {
@@ -29,6 +25,4 @@ const config = {
     },
   },
   plugins: [require("@tailwindcss/aspect-ratio")],
-}
-
-module.exports = config
+} satisfies Config

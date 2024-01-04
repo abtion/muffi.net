@@ -5,10 +5,8 @@ using DomainModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//
 var configuration = builder.Configuration;
 
-// OIDC Authentication
 builder.Services.AddOidcAuthentication(configuration);
 
 // services
@@ -23,37 +21,31 @@ builder.Services.AddSwaggerGen();
 builder.AddSignalRHubs(configuration);
 
 builder.Services.AddApplicationInsightsTelemetry(
-    (options) =>
-    {
-        options.ConnectionString = configuration["APPINSIGHTS_CONNECTIONSTRING"];
-    }
+    (options) => options.ConnectionString = configuration["APPINSIGHTS_CONNECTIONSTRING"]
 );
 
-builder.Services.AddHttpContextAccessor();
+// builder.Services.AddHttpContextAccessor(); // necessary?
 
 var app = builder.Build();
+
+// app.UseDefaultFiles(); // necessary?
+// app.UseStaticFiles(); // necessary?
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Test"))
 {
     app.UseSwagger();
-    app.UseSwaggerUI(options =>
-    {
-        options.EnableTryItOutByDefault();
-    });
-
+    app.UseSwaggerUI(options => options.EnableTryItOutByDefault());
     app.UseDeveloperExceptionPage();
     app.UseMigrationsEndPoint();
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 
 app.UseSignalRCors();
 
-app.UseRouting();
-
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();

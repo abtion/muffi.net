@@ -6,7 +6,7 @@ const options = {
   root: true,
   env: {
     browser: true,
-    es6: true,
+    es2020: true,
     node: true,
     jest: true,
   },
@@ -15,9 +15,10 @@ const options = {
       version: "detect",
     },
   },
-  plugins: ["@typescript-eslint"],
+  plugins: ["@typescript-eslint", "react-refresh"],
   extends: [
     "eslint:recommended",
+    "plugin:react-hooks/recommended",
     "plugin:react/recommended",
     "plugin:jest-dom/recommended",
     "plugin:@typescript-eslint/recommended",
@@ -25,7 +26,7 @@ const options = {
   ],
   parser: "@typescript-eslint/parser",
   rules: {
-    // enable additional rules
+    "react-refresh/only-export-components": "warn",
     "linebreak-style": ["error", "unix"],
     camelcase: ["error"],
 
