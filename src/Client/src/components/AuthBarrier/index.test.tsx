@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import { useContext } from "react"
 import { AuthContext, AuthContextProps } from "react-oidc-context"
 import AuthBarrier from "."
 import { render } from "@testing-library/react"

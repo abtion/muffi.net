@@ -26,6 +26,8 @@ const options = {
   ],
   parser: "@typescript-eslint/parser",
   rules: {
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
     "react-refresh/only-export-components": "warn",
     "linebreak-style": ["error", "unix"],
     camelcase: ["error"],

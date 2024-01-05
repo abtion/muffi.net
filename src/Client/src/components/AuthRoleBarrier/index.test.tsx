@@ -1,8 +1,6 @@
-import React from "react"
 import { AuthContext, AuthContextProps } from "react-oidc-context"
 import AuthRoleBarrier from "."
 import { render } from "@testing-library/react"
-import { User } from "oidc-client-ts"
 
 jest.unmock("axios")
 
@@ -18,11 +16,11 @@ function setup({
     removeUser: jest.fn(),
     isLoading: false,
     user: userRoles
-      ? ({
+      ? {
           profile: {
             roles: userRoles,
           },
-        } as Partial<User> as User)
+        }
       : null,
   } as Partial<AuthContextProps> as AuthContextProps
 

@@ -12,6 +12,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
+    "types": ["vite-plugin-svgr/client", "node"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -24,8 +25,6 @@
     /* Linting */
     "esModuleInterop": true,
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],

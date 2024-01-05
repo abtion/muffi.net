@@ -1,4 +1,3 @@
-import React from "react"
 import useInterval from "./useInterval"
 import { render } from "@testing-library/react"
 

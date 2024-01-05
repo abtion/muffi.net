@@ -1,4 +1,3 @@
-import React from "react"
 import { act, render, waitFor } from "@testing-library/react"
 import axios from "axios"
 import userEvent from "@testing-library/user-event"

@@ -1,7 +1,6 @@
 import classNames from "classnames"
-import React from "react"
-import ArrowLeft from "bootstrap-icons/icons/chevron-left.svg"
-import ArrowRight from "bootstrap-icons/icons/chevron-right.svg"
+import ArrowLeft from "bootstrap-icons/icons/chevron-left.svg?react"
+import ArrowRight from "bootstrap-icons/icons/chevron-right.svg?react"
 
 import "./style.scss"
 

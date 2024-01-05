@@ -1,4 +1,3 @@
-import React from "react"
 import AuthOidcProvider from "."
 import axios from "axios"
 import { render } from "@testing-library/react"

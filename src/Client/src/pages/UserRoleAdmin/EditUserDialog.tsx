@@ -1,7 +1,7 @@
 import Dialog from "~/components/Dialog"
 import Input from "~/components/Input"
 import { User, UserDetails, UserRoleData } from "./model"
-import React, { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import ApiContext from "~/contexts/ApiContext"
 import Button from "~/components/Button"
 import Loader from "~/components/Loader"

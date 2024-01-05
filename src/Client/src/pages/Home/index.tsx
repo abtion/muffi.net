@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, useEffect } from "react"
+import { useMemo, useCallback, useEffect } from "react"
 import axios from "axios"
 
 import Layout from "~/components/Layout"

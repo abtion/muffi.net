@@ -68,6 +68,7 @@
     "terser-webpack-plugin": "^5.3.9",
     "typescript": "^5.2.2",
     "vite": "^5.0.10",
+    "vite-plugin-svgr": "^4.2.0",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.11.1"
