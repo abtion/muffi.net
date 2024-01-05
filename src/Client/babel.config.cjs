@@ -1,4 +1,5 @@
-const isDev = require("./mode.js").mode === "development"
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const isDev = require("./mode.cjs").mode === "development"
 
 /**
  * @link https://babeljs.io/docs/en/options
@@ -19,6 +20,7 @@ const options = {
     [
       "@babel/preset-react",
       {
+        runtime: "automatic",
         development: isDev,
         useSpread: true,
       },
