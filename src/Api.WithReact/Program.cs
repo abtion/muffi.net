@@ -24,12 +24,12 @@ builder.Services.AddApplicationInsightsTelemetry(
     (options) => options.ConnectionString = configuration["APPINSIGHTS_CONNECTIONSTRING"]
 );
 
-// builder.Services.AddHttpContextAccessor(); // necessary?
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
-// app.UseDefaultFiles(); // necessary?
-// app.UseStaticFiles(); // necessary?
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Test"))
