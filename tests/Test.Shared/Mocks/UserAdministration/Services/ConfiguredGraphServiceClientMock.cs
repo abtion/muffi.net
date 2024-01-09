@@ -1,5 +1,5 @@
-﻿using DomainModel.UserAdministration;
-using DomainModel.UserAdministration.Services;
+﻿using Domain.UserAdministration;
+using Domain.UserAdministration.Services;
 using Microsoft.Graph;
 using System;
 

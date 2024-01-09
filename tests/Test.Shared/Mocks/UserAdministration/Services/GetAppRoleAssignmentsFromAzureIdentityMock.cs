@@ -1,4 +1,4 @@
-﻿using DomainModel.UserAdministration.Services;
+﻿using Domain.UserAdministration.Services;
 using Microsoft.Graph.Models;
 using System;
 using System.Linq;

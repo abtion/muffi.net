@@ -1,4 +1,4 @@
-﻿namespace DomainModel.Shared.Exceptions;
+﻿namespace Domain.Shared.Exceptions;
 
 public class EntityNotFoundException : Exception
 {

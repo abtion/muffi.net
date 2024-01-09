@@ -1,4 +1,5 @@
-﻿using DomainModel.Data;
+﻿using Domain.Data;
+using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Playwright;
@@ -16,9 +17,9 @@ namespace EndToEnd.Tests;
 /// </remarks>
 public sealed class IntegrationFixture : IDisposable
 {
-    private Process process;
+    private readonly Process process;
     private IConfigurationRoot Configuration;
-    internal IBrowser browser { get; private init; }
+    internal IBrowser Browser { get; private init; }
 
     public IntegrationFixture()
     {
@@ -32,7 +33,7 @@ public sealed class IntegrationFixture : IDisposable
 
         //if (task.Wait(TimeSpan.FromSeconds(80)))
         //{
-        browser = CreateBrowser().Result;
+        Browser = CreateBrowser().Result;
         process = StartServer();
         //}
         //else
@@ -159,7 +160,7 @@ public sealed class IntegrationFixture : IDisposable
     {
         GC.SuppressFinalize(this);
 
-        browser.DisposeAsync().AsTask().Wait();
+        Browser.DisposeAsync().AsTask().Wait();
 
         if (process != null && !process.HasExited)
         {

@@ -1,9 +1,9 @@
 ﻿using Api.WithReact.Hubs;
-using DomainModel;
-using DomainModel.Data;
-using Microsoft.EntityFrameworkCore;
+using Domain;
+using Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Presentation;
 using Test.Shared;
 using Test.Shared.Mocks;
 using Test.Shared.TestData;
@@ -14,10 +14,10 @@ public abstract class ControllerTest<TSystemUnderTest> : TestBase<TSystemUnderTe
 {
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseInMemoryDatabase(GetType().Name));
 
-        services.AddDomainModel(configuration);
+        services.AddDomain();
+        services.AddInfrastructure(configuration, true);
+        services.AddPresentation();
         services.AddApi();
 
         //// replace ExampleHub with mock implementation

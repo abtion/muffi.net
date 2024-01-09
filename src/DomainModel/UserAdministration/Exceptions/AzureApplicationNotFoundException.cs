@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DomainModel.UserAdministration.Exceptions;
+namespace Domain.UserAdministration.Exceptions;
 
 public class AzureApplicationNotFoundException : Exception
 {

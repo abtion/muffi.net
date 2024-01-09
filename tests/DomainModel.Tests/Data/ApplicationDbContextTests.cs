@@ -1,4 +1,4 @@
-﻿using DomainModel.Data;
+﻿using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace MuffiNet.Backend.Tests.Data;
@@ -13,9 +13,7 @@ public class ApplicationDbContextTests
             .UseInMemoryDatabase(databaseName: "TestDbContext")
             .Options;
 
-        using (var _context = new ApplicationDbContext(options))
-        {
-            _context.Should().NotBeNull();
-        }
+        using var _context = new ApplicationDbContext(options);
+        _context.Should().NotBeNull();
     }
 }

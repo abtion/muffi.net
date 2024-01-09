@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace DomainModel.Example.Notifications;
+namespace Domain.Example.Notifications;
 
 public class ExampleDeletedNotification : INotification
 {

@@ -1,4 +1,4 @@
-﻿using DomainModel.Shared;
+﻿using Domain.Shared;
 using Moq;
 using System;
 

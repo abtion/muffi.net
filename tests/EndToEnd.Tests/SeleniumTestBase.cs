@@ -5,11 +5,11 @@ namespace EndToEnd.Tests;
 
 public class SeleniumTestBase : IDisposable
 {
-    protected IBrowserContext context { get; private init; }
+    protected IBrowserContext Context { get; private init; }
     private bool isDisposed;
     private readonly IntegrationFixture integrationFixture;
 
-    protected string siteUrl { get; private set; } = "https://localhost:4001/";
+    protected string SiteUrl { get; private set; } = "https://localhost:4001/";
 
 
     // https://jeremydmiller.com/2018/08/27/a-way-to-use-docker-for-integration-tests/
@@ -24,7 +24,7 @@ public class SeleniumTestBase : IDisposable
             IgnoreHTTPSErrors = true,
         };
 
-        context = integrationFixture.browser.NewContextAsync(contextOptions).Result;
+        Context = integrationFixture.Browser.NewContextAsync(contextOptions).Result;
     }
 
     public void Dispose()

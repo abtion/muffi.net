@@ -1,17 +1,22 @@
 using Api.Shared.Authentication.OpenIdConnect;
 using Api.WithReact;
 using Api.WithReact.Hubs;
-using DomainModel;
+using Domain;
+using Infrastructure;
+using Presentation;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//
 var configuration = builder.Configuration;
 
+// OIDC Authentication
 builder.Services.AddOidcAuthentication(configuration);
 
 // services
-builder.Services.AddDatabase(configuration);
-builder.Services.AddDomainModel(configuration);
+builder.Services.AddInfrastructure(configuration);
+builder.Services.AddDomain();
+builder.Services.AddPresentation();
 builder.Services.AddApi();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -21,31 +26,37 @@ builder.Services.AddSwaggerGen();
 builder.AddSignalRHubs(configuration);
 
 builder.Services.AddApplicationInsightsTelemetry(
-    (options) => options.ConnectionString = configuration["APPINSIGHTS_CONNECTIONSTRING"]
+    (options) =>
+    {
+        options.ConnectionString = configuration["APPINSIGHTS_CONNECTIONSTRING"];
+    }
 );
 
-// builder.Services.AddHttpContextAccessor(); // necessary?
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
-
-// app.UseDefaultFiles(); // necessary?
-// app.UseStaticFiles(); // necessary?
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Test"))
 {
     app.UseSwagger();
-    app.UseSwaggerUI(options => options.EnableTryItOutByDefault());
+    app.UseSwaggerUI(options =>
+    {
+        options.EnableTryItOutByDefault();
+    });
+
     app.UseDeveloperExceptionPage();
     app.UseMigrationsEndPoint();
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 
 app.UseSignalRCors();
 
-app.UseAuthentication();
+app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

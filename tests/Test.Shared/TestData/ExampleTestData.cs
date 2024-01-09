@@ -1,24 +1,17 @@
-﻿using DomainModel;
-using DomainModel.Data.Models;
-using System;
+﻿using Domain.Example.Entities;
+using Domain.Shared;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Test.Shared.TestData;
 
-public class ExampleTestData
+public class ExampleTestData(IUnitOfWork UnitOfWork, IRepository<ExampleEntity> Repository)
 {
-    private readonly DomainModelTransaction domainModelTransaction;
-
-    public ExampleTestData(DomainModelTransaction domainModelTransaction)
-    {
-        this.domainModelTransaction = domainModelTransaction ?? throw new ArgumentNullException(nameof(domainModelTransaction));
-    }
-
-    public async Task AddExampleEntitiesToDatabase(int numberOfEntitiesToAdd)
+    public async Task AddExampleEntitiesToDatabase(int numberOfEntitiesToAdd, CancellationToken cancellationToken)
     {
         for (int i = 0; i < numberOfEntitiesToAdd; i++)
         {
-            domainModelTransaction.AddExampleEntity(new ExampleEntity()
+            Repository.AddEntity(new ExampleEntity()
             {
                 Id = i + 1,
                 Name = $"Name {i}",
@@ -26,6 +19,16 @@ public class ExampleTestData
             });
         }
 
-        await domainModelTransaction.SaveChangesAsync();
+        await UnitOfWork.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task ResetExampleEntities(CancellationToken cancellationToken)
+    {
+        var entities = await Repository.GetAll(cancellationToken);
+
+        foreach (var entity in entities)
+            Repository.RemoveEntity(entity);
+
+        await UnitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

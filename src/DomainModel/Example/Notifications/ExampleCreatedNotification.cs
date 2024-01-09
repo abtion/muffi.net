@@ -1,13 +1,14 @@
-﻿using MediatR;
+﻿using Domain.Example.Entities;
+using MediatR;
 
-namespace DomainModel.Example.Notifications;
+namespace Domain.Example.Notifications;
 
 public class ExampleCreatedNotification : INotification
 {
-    public ExampleCreatedNotification(IExampleModel model)
+    public ExampleCreatedNotification(ExampleEntity model)
     {
         Model = model;
     }
 
-    public IExampleModel Model { get; }
+    public ExampleEntity Model { get; }
 }

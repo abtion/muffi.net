@@ -1,11 +1,14 @@
-﻿using DomainModel;
-using DomainModel.Example.Commands;
-using DomainModel.Example.Queries;
+﻿using Domain.Example.Commands;
+using Domain.Example.Queries;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading;
 using System.Threading.Tasks;
 using Test.Shared.TestData;
+using static Domain.Example.Commands.ExampleCreateCommandHandler;
+using static Domain.Example.Commands.ExampleDeleteCommandHandler;
+using static Domain.Example.Queries.ExampleLoadAllQueryHandler;
+using static Domain.Example.Queries.ExampleLoadSingleQueryHandler;
 
 namespace Api.WithReact.Tests.Controllers;
 
@@ -14,13 +17,9 @@ public class ExampleControllerTests : ControllerTest<ExampleController>
 {
     public ExampleControllerTests()
     {
-        transaction = ServiceProvider.GetRequiredService<DomainModelTransaction>();
-        transaction.ResetExampleEntities();
-
         testData = ServiceProvider.GetRequiredService<ExampleTestData>();
     }
 
-    private readonly DomainModelTransaction transaction;
     private readonly ExampleTestData testData;
 
     protected override ExampleController GetSystemUnderTest()
@@ -32,7 +31,8 @@ public class ExampleControllerTests : ControllerTest<ExampleController>
     public async Task Given_RequestIsValid_When_ExampleQueryIsCalled_Then_ReturnTypeIsCorrect()
     {
         // Arrange
-        await testData.AddExampleEntitiesToDatabase(5);
+        await testData.ResetExampleEntities(new());
+        await testData.AddExampleEntitiesToDatabase(5, new());
 
         var controller = GetSystemUnderTest();
         var handler = ServiceProvider.GetRequiredService<ExampleLoadSingleQueryHandler>();
@@ -50,7 +50,8 @@ public class ExampleControllerTests : ControllerTest<ExampleController>
     public async Task Given_RequestIsValid_When_ExampleQueryAllIsCalled_Then_ReturnTypeIsCorrect()
     {
         // Arrange
-        await testData.AddExampleEntitiesToDatabase(5);
+        await testData.ResetExampleEntities(new());
+        await testData.AddExampleEntitiesToDatabase(5, new());
 
         var controller = GetSystemUnderTest();
         var handler = ServiceProvider.GetRequiredService<ExampleLoadAllQueryHandler>();
@@ -66,8 +67,6 @@ public class ExampleControllerTests : ControllerTest<ExampleController>
     public async Task Given_RequestIsValid_When_ExampleCreateCommandIsCalled_Then_ReturnTypeIsCorrect()
     {
         // Arrange
-        var mediator = ServiceProvider.GetService<IMediator>();
-
         var controller = GetSystemUnderTest();
         var handler = ServiceProvider.GetRequiredService<ExampleCreateCommandHandler>();
 
@@ -92,7 +91,8 @@ public class ExampleControllerTests : ControllerTest<ExampleController>
     public async Task Given_RequestIsValid_When_ExampleDeleteCommandIsCalled_Then_ReturnTypeIsCorrect()
     {
         // Arrange
-        await testData.AddExampleEntitiesToDatabase(5);
+        await testData.ResetExampleEntities(new());
+        await testData.AddExampleEntitiesToDatabase(5, new());
 
         var controller = GetSystemUnderTest();
         var handler = ServiceProvider.GetRequiredService<ExampleDeleteCommandHandler>();

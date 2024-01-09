@@ -1,4 +1,4 @@
-﻿using DomainModel.UserAdministration.Services;
+﻿using Domain.UserAdministration.Services;
 using System;
 using System.Threading.Tasks;
 

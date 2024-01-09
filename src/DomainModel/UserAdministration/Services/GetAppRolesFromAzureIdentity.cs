@@ -1,10 +1,10 @@
-﻿using DomainModel.UserAdministration.Exceptions;
+﻿using Domain.UserAdministration.Exceptions;
 using Microsoft.Graph.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DomainModel.UserAdministration.Services;
+namespace Domain.UserAdministration.Services;
 
 public interface IGetAppRolesFromAzureIdentity
 {

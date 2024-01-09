@@ -1,4 +1,4 @@
-﻿using DomainModel.Example;
+﻿using Domain.Example.Entities;
 
 namespace Api.WithReact.Hubs;
 
@@ -9,32 +9,17 @@ public interface IExampleHubContract
     Task SomeEntityDeleted(SomeEntityDeletedMessage message);
 }
 
-public class SomeEntityCreatedMessage
+public class SomeEntityCreatedMessage(ExampleEntity Entity)
 {
-    public SomeEntityCreatedMessage(IExampleModel entity)
-    {
-        Entity = entity;
-    }
-
-    public IExampleModel Entity { get; private set; }
+    public ExampleEntity Entity { get; } = Entity;
 }
 
-public class SomeEntityUpdatedMessage
+public class SomeEntityUpdatedMessage(ExampleEntity Entity)
 {
-    public SomeEntityUpdatedMessage(IExampleModel entity)
-    {
-        Entity = entity;
-    }
-
-    public IExampleModel Entity { get; private set; }
+    public ExampleEntity Entity { get; } = Entity;
 }
 
-public class SomeEntityDeletedMessage
+public class SomeEntityDeletedMessage(int EntityId)
 {
-    public SomeEntityDeletedMessage(int entityId)
-    {
-        EntityId = entityId;
-    }
-
-    public int EntityId { get; private set; }
+    public int EntityId { get; } = EntityId;
 }

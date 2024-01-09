@@ -1,4 +1,4 @@
-﻿using DomainModel.Example.Notifications;
+﻿using Domain.Example.Notifications;
 using MediatR;
 
 namespace Api.WithReact.Hubs.Example;

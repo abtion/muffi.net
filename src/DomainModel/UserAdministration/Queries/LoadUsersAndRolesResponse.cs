@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DomainModel.UserAdministration.Queries;
+namespace Domain.UserAdministration.Queries;
 
 public class LoadUsersAndRolesResponse
 {

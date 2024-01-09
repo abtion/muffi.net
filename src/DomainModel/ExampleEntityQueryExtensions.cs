@@ -1,7 +1,6 @@
-﻿using DomainModel.Data.Models;
-using System.Linq;
+﻿using Domain.Example.Entities;
 
-namespace DomainModel;
+namespace Domain;
 
 public static class ExampleEntityQueryExtensions
 {

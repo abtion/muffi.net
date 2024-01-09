@@ -1,7 +1,7 @@
 ﻿using Microsoft.Graph.Models;
 using System.Threading.Tasks;
 
-namespace DomainModel.UserAdministration.Services;
+namespace Domain.UserAdministration.Services;
 
 public interface IUpdateUserInAzureIdentity
 {
