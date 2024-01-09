@@ -1,4 +1,4 @@
-﻿namespace DomainModel.Shared;
+﻿namespace Domain.Shared;
 
 public interface ICurrentDateTimeService
 {

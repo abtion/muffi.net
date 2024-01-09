@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Options;
 using Microsoft.Graph;
 
-namespace DomainModel.UserAdministration.Services;
+namespace Domain.UserAdministration.Services;
 
 public interface IConfiguredGraphServiceClient
 {

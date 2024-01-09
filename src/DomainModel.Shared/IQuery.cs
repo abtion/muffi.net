@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace DomainModel.Shared;
+namespace Domain.Shared;
 
 public interface IQuery<out TResponse> : IRequest<TResponse>
 {

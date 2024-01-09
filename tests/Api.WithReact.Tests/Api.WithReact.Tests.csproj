@@ -27,7 +27,7 @@
     <PackageReference Include="FluentAssertions" Version="6.12.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\DomainModel\DomainModel.csproj" />
+    <ProjectReference Include="..\..\src\DomainModel\Domain.csproj" />
     <ProjectReference Include="..\..\src\Api.WithReact\Api.WithReact.csproj" />
     <ProjectReference Include="..\Test.Shared\Test.Shared.csproj" />
   </ItemGroup>

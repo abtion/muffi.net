@@ -1,11 +1,12 @@
 ﻿using Api.WithReact.Hubs;
-using DomainModel;
-using DomainModel.Data;
-using DomainModel.UserAdministration.Services;
+using Domain;
+using Domain.UserAdministration.Services;
+using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Presentation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +26,6 @@ public class ServiceConfigurationTests
         var msServiceCount = builder.Services.Count;
 
         // add application services
-        builder.Services.AddDbContext<ApplicationDbContext>(
-            options => options.UseInMemoryDatabase(GetType().Name)
-        );
 
         var myConfiguration = new Dictionary<string, string>
         {
@@ -40,7 +38,9 @@ public class ServiceConfigurationTests
             .AddInMemoryCollection(myConfiguration!)
             .Build();
 
-        builder.Services.AddDomainModel(configuration);
+        builder.Services.AddDomain();
+        builder.Services.AddInfrastructure(configuration, true);
+        builder.Services.AddPresentation();
         builder.Services.AddApi();
 
         ReplaceServiceWithMock<IExampleHubContract, ExampleHubMock>(builder.Services);
@@ -114,10 +114,11 @@ public class ServiceConfigurationTests
         services.AddScoped<TContract, TMockImplementation>();
     }
 
-    private IEnumerable<string> SkipList = new List<string>
+    private readonly IEnumerable<string> SkipList = new List<string>
     {
         "Microsoft.Extensions.Http.DefaultTypedHttpClientFactory`1+Cache[TClient]",
         "Microsoft.Extensions.Http.ITypedHttpClientFactory`1[TClient]",
         "MediatR.IPipelineBehavior`2",
+        "Domain.Shared.IRepository`1",
     };
 }

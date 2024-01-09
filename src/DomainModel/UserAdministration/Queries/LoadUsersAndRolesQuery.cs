@@ -1,6 +1,6 @@
-﻿using DomainModel.Shared;
+﻿using Domain.Shared;
 
-namespace DomainModel.UserAdministration.Queries;
+namespace Domain.UserAdministration.Queries;
 
 public class LoadUsersAndRolesQuery : IQuery<LoadUsersAndRolesResponse>
 {

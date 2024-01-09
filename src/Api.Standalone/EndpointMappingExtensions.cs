@@ -1,6 +1,10 @@
-﻿using DomainModel.Example.Commands;
-using DomainModel.Example.Queries;
+﻿using Domain.Example.Commands;
+using Domain.Example.Queries;
 using Microsoft.AspNetCore.Mvc;
+using static Domain.Example.Commands.ExampleCreateCommandHandler;
+using static Domain.Example.Commands.ExampleDeleteCommandHandler;
+using static Domain.Example.Queries.ExampleLoadAllQueryHandler;
+using static Domain.Example.Queries.ExampleLoadSingleQueryHandler;
 
 public static class EndpointMappingExtensions
 {
@@ -20,7 +24,7 @@ public static class EndpointMappingExtensions
         })
         .WithTags("MinimalApi");
 
-        app.MapPut("/api/example-create-command", async ([FromServices] ExampleDeleteCommandHandler handler, ExampleDeleteCommand request, CancellationToken cancellationToken) =>
+        app.MapPut("/api/example-create-command", async ([FromServices] ExampleCreateCommandHandler handler, ExampleCreateCommand request, CancellationToken cancellationToken) =>
         {
             return await handler.Handle(request, cancellationToken);
         })

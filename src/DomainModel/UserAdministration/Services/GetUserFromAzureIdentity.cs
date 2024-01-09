@@ -1,8 +1,8 @@
-﻿using DomainModel.UserAdministration.Exceptions;
+﻿using Domain.UserAdministration.Exceptions;
 using Microsoft.Graph.Models;
 using System.Threading.Tasks;
 
-namespace DomainModel.UserAdministration.Services;
+namespace Domain.UserAdministration.Services;
 
 public interface IGetUserFromAzureIdentity
 {

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace DomainModel.Shared;
+namespace Domain.Shared;
 
 [ExcludeFromCodeCoverage]
 public class CurrentDateTimeService : ICurrentDateTimeService

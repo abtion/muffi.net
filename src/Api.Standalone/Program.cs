@@ -1,6 +1,8 @@
 ﻿using Api.Shared.Authentication.OpenIdConnect;
 using Api.Standalone;
-using DomainModel;
+using Infrastructure;
+using Domain;
+using Presentation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +15,9 @@ var configuration = builder.Configuration;
 builder.Services.AddOidcAuthentication(builder.Configuration);
 
 // services
-builder.Services.AddDatabase(configuration);
-builder.Services.AddDomainModel(configuration);
+builder.Services.AddInfrastructure(configuration);
+builder.Services.AddDomain();
+builder.Services.AddPresentation();
 builder.Services.AddApi();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

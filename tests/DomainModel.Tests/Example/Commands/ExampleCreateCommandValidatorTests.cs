@@ -1,10 +1,9 @@
-﻿using DomainModel.Example.Commands;
-using FluentValidation;
+﻿using FluentValidation;
 using MediatR;
-using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
+using static Domain.Example.Commands.ExampleCreateCommandHandler;
 
-namespace DomainModel.Tests.Example.Commands;
+namespace Domain.Tests.Example.Commands;
 
 [Collection("ExampleCollection")]
 public class ExampleCreateCommandValidatorTests : DomainModelTest<IMediator>

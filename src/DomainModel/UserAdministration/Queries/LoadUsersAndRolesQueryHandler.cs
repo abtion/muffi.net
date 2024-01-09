@@ -1,11 +1,11 @@
-﻿using DomainModel.Shared;
-using DomainModel.UserAdministration.Services;
+﻿using Domain.Shared;
+using Domain.UserAdministration.Services;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DomainModel.UserAdministration.Queries;
+namespace Domain.UserAdministration.Queries;
 
 public class LoadUsersAndRolesQueryHandler
     : IQueryHandler<LoadUsersAndRolesQuery, LoadUsersAndRolesResponse>

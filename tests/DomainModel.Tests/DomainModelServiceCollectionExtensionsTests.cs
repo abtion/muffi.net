@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 
-namespace DomainModel.Tests;
+namespace Domain.Tests;
 
 [Collection("DomainModelTests")]
 public class DomainModelServiceCollectionExtensionsTests
@@ -23,7 +23,7 @@ public class DomainModelServiceCollectionExtensionsTests
 
         var services = new ServiceCollection();
 
-        Action act = () => services.AddDomainModel(configuration);
+        Action act = () => services.AddDomain();
 
         act.Should().NotThrow();
     }

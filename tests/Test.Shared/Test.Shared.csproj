@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\DomainModel.Shared\DomainModel.Shared.csproj" />
-    <ProjectReference Include="..\..\src\DomainModel\DomainModel.csproj" />
+    <ProjectReference Include="..\..\src\DomainModel.Shared\Domain.Shared.csproj" />
+    <ProjectReference Include="..\..\src\DomainModel\Domain.csproj" />
   </ItemGroup>
 
 </Project>

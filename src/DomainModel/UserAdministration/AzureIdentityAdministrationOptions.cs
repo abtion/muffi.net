@@ -1,4 +1,4 @@
-﻿namespace DomainModel.UserAdministration;
+﻿namespace Domain.UserAdministration;
 
 public class AzureIdentityAdministrationOptions
 {

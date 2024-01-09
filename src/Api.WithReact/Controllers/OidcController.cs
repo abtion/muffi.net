@@ -1,5 +1,5 @@
 ﻿using Api.Shared.Authentication.OpenIdConnect;
-using DomainModel.UserAdministration.Commands;
+using Domain.UserAdministration.Commands;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.WithReact.Controllers;

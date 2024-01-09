@@ -1,7 +1,11 @@
-using Api.WithReact.Hubs;
-using DomainModel.Example.Commands;
-using DomainModel.Example.Queries;
+using Domain.Example.Commands;
+using Domain.Example.Queries;
 using Microsoft.AspNetCore.Mvc;
+using static Domain.Example.Commands.ExampleCreateCommandHandler;
+using static Domain.Example.Commands.ExampleDeleteCommandHandler;
+using static Domain.Example.Commands.ExampleUpdateCommandHandler;
+using static Domain.Example.Queries.ExampleLoadAllQueryHandler;
+using static Domain.Example.Queries.ExampleLoadSingleQueryHandler;
 
 namespace Api.WithReact.Controllers;
 

@@ -1,4 +1,4 @@
-﻿namespace DomainModel.UserAdministration.Queries;
+﻿namespace Domain.UserAdministration.Queries;
 
 public class LoadUserResponse
 {

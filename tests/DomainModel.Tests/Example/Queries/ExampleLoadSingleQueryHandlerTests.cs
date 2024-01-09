@@ -1,23 +1,18 @@
-﻿using DomainModel.Example.Queries;
-using DomainModel.Shared.Exceptions;
-using Microsoft.Extensions.DependencyInjection;
-using System.Threading.Tasks;
+﻿using Domain.Example.Queries;
+using Domain.Shared.Exceptions;
 using Test.Shared.TestData;
+using static Domain.Example.Queries.ExampleLoadSingleQueryHandler;
 
-namespace DomainModel.Tests.Example.Queries;
+namespace Domain.Tests.Example.Queries;
 
 [Collection("ExampleCollection")]
 public class ExampleLoadSingleQueryHandlerTests : DomainModelTest<ExampleLoadSingleQueryHandler>
 {
     public ExampleLoadSingleQueryHandlerTests()
     {
-        transaction = ServiceProvider.GetRequiredService<DomainModelTransaction>();
-        transaction.ResetExampleEntities();
-
         testData = ServiceProvider.GetRequiredService<ExampleTestData>();
     }
 
-    private readonly DomainModelTransaction transaction;
     private readonly ExampleTestData testData;
 
     private ExampleLoadSingleQuery CreateValidQuery()
@@ -34,7 +29,8 @@ public class ExampleLoadSingleQueryHandlerTests : DomainModelTest<ExampleLoadSin
     public async Task Given_EntityWithTheGivenIdIsInTheDatabase_When_HandlerIsCalled_Then_EntityIsReturned()
     {
         // arrange
-        await testData.AddExampleEntitiesToDatabase(5);
+        await testData.ResetExampleEntities(new());
+        await testData.AddExampleEntitiesToDatabase(5, new());
         var sut = GetSystemUnderTest();
 
         // act
@@ -48,7 +44,8 @@ public class ExampleLoadSingleQueryHandlerTests : DomainModelTest<ExampleLoadSin
     public async Task Given_EntityWithTheGivenIdIsNotInTheDatabase_When_HandlerIsCalled_Then_AnExceptionIsThrown()
     {
         // arrange
-        await testData.AddExampleEntitiesToDatabase(1);
+        await testData.ResetExampleEntities(new());
+        await testData.AddExampleEntitiesToDatabase(1, new());
         var sut = GetSystemUnderTest();
 
         // act

@@ -1,5 +1,5 @@
-﻿using DomainModel.UserAdministration.Commands;
-using DomainModel.UserAdministration.Queries;
+﻿using Domain.UserAdministration.Commands;
+using Domain.UserAdministration.Queries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
