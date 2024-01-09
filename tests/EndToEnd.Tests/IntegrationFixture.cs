@@ -1,5 +1,4 @@
-﻿using Domain.Data;
-using Infrastructure.Data;
+﻿using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Playwright;
@@ -23,23 +22,22 @@ public sealed class IntegrationFixture : IDisposable
 
     public IntegrationFixture()
     {
-        // The database in currently not in use - no need to drop, create and reseed
-        //var task = Task.Run(() =>
-        //{
-        //    DropDatabase();
-        //    CreateDatabase();
-        //    SeedDatabase();
-        //});
+        var task = Task.Run(() =>
+        {
+            DropDatabase();
+            CreateDatabase();
+            SeedDatabase();
+        });
 
-        //if (task.Wait(TimeSpan.FromSeconds(80)))
-        //{
-        Browser = CreateBrowser().Result;
-        process = StartServer();
-        //}
-        //else
-        //{
-        //    throw new TimeoutException("Database setup timed out");
-        //}
+        if (task.Wait(TimeSpan.FromSeconds(80)))
+        {
+            Browser = CreateBrowser().Result;
+            process = StartServer();
+        }
+        else
+        {
+            throw new TimeoutException("Database setup timed out");
+        }
     }
 
     private void DropDatabase()
@@ -106,7 +104,7 @@ public sealed class IntegrationFixture : IDisposable
     private Process StartServer()
     {
         Console.WriteLine("Starting server");
-        var process = Process.Start(CreateStartInfo("run --launch-profile \"MuffiNet.FrontendReact Test\""));
+        var process = Process.Start(CreateStartInfo("run --launch-profile \"Api.WithReact Test\""));
 
         string output;
 
