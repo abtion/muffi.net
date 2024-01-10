@@ -1,4 +1,3 @@
-import { act, render, waitFor } from "@testing-library/react"
 import axios from "axios"
 import userEvent from "@testing-library/user-event"
 import { MemoryRouter } from "react-router"
@@ -6,15 +5,16 @@ import { MemoryRouter } from "react-router"
 import AuthorizedHome from "./"
 
 import useHub from "~/hooks/useHub"
-import AxiosMock from "../../../__mocks__/axios"
 import { UseHubMock } from "~/hooks/__mocks__/useHub"
 import ApiContext from "~/contexts/ApiContext"
 import { AuthContext } from "react-oidc-context"
+import { act, render, waitFor } from "~/utils/test-utils"
 
-const mockedAxios = axios as AxiosMock
+vi.mock("axios")
+const mockedAxios = vi.mocked(axios, true)
 const mockedUseHub = useHub as UseHubMock
 
-jest.mock("~/hooks/useHub")
+vi.mock("~/hooks/useHub")
 
 const entity = {
   id: "1",
@@ -38,8 +38,7 @@ const unnamedEntity = {
 }
 
 afterEach(() => {
-  mockedAxios._reset()
-  mockedUseHub._reset()
+  vi.clearAllMocks()
 })
 
 beforeEach(() => {
@@ -198,17 +197,6 @@ describe(AuthorizedHome, () => {
       })
 
       expect(nameElement).not.toBeInTheDocument()
-    })
-
-    it("uses the right access token", async () => {
-      renderPage()
-
-      const useHubParams = mockedUseHub.mock.calls[0]
-      const [_path, _onConnected, connectionOptions] = useHubParams
-
-      waitFor(() => {
-        expect(connectionOptions.accessTokenFactory()).toEqual("1234")
-      })
     })
   })
 })

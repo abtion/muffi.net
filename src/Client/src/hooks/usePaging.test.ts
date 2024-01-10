@@ -1,4 +1,4 @@
-import { renderHook, act, waitFor } from "@testing-library/react"
+import { act, renderHook, waitFor } from "~/utils/test-utils"
 import { usePaging } from "./usePaging"
 
 function setup({ initPageSize }: { initPageSize: number }) {
@@ -14,7 +14,7 @@ function setup({ initPageSize }: { initPageSize: number }) {
     { name: "Bob 5" },
   ]
 
-  const callback = jest.fn(async (page: number, pageSize: number) => {
+  const callback = vi.fn(async (page: number, pageSize: number) => {
     const offset = (page - 1) * pageSize
 
     return {

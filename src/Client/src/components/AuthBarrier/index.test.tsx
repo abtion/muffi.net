@@ -1,14 +1,14 @@
 import { useContext } from "react"
 import { AuthContext, AuthContextProps } from "react-oidc-context"
 import AuthBarrier from "."
-import { render } from "@testing-library/react"
+import { render } from "~/utils/test-utils"
 import ApiContext from "~/contexts/ApiContext"
 
-jest.unmock("axios")
+vi.unmock("axios")
 
 const emptyAuthContext = {
-  signinRedirect: jest.fn(),
-  removeUser: jest.fn(),
+  signinRedirect: vi.fn(),
+  removeUser: vi.fn(),
   // eslint-disable-next-line camelcase
   user: null,
   isLoading: false,

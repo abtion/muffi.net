@@ -1,4 +1,4 @@
-import { renderHook, act } from "@testing-library/react"
+import { act, renderHook } from "~/utils/test-utils"
 import useMappedRecords, { RecordMap } from "./useRecordMap"
 
 interface Record {

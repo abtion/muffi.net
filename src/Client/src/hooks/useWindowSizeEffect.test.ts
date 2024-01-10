@@ -1,7 +1,7 @@
-import { renderHook, act } from "@testing-library/react"
+import { act, renderHook } from "@testing-library/react"
 import useWindowSizeEffect from "./useWindowSizeEffect"
 
-const callback = jest.fn()
+const callback = vi.fn()
 
 describe(useWindowSizeEffect, () => {
   it("calls callback method on resize", () => {

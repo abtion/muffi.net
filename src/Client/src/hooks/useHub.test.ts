@@ -1,12 +1,23 @@
-import { renderHook } from "@testing-library/react"
-import { waitFor } from "@testing-library/react"
-import { HubConnectionBuilder } from "@microsoft/signalr"
-import connectionMock from "../../__mocks__/@microsoft/signalr/connectionMock"
-
 import useHub from "./useHub"
+import { renderHook, waitFor } from "~/utils/test-utils"
 
 const path = "endpoint/api"
-const onHubConnected = jest.fn()
+const withUrlMock = vi.fn()
+const withAutomaticReconnectMock = vi.fn()
+const buildMock = vi.fn()
+const connectionMock = { start: vi.fn(() => Promise.resolve()), stop: vi.fn() }
+const onHubConnected = vi.fn()
+
+vi.mock("@microsoft/signalr", () => {
+  return {
+    HubConnectionBuilder: vi.fn().mockImplementation(() => ({
+      withUrl: withUrlMock,
+      withAutomaticReconnect: withAutomaticReconnectMock.mockImplementation(
+        () => ({ build: buildMock.mockImplementation(() => connectionMock) }),
+      ),
+    })),
+  }
+})
 
 describe(useHub, () => {
   it("creates HubConnectionBuilder & tries to connect to hub", async () => {
@@ -14,14 +25,9 @@ describe(useHub, () => {
 
     renderHook(() => useHub(path, onHubConnected, connectionOptions))
 
-    expect(HubConnectionBuilder.prototype.withUrl).toHaveBeenCalledWith(
-      path,
-      connectionOptions,
-    )
-    expect(
-      HubConnectionBuilder.prototype.withAutomaticReconnect,
-    ).toHaveBeenCalled()
-    expect(HubConnectionBuilder.prototype.build).toHaveBeenCalled()
+    expect(withUrlMock).toHaveBeenCalledWith(path, connectionOptions)
+    expect(withAutomaticReconnectMock).toHaveBeenCalled()
+    expect(buildMock).toHaveBeenCalled()
     expect(connectionMock.start).toHaveBeenCalled()
 
     await waitFor(() => {
@@ -31,11 +37,10 @@ describe(useHub, () => {
 
   describe("when connection cannot be started", () => {
     it("fails with undefined connection", async () => {
-      const consoleErrorSpy = jest.spyOn(console, "error")
-      consoleErrorSpy.mockImplementation()
+      const consoleErrorSpy = vi.spyOn(console, "error")
 
       connectionMock.start.mockImplementationOnce(async () => {
-        throw new Error("Some error")
+        throw new Error("This error is expected!")
       })
 
       renderHook(() => useHub(path, onHubConnected))

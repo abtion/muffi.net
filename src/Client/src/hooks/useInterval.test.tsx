@@ -1,9 +1,9 @@
 import useInterval from "./useInterval"
-import { render } from "@testing-library/react"
+import { render } from "~/utils/test-utils"
 
 describe(useInterval, () => {
   it("calls the callback immediately", () => {
-    const callback = jest.fn()
+    const callback = vi.fn()
 
     const Component = () => {
       useInterval(callback, 1000)
@@ -16,9 +16,9 @@ describe(useInterval, () => {
   })
 
   it("calls the callback every nth ms specified by delay", () => {
-    jest.useFakeTimers()
+    vi.useFakeTimers()
 
-    const callback = jest.fn()
+    const callback = vi.fn()
     const delay = 1000
 
     const Component = () => {
@@ -29,18 +29,18 @@ describe(useInterval, () => {
     render(<Component />)
     callback.mockClear() // Don't count immediate call
 
-    jest.advanceTimersByTime(delay * 10)
+    vi.advanceTimersByTime(delay * 10)
 
     expect(callback).toHaveBeenCalledTimes(10)
 
-    jest.clearAllTimers()
-    jest.useRealTimers()
+    vi.clearAllTimers()
+    vi.useRealTimers()
   })
 
   it("cleans up the timer when the component is unmounted", () => {
-    jest.useFakeTimers()
+    vi.useFakeTimers()
 
-    const callback = jest.fn()
+    const callback = vi.fn()
     const delay = 1000
 
     const Component = () => {
@@ -53,19 +53,19 @@ describe(useInterval, () => {
 
     unmount()
 
-    jest.advanceTimersByTime(delay * 10)
+    vi.advanceTimersByTime(delay * 10)
 
     expect(callback).not.toHaveBeenCalled()
 
-    jest.clearAllTimers()
-    jest.useRealTimers()
+    vi.clearAllTimers()
+    vi.useRealTimers()
   })
 
   describe("dependencies", () => {
     it("keeps running when a non-dependent prop is changed", () => {
-      jest.useFakeTimers()
+      vi.useFakeTimers()
 
-      const callback = jest.fn()
+      const callback = vi.fn()
       const delay = 1000
 
       const Component = ({
@@ -86,25 +86,25 @@ describe(useInterval, () => {
       expect(callback).toHaveBeenCalledTimes(1)
       callback.mockClear()
 
-      jest.advanceTimersByTime(delay * 0.5)
+      vi.advanceTimersByTime(delay * 0.5)
 
       // Non-dependency prop change
       rerender(<Component dependency="untouched" nonDependency="after" />)
       expect(callback).not.toHaveBeenCalled()
 
-      jest.advanceTimersByTime(delay * 0.5)
+      vi.advanceTimersByTime(delay * 0.5)
 
       expect(callback).toHaveBeenCalledTimes(1)
 
       // Cleanup
-      jest.clearAllTimers()
-      jest.useRealTimers()
+      vi.clearAllTimers()
+      vi.useRealTimers()
     })
 
     it("cleans up and reevaluates when dependencies are changed", () => {
-      jest.useFakeTimers()
+      vi.useFakeTimers()
 
-      const callback = jest.fn()
+      const callback = vi.fn()
       const delay = 1000
 
       const Component = (props: { dependency: string }) => {
@@ -125,7 +125,7 @@ describe(useInterval, () => {
       expect(callback).toHaveBeenCalledTimes(1)
       callback.mockClear()
 
-      jest.advanceTimersByTime(delay)
+      vi.advanceTimersByTime(delay)
 
       expect(callback).toHaveBeenCalledWith("before")
       expect(callback).toHaveBeenCalledTimes(1)
@@ -138,14 +138,14 @@ describe(useInterval, () => {
       expect(callback).toHaveBeenCalledTimes(1)
       callback.mockClear()
 
-      jest.advanceTimersByTime(delay)
+      vi.advanceTimersByTime(delay)
 
       expect(callback).toHaveBeenCalledWith("after")
       expect(callback).toHaveBeenCalledTimes(1)
 
       // Cleanup
-      jest.clearAllTimers()
-      jest.useRealTimers()
+      vi.clearAllTimers()
+      vi.useRealTimers()
     })
   })
 })

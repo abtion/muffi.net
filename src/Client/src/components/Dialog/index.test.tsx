@@ -1,11 +1,11 @@
-import { render } from "@testing-library/react"
+import { render } from "~/utils/test-utils"
 import userEvent from "@testing-library/user-event"
 import Dialog, { DialogProps } from "."
 import { act } from "react-dom/test-utils"
 
 describe(Dialog, () => {
   it("can close modal Dialog using ESC button", async () => {
-    const onCloseMock = jest.fn()
+    const onCloseMock = vi.fn()
 
     const props: DialogProps = {
       onClose: onCloseMock,
@@ -22,7 +22,7 @@ describe(Dialog, () => {
   })
 
   it("can close modal Dialog using 'x' icon", async () => {
-    const onCloseMock = jest.fn()
+    const onCloseMock = vi.fn()
 
     const props: DialogProps = {
       onClose: onCloseMock,
@@ -42,7 +42,7 @@ it("renders children", () => {
   const childrenMock = <p>Some Text</p>
 
   const props: DialogProps = {
-    onClose: jest.fn(),
+    onClose: vi.fn(),
     children: childrenMock,
   }
 
@@ -53,7 +53,7 @@ it("renders children", () => {
 
 it("joins classnames on dialog", () => {
   const props: DialogProps = {
-    onClose: jest.fn(),
+    onClose: vi.fn(),
     className: "john bob",
   }
 
@@ -68,7 +68,7 @@ it("joins classnames on dialog", () => {
 
 it("applies attributes to dialog", () => {
   const props: DialogProps = {
-    onClose: jest.fn(),
+    onClose: vi.fn(),
     title: "SomeTitle",
     id: "SomeId",
   }

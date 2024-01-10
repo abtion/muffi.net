@@ -1,10 +1,10 @@
-import { render } from "@testing-library/react"
+import { render } from "~/utils/test-utils"
 import userEvent from "@testing-library/user-event"
 
 import ExampleTable from "./"
 import { ExampleEntity } from "~/types/ExampleEntity"
 
-const onRemove = jest.fn()
+const onRemove = vi.fn()
 
 function renderTable(entityList: ExampleEntity[]) {
   const context = render(
