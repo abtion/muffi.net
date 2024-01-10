@@ -1,10 +1,10 @@
 import { render } from "~/utils/test-utils"
 import userEvent from "@testing-library/user-event"
 import { act } from "react-dom/test-utils"
-import { MemoryRouter } from "react-router"
 
 import NavMenu from "."
 import { AuthContext, AuthContextProps } from "react-oidc-context"
+import { MemoryRouter } from "react-router-dom"
 
 function renderMenu() {
   const mockAuthContext = {
