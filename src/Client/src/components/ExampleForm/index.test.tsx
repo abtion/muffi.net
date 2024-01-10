@@ -1,21 +1,13 @@
-import { act, render } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-
-import axios from "axios"
-
 import ExampleForm from "./"
-import AxiosMock from "../../../__mocks__/axios"
+import { act, render } from "~/utils/test-utils"
 
-const mockedAxios = axios as AxiosMock
-const onSubmit = jest.fn()
+const onSubmit = vi.fn()
 
 function renderForm() {
   const context = render(<ExampleForm onSubmit={onSubmit} />)
-
   return { ...context }
 }
-
-afterEach(() => mockedAxios._reset())
 
 describe(ExampleForm, () => {
   it("renders correct inputs", () => {

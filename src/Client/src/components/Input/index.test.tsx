@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react"
+import { render } from "~/utils/test-utils"
 import Input, { InputProps } from "."
 
 const defaultProps: InputProps = {

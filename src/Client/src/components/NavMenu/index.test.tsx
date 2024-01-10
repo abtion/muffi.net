@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react"
+import { render } from "~/utils/test-utils"
 import userEvent from "@testing-library/user-event"
 import { act } from "react-dom/test-utils"
 import { MemoryRouter } from "react-router"
