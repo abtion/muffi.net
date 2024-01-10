@@ -6,51 +6,39 @@ name: CI
 on: push
 
 jobs:
-  yarn-lint:
+  npm-lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "value=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      - uses: actions/setup-node@v4
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.value }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          node-version-file: "src/Client/package.json"
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
 
       - name: Install JS dependencies
-        run: yarn install
+        run: npm ci --prefix src/Client
       - name: Run JS linters
-        run: yarn lint
+        run: npm run lint --prefix src/Client
 
-  yarn-test:
+  npm-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.1.1
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "value=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      - uses: actions/setup-node@v4
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.value }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          node-version-file: "src/Client/package.json"
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
 
       - name: Install JS dependencies
-        run: yarn install
+        run: npm ci --prefix src/Client
       - name: Run JS test
-        run: yarn test
+        run: npm run test --prefix src/Client
 
   dotnet-test:
     runs-on: ubuntu-latest
@@ -62,17 +50,11 @@ jobs:
       - name: Start MSSQL DB
         run: docker-compose up -d
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "value=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      - uses: actions/setup-node@v4
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.value }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          node-version-file: "src/Client/package.json"
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
 
       - uses: actions/cache@v3
         with:
@@ -100,8 +82,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs:
-      - yarn-lint
-      - yarn-test
+      - npm-lint
+      - npm-test
       - dotnet-test
     if: success() && github.ref == 'refs/heads/main'
 
@@ -114,20 +96,14 @@ jobs:
         uses: azure/sql-action@v2.2
         with:
           server-name: muffi-net-sql-server
-          connection-string: ${{ secrets.MSSQL_CONNECTION_STRING }}
-          sql-file: './sql/create-user.sql'
+          connection-string: ${{ secrets.MSSQL_CONNECTION_STRING }}
+          sql-file: "./sql/create-user.sql"
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "value=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      - uses: actions/setup-node@v4
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.value }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          node-version-file: "src/Client/package.json"
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
 
       - uses: actions/cache@v3
         with:
