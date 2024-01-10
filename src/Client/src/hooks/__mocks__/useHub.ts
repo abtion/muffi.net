@@ -10,20 +10,20 @@ type ConnectionMock = {
   _trigger(eventName: string, message: unknown): void
 }
 
-export interface UseHubMock extends jest.Mock {
+export interface UseHubMock {
   _reset(): void
   connectionMock: ConnectionMock
   (...args: Parameters<typeof useHub>): void
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const useHubMock: any = jest.fn()
+const useHubMock: any = vi.fn()
 
 useHubMock._reset = () => {
   const listeners: Record<string, ConnectionMockListener[]> = {}
   const connectionMock: ConnectionMock = {
-    invoke: jest.fn(),
-    on: jest.fn((eventName, eventListener) => {
+    invoke: vi.fn(),
+    on: vi.fn((eventName, eventListener) => {
       if (!listeners[eventName]) listeners[eventName] = []
       listeners[eventName].push(eventListener)
     }),

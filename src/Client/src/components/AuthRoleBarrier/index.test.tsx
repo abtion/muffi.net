@@ -1,8 +1,6 @@
 import { AuthContext, AuthContextProps } from "react-oidc-context"
 import AuthRoleBarrier from "."
-import { render } from "@testing-library/react"
-
-jest.unmock("axios")
+import { render } from "~/utils/test-utils"
 
 function setup({
   allow,
@@ -12,8 +10,8 @@ function setup({
   userRoles?: string[]
 }) {
   const mockAuthContext = {
-    signinRedirect: jest.fn(),
-    removeUser: jest.fn(),
+    signinRedirect: vi.fn(),
+    removeUser: vi.fn(),
     isLoading: false,
     user: userRoles
       ? {

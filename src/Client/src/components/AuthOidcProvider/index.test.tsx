@@ -1,15 +1,12 @@
 import AuthOidcProvider from "."
 import axios from "axios"
-import { render } from "@testing-library/react"
+import { render } from "~/utils/test-utils"
 import { act } from "react-dom/test-utils"
 
-const axiosMock = axios as jest.Mocked<typeof axios>
+vi.mock("axios")
+const mockedAxios = vi.mocked(axios, true)
 
-jest.mock("axios", () => ({
-  get: jest.fn(),
-}))
-
-jest.mock("react-oidc-context", () => ({
+vi.mock("react-oidc-context", () => ({
   AuthProvider: ({ children }: { children: JSX.Element[] }) => (
     <div>{children}</div>
   ),
@@ -19,7 +16,7 @@ describe(AuthOidcProvider, () => {
   it("fetches oidc config, then renders it's children inside an AuthProvider ", async () => {
     let resolveRequest: (value: unknown) => void
     const requestPromise = new Promise((resolve) => (resolveRequest = resolve))
-    axiosMock.get.mockReturnValueOnce(requestPromise)
+    mockedAxios.get.mockReturnValueOnce(requestPromise)
 
     const { queryByText } = render(
       <AuthOidcProvider>

@@ -1,18 +1,18 @@
 import { MemoryRouter } from "react-router"
-import { act, render, waitFor } from "@testing-library/react"
+import { act, render, waitFor } from "~/utils/test-utils"
 import userEvent from "@testing-library/user-event"
 import axios from "axios"
 
 import Home from "."
 
 import useHub from "~/hooks/useHub"
-import AxiosMock from "../../../__mocks__/axios"
 import { UseHubMock } from "~/hooks/__mocks__/useHub"
 
-const mockedAxios = axios as AxiosMock
+vi.mock("axios")
+const mockedAxios = vi.mocked(axios, true)
 const mockedUseHub = useHub as UseHubMock
 
-jest.mock("~/hooks/useHub")
+vi.mock("~/hooks/useHub")
 
 const entity = {
   id: "1",
@@ -36,9 +36,9 @@ const unnamedEntity = {
 }
 
 afterEach(() => {
-  mockedAxios._reset()
-  mockedUseHub._reset()
+  vi.clearAllMocks()
 })
+
 beforeEach(() => {
   mockedAxios.get.mockResolvedValue({
     data: { exampleEntities: [entity, unnamedEntity] },

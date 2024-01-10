@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 /* eslint-disable camelcase, no-console */
 import { fileURLToPath, URL } from "node:url"
 import svgr from "vite-plugin-svgr"
@@ -57,6 +58,13 @@ const target = env.ASPNETCORE_HTTPS_PORT
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  test: {
+    environment: "jsdom",
+    globals: true,
+    onConsoleLog(log) {
+      if (log.includes("This error is expected!")) return false
+    },
+  },
   plugins: [react(), svgr()],
   resolve: {
     alias: {
