@@ -1,4 +1,3 @@
-import { MemoryRouter } from "react-router"
 import { act, render, waitFor } from "~/utils/test-utils"
 import userEvent from "@testing-library/user-event"
 import axios from "axios"
@@ -7,6 +6,7 @@ import Home from "."
 
 import useHub from "~/hooks/useHub"
 import { UseHubMock } from "~/hooks/__mocks__/useHub"
+import { MemoryRouter } from "react-router-dom"
 
 vi.mock("axios")
 const mockedAxios = vi.mocked(axios, true)
