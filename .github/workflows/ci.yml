@@ -19,7 +19,7 @@ jobs:
           cache-dependency-path: "**/package-lock.json"
 
       - name: Install JS dependencies
-        run: npm ci --prefix src/Client
+        run: npm ci --prefix src/Client --no-audit --prefer-offline
       - name: Run JS linters
         run: npm run lint --prefix src/Client
 
@@ -36,7 +36,7 @@ jobs:
           cache-dependency-path: "**/package-lock.json"
 
       - name: Install JS dependencies
-        run: npm ci --prefix src/Client
+        run: npm ci --prefix src/Client --no-audit --prefer-offline
       - name: Run JS test
         run: npm run test --prefix src/Client
 

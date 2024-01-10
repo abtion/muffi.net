@@ -59,7 +59,7 @@ const target = env.ASPNETCORE_HTTPS_PORT
 // https://vitejs.dev/config/
 export default defineConfig({
   test: {
-    environment: "jsdom",
+    environment: "happy-dom",
     globals: true,
     onConsoleLog(log) {
       if (log.includes("This error is expected!")) return false
