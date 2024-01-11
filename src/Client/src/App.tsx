@@ -1,5 +1,3 @@
-import { Route, Routes } from "react-router"
-
 import AuthOidcProvider from "~/components/AuthOidcProvider"
 import AuthBarrier from "~/components/AuthBarrier"
 
@@ -9,7 +7,7 @@ import Home from "~/pages/Home"
 // Authorized pages
 import AuthorizedHome from "~/pages/AuthorizedHome"
 import UserRoleAdmin from "~/pages/UserRoleAdmin"
-import { BrowserRouter } from "react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 export default function App(): JSX.Element {
   return (

@@ -1,6 +1,5 @@
 import axios from "axios"
 import userEvent from "@testing-library/user-event"
-import { MemoryRouter } from "react-router"
 
 import AuthorizedHome from "./"
 
@@ -9,6 +8,7 @@ import { UseHubMock } from "~/hooks/__mocks__/useHub"
 import ApiContext from "~/contexts/ApiContext"
 import { AuthContext } from "react-oidc-context"
 import { act, render, waitFor } from "~/utils/test-utils"
+import { MemoryRouter } from "react-router-dom"
 
 vi.mock("axios")
 const mockedAxios = vi.mocked(axios, true)
