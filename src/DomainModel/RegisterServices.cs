@@ -1,13 +1,10 @@
-﻿using Domain.Example.Commands;
-using Domain.UserAdministration;
+﻿using Domain.UserAdministration;
 using Domain.UserAdministration.Commands;
 using Domain.UserAdministration.Queries;
 using Domain.UserAdministration.Services;
 using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
-using static Domain.Example.Commands.ExampleCreateCommandHandler;
 
 namespace Domain;
 
@@ -23,11 +20,6 @@ public static class RegisterServices
             //cfg.RegisterServicesFromAssemblyContaining(typeof(ICommandHandler<,>));
             // cfg.AddBehavior < IPipelineBehavior <, >, ValidationBehavior <, >> ();
         });
-
-        // keep these lines until mediator.Send([ICommand]) is used in all controllers and tests
-        services.AddScoped<ExampleCreateCommandHandler>();
-        services.AddScoped<ExampleUpdateCommandHandler>();
-        services.AddScoped<ExampleDeleteCommandHandler>();
 
         services.AddScoped<RevokeAllAccessCommandHandler>();
         services.AddScoped<UpdateUserCommandHandler>();
@@ -56,10 +48,6 @@ public static class RegisterServices
         >();
         services.AddScoped<IUpdateUserInAzureIdentity, UpdateUserInAzureIdentity>();
 
-        services.AddScoped<
-            AbstractValidator<ExampleCreateCommand>,
-            ExampleCreateCommandValidator
-        >();
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
         services.AddValidatorsFromAssembly(typeof(RegisterServices).Assembly);

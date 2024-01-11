@@ -7,12 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Example\Mappers\" />
     <Folder Include="UserManagement\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DomainModel\Domain.csproj" />
+    <ProjectReference Include="..\Presentation.Shared\Presentation.Shared.csproj" />
   </ItemGroup>
 
 </Project>

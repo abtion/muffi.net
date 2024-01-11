@@ -1,42 +1,32 @@
 ﻿using Domain.Example.Entities;
 using Presentation.Example.Dtos;
+using Presentation.Example.Mappers;
 
 using static Domain.Example.Queries.ExampleLoadAllQueryHandler;
 
 namespace Domain.Example.Queries;
 
-public class ExampleLoadAllQueryHandler(IRepository<ExampleEntity> Repository) : IQueryHandler<ExampleLoadAllQuery, ExampleLoadAllResponse>
+public class ExampleLoadAllQueryHandler(IRepository<ExampleEntity> Repository, ExampleMapper Mapper) : IQueryHandler<ExampleLoadAllQuery, ExampleLoadAllResponse>
 {
-    public async Task<ExampleLoadAllResponse> Handle(
-        ExampleLoadAllQuery request,
-        CancellationToken cancellationToken
-    )
+    public async Task<ExampleLoadAllResponse> Handle(ExampleLoadAllQuery request, CancellationToken cancellationToken)
     {
-        ArgumentNullException.ThrowIfNull(request);
+        var entities = await Repository.GetAll(cancellationToken);
+        var dtos = new List<ExampleDto>();
 
-        var query = from exampleEntity in await Repository.GetAll(cancellationToken)
-                    select new ExampleDto(
-                        exampleEntity.Id,
-                        exampleEntity.Name,
-                        exampleEntity.Description,
-                        exampleEntity.Email,
-                        exampleEntity.Phone);
+        foreach (var entity in entities) 
+        {
+            dtos.Add(Mapper.MapEntityToDto(entity));
+        }
 
-        return await Task.FromResult(new ExampleLoadAllResponse(query.ToList()));
+        return new ExampleLoadAllResponse(dtos);
     }
 
     public record ExampleLoadAllQuery : IQuery<ExampleLoadAllResponse>
     {
     }
 
-    public record ExampleLoadAllResponse
+    public record ExampleLoadAllResponse(IList<ExampleDto> ExampleEntities)
     {
-        public ExampleLoadAllResponse(IList<ExampleDto> exampleEntities)
-        {
-            ExampleEntities = exampleEntities;
-        }
-
-        public IList<ExampleDto> ExampleEntities { get; }
-
+        public IList<ExampleDto> ExampleEntities { get; } = ExampleEntities;
     }
 }

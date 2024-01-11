@@ -1,8 +1,7 @@
-﻿using Domain.Example.Commands;
-using Domain.Example.Queries;
+﻿using Domain.Example.Queries;
 using Microsoft.AspNetCore.Mvc;
-using static Domain.Example.Commands.ExampleCreateCommandHandler;
-using static Domain.Example.Commands.ExampleDeleteCommandHandler;
+using Presentation.Example.Commands;
+using Presentation.Example.Dtos;
 using static Domain.Example.Queries.ExampleLoadAllQueryHandler;
 using static Domain.Example.Queries.ExampleLoadSingleQueryHandler;
 

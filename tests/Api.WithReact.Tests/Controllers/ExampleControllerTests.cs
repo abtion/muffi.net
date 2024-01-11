@@ -1,12 +1,10 @@
-﻿using Domain.Example.Commands;
-using Domain.Example.Queries;
-using MediatR;
+﻿using Domain.Example.Queries;
 using Microsoft.Extensions.DependencyInjection;
+using Presentation.Example.Commands;
+using Presentation.Example.Dtos;
 using System.Threading;
 using System.Threading.Tasks;
 using Test.Shared.TestData;
-using static Domain.Example.Commands.ExampleCreateCommandHandler;
-using static Domain.Example.Commands.ExampleDeleteCommandHandler;
 using static Domain.Example.Queries.ExampleLoadAllQueryHandler;
 using static Domain.Example.Queries.ExampleLoadSingleQueryHandler;
 
