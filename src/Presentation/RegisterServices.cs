@@ -1,17 +1,15 @@
-﻿using Domain.Example.Entities;
-using Domain.Example.Queries;
+﻿using Domain.Example.Queries;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation.Example.Commands;
 using Presentation.Example.Dtos;
 using Presentation.Example.Mappers;
-using Presentation.Shared;
 
 namespace Presentation;
 
 public static class RegisterServices
 {
-    public static IServiceCollection AddPresentation(this IServiceCollection services) 
+    public static IServiceCollection AddPresentation(this IServiceCollection services)
     {
         services.AddScoped<ExampleLoadAllQueryHandler>();
         services.AddScoped<ExampleLoadSingleQueryHandler>();
@@ -23,8 +21,17 @@ public static class RegisterServices
         services.AddScoped<ExampleUpdateCommandHandler>();
         services.AddScoped<ExampleDeleteCommandHandler>();
 
-        services.AddScoped<AbstractValidator<ExampleCreateCommand>, ExampleCreateCommandValidator>();
+        // MediatR setup with validation pipeline behavior
+        services.AddMediatR(cfg =>
+        {
+            cfg.RegisterServicesFromAssembly(typeof(RegisterServices).Assembly);
+        });
 
+        // https://code-maze.com/cqrs-mediatr-fluentvalidation/
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        services.AddValidatorsFromAssembly(typeof(RegisterServices).Assembly);
+
+        services.AddScoped<AbstractValidator<ExampleCreateCommand>, ExampleCreateCommandValidator>();
 
         return services;
     }
