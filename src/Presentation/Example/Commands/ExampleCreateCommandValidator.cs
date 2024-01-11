@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using static Domain.Example.Commands.ExampleCreateCommandHandler;
+using Presentation.Example.Dtos;
 
-namespace Domain.Example.Commands;
+namespace Presentation.Example.Commands;
 
 public class ExampleCreateCommandValidator : AbstractValidator<ExampleCreateCommand>
 {

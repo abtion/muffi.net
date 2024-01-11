@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
+using Presentation.Example.Dtos;
 using System.Linq;
-using static Domain.Example.Commands.ExampleCreateCommandHandler;
 
 namespace Domain.Tests.Example.Commands;
 

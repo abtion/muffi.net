@@ -1,14 +1,10 @@
-﻿using Domain.Example.Commands;
-using Domain.Example.Entities;
-using Domain.Example.Specifications;
+﻿using Domain.Example.Entities;
 using Domain.Shared;
 using Domain.Shared.Exceptions;
-using Infrastructure;
-using Infrastructure.Data;
+using Presentation.Example.Commands;
+using Presentation.Example.Dtos;
 using System.Linq;
 using Test.Shared.TestData;
-
-using static Domain.Example.Commands.ExampleUpdateCommandHandler;
 
 namespace Domain.Tests.Example.Commands;
 

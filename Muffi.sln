@@ -37,6 +37,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation", "src\Presentation\Presentation.csproj", "{2E7937E0-F391-4FA1-B3FA-65468496E73A}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "client", "src\Client\client.esproj", "{401493A7-0D25-492A-9F61-3E03343A40FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.Shared", "src\Presentation.Shared\Presentation.Shared.csproj", "{A1D1F977-B2A1-412C-9F01-43B8655AA5AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +91,16 @@ Global
 		{2E7937E0-F391-4FA1-B3FA-65468496E73A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E7937E0-F391-4FA1-B3FA-65468496E73A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E7937E0-F391-4FA1-B3FA-65468496E73A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{401493A7-0D25-492A-9F61-3E03343A40FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{401493A7-0D25-492A-9F61-3E03343A40FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{401493A7-0D25-492A-9F61-3E03343A40FC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{401493A7-0D25-492A-9F61-3E03343A40FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{401493A7-0D25-492A-9F61-3E03343A40FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{401493A7-0D25-492A-9F61-3E03343A40FC}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A1D1F977-B2A1-412C-9F01-43B8655AA5AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1D1F977-B2A1-412C-9F01-43B8655AA5AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1D1F977-B2A1-412C-9F01-43B8655AA5AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1D1F977-B2A1-412C-9F01-43B8655AA5AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

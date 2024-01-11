@@ -1,9 +1,9 @@
-﻿using Domain.Example.Commands;
-using Domain.Example.Entities;
+﻿using Domain.Example.Entities;
 using Domain.Example.Specifications;
 using Domain.Shared;
+using Presentation.Example.Commands;
+using Presentation.Example.Dtos;
 using Test.Shared.TestData;
-using static Domain.Example.Commands.ExampleCreateCommandHandler;
 
 namespace Domain.Tests.Example.Commands;
 
