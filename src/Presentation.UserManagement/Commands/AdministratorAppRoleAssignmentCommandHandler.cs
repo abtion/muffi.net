@@ -1,34 +1,29 @@
 ﻿using Domain.Shared;
+using Domain.UserAdministration.Repositories;
 using Domain.UserAdministration.Services;
 using Microsoft.Graph;
 using Presentation.UserAdministration.Dtos;
 
 namespace Presentation.UserAdministration.Commands;
 
-public class AdministratorAppRoleAssignmentCommandHandler(IConfiguredGraphServiceClient ConfiguredGraphServiceClient, IAddUserAppRoleAssignmentToAzureIdentity AddUserAppRoleAssignmentToAzureIdentity) : ICommandHandler<AdministratorAppRoleAssignmentCommand, AdministratorAppRoleAssignmentResponse>
+public class AdministratorAppRoleAssignmentCommandHandler(IConfiguredGraphServiceClient ConfiguredGraphServiceClient, IAssignAppRoleToUser AssignAppRoleToUser) : ICommandHandler<AdministratorAppRoleAssignmentCommand, AdministratorAppRoleAssignmentResponse>
 {
     public async Task<AdministratorAppRoleAssignmentResponse> Handle(AdministratorAppRoleAssignmentCommand request, CancellationToken cancellationToken)
     {
         if (ConfiguredGraphServiceClient.Options.AdministratorUserId is not null)
         {
-            await TryAssignUserRole(
-                ConfiguredGraphServiceClient.Options.AdministratorUserId,
-                ConfiguredGraphServiceClient.Options.AllUsersAppRoleId
-            );
-            await TryAssignUserRole(
-                ConfiguredGraphServiceClient.Options.AdministratorUserId,
-                ConfiguredGraphServiceClient.Options.AdministratorsAppRoleId
-            );
+            await TryAssignUserRole(ConfiguredGraphServiceClient.Options.AdministratorUserId, ConfiguredGraphServiceClient.Options.AllUsersAppRoleId, cancellationToken);
+            await TryAssignUserRole(ConfiguredGraphServiceClient.Options.AdministratorUserId, ConfiguredGraphServiceClient.Options.AdministratorsAppRoleId, cancellationToken);
         }
 
         return new();
     }
 
-    private async Task TryAssignUserRole(string userID, string roleID)
+    private async Task TryAssignUserRole(string userId, string roleId, CancellationToken cancellationToken)
     {
         try
         {
-            await AddUserAppRoleAssignmentToAzureIdentity.AddUserAppRoleAssignment(userID, roleID);
+            await AssignAppRoleToUser.AssignAppRoleToUser(userId, roleId, cancellationToken);
         }
         catch (ServiceException exception)
         {

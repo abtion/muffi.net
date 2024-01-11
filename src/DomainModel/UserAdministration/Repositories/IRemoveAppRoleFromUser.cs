@@ -2,5 +2,5 @@
 
 public interface IRemoveAppRoleFromUser
 {
-    public Task RemoveAppRoleFromUser(string appRoleAssignmentId);
+    public Task RemoveAppRoleFromUser(string appRoleAssignmentId, CancellationToken cancellationToken);
 }

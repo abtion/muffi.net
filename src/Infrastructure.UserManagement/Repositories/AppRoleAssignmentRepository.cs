@@ -1,16 +1,30 @@
 ﻿using Domain.UserAdministration.Repositories;
+using Domain.UserAdministration.Services;
+using Microsoft.Graph.Models;
 
 namespace Presentation.UserManagement.Repositories;
 
-internal class AppRoleAssignmentRepository : IAssignAppRoleToUser, IRemoveAppRoleFromUser
+internal class AppRoleAssignmentRepository(IConfiguredGraphServiceClient ConfiguredGraphServiceClient) : IAssignAppRoleToUser, IRemoveAppRoleFromUser
 {
-    public Task AssignAppRoleToUser(string userId, string appRoleId)
+    public async Task AssignAppRoleToUser(string userId, string appRoleId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var enterpriseApplicationObjectId = ConfiguredGraphServiceClient.Options.EnterpriseApplicationObjectId;
+
+        var assignment = new AppRoleAssignment
+        {
+            PrincipalId = Guid.Parse(userId),
+            ResourceId = Guid.Parse(enterpriseApplicationObjectId),
+            AppRoleId = Guid.Parse(appRoleId),
+        };
+
+        await ConfiguredGraphServiceClient.Client.ServicePrincipals[enterpriseApplicationObjectId].AppRoleAssignedTo.PostAsync(assignment, cancellationToken: cancellationToken);
     }
 
-    public Task RemoveAppRoleFromUser(string appRoleAssignmentId)
+    public async Task RemoveAppRoleFromUser(string appRoleAssignmentId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var graphClient = ConfiguredGraphServiceClient.Client;
+        var enterpriseApplicationObjectId = ConfiguredGraphServiceClient.Options.EnterpriseApplicationObjectId;
+
+        await graphClient.ServicePrincipals[enterpriseApplicationObjectId].AppRoleAssignedTo[appRoleAssignmentId].DeleteAsync(cancellationToken: cancellationToken);
     }
 }

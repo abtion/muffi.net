@@ -21,8 +21,6 @@ public static class RegisterServices
         services.AddScoped<IGetAppRoleAssignmentsFromAzureIdentity, GetAppRoleAssignmentsFromAzureIdentity>();
         services.AddScoped<IGetUserAppRoleAssignmentsFromAzureIdentity, GetUserAppRoleAssignmentsFromAzureIdentity>();
         services.AddScoped<IGetUserFromAzureIdentity, GetUserFromAzureIdentity>();
-        services.AddScoped<IAddUserAppRoleAssignmentToAzureIdentity, AddUserAppRoleAssignmentToAzureIdentity>();
-        services.AddScoped<IDeleteUserAppRoleAssignmentFromAzureIdentity, DeleteUserAppRoleAssignmentFromAzureIdentity>();
         services.AddScoped<IUpdateUserInAzureIdentity, UpdateUserInAzureIdentity>();
 
         services

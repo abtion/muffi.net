@@ -2,5 +2,5 @@
 
 public interface IAssignAppRoleToUser
 {
-    public Task AssignAppRoleToUser(string userId, string appRoleId);
+    public Task AssignAppRoleToUser(string userId, string appRoleId, CancellationToken cancellationToken);
 }
