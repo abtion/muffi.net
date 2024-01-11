@@ -1,41 +1,23 @@
 ﻿using Domain.Shared;
 using Domain.UserAdministration.Services;
 using Microsoft.Graph;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
+using Presentation.UserAdministration.Dtos;
 
-namespace Domain.UserAdministration.Commands;
+namespace Presentation.UserAdministration.Commands;
 
-public class AdministratorAppRoleAssignmentCommandHandler
-    : ICommandHandler<AdministratorAppRoleAssignmentCommand, AdministratorAppRoleAssignmentResponse>
+public class AdministratorAppRoleAssignmentCommandHandler(IConfiguredGraphServiceClient ConfiguredGraphServiceClient, IAddUserAppRoleAssignmentToAzureIdentity AddUserAppRoleAssignmentToAzureIdentity) : ICommandHandler<AdministratorAppRoleAssignmentCommand, AdministratorAppRoleAssignmentResponse>
 {
-    private readonly IConfiguredGraphServiceClient configuredGraphServiceClient;
-    private readonly IAddUserAppRoleAssignmentToAzureIdentity addUserAppRoleAssignmentToAzureIdentity;
-
-    public AdministratorAppRoleAssignmentCommandHandler(
-        IConfiguredGraphServiceClient configuredGraphServiceClient,
-        IAddUserAppRoleAssignmentToAzureIdentity addUserAppRoleAssignmentToAzureIdentity
-    )
+    public async Task<AdministratorAppRoleAssignmentResponse> Handle(AdministratorAppRoleAssignmentCommand request, CancellationToken cancellationToken)
     {
-        this.configuredGraphServiceClient = configuredGraphServiceClient;
-        this.addUserAppRoleAssignmentToAzureIdentity = addUserAppRoleAssignmentToAzureIdentity;
-    }
-
-    public async Task<AdministratorAppRoleAssignmentResponse> Handle(
-        AdministratorAppRoleAssignmentCommand request,
-        CancellationToken cancellationToken
-    )
-    {
-        if (configuredGraphServiceClient.Options.AdministratorUserId is not null)
+        if (ConfiguredGraphServiceClient.Options.AdministratorUserId is not null)
         {
             await TryAssignUserRole(
-                configuredGraphServiceClient.Options.AdministratorUserId,
-                configuredGraphServiceClient.Options.AllUsersAppRoleId
+                ConfiguredGraphServiceClient.Options.AdministratorUserId,
+                ConfiguredGraphServiceClient.Options.AllUsersAppRoleId
             );
             await TryAssignUserRole(
-                configuredGraphServiceClient.Options.AdministratorUserId,
-                configuredGraphServiceClient.Options.AdministratorsAppRoleId
+                ConfiguredGraphServiceClient.Options.AdministratorUserId,
+                ConfiguredGraphServiceClient.Options.AdministratorsAppRoleId
             );
         }
 
@@ -46,7 +28,7 @@ public class AdministratorAppRoleAssignmentCommandHandler
     {
         try
         {
-            await addUserAppRoleAssignmentToAzureIdentity.AddUserAppRoleAssignment(userID, roleID);
+            await AddUserAppRoleAssignmentToAzureIdentity.AddUserAppRoleAssignment(userID, roleID);
         }
         catch (ServiceException exception)
         {

@@ -1,6 +1,6 @@
 ﻿using Domain.Shared;
 
-namespace Domain.UserAdministration.Queries;
+namespace Presentation.UserAdministration.Dtos;
 
 public class LoadUsersAndRolesQuery : IQuery<LoadUsersAndRolesResponse>
 {

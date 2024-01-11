@@ -1,4 +1,4 @@
-﻿namespace Domain.UserAdministration.Commands;
+﻿namespace Presentation.UserAdministration.Dtos;
 
 public class AdministratorAppRoleAssignmentResponse
 {

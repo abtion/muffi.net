@@ -1,5 +1,4 @@
 ﻿using Microsoft.Graph.Models;
-using System.Threading.Tasks;
 
 namespace Domain.UserAdministration.Services;
 

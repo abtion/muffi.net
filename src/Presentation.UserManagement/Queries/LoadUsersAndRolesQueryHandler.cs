@@ -1,33 +1,17 @@
 ﻿using Domain.Shared;
 using Domain.UserAdministration.Services;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+using Presentation.UserAdministration.Dtos;
 
-namespace Domain.UserAdministration.Queries;
+namespace Presentation.UserAdministration.Queries;
 
-public class LoadUsersAndRolesQueryHandler
-    : IQueryHandler<LoadUsersAndRolesQuery, LoadUsersAndRolesResponse>
+public class LoadUsersAndRolesQueryHandler(IGetAppRolesFromAzureIdentity AppRoles, IGetAppRoleAssignmentsFromAzureIdentity AppRoleAssignments) : IQueryHandler<LoadUsersAndRolesQuery, LoadUsersAndRolesResponse>
 {
-    private readonly IGetAppRolesFromAzureIdentity appRoles;
-    private readonly IGetAppRoleAssignmentsFromAzureIdentity appRoleAssignments;
-
-    public LoadUsersAndRolesQueryHandler(
-        IGetAppRolesFromAzureIdentity appRoles,
-        IGetAppRoleAssignmentsFromAzureIdentity appRoleAssignments
-    )
-    {
-        this.appRoles = appRoles;
-        this.appRoleAssignments = appRoleAssignments;
-    }
-
     public async Task<LoadUsersAndRolesResponse> Handle(
         LoadUsersAndRolesQuery request,
         CancellationToken cancellationToken
     )
     {
-        var roles = (await appRoles.GetAppRoles()).Select(
+        var roles = (await AppRoles.GetAppRoles()).Select(
             p =>
                 new LoadUsersAndRolesResponse.LoadedRole(
                     p.Id.GetValueOrDefault(),
@@ -35,7 +19,7 @@ public class LoadUsersAndRolesQueryHandler
                 )
         );
 
-        var roleAssignments = await appRoleAssignments.GetAppRoleAssignments();
+        var roleAssignments = await AppRoleAssignments.GetAppRoleAssignments();
 
         var users = roleAssignments
             .GroupBy(a => a.PrincipalId)

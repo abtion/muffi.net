@@ -23,4 +23,8 @@
 	  <ProjectReference Include="..\DomainModel.Shared\Domain.Shared.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="UserAdministration\Services\" />
+	</ItemGroup>
+
 </Project>

@@ -13,9 +13,7 @@ public class GetAppRoleAssignmentsFromAzureIdentityMock : IGetAppRoleAssignments
         throw new NotImplementedException();
     }
 
-    Task<
-        IQueryable<AppRoleAssignment>
-    > IGetAppRoleAssignmentsFromAzureIdentity.GetAppRoleAssignments()
+    Task<IQueryable<AppRoleAssignment>> IGetAppRoleAssignmentsFromAzureIdentity.GetAppRoleAssignments()
     {
         throw new NotImplementedException();
     }
