@@ -1,6 +1,7 @@
 ﻿using Domain.UserAdministration;
 using Domain.UserAdministration.Repositories;
 using Domain.UserAdministration.Services;
+using Infrastructure.UserManagement.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation.UserManagement.Repositories;
@@ -14,6 +15,10 @@ public static class RegisterServices
         // Repositories
         services.AddScoped<IAssignAppRoleToUser, AppRoleAssignmentRepository>();
         services.AddScoped<IRemoveAppRoleFromUser, AppRoleAssignmentRepository>();
+
+        services.AddScoped<IUpdateUserDetails, UserRepository>();
+        services.AddScoped<IGetUserAppRoleAssignments, UserRepository>();
+
 
         // Services
         services.AddTransient<IConfiguredGraphServiceClient, ConfiguredGraphServiceClient>();

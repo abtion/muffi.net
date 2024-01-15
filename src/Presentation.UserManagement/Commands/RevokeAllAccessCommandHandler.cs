@@ -5,16 +5,16 @@ using Presentation.UserAdministration.Dtos;
 
 namespace Presentation.UserAdministration.Commands;
 
-public class RevokeAllAccessCommandHandler(IGetUserAppRoleAssignmentsFromAzureIdentity GetUserAppRoleAssignmentsFromAzureIdentity, IRemoveAppRoleFromUser removeAppRoleFromUser) : ICommandHandler<RevokeAllAccessCommand, RevokeAllAccessResponse>
+public class RevokeAllAccessCommandHandler(IGetUserAppRoleAssignments GetUserAppRoleAssignments , IRemoveAppRoleFromUser removeAppRoleFromUser) : ICommandHandler<RevokeAllAccessCommand, RevokeAllAccessResponse>
 {
     public async Task<RevokeAllAccessResponse> Handle(RevokeAllAccessCommand request, CancellationToken cancellationToken)
     {
-        var allAssignments = await GetUserAppRoleAssignmentsFromAzureIdentity.GetUserAppRoleAssignments(request.UserId);
+        var allAssignments = await GetUserAppRoleAssignments.GetUserAppRoleAssignments(request.UserId, cancellationToken);
 
-        foreach (var assignment in allAssignments)
+        foreach (var assignmentId in allAssignments)
         {
-            if (assignment.Id is not null)
-                await removeAppRoleFromUser.RemoveAppRoleFromUser(assignment.Id, cancellationToken);
+            if (assignmentId is not null)
+                await removeAppRoleFromUser.RemoveAppRoleFromUser(assignmentId, cancellationToken);
         }
 
         return new();

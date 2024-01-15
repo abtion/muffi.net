@@ -4,5 +4,5 @@ namespace Domain.UserAdministration.Repositories;
 
 public interface IGetUserAppRoleAssignments
 {
-    public Task<IQueryable<UserWithAppRoleAssignmentEntity>> GetUserAppRoleAssignments(string userId);
+    public Task<List<string?>> GetUserAppRoleAssignments(string userId, CancellationToken cancellationToken);
 }

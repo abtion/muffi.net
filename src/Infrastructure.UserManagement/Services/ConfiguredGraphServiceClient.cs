@@ -17,7 +17,7 @@ public class ConfiguredGraphServiceClient : IConfiguredGraphServiceClient
     {
         Options = options.Value;
 
-        string[] scopes = { "https://graph.microsoft.com/.default" };
+        string[] scopes = ["https://graph.microsoft.com/.default"];
 
         var clientSecretCredential = new ClientSecretCredential(
             Options.DirectoryTenantId,

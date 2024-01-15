@@ -2,5 +2,5 @@
 
 public interface IUpdateUserDetails
 {
-    public Task UpdateUser(string id, string DisplayName);
+    public Task UpdateUser(string id, string DisplayName, CancellationToken cancellationToken);
 }
