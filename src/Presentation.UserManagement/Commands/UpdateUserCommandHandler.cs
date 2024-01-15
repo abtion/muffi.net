@@ -5,18 +5,12 @@ using Presentation.UserAdministration.Dtos;
 
 namespace Presentation.UserAdministration.Commands;
 
-public class UpdateUserCommandHandler(IAssignAppRoleToUser assignAppRoleToUser, IRemoveAppRoleFromUser removeAppRoleFromUser, IGetAppRoleAssignmentsFromAzureIdentity GetAppRoleAssignmentsFromAzureIdentity, IUpdateUserInAzureIdentity UpdateUserInAzureIdentity) : ICommandHandler<UpdateUserCommand, UpdateUserResponse>
+public class UpdateUserCommandHandler(IAssignAppRoleToUser assignAppRoleToUser, IRemoveAppRoleFromUser removeAppRoleFromUser, IGetAppRoleAssignmentsFromAzureIdentity GetAppRoleAssignmentsFromAzureIdentity, IUpdateUserDetails UpdateUserDetails) : ICommandHandler<UpdateUserCommand, UpdateUserResponse>
 {
     public async Task<UpdateUserResponse> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
-        // Update User details:
-        var update = new Microsoft.Graph.Models.User
-        {
-            Id = request.UserId.ToString(),
-            DisplayName = request.Name,
-        };
-
-        await UpdateUserInAzureIdentity.UpdateUser(update);
+        // Update User details
+        await UpdateUserDetails.UpdateUser(request.UserId.ToString(), request.Name, cancellationToken);
 
         // Fetch existing App Role Assignments assigned to this User:
         var allCurrentAssignments = await GetAppRoleAssignmentsFromAzureIdentity.GetAppRoleAssignmentsForUser(request.UserId.ToString());

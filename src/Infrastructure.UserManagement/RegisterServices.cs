@@ -24,9 +24,7 @@ public static class RegisterServices
         services.AddTransient<IConfiguredGraphServiceClient, ConfiguredGraphServiceClient>();
         services.AddScoped<IGetAppRolesFromAzureIdentity, GetAppRolesFromAzureIdentity>();
         services.AddScoped<IGetAppRoleAssignmentsFromAzureIdentity, GetAppRoleAssignmentsFromAzureIdentity>();
-        services.AddScoped<IGetUserAppRoleAssignmentsFromAzureIdentity, GetUserAppRoleAssignmentsFromAzureIdentity>();
         services.AddScoped<IGetUserFromAzureIdentity, GetUserFromAzureIdentity>();
-        services.AddScoped<IUpdateUserInAzureIdentity, UpdateUserInAzureIdentity>();
 
         services
             .AddOptions<AzureIdentityAdministrationOptions>()

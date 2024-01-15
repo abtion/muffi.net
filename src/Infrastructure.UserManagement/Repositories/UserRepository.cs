@@ -1,5 +1,6 @@
 ﻿using Domain.UserAdministration.Repositories;
 using Domain.UserAdministration.Services;
+using Microsoft.Graph.Models;
 
 namespace Infrastructure.UserManagement.Repositories;
 
@@ -21,6 +22,12 @@ internal class UserRepository(IConfiguredGraphServiceClient GraphClient) : IUpda
 
     public async Task UpdateUser(string id, string DisplayName, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var update = new User
+        {
+            Id = id.ToString(),
+            DisplayName = DisplayName,
+        };
+
+        await GraphClient.Client.Users[id].PatchAsync(update, cancellationToken: cancellationToken);
     }
 }
