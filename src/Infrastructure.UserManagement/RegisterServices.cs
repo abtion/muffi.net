@@ -18,8 +18,8 @@ public static class RegisterServices
 
         services.AddScoped<IUpdateUserDetails, UserRepository>();
         services.AddScoped<IGetUserAppRoleAssignments, UserRepository>();
-
-
+        services.AddScoped<IGetUserDetails, UserRepository>();
+        
         // Services
         services.AddTransient<IConfiguredGraphServiceClient, ConfiguredGraphServiceClient>();
         services.AddScoped<IGetAppRolesFromAzureIdentity, GetAppRolesFromAzureIdentity>();
