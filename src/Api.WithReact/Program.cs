@@ -4,6 +4,7 @@ using Api.WithReact.Hubs;
 using Domain;
 using Infrastructure;
 using Presentation;
+using Presentation.UserManagement;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +16,10 @@ builder.Services.AddOidcAuthentication(configuration);
 
 // services
 builder.Services.AddInfrastructure(configuration);
+builder.Services.AddUserManagementInfrastructure();
 builder.Services.AddDomain();
 builder.Services.AddPresentation();
+builder.Services.AddUserManagementPresentation();
 builder.Services.AddApi();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
