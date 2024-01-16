@@ -1,6 +1,5 @@
 ﻿using Domain.Example;
 using Domain.UserAdministration;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Domain;
