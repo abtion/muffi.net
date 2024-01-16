@@ -51,13 +51,15 @@ public class ServiceConfigurationTests
         // Repository mocks
         ReplaceServiceWithMock<IAssignAppRoleToUser, AppRoleAssignmentRepository>(builder.Services);
         ReplaceServiceWithMock<IRemoveAppRoleFromUser, AppRoleAssignmentRepository>(builder.Services);
+        ReplaceServiceWithMock<IGetAppRoleAssignmentForUser, AppRoleAssignmentRepository>(builder.Services);
+        ReplaceServiceWithMock<IGetAppRoleAssigment, AppRoleAssignmentRepository>(builder.Services);
+
         ReplaceServiceWithMock<IUpdateUserDetails, UserRepository>(builder.Services);
         ReplaceServiceWithMock<IGetUserAppRoleAssignments, UserRepository>(builder.Services);
         ReplaceServiceWithMock<IGetUserDetails, UserRepository>(builder.Services);        
 
         // replace the classes that communicate with Azure Identity with mocks that return test data
         ReplaceServiceWithMock<IConfiguredGraphServiceClient, ConfiguredGraphServiceClientMock>(builder.Services);
-        ReplaceServiceWithMock<IGetAppRoleAssignmentsFromAzureIdentity, GetAppRoleAssignmentsFromAzureIdentityMock>(builder.Services);
         ReplaceServiceWithMock<IGetAppRolesFromAzureIdentity, GetAppRolesFromAzureIdentityMock>(builder.Services);
 
         var app = builder.Build();

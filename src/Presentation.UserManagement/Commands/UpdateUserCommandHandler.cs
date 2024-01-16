@@ -1,11 +1,10 @@
 ﻿using Domain.Shared;
 using Domain.UserAdministration.Repositories;
-using Domain.UserAdministration.Services;
 using Presentation.UserAdministration.Dtos;
 
 namespace Presentation.UserAdministration.Commands;
 
-public class UpdateUserCommandHandler(IAssignAppRoleToUser assignAppRoleToUser, IRemoveAppRoleFromUser removeAppRoleFromUser, IGetAppRoleAssignmentsFromAzureIdentity GetAppRoleAssignmentsFromAzureIdentity, IUpdateUserDetails UpdateUserDetails) : ICommandHandler<UpdateUserCommand, UpdateUserResponse>
+public class UpdateUserCommandHandler(IAssignAppRoleToUser assignAppRoleToUser, IRemoveAppRoleFromUser removeAppRoleFromUser, IGetAppRoleAssignmentForUser getAppRoleAssignmentForUser , IUpdateUserDetails UpdateUserDetails) : ICommandHandler<UpdateUserCommand, UpdateUserResponse>
 {
     public async Task<UpdateUserResponse> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
@@ -13,7 +12,7 @@ public class UpdateUserCommandHandler(IAssignAppRoleToUser assignAppRoleToUser, 
         await UpdateUserDetails.UpdateUser(request.UserId.ToString(), request.Name, cancellationToken);
 
         // Fetch existing App Role Assignments assigned to this User:
-        var allCurrentAssignments = await GetAppRoleAssignmentsFromAzureIdentity.GetAppRoleAssignmentsForUser(request.UserId.ToString());
+        var allCurrentAssignments = await getAppRoleAssignmentForUser.GetAppRoleAssignmentsForUser(request.UserId.ToString());
 
         // ignoring the default App Role
         var currentAssignments = allCurrentAssignments.Where(a => a.AppRoleId != Guid.Empty);

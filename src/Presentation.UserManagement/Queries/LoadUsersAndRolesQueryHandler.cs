@@ -1,10 +1,11 @@
 ﻿using Domain.Shared;
+using Domain.UserAdministration.Repositories;
 using Domain.UserAdministration.Services;
 using Presentation.UserAdministration.Dtos;
 
 namespace Presentation.UserAdministration.Queries;
 
-public class LoadUsersAndRolesQueryHandler(IGetAppRolesFromAzureIdentity AppRoles, IGetAppRoleAssignmentsFromAzureIdentity AppRoleAssignments) : IQueryHandler<LoadUsersAndRolesQuery, LoadUsersAndRolesResponse>
+public class LoadUsersAndRolesQueryHandler(IGetAppRolesFromAzureIdentity AppRoles, IGetAppRoleAssigment GetAppRoleAssigment) : IQueryHandler<LoadUsersAndRolesQuery, LoadUsersAndRolesResponse>
 {
     public async Task<LoadUsersAndRolesResponse> Handle(
         LoadUsersAndRolesQuery request,
@@ -19,7 +20,7 @@ public class LoadUsersAndRolesQueryHandler(IGetAppRolesFromAzureIdentity AppRole
                 )
         );
 
-        var roleAssignments = await AppRoleAssignments.GetAppRoleAssignments();
+        var roleAssignments = await GetAppRoleAssigment.GetAppRoleAssignments();
 
         var users = roleAssignments
             .GroupBy(a => a.PrincipalId)
