@@ -1,18 +1,15 @@
 ﻿using Domain.Shared;
-using Domain.UserAdministration.Services;
+using Domain.UserAdministration.Repositories;
 using Presentation.UserAdministration.Dtos;
 
 namespace Presentation.UserAdministration.Queries;
 
-public class LoadUserQueryHandler(IGetUserFromAzureIdentity GetUserFromAzureIdentity) : IQueryHandler<LoadUserQuery, LoadUserResponse>
+public class LoadUserQueryHandler(IGetUserDetails getUserDetails) : IQueryHandler<LoadUserQuery, LoadUserResponse>
 {
     public async Task<LoadUserResponse> Handle(LoadUserQuery request, CancellationToken cancellationToken)
     {
-        var user = await GetUserFromAzureIdentity.GetUser(request.UserId);
+        var user = await getUserDetails.GetUser(request.UserId);
 
-        if (user.Mail is not null)
-            return new LoadUserResponse(user.Mail);
-
-        return new LoadUserResponse(string.Empty);
+        return user.Email is not null ? new LoadUserResponse(user.Email) : new LoadUserResponse(string.Empty);
     }
 }
