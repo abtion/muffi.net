@@ -64,7 +64,7 @@ jobs:
             ${{ runner.os }}-nuget-
 
       - name: Set up .NET Core
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
 
       - name: Install dotnet ef
         run: dotnet tool install --global dotnet-ef
@@ -113,7 +113,7 @@ jobs:
             ${{ runner.os }}-nuget-
 
       - name: Set up .NET Core
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
 
       - name: Publish
         run: dotnet publish src/Api.WithReact/Api.WithReact.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
