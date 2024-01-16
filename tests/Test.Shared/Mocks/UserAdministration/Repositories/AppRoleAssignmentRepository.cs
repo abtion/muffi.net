@@ -21,12 +21,12 @@ public class AppRoleAssignmentRepository() : IAssignAppRoleToUser, IRemoveAppRol
         await Task.CompletedTask;
     }
 
-    public Task<List<AppRoleAssignmentEntity>> GetAppRoleAssignments()
+    public Task<List<AppRoleAssignmentEntity>> GetAppRoleAssignments(CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
 
-    public Task<List<AppRoleAssignmentEntity>> GetAppRoleAssignmentsForUser(string userId)
+    public Task<List<AppRoleAssignmentEntity>> GetAppRoleAssignmentsForUser(string userId, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }

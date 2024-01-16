@@ -12,7 +12,7 @@ public class UpdateUserCommandHandler(IAssignAppRoleToUser assignAppRoleToUser, 
         await UpdateUserDetails.UpdateUser(request.UserId.ToString(), request.Name, cancellationToken);
 
         // Fetch existing App Role Assignments assigned to this User:
-        var allCurrentAssignments = await getAppRoleAssignmentForUser.GetAppRoleAssignmentsForUser(request.UserId.ToString());
+        var allCurrentAssignments = await getAppRoleAssignmentForUser.GetAppRoleAssignmentsForUser(request.UserId.ToString(), cancellationToken);
 
         // ignoring the default App Role
         var currentAssignments = allCurrentAssignments.Where(a => a.AppRoleId != Guid.Empty);

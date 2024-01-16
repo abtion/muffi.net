@@ -1,8 +1,8 @@
 ﻿namespace Domain.UserAdministration.Entities;
 
-public record AppRoleEntity(string Id, string DisplayName)
+public record AppRoleEntity(Guid? Id, string? DisplayName)
 {
-    public string Id { get; } = Id;
+    public Guid? Id { get; } = Id;
 
-    public string DisplayName { get; } = DisplayName;
+    public string? DisplayName { get; } = DisplayName;
 }

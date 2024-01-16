@@ -21,7 +21,7 @@ internal class AppRoleAssignmentRepository(IConfiguredGraphServiceClient Configu
         await ConfiguredGraphServiceClient.Client.ServicePrincipals[enterpriseApplicationObjectId].AppRoleAssignedTo.PostAsync(assignment, cancellationToken: cancellationToken);
     }
 
-    public async Task<List<AppRoleAssignmentEntity>> GetAppRoleAssignments()
+    public async Task<List<AppRoleAssignmentEntity>> GetAppRoleAssignments(CancellationToken cancellationToken)
     {
         var azureRoleAssignments = await ConfiguredGraphServiceClient.Client.ServicePrincipals[ConfiguredGraphServiceClient.Options.EnterpriseApplicationObjectId].AppRoleAssignedTo.GetAsync(requestConfiguration =>
         {
@@ -32,7 +32,7 @@ internal class AppRoleAssignmentRepository(IConfiguredGraphServiceClient Configu
                 "principalDisplayName",
                 "appRoleId"
             ];
-        });
+        }, cancellationToken);
 
         if (azureRoleAssignments is null || azureRoleAssignments.Value is null || azureRoleAssignments.Value.Count == 0)
             return [];
@@ -42,13 +42,13 @@ internal class AppRoleAssignmentRepository(IConfiguredGraphServiceClient Configu
         return result.Select(p => new AppRoleAssignmentEntity(p.Id, p.AppRoleId, p.PrincipalId, p.PrincipalDisplayName)).ToList();
     }
 
-    public async Task<List<AppRoleAssignmentEntity>> GetAppRoleAssignmentsForUser(string userId)
+    public async Task<List<AppRoleAssignmentEntity>> GetAppRoleAssignmentsForUser(string userId, CancellationToken cancellationToken)
     {
         var roleAssignments = await ConfiguredGraphServiceClient.Client.Users[userId].AppRoleAssignments.GetAsync(requestConfiguration =>
         {
             requestConfiguration.QueryParameters.Top = 999;
             requestConfiguration.QueryParameters.Filter = $"resourceId eq {ConfiguredGraphServiceClient.Options.EnterpriseApplicationObjectId}";
-        });
+        }, cancellationToken);
 
         if (roleAssignments is null || roleAssignments.Value is null || roleAssignments.Value.Count == 0)
             return [];

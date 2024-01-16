@@ -18,14 +18,14 @@ public static class RegisterServices
         services.AddScoped<IGetAppRoleAssignmentForUser, AppRoleAssignmentRepository>();
         services.AddScoped<IGetAppRoleAssigment, AppRoleAssignmentRepository>();
 
+        services.AddScoped<IGetAppRoles, AppRoleRepository>();
+
         services.AddScoped<IUpdateUserDetails, UserRepository>();
         services.AddScoped<IGetUserAppRoleAssignments, UserRepository>();
         services.AddScoped<IGetUserDetails, UserRepository>();
         
         // Configuration of Azure Identity API
         services.AddTransient<IConfiguredGraphServiceClient, ConfiguredGraphServiceClient>();
-
-        services.AddScoped<IGetAppRolesFromAzureIdentity, GetAppRolesFromAzureIdentity>();
 
         services
             .AddOptions<AzureIdentityAdministrationOptions>()

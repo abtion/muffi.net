@@ -4,5 +4,5 @@ namespace Domain.UserAdministration.Repositories;
 
 public interface IGetAppRoleAssigment
 {
-    public Task<List<AppRoleAssignmentEntity>> GetAppRoleAssignments();
+    public Task<List<AppRoleAssignmentEntity>> GetAppRoleAssignments(CancellationToken cancellationToken);
 }
