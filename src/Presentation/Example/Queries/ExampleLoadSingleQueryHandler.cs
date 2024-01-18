@@ -2,11 +2,10 @@
 using Domain.Example.Specifications;
 using Presentation.Example.Dtos;
 using Presentation.Example.Mappers;
-using Presentation.Shared;
 
-using static Domain.Example.Queries.ExampleLoadSingleQueryHandler;
+using static Presentation.Example.Queries.ExampleLoadSingleQueryHandler;
 
-namespace Domain.Example.Queries;
+namespace Presentation.Example.Queries;
 
 public class ExampleLoadSingleQueryHandler(IRepository<ExampleEntity> Repository, ExampleMapper Mapper) : IQueryHandler<ExampleLoadSingleQuery, ExampleLoadSingleResponse>
 {

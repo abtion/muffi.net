@@ -1,10 +1,9 @@
 ﻿using Domain.Example.Entities;
 using Presentation.Example.Dtos;
 using Presentation.Example.Mappers;
+using static Presentation.Example.Queries.ExampleLoadAllQueryHandler;
 
-using static Domain.Example.Queries.ExampleLoadAllQueryHandler;
-
-namespace Domain.Example.Queries;
+namespace Presentation.Example.Queries;
 
 public class ExampleLoadAllQueryHandler(IRepository<ExampleEntity> Repository, ExampleMapper Mapper) : IQueryHandler<ExampleLoadAllQuery, ExampleLoadAllResponse>
 {

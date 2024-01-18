@@ -1,9 +1,9 @@
-﻿using Domain.Example.Queries;
-using FluentValidation;
+﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation.Example.Commands;
 using Presentation.Example.Dtos;
 using Presentation.Example.Mappers;
+using Presentation.Example.Queries;
 
 namespace Presentation;
 
@@ -28,9 +28,10 @@ public static class RegisterServices
         });
 
         // https://code-maze.com/cqrs-mediatr-fluentvalidation/
+
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         services.AddValidatorsFromAssembly(typeof(RegisterServices).Assembly);
-
+        services.AddValidatorsFromAssemblyContaining(typeof(ValidationBehavior<,>));
         services.AddScoped<AbstractValidator<ExampleCreateCommand>, ExampleCreateCommandValidator>();
 
         return services;

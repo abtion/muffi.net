@@ -1,12 +1,12 @@
-﻿using Domain.Example.Queries;
+﻿using Presentation.Example.Queries;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation.Example.Commands;
 using Presentation.Example.Dtos;
 using System.Threading.Tasks;
 using Test.Shared.TestData;
 
-using static Domain.Example.Queries.ExampleLoadAllQueryHandler;
-using static Domain.Example.Queries.ExampleLoadSingleQueryHandler;
+using static Presentation.Example.Queries.ExampleLoadAllQueryHandler;
+using static Presentation.Example.Queries.ExampleLoadSingleQueryHandler;
 
 namespace Api.WithReact.Tests.Controllers;
 

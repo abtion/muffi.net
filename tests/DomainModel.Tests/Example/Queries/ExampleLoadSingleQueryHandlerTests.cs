@@ -1,7 +1,7 @@
-﻿using Domain.Example.Queries;
+﻿using Presentation.Example.Queries;
 using Domain.Shared.Exceptions;
 using Test.Shared.TestData;
-using static Domain.Example.Queries.ExampleLoadSingleQueryHandler;
+using static Presentation.Example.Queries.ExampleLoadSingleQueryHandler;
 
 namespace Domain.Tests.Example.Queries;
 

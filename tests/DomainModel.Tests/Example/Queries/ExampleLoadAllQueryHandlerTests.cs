@@ -1,7 +1,7 @@
-﻿using Domain.Example.Queries;
+﻿using Presentation.Example.Queries;
 using Test.Shared.TestData;
 
-using static Domain.Example.Queries.ExampleLoadAllQueryHandler;
+using static Presentation.Example.Queries.ExampleLoadAllQueryHandler;
 
 namespace Domain.Tests.Example.Queries;
 

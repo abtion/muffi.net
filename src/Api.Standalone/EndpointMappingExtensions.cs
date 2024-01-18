@@ -1,9 +1,10 @@
-﻿using Domain.Example.Queries;
+﻿using Presentation.Example.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Example.Commands;
 using Presentation.Example.Dtos;
-using static Domain.Example.Queries.ExampleLoadAllQueryHandler;
-using static Domain.Example.Queries.ExampleLoadSingleQueryHandler;
+
+using static Presentation.Example.Queries.ExampleLoadAllQueryHandler;
+using static Presentation.Example.Queries.ExampleLoadSingleQueryHandler;
 
 public static class EndpointMappingExtensions
 {
