@@ -8,6 +8,7 @@ using Test.Shared.TestData;
 
 using static Presentation.Example.Queries.ExampleLoadAllQueryHandler;
 using static Presentation.Example.Queries.ExampleLoadSingleQueryHandler;
+using MediatR;
 
 namespace Api.WithReact.Tests.Controllers;
 
@@ -23,7 +24,8 @@ public class ExampleControllerTests : ControllerTest<ExampleController>
 
     protected override ExampleController GetSystemUnderTest()
     {
-        return new ExampleController();
+        var mediator = ServiceProvider.GetRequiredService<IMediator>();
+        return new ExampleController(mediator);
     }
 
     [Fact]
