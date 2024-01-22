@@ -2,6 +2,7 @@ using Presentation.Example.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Example.Commands;
 using Presentation.Example.Dtos;
+using MediatR;
 
 using static Presentation.Example.Queries.ExampleLoadAllQueryHandler;
 using static Presentation.Example.Queries.ExampleLoadSingleQueryHandler;
@@ -10,7 +11,7 @@ namespace Api.WithReact.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class ExampleController : ControllerBase
+public class ExampleController(IMediator Mediator) : ControllerBase
 {
     [HttpGet("{exampleEntityId}")]
     public async Task<ExampleLoadSingleResponse> ExampleQuery([FromServices] ExampleLoadSingleQueryHandler handler, [FromRoute] int exampleEntityId, CancellationToken cancellationToken)
@@ -28,18 +29,22 @@ public class ExampleController : ControllerBase
     [HttpPut()]
     public async Task<ExampleCreateResponse> ExampleCreateCommand([FromServices] ExampleCreateCommandHandler handler, ExampleCreateCommand request, CancellationToken cancellationToken)
     {
-        return await handler.Handle(request, cancellationToken);
+        return await Mediator.Send(request, cancellationToken);
+        //return await handler.Handle(request, cancellationToken);
     }
 
     [HttpDelete()]
     public async Task<ExampleDeleteResponse> ExampleDeleteCommand([FromServices] ExampleDeleteCommandHandler handler, ExampleDeleteCommand request, CancellationToken cancellationToken)
     {
-        return await handler.Handle(request, cancellationToken);
+        return await Mediator.Send(request, cancellationToken);
+
+        //return await handler.Handle(request, cancellationToken);
     }
 
     [HttpPost()]
     public async Task<ExampleUpdateResponse> ExampleUpdateCommand([FromServices] ExampleUpdateCommandHandler handler, ExampleUpdateCommand request, CancellationToken cancellationToken)
     {
-        return await handler.Handle(request, cancellationToken);
+        return await Mediator.Send(request, cancellationToken);
+        //return await handler.Handle(request, cancellationToken);
     }
 }
