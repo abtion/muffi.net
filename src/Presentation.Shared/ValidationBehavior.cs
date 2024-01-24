@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using MediatR;
-using System.ComponentModel.DataAnnotations;
 
 namespace Presentation.Shared;
 public class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TRequest>> Validators) : IPipelineBehavior<TRequest, TResponse>
@@ -10,30 +10,22 @@ public class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TReq
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         if (!Validators.Any())
-        {
             return await next();
-        }
 
-        var context = new ValidationContext<TRequest>(request);
+        var validationFailures = new List<ValidationFailure>();
 
-        var errorsDictionary = Validators
-            .Select(x => x.Validate(context))
-            .SelectMany(x => x.Errors)
-            .Where(x => x != null)
-            .GroupBy(
-                x => x.PropertyName,
-                x => x.ErrorMessage,
-                (propertyName, errorMessages) => new
-                {
-                    Key = propertyName,
-                    Values = errorMessages.Distinct().ToArray()
-                })
-            .ToDictionary(x => x.Key, x => x.Values);
-
-        if (errorsDictionary.Any())
+        foreach (var validator in Validators) 
         {
-            throw new FluentValidation.ValidationException("Error error error");
+            var result = validator.Validate(request);
+
+            if (result is not null) 
+            {
+                validationFailures.AddRange(result.Errors);
+            }
         }
+
+        if (validationFailures.Any())
+            throw new ValidationException("Unable to validate", validationFailures);
 
         return await next();
     }
