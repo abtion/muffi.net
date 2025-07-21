@@ -11,9 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ardalis.Specification" Version="8.0.0" />
-    <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="8.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.7" />
+    <PackageReference Include="Ardalis.Specification" Version="9.2.0" />
+    <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="9.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.7" />
   </ItemGroup>
 
   <ItemGroup>
