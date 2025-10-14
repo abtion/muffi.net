@@ -12,7 +12,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version-file: "src/Client/package.json"
           cache: "npm"
@@ -29,7 +29,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.1.1
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version-file: "src/Client/package.json"
           cache: "npm"
@@ -50,7 +50,7 @@ jobs:
       - name: Start MSSQL DB
         run: docker-compose up -d
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version-file: "src/Client/package.json"
           cache: "npm"
@@ -99,7 +99,7 @@ jobs:
           connection-string: ${{ secrets.MSSQL_CONNECTION_STRING }}
           sql-file: "./sql/create-user.sql"
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version-file: "src/Client/package.json"
           cache: "npm"
