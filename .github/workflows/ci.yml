@@ -3,7 +3,15 @@
 
 name: CI
 
-on: push
+# Branch pushes without a PR don't run CI; open a (draft) PR to get checks.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   npm-lint:
